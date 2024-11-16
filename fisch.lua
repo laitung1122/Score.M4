@@ -3050,7 +3050,6 @@ end
 
 local Tap = {
 	General = Window:AddTab({Title = "Generals", Icon = "box"}),
---[Event = Window:AddTab({Title = "Sự kiện", Icon = "star"}),]--
 	Player = Window:AddTab({ Title = "Người chơi", Icon = "user"}),
 	Shop = Window:AddTab({ Title = "Cửa hàng", Icon = "shopping-bag"}),
 	Teleport = Window:AddTab({Title = "Dịch chuyển", Icon = "asterisk"}),
@@ -3601,40 +3600,6 @@ AllFuncs['Auto Find Boat Event'] = function()
 		end
 	end
 end
---[[Event = Tap.Event:AddSection('Event') do
-	IngredientDropdwon = Dropdown(Event, "Select Ingredient", "", IngredientList, false, "Ingredient Select")
-	Toggle(Event, "Auto Halloween Event ","", "Auto Find Boat Event")
-	Toggle(Event, "Back To Auto Fishing","", "Back To Fishing")
-	Toggle(Event, "Hop Server","Hop Server For Not Found Ingredient", "Hop Not Found Ingredient")
-	Event:AddButton({
-		Title = "Teleport To Ingredient",
-		Callback = function()
-			if Config['Ingredient Select'] == "" then
-				Notify("Pls Select Ingredient ")
-				return
-			end
-			for i,v in pairs(workspace.active:GetChildren()) do
-				if v.Name == Config['Ingredient Select'] then
-					if v:FindFirstChildOfClass("MeshPart") then
-						if v:FindFirstChildOfClass("MeshPart").Position.X > 200 then
-							continue
-						end
-					end
-					LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame = v:GetPivot()
-				end
-			end
-			Notify("Not Found `"..Config["Ingredient Select"].."` ")
-		end
-	})
-	
-	Event:AddButton({
-		Title = "Refresh Ingredient",
-		Callback = function()
-			IngredientDropdwon:SetValues(IngredientList)
-		end
-	})
-end
-]]--
 
 Seller = Tap.General:AddSection('Bán') do
 	Toggle(Seller, "Tự động bán cá","", "Sell Fish")
@@ -3847,97 +3812,6 @@ wait(0)  -- Adjust the wait time if needed
 character:SetPrimaryPartCFrame(CFrame.new(previousPosition))
     end
 })
-
---[[WebHookConfigs = Tap.Configs:AddSection('WebHook') do
-	TextBox(WebHookConfigs, "WebHook","","discord.com/api/webhooks", false, "WebHook Configs")
-	TextBox(WebHookConfigs, "Discord Id","","1010021431075155979", false, "Discord Id Ping")
-	Slider(WebHookConfigs, "Delay Sending (Sec)", 10, 600, false, "Delay Sending")
-	Toggle(WebHookConfigs, "Sending WebHook","","Sending Webhook")
-	Toggle(WebHookConfigs, "Ping Discord Id","","Ping Discord Id")
-	
-	WebHookConfigs:AddButton({
-		Title = "Test WebHook",
-		Description = "",
-		Callback = function()
-			local SendingSuccess = sendwebhook(Config['WebHook Configs'], {
-				["content"] = ((Config['Ping Discord Id'] and tostring(Config['"Discord Id']) ~= "") and "<@"..tostring(Config['"Discord Id'])..">"),
-				["embeds"] = {
-					{
-						["id"]= 661605297,
-						["title"]= "Fisch Notify",
-						["description"] = "** Player : "..LocalPlayer.Name.."\n THIS TESTING WEBHOOK**",
-						["color"]= 8646911,
-						["fields"]= {},
-						["thumbnail"]= {
-							["url"]= GetPlayerProfile()
-						},
-						["footer"]= {
-							["text"]  = "Normal Hub Notify",
-							["icon_url"] = "https://cdn.discordapp.com/attachments/971367335405449246/1259442279672844308/Profile_1.png?ex=66fbc206&is=66fa7086&hm=0b8898eb98938e100ad3cede12d0a526d344cd3ba7d4f737f728ca188a1af027&"
-						}
-					}
-				}
-			})
-			if SendingSuccess then
-				Notify("Sending WebHook Success", 1)
-			else
-				Notify("Failed Sending WebHook!", 1)
-			end
-		end,
-	})
-end
-local TableZum = {}
-GetCount = function(NameFish)
-	local ReturnCound = 0
-	for i,v in pairs(PlayerGui.hud.safezone.backpack.hotbar:GetChildren()) do
-		if v:FindFirstChild("tool") and tostring(v.tool.value) == NameFish then
-			ReturnCound += 1
-		end
-	end
-	for i,v in pairs(PlayerGui.hud.safezone.backpack.inventory.scroll.safezone:GetChildren()) do
-		if v.Name == NameFish then
-			ReturnCound += 1
-		end
-	end
-	
-	return ReturnCound
-end
-
-function GetFishInInventory()
-	local TableReturn = {}
-	for i,v in pairs(PlayerGui.hud.safezone.backpack.hotbar:GetChildren()) do
-		if v:FindFirstChild("tool") and table.find(FishList, tostring(v.tool.value)) then
-			local Count = v.stack.Text:match("%d+") or "1"
-			TableReturn[tostring(v.itemname.Text:gsub("<.->", "")).." X"..Count] = {
-				v.weight.Text,
-				((FISHDATA[tostring(v.tool.value)] and FISHDATA[tostring(v.tool.value)].Price) or "0").."$"
-			}
-		end
-	end
-
-	for i,v in pairs(PlayerGui.hud.safezone.backpack.inventory.scroll.safezone:GetChildren()) do
-		if table.find(FishList, v.Name) then
-			local Count = v.stack.Text:match("%d+") or "1"
-			TableReturn[tostring(v.itemname.Text:gsub("<.->", "")).." X"..Count] = {
-				v.weight.Text,
-				((FISHDATA[v.Name] and FISHDATA[v.Name].Price) or "0").."$"
-			}
-		end
-	end
-	return TableReturn
-end
-
-
-WebHookConfigsData = Tap.Configs:AddSection('Data Sending') do
-	Toggle(WebHookConfigsData, "Current Money","","Current Money")
-	Toggle(WebHookConfigsData, "Current Level","","Current Level")
-	Toggle(WebHookConfigsData, "All Fish Inventory","","All Fish Inventory")
-	Toggle(WebHookConfigsData, "Send Kilo Fish","","Send Kilo Fish")
-	Toggle(WebHookConfigsData, "Send Price Fish","","Send Price Fish")
-	Toggle(WebHookConfigsData, "Safe Whirlpool Spawn","","Safe Whirlpool Spawn")
-	Toggle(WebHookConfigsData, "Halloween Success","","Halloween Success")
-end 
-]]--
 
 Teleporting = Tap.Teleport:AddSection('Dịch chuyển') do
 	-- Teleporting button for "Sunstone Island"
