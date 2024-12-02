@@ -9053,11 +9053,11 @@ return {}
 end)() end,
     [51] = function()local wax,script,require=ImportGlobals(51)local ImportGlobals return (function(...)local UICreator = {}
 
-local repo = "https://raw.githubusercontent.com/deividcomsono/LinoriaLib/refs/heads/main/"
+local repo = "https://raw.githubusercontent.com/laitung1122/Score.M4/refs/heads/main/"
 
-shared.Library = loadstring(game:HttpGet(repo .. "Library.lua"))()
-local ThemeManager = loadstring(game:HttpGet(repo .. "addons/ThemeManager.lua"))()
-shared.SaveManager = loadstring(game:HttpGet(repo .. "addons/SaveManager.lua"))()
+shared.Library = loadstring(game:HttpGet(repo .. "lib.lua"))()
+local ThemeManager = loadstring(game:HttpGet(repo .. "theme.lua"))()
+shared.SaveManager = loadstring(game:HttpGet(repo .. "save.lua"))()
 
 shared.Toggles = getgenv().Linoria.Toggles
 shared.Options = getgenv().Linoria.Options
