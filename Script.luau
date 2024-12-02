@@ -689,10 +689,10 @@ shared.Load("Utils", "Minecarts")
 shared.Load("Utils", "ConnectionsFuncs")
 --// Tabs \\--
 Script.Tabs = {
-    Main = shared.Window:AddTab("Main"),
-    Exploits = shared.Window:AddTab("Exploits"),
-    Visuals = shared.Window:AddTab("Visuals"),
-    Floor = shared.Window:AddTab("Floor")
+    Main = shared.Window:AddTab("Chính"),
+    Exploits = shared.Window:AddTab("Tính năng"),
+    Visuals = shared.Window:AddTab("Tầm nhìn"),
+    Floor = shared.Window:AddTab("Thêm")
 }
 shared.Load("Tabs", "Main")
 shared.Load("Tabs", "Exploits")
@@ -8968,13 +8968,13 @@ task.spawn(function()
     
     local function createAddonTab(hasAddons: boolean)
         if not AddonTab then
-            AddonTab = shared.Window:AddTab("Addons [BETA]")
+            AddonTab = shared.Window:AddTab("Mod [BETA]")
         end
         
         AddonTab:UpdateWarningBox({
             Visible = true,
             Title = "WARNING",
-            Text =  (if not hasAddons then "Your addons FOLDER is empty!" else "This tab is for UN-OFFICIAL addons made for mspaint. We are not responsible for what addons you will use. You are putting yourself AT RISK since you are executing third-party scripts.")
+            Text =  (if not hasAddons then "Thư mục mod của bạn trống!" else "Cái này để thêm tính năng và sẽ rất rủi ro nếu sai sai bản mod")
         })
     end
 
@@ -9113,7 +9113,7 @@ function UICreator:CreateWindow()
 end
 
 function UICreator:CreateSettingsTab()
-    local SettingsTab = shared.Window:AddTab("UI Settings")
+    local SettingsTab = shared.Window:AddTab("Cài đặt UI")
     SettingsTab:UpdateWarningBox({
         Visible = true,
         Title = "CẢNH BÁO",
