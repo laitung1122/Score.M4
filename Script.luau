@@ -6347,9 +6347,9 @@ function Script.Functions.AutoWardrobe(child, index: number | nil)
     task.spawn(function() 
         shared.Notify:Log({
             Title = NotifPrefix,
-            Description = "Looking for a hiding place",
+            Description = "Đang tìm chỗ trốn",
     
-            LinoriaMessage = "[" .. NotifPrefix .. "] Looking for a hiding spot..."
+            LinoriaMessage = "[" .. NotifPrefix .. "] Đang tìm nới trú ẩn..."
         }, Toggles.AutoWardrobeNotif.Value)
     end)
 
@@ -7832,9 +7832,9 @@ function Script.Functions.Minecart.DrawNodes(room: Model)
     end
 
     --[ESP] Draw the fake path
-    -- for idx, fakeNode in ipairs(nodesList.fake) do
-    --     changeNodeColor(fakeNode, MinecartPathNodeColor.Red)
-    -- end
+    for idx, fakeNode in ipairs(nodesList.fake) do
+       changeNodeColor(fakeNode, MinecartPathNodeColor.Red)
+     end
 end
 
 --@Return nil. Map the nodes in the __RunnerNodes__ and call features functions (@DrawNode; @Teleport).
