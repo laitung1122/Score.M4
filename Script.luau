@@ -42,75 +42,59 @@ end
 --// mspaint Loader \\--
 if not wax.shared.GotPlace then
     wax.shared.GotPlace = true
-
     shared.ScriptName = "Universal"
-    shared.ScriptLoader = "Universal"
-    
-    local Mappings = require("Mappings")
-    
+    shared.ScriptLoader = "Universal"   
+    local Mappings = require("Mappings") 
     local MappingID = Mappings[game.GameId]
     if MappingID then
         local Folder = MappingID["Folder"]
         local Name = MappingID["Name"] or Folder
         local GameExclusions = MappingID["Exclusions"] or {}
-        local Exclusion = GameExclusions[game.PlaceId]
-        
+        local Exclusion = GameExclusions[game.PlaceId]        
         shared.ScriptName = Name
         shared.ScriptLoader = Folder .. "/" .. MappingID["Main"]
-
         shared.Mapping = MappingID
         shared.ScriptFolder = Folder
-        shared.ScriptExclusion = Exclusion
-    
+        shared.ScriptExclusion = Exclusion    
         if Exclusion then
             shared.ScriptName = Name .. " (" .. Exclusion .. ")"
             shared.ScriptLoader = Folder .. "/" .. Exclusion
         end
     end
 end
-
 --// Global functions \\--
 shared.Script = {
     Functions = {}
 }
 shared.Hooks = {}
-
 shared.Script.Functions.EnforceTypes = function(args, template)
     args = if typeof(args) == "table" then args else {}
-
     for key, value in pairs(template) do
         local argValue = args[key]
-
         if argValue == nil or (value ~= nil and typeof(argValue) ~= typeof(value)) then
             args[key] = value
         elseif typeof(value) == "table" then
             args[key] = shared.Script.Functions.EnforceTypes(argValue, value)
         end
     end
-
     return args
 end
 
 shared.Load = require("Utils/Loader")
 shared.Logs = require("Utils/Logs")
 shared.Connect = require("Utils/Connections")
-
 --// Player Variables \\--
 shared.Camera = workspace.CurrentCamera
-
 shared.LocalPlayer = shared.Players.LocalPlayer
 shared.PlayerGui = shared.LocalPlayer.PlayerGui
 shared.PlayerScripts = shared.LocalPlayer.PlayerScripts
-
 shared.Fly = require("Utils/Universal/Fly")
 shared.Twerk = require("Utils/Universal/Twerk")
 shared.ControlModule = require("Utils/Universal/ControlModule")
-
 local TextChannels = shared.TextChatService:FindFirstChild("TextChannels")
 if TextChannels and TextChannels:FindFirstChild("RBXGeneral") then
     shared.RBXGeneral = TextChannels.RBXGeneral
 end
-
 --// Load \\--
 local UICreator = require("Utils/GUI/Creator")
 shared.Window = UICreator:CreateWindow()
@@ -119,7 +103,6 @@ require("Places/Loaders/" .. shared.ScriptLoader)
 
 UICreator:CreateSettingsTab()
 require("Utils/GUI/Addons")
-
 shared.Notify:Alert({
     Title = "Dương Api",
     Description = "Cảm ơn vì đã sài dự án"
@@ -138,7 +121,6 @@ end)() end,
             [12308344607] = "Lobby"
         }
     },
-
     [2091953627] = {
         ["Folder"] = "R&D",
         ["Main"] = "R&D",
@@ -151,11 +133,9 @@ if shared.LocalPlayer and shared.LocalPlayer.PlayerGui:FindFirstChild("LoadingUI
     print("[Dương Api] Đang chờ game tải...")
     repeat task.wait() until not shared.LocalPlayer.PlayerGui:FindFirstChild("LoadingUI") and true or not shared.LocalPlayer.PlayerGui.LoadingUI.Enabled
 end
-
 --// Linoria \\--
 local Toggles = shared.Toggles
 local Options = shared.Options
-
 --// Variables \\--
 local Script = shared.Script
 Script.FeatureConnections = {
@@ -196,7 +176,7 @@ Script.Functions.Minecart = {
             table.insert(msg, tostring(v))
         end
          shared.Notify:Alert({
-           Title = "[Đang vá lỗi]",
+           Title = "[Hệ thống]",
             Description = table.concat(msg, " "),
              Reason = ""
         })
@@ -526,32 +506,24 @@ Script._mspaint_custom_captions = Instance.new("ScreenGui"); do
     })
 
     UITextSizeConstraint.MaxTextSize = 35
-
     local IsCaptionHidden = true
-    local CaptionsLastUsed = os.time()
-    
+    local CaptionsLastUsed = os.time()   
     function Script.Functions.HideCaptions()
         IsCaptionHidden = true
         Script._mspaint_custom_captions.Parent = shared.ReplicatedStorage
     end
-
     function Script.Functions.Captions(caption: string)
         CaptionsLastUsed = os.time()
-
         if IsCaptionHidden then
             local success = pcall(function()
                 Script._mspaint_custom_captions.Parent = if gethui then gethui() else shared.CoreGui
             end)
-
             if not success then
                 Script._mspaint_custom_captions.Parent = shared.PlayerGui
             end 
-
             IsCaptionHidden = false
-        end
-        
+        end        
         TextLabel.Text = caption
-
         task.spawn(function()
             task.wait(5)
             if os.time() - CaptionsLastUsed >= 5 then
@@ -3369,11 +3341,13 @@ elseif Script.IsMines then
     local Mines_BypassGroupBox = Tabs.Floor:AddRightGroupbox("Bypass") do
         Mines_BypassGroupBox:AddToggle("MinecartTeleport", {
             Text = "Dịch chuyển xe mỏ(beta)",
+            Tooltip = "Rất rủi ro, không đảm bảo 100% hoạt động tốt",
             Default = false
         })
 
         Mines_BypassGroupBox:AddToggle("MinecartTeleportDebug", {
             Text = "Vá lỗi dịch chuyển",
+            Tooltip = "Rất rủi ro, không đảm bảo 100% hoạt động tốt",
             Default = false,
             Visible = true,
         })
@@ -6347,9 +6321,9 @@ function Script.Functions.AutoWardrobe(child, index: number | nil)
     task.spawn(function() 
         shared.Notify:Log({
             Title = NotifPrefix,
-            Description = "Đang tìm chỗ trốn",
+            Description = "Looking for a hiding place",
     
-            LinoriaMessage = "[" .. NotifPrefix .. "] Đang tìm nới trú ẩn..."
+            LinoriaMessage = "[" .. NotifPrefix .. "] Looking for a hiding spot..."
         }, Toggles.AutoWardrobeNotif.Value)
     end)
 
@@ -7832,9 +7806,9 @@ function Script.Functions.Minecart.DrawNodes(room: Model)
     end
 
     --[ESP] Draw the fake path
-    for idx, fakeNode in ipairs(nodesList.fake) do
-       changeNodeColor(fakeNode, MinecartPathNodeColor.Red)
-     end
+    -- for idx, fakeNode in ipairs(nodesList.fake) do
+    --     changeNodeColor(fakeNode, MinecartPathNodeColor.Red)
+    -- end
 end
 
 --@Return nil. Map the nodes in the __RunnerNodes__ and call features functions (@DrawNode; @Teleport).
@@ -9081,7 +9055,7 @@ function UICreator:CreateWindow()
     })
 
     --// Notificatins \\--
-    shared.NotifyStyle = "Linoria"
+    shared.NotifyStyle = "Doors"
     shared.NotifyVolume = 2
     shared.Notify = require("Notify")
 
@@ -9128,17 +9102,17 @@ function UICreator:CreateSettingsTab()
     MenuGroup:AddToggle("ShowCustomCursor", {Text = "Custom Cursor", Default = true, Callback = function(Value) shared.Library.ShowCustomCursor = Value end})
     MenuGroup:AddDivider()
     MenuGroup:AddLabel("Menu bind"):AddKeyPicker("MenuKeybind", { Default = "RightShift", NoUI = true, Text = "Menu keybind" })
-    MenuGroup:AddButton("Join Discord", function()
+    MenuGroup:AddButton("Gia nhập discord", function()
         local Inviter = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
         Inviter.Join("https://discord.com/invite/cfyMptntHr")
         Inviter.Prompt({
-            name = "mspaint",
+            name = "Dương Api",
             invite = "https://discord.com/invite/cfyMptntHr",
         })
-    end):AddButton("Copy Link", function()
+    end):AddButton("Sao chép", function()
         if setclipboard then
             setclipboard("https://discord.com/invite/cfyMptntHr")
-            shared.Library:Notify("Copied discord link to clipboard!")
+            shared.Library:Notify("Đã sap chép vào bộ nhớ tạm!")
         else
             shared.Library:Notify("Discord link: https://discord.com/invite/cfyMptntHr", 10)
         end
