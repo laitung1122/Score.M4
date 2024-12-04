@@ -4212,13 +4212,13 @@ local AutomationGroupBox = Tabs.Main:AddRightGroupbox("Automation") do
     AutomationGroupBox:AddDivider()
 
     AutomationGroupBox:AddToggle("AutoWardrobeNotif", {
-        Text = "Thống báo tự động ẩn nấp",
+        Text = "Thông báo tự động ẩn nấp",
         Default = false
     })
 
     AutomationGroupBox:AddToggle("AutoWardrobe", {
         Text = "Tự động ẩn nấp",
-        Default = false,
+        Default = true,
         Tooltip = "Có thể lỗi khi gặp quá nhiều quái cùng lúc",
         Visible = not Script.IsRetro,
         Risky = true
@@ -4239,7 +4239,7 @@ local AutomationGroupBox = Tabs.Main:AddRightGroupbox("Automation") do
     if Script.IsHotel or Script.IsFools then
         AutomationGroupBox:AddToggle("AutoLibrarySolver", {
             Text = "Tự động giải mã thư viện",
-            Default = false
+            Default = true
         })
 
         AutomationGroupBox:AddSlider("AutoLibraryDistance", {
@@ -6317,13 +6317,13 @@ function Script.Functions.AutoWardrobe(child, index: number | nil)
         return
     end
 
-    local NotifPrefix = "Auto " .. Script.HidingPlaceName[Script.Floor.Value];
+    local NotifPrefix = "Dương Api";
     task.spawn(function() 
         shared.Notify:Log({
             Title = NotifPrefix,
-            Description = "Looking for a hiding place",
+            Description = "Đứng trước tủ đi còn lại để anh lo:))",
     
-            LinoriaMessage = "[" .. NotifPrefix .. "] Looking for a hiding spot..."
+            LinoriaMessage = "[" .. NotifPrefix .. "] Đứng trước tủ đi còn lại để anh lo:))"
         }, Toggles.AutoWardrobeNotif.Value)
     end)
 
@@ -6363,9 +6363,9 @@ function Script.Functions.AutoWardrobe(child, index: number | nil)
     task.spawn(function() 
         shared.Notify:Log({
             Title = NotifPrefix,
-            Description = "Đang bắt đầu chạy...",
+            Description = "Đang bắt đầu làm việc...",
     
-            LinoriaMessage = "[" .. NotifPrefix .. "] Đang bắt đầu chạy..."
+            LinoriaMessage = "[" .. NotifPrefix .. "] Đang bắt đầu làm việc..."
         }, Toggles.AutoWardrobeNotif.Value)
     end)
     
