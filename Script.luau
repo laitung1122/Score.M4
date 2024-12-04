@@ -3589,7 +3589,7 @@ elseif Script.IsRooms then
     end
 
     local Rooms_AutomationGroupBox = Tabs.Floor:AddRightGroupbox("Tự động") do
-        Rooms_AutomationGroupBox:AddToggle("Tắt một số tính năng phụ nếu muốn\nƯu tiên sử dụng tốc độ 18-24", {
+        Rooms_AutomationGroupBox:AddToggle("AutoRooms", {
             Text = "Tự động A1000",
             Default = false
         })
@@ -3727,10 +3727,10 @@ elseif Script.IsRooms then
                     lastRoomValue = Script.LatestRoom.Value
                 end
                 
-               shared.Notify:Log({
-                    Title = "Dương Api",
-                    Description = "Xác định vật thể thành công",
-                }, Toggles.AutoRoomsDebug.Value)
+               --shared.Notify:Log({
+                    --Title = "Dương Api",
+                    --Description = "Xác định vật thể thành công",
+                --}, Toggles.AutoRoomsDebug.Value)
             
 
                 local path = shared.PathfindingService:CreatePath({
@@ -3743,10 +3743,10 @@ elseif Script.IsRooms then
                     }
                 })
 
-                shared.Notify:Log({
-                    Title = "Dương Api",
-                    Description = "Đang tạo đường đi...",
-                }, Toggles.AutoRoomsDebug.Value)
+                --shared.Notify:Log({
+                    --Title = "Dương Api",
+                    --Description = "Đang tạo đường đi...",
+                --}, Toggles.AutoRoomsDebug.Value)
 
                 path:ComputeAsync(shared.RootPart.Position - Vector3.new(0, 2.5, 0), pathfindingGoal.Position)
                 local waypoints = path:GetWaypoints()
@@ -3773,7 +3773,7 @@ elseif Script.IsRooms then
 
                     shared.Notify:Log({
                         Title = "Dương Api",
-                        Description = "Tính toán thành công với " .. waypointAmount .. " điểm!",
+                        Description = "Xác định thành công, đã tạo " .. waypointAmount .. " điểm!",
                     }, Toggles.AutoRoomsDebug.Value)
 
                     _internal_mspaint_pathfinding_nodes:ClearAllChildren()
