@@ -3594,13 +3594,13 @@ elseif Script.IsRooms then
             Default = false
         })
 
-        Rooms_AutomationGroupBox:AddLabel("Recommended Settings:\nSpeed Bypass and Noclip disabled", true)
+        Rooms_AutomationGroupBox:AddLabel("Cài đặt khuyên dùng:\nTốc độ chạy 22-30 và tắt xuyên tường", true)
 
         Rooms_AutomationGroupBox:AddDivider()
 
         Rooms_AutomationGroupBox:AddToggle("AutoRoomsDebug", { 
             Text = "Hiển thị vá lỗi",
-            Default = true
+            Default = false
         })
         
         Rooms_AutomationGroupBox:AddToggle("ShowAutoRoomsPathNodes", { 
@@ -3727,10 +3727,10 @@ elseif Script.IsRooms then
                     lastRoomValue = Script.LatestRoom.Value
                 end
                 
-               --shared.Notify:Log({
-                    --Title = "Auto Rooms",
-                    --Description = "Calculated Objective Successfully!\nObjective: " .. pathfindingGoal.Parent.Name .. "\nCreating path...",
-                --}, Toggles.AutoRoomsDebug.Value)
+               shared.Notify:Log({
+                    Title = "Dương Api",
+                    Description = "Xác định vật thể thành công",
+                }, Toggles.AutoRoomsDebug.Value)
             
 
                 local path = shared.PathfindingService:CreatePath({
@@ -3743,10 +3743,10 @@ elseif Script.IsRooms then
                     }
                 })
 
-                --shared.Notify:Log({
-                    --Title = "Auto Rooms",
-                    --Description = "Computing Path to " .. pathfindingGoal.Parent.Name .. "...",
-                --}, Toggles.AutoRoomsDebug.Value)
+                shared.Notify:Log({
+                    Title = "Dương Api",
+                    Description = "Đang tạo đường đi...",
+                }, Toggles.AutoRoomsDebug.Value)
 
                 path:ComputeAsync(shared.RootPart.Position - Vector3.new(0, 2.5, 0), pathfindingGoal.Position)
                 local waypoints = path:GetWaypoints()
@@ -3817,14 +3817,14 @@ elseif Script.IsRooms then
                                 break
                             end
 
-                            task.delay(1.5, function()
+                            task.delay(1, function()
                                 if moveToFinished then return end
                                 if (not Toggles.AutoRooms.Value or shared.Library.Unloaded) then return moveToCleanup() end
 
                                 repeat task.wait(0.25) until (not shared.Character:GetAttribute("Hiding") and not shared.Character.PrimaryPart.Anchored)
 
                                 shared.Notify:Alert({
-                                    Title = "Duong Api",
+                                    Title = "Dương Api",
                                     Description = "Có vẻ bạn đang bị kẹt, đang tính toán đường mới...",
                                     Reason = "Thất bại khi di chuyển tới điểm chấm",
                                 })
