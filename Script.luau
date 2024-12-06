@@ -98,7 +98,7 @@ shared.Window = UICreator:CreateWindow()
 require("Places/Loaders/" .. shared.ScriptLoader)
 
 UICreator:CreateSettingsTab()
-require("Utils/GUI/mod")
+require("Utils/GUI/addons")
 shared.Notify:Alert({
     Title = "Dương Api",
     Description = "Cảm ơn vì đã sài dự án"
@@ -8848,9 +8848,9 @@ task.spawn(function()
 
     getgenv().mspaint_addons_activated = true
 
-    if not isfolder("DuongApi/mod") then
+    if not isfolder("DuongApi/addons") then
         print("[DuongApi] Addons folder doesn't exist. Creating...")
-        makefolder("DuongApi/mod")
+        makefolder("DuongApi/addons")
         return
     end
     
@@ -8951,8 +8951,8 @@ task.spawn(function()
     local containAddonsLoaded = false
     createAddonTab(false)
     
-    for _, file in pairs(listfiles("DuongApi/mod")) do
-        print("[DuongApi] Loading addon '" .. string.gsub(file, "DuongApi/mod/", "") .. "'...")
+    for _, file in pairs(listfiles("DuongApi/addons")) do
+        print("[DuongApi] Loading addon '" .. string.gsub(file, "DuongApi/addons/", "") .. "'...")
         if file:sub(#file - 3) ~= ".lua" and file:sub(#file - 4) ~= ".luau" and file:sub(#file - 7) ~= ".lua.txt" then continue end
         
         local success, errorMessage = pcall(function()
@@ -8960,13 +8960,13 @@ task.spawn(function()
             local addon = loadstring(fileContent)()
 
             if typeof(addon.Name) ~= "string" or typeof(addon.Elements) ~= "table" then
-                warn("Addon '" .. string.gsub(file, "DuongApi/mod/", "") .. "' didn't load: Invalid Name/Elements.")
+                warn("Addon '" .. string.gsub(file, "DuongApi/addons/", "") .. "' didn't load: Invalid Name/Elements.")
                 return 
             end
 
             if typeof(addon.Game) == "string" then
                 if string.lower(addon.Game) ~= string.lower(shared.ScriptLoader) and addon.Game ~= "*" then
-                    warn("Addon '" .. string.gsub(file, "DuongApi/mod/", "") .. "' didn't load: Wrong game.")
+                    warn("Addon '" .. string.gsub(file, "DuongApi/addons/", "") .. "' didn't load: Wrong game.")
                     return
                 end
             elseif typeof(addon.Game) == "table" then
@@ -8975,11 +8975,11 @@ task.spawn(function()
                 end
 
                 if not table.find(addon.Game, string.lower(shared.ScriptLoader)) then
-                    warn("Addon '" .. string.gsub(file, "DuongApi/mod/", "") .. "' didn't load: Wrong game.")
+                    warn("Addon '" .. string.gsub(file, "DuongApi/addons/", "") .. "' didn't load: Wrong game.")
                     return
                 end
             else
-                warn("Addon '" .. string.gsub(file, "DuongApi/mod", "") .. "' didn't load: Invalid GameId.")
+                warn("Addon '" .. string.gsub(file, "DuongApi/addons", "") .. "' didn't load: Invalid GameId.")
                 return
             end
 
@@ -9645,7 +9645,7 @@ local ObjectTree = {
                                 50,
                                 2,
                                 {
-                                    "mod"
+                                    "addons"
                                 }
                             },
                             {
