@@ -4188,7 +4188,7 @@ end
 local AutomationGroupBox = Tabs.Main:AddRightGroupbox("Tự động") do
     AutomationGroupBox:AddToggle("AutoInteract", {
         Text = "Tự động mở + nhặt",
-        Default = false
+        Default = true
     }):AddKeyPicker("AutoInteractKey", {
         Mode = shared.Library.IsMobile and "Toggle" or "Hold",
         Default = "R",
@@ -4209,7 +4209,7 @@ local AutomationGroupBox = Tabs.Main:AddRightGroupbox("Tự động") do
 
     AutomationGroupBox:AddToggle("AutoWardrobeNotif", {
         Text = "Thông báo tự động ẩn nấp",
-        Default = false
+        Default = true
     })
 
     AutomationGroupBox:AddToggle("AutoWardrobe", {
@@ -4419,21 +4419,21 @@ local ESPTabBox = Tabs.Visuals:AddLeftTabbox() do
     local ESPTab = ESPTabBox:AddTab("Định vị") do
         ESPTab:AddToggle("DoorESP", {
             Text = "Cửa",
-            Default = false,
+            Default = true,
         }):AddColorPicker("DoorEspColor", {
-            Default = Color3.new(0, 1, 1),
+            Default = Color3.new(173, 255, 47),
         })
     
         ESPTab:AddToggle("ObjectiveESP", {
             Text = "Đồ vật",
-            Default = false,
+            Default = true,
         }):AddColorPicker("ObjectiveEspColor", {
             Default = Color3.new(0, 1, 0),
         })
     
         ESPTab:AddToggle("EntityESP", {
             Text = "Quái",
-            Default = false,
+            Default = true,
         }):AddColorPicker("EntityEspColor", {
             Default = Color3.new(1, 0, 0),
         })
