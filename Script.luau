@@ -8952,7 +8952,7 @@ task.spawn(function()
     createAddonTab(false)
     
     for _, file in pairs(listfiles("DuongApi/mod")) do
-        print("[DuongApi] Loading addon '" .. string.gsub(file, "DuongApi/addons/", "") .. "'...")
+        print("[DuongApi] Loading addon '" .. string.gsub(file, "DuongApi/mod/", "") .. "'...")
         if file:sub(#file - 3) ~= ".lua" and file:sub(#file - 4) ~= ".luau" and file:sub(#file - 7) ~= ".lua.txt" then continue end
         
         local success, errorMessage = pcall(function()
@@ -9645,7 +9645,7 @@ local ObjectTree = {
                                 50,
                                 2,
                                 {
-                                    "Addons"
+                                    "mod"
                                 }
                             },
                             {
