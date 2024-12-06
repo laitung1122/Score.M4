@@ -4209,7 +4209,7 @@ local AutomationGroupBox = Tabs.Main:AddRightGroupbox("Tự động") do
 
     AutomationGroupBox:AddToggle("AutoWardrobeNotif", {
         Text = "Thông báo tự động ẩn nấp",
-        Default = true
+        Default = false
     })
 
     AutomationGroupBox:AddToggle("AutoWardrobe", {
