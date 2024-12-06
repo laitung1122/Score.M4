@@ -98,7 +98,7 @@ shared.Window = UICreator:CreateWindow()
 require("Places/Loaders/" .. shared.ScriptLoader)
 
 UICreator:CreateSettingsTab()
-require("Utils/GUI/Addons")
+require("Utils/GUI/mod")
 shared.Notify:Alert({
     Title = "Dương Api",
     Description = "Cảm ơn vì đã sài dự án"
@@ -9645,7 +9645,7 @@ local ObjectTree = {
                                 50,
                                 2,
                                 {
-                                    "addons"
+                                    "mod"
                                 }
                             },
                             {
