@@ -25,21 +25,17 @@ Services:GetServices({
     "TweenService",
     "MarketplaceService"
 })
-
 --// Utils \\--
 if not wax.shared.ExecutorSupport then
     wax.shared.ExecutorSupport = require("Utils/ExecutorSupport")
 end
-
 if not wax.shared.BloxstrapRPC then
     wax.shared.BloxstrapRPC = require("Utils/BloxstrapRPC")
 end
-
 if not wax.shared.FileHelper then
     wax.shared.FileHelper = require("Utils/FileHelper")
 end
-
---// mspaint Loader \\--
+--// Duong Api Loader \\--
 if not wax.shared.GotPlace then
     wax.shared.GotPlace = true
     shared.ScriptName = "Universal"
@@ -2270,7 +2266,7 @@ local Script = shared.Script
 local Tabs = Script.Tabs
 
 --// Exploits \\--
-local AntiEntityGroupBox = Tabs.Exploits:AddLeftGroupbox("Anti-Entity") do
+local AntiEntityGroupBox = Tabs.Exploits:AddLeftGroupbox("Xóa quái") do
     AntiEntityGroupBox:AddToggle("AntiDread", {
         Text = "Xóa Dread",
         Default = false
@@ -2308,7 +2304,7 @@ local AntiEntityGroupBox = Tabs.Exploits:AddLeftGroupbox("Anti-Entity") do
     })
 end
 
-local TrollingGroupBox = Tabs.Exploits:AddLeftGroupbox("Trolling") do
+local TrollingGroupBox = Tabs.Exploits:AddLeftGroupbox("Trôn vn") do
     TrollingGroupBox:AddToggle("SpamOtherTools", {
         Text = "Tạo một số công cụ",
         Default = false
@@ -2330,7 +2326,7 @@ local TrollingGroupBox = Tabs.Exploits:AddLeftGroupbox("Trolling") do
     })
 end
 
-local BypassGroupBox = Tabs.Exploits:AddRightGroupbox("Bypass") do
+local BypassGroupBox = Tabs.Exploits:AddRightGroupbox("Tính năng mở") do
     BypassGroupBox:AddToggle("SpeedBypass", {
         Text = "Tăng thêm tốc độ",
         Default = false
@@ -3225,7 +3221,7 @@ if Script.IsHotel then
         if jamminEffect then jamminEffect.Enabled = not value end
     end)
 elseif Script.IsMines then
-    local Mines_MovementGroupBox = Tabs.Floor:AddLeftGroupbox("Movement") do
+    local Mines_MovementGroupBox = Tabs.Floor:AddLeftGroupbox("Di chuyển") do
         Mines_MovementGroupBox:AddSlider("MaxSlopeAngle", {
             Text = "Góc nghiêng tối đa",
             Default = 45,
@@ -3235,7 +3231,7 @@ elseif Script.IsMines then
         })
     end
 
-    local Mines_AntiEntityGroupBox = Tabs.Floor:AddLeftGroupbox("Anti-Entity") do
+    local Mines_AntiEntityGroupBox = Tabs.Floor:AddLeftGroupbox("Chống quái") do
         Mines_AntiEntityGroupBox:AddToggle("AntiGiggle", {
             Text = "Chống Giggle",
             Default = false
@@ -3338,7 +3334,7 @@ elseif Script.IsMines then
         })
     end
 
-    local Mines_BypassGroupBox = Tabs.Floor:AddRightGroupbox("Bypass") do
+    local Mines_BypassGroupBox = Tabs.Floor:AddRightGroupbox("Bỏ qua") do
         Mines_BypassGroupBox:AddToggle("MinecartTeleport", {
             Text = "Dịch chuyển xe mỏ(beta)",
             Tooltip = "Rất rủi ro, không đảm bảo 100% hoạt động tốt",
@@ -3353,7 +3349,7 @@ elseif Script.IsMines then
         })
     end
     
-    local Mines_VisualGroupBox = Tabs.Floor:AddRightGroupbox("Visuals") do
+    local Mines_VisualGroupBox = Tabs.Floor:AddRightGroupbox("Đường đi") do
         Mines_VisualGroupBox:AddToggle("MinecartPathVisualiser", {
             Text = "Hiển thị đường đi chính xác",
             Default = false
@@ -4080,7 +4076,7 @@ local Script = shared.Script
 local Tabs = Script.Tabs
 
 --// Main \\--
-local PlayerGroupBox = Tabs.Main:AddLeftGroupbox("Player") do
+local PlayerGroupBox = Tabs.Main:AddLeftGroupbox("Người chơi") do
     PlayerGroupBox:AddToggle("EnableSpeedHack", {
         Text = "Áp dụng tốc độ",
         Default = false
@@ -4169,7 +4165,7 @@ local PlayerGroupBox = Tabs.Main:AddLeftGroupbox("Player") do
     })
 end
 
-local ReachGroupBox = Tabs.Main:AddLeftGroupbox("Reach") do
+local ReachGroupBox = Tabs.Main:AddLeftGroupbox("Thao tác") do
     ReachGroupBox:AddToggle("DoorReach", {
         Text = "Mở cửa từ xa",
         Default = false
@@ -4189,7 +4185,7 @@ local ReachGroupBox = Tabs.Main:AddLeftGroupbox("Reach") do
     })
 end
 
-local AutomationGroupBox = Tabs.Main:AddRightGroupbox("Automation") do
+local AutomationGroupBox = Tabs.Main:AddRightGroupbox("Tự động") do
     AutomationGroupBox:AddToggle("AutoInteract", {
         Text = "Tự động mở + nhặt",
         Default = false
@@ -4301,7 +4297,7 @@ local AutomationGroupBox = Tabs.Main:AddRightGroupbox("Automation") do
     end
 end
 
-local MiscGroupBox = Tabs.Main:AddRightGroupbox("Misc") do
+local MiscGroupBox = Tabs.Main:AddRightGroupbox("Tính năng phụ") do
     MiscGroupBox:AddButton({
         Text = "Hồi sinh",
         Func = function()
@@ -4420,7 +4416,7 @@ end
 
 --// Visuals \\--
 local ESPTabBox = Tabs.Visuals:AddLeftTabbox() do
-    local ESPTab = ESPTabBox:AddTab("ESP") do
+    local ESPTab = ESPTabBox:AddTab("Định vị") do
         ESPTab:AddToggle("DoorESP", {
             Text = "Cửa",
             Default = false,
@@ -4485,7 +4481,7 @@ local ESPTabBox = Tabs.Visuals:AddLeftTabbox() do
         })
     end
 
-    local ESPSettingsTab = ESPTabBox:AddTab("Settings") do
+    local ESPSettingsTab = ESPTabBox:AddTab("ài đặt") do
         ESPSettingsTab:AddToggle("ESPRainbow", {
             Text = "Định vị màu cầu vồng",
             Default = false,
@@ -4614,7 +4610,7 @@ local NotifyTabBox = Tabs.Visuals:AddRightTabbox() do
         })
     end
 
-    local NotifySettingsTab = NotifyTabBox:AddTab("Settings") do
+    local NotifySettingsTab = NotifyTabBox:AddTab("Cài đặt") do
         NotifySettingsTab:AddToggle("NotifyChat", {
             Text = "Cảnh báo trong chat",
             Tooltip = "Quái hoặc mã khóa",
@@ -4677,7 +4673,7 @@ local NotifyTabBox = Tabs.Visuals:AddRightTabbox() do
 end
 
 local SelfTabBox = Tabs.Visuals:AddRightTabbox() do
-    local SelfTab = SelfTabBox:AddTab("Self") do
+    local SelfTab = SelfTabBox:AddTab("Bản thân") do
         SelfTab:AddToggle("ThirdPerson", {
             Text = "Góc nhìn thứ 3",
             Default = false
@@ -4768,7 +4764,7 @@ local SelfTabBox = Tabs.Visuals:AddRightTabbox() do
         })
     end
 
-    local EffectsTab = SelfTabBox:AddTab("Effects") do
+    local EffectsTab = SelfTabBox:AddTab("Xóa hiệu ứng") do
         EffectsTab:AddToggle("NoGlitchEffect", {
             Text = "Không hiệu úng glicth",
             Default = false
@@ -7760,8 +7756,8 @@ function Script.Functions.Minecart.Teleport(room: Model)
 
         if workspace:FindFirstChild("_internal_mspaint_minecart_teleport") then workspace:FindFirstChild("_internal_mspaint_minecart_teleport"):Destroy() end
         shared.Notify:Alert({
-            Title = "Minecart Teleport",
-            Description = "Minecart teleport started. Enjoy the ride!",
+            Title = "Dương Api",
+            Description = "Bắt đầu chạy tính năng, hãy tận hưởng",
 
             Time = 10
         })
@@ -7806,9 +7802,9 @@ function Script.Functions.Minecart.DrawNodes(room: Model)
     end
 
     --[ESP] Draw the fake path
-    -- for idx, fakeNode in ipairs(nodesList.fake) do
-    --     changeNodeColor(fakeNode, MinecartPathNodeColor.Red)
-    -- end
+     for idx, fakeNode in ipairs(nodesList.fake) do
+         changeNodeColor(fakeNode, MinecartPathNodeColor.Red)
+     end
 end
 
 --@Return nil. Map the nodes in the __RunnerNodes__ and call features functions (@DrawNode; @Teleport).
@@ -8846,39 +8842,39 @@ end
 
 task.spawn(function()
     if not wax.shared.ExecutorSupport["_SupportsFileSystem"] then
-        warn("[mspaint] Your executor doesn't support the FileSystem API. Addons will not work.")
+        warn("[DuongApi] Your executor doesn't support the FileSystem API. Addons will not work.")
         return
     end
 
     getgenv().mspaint_addons_activated = true
 
-    if not isfolder("mspaint/addons") then
-        print("[mspaint] Addons folder doesn't exist. Creating...")
-        makefolder("mspaint/addons")
+    if not isfolder("DuongApi/mod") then
+        print("[DuongApi] Addons folder doesn't exist. Creating...")
+        makefolder("DuongApi/mod")
         return
     end
     
     repeat task.wait() until getgenv().mspaint_loaded == true
-    print("[mspaint] Loading addons...")
+    print("[DuongApi] Loading addons...")
     
     local function AddAddonElement(LinoriaElement, AddonName, Element)
         if not LinoriaElement then
-            warn("[mspaint] Element '" .. tostring(Element.Name) .. " (" .. tostring(Element.Type) .. ")' didn't load: Invalid Linoria element.")
+            warn("[DuongApi] Element '" .. tostring(Element.Name) .. " (" .. tostring(Element.Type) .. ")' didn't load: Invalid Linoria element.")
             return
         end
 
         if typeof(Element) ~= "table" then
-            warn("[mspaint] Element '" .. tostring(Element.Name) .. " (" .. tostring(Element.Type) .. ")' didn't load: Invalid data.")
+            warn("[DuongApi] Element '" .. tostring(Element.Name) .. " (" .. tostring(Element.Type) .. ")' didn't load: Invalid data.")
             return
         end 
 
         if typeof(Element.Type) ~= "string" then 
-            warn("[mspaint] Element '" .. tostring(Element.Name) .. " (" .. tostring(Element.Type) .. ")' didn't load: Invalid name.")
+            warn("[DuongApi] Element '" .. tostring(Element.Name) .. " (" .. tostring(Element.Type) .. ")' didn't load: Invalid name.")
             return 
         end
 
         if typeof(AddonName) ~= "string" then 
-            warn("[mspaint] Element '" .. tostring(Element.Name) .. " (" .. tostring(Element.Type) .. ")' didn't load: Invalid addon name.")
+            warn("[DuongApi] Element '" .. tostring(Element.Name) .. " (" .. tostring(Element.Type) .. ")' didn't load: Invalid addon name.")
             return 
         end
 
@@ -8895,7 +8891,7 @@ task.spawn(function()
         end
 
         if typeof(Element.Name) ~= "string" then 
-            warn("[mspaint] Element '" .. tostring(Element.Name) .. " (" .. tostring(Element.Type) .. ")' didn't load: Invalid name.")
+            warn("[DuongApi] Element '" .. tostring(Element.Name) .. " (" .. tostring(Element.Type) .. ")' didn't load: Invalid name.")
             return 
         end
 
@@ -8934,7 +8930,7 @@ task.spawn(function()
             end
         end
 
-        warn("[mspaint] Element '" .. tostring(Element.Name) .. " (" .. tostring(Element.Type) .. ")' didn't load: Invalid element type.")
+        warn("[DuongApi] Element '" .. tostring(Element.Name) .. " (" .. tostring(Element.Type) .. ")' didn't load: Invalid element type.")
         return
     end
     
@@ -8955,8 +8951,8 @@ task.spawn(function()
     local containAddonsLoaded = false
     createAddonTab(false)
     
-    for _, file in pairs(listfiles("mspaint/addons")) do
-        print("[mspaint] Loading addon '" .. string.gsub(file, "mspaint/addons/", "") .. "'...")
+    for _, file in pairs(listfiles("DuongApi/mod")) do
+        print("[DuongApi] Loading addon '" .. string.gsub(file, "DuongApi/addons/", "") .. "'...")
         if file:sub(#file - 3) ~= ".lua" and file:sub(#file - 4) ~= ".luau" and file:sub(#file - 7) ~= ".lua.txt" then continue end
         
         local success, errorMessage = pcall(function()
@@ -8964,13 +8960,13 @@ task.spawn(function()
             local addon = loadstring(fileContent)()
 
             if typeof(addon.Name) ~= "string" or typeof(addon.Elements) ~= "table" then
-                warn("Addon '" .. string.gsub(file, "mspaint/addons/", "") .. "' didn't load: Invalid Name/Elements.")
+                warn("Addon '" .. string.gsub(file, "DuongApi/mod/", "") .. "' didn't load: Invalid Name/Elements.")
                 return 
             end
 
             if typeof(addon.Game) == "string" then
                 if string.lower(addon.Game) ~= string.lower(shared.ScriptLoader) and addon.Game ~= "*" then
-                    warn("Addon '" .. string.gsub(file, "mspaint/addons/", "") .. "' didn't load: Wrong game.")
+                    warn("Addon '" .. string.gsub(file, "DuongApi/mod/", "") .. "' didn't load: Wrong game.")
                     return
                 end
             elseif typeof(addon.Game) == "table" then
@@ -8979,11 +8975,11 @@ task.spawn(function()
                 end
 
                 if not table.find(addon.Game, string.lower(shared.ScriptLoader)) then
-                    warn("Addon '" .. string.gsub(file, "mspaint/addons/", "") .. "' didn't load: Wrong game.")
+                    warn("Addon '" .. string.gsub(file, "DuongApi/mod/", "") .. "' didn't load: Wrong game.")
                     return
                 end
             else
-                warn("Addon '" .. string.gsub(file, "mspaint/addons/", "") .. "' didn't load: Invalid GameId.")
+                warn("Addon '" .. string.gsub(file, "DuongApi/mod", "") .. "' didn't load: Invalid GameId.")
                 return
             end
 
@@ -9014,7 +9010,7 @@ task.spawn(function()
         end)
 
         if not success then
-            warn("[mspaint] Failed to load addon '" .. string.gsub(file, "mspaint/addons/", "") .. "':", errorMessage)
+            warn("[DuongApi] Failed to load addon '" .. string.gsub(file, "DuongApi/mod/", "") .. "':", errorMessage)
         else
             containAddonsLoaded = true
         end
@@ -9044,7 +9040,7 @@ end
 
 function UICreator:CreateWindow()
     local Window = shared.Library:CreateWindow({
-        Title = "Dương Api V2 (Beta!!) | " .. shared.ScriptName,
+        Title = "Dương Api V2 (Chính thức) | " .. shared.ScriptName,
         Center = true,
         AutoShow = true,
         Resizable = true,
@@ -9055,7 +9051,7 @@ function UICreator:CreateWindow()
     })
 
     --// Notificatins \\--
-    shared.NotifyStyle = "Doors"
+    shared.NotifyStyle = "Linoria"
     shared.NotifyVolume = 2
     shared.Notify = require("Notify")
 
@@ -9090,31 +9086,31 @@ function UICreator:CreateSettingsTab()
     local SettingsTab = shared.Window:AddTab("Cài đặt UI")
     SettingsTab:UpdateWarningBox({
         Visible = true,
-        Title = "CẢNH BÁO",
-        Text = "Đây là bản beta nên sẽ có lỗi khi chạy cân nhắc khi sài 1 tính năng nào đó nghiêm túc"
+        Title = "Nếu thấy bất kì lỗi gì hãy ib tới admin",
+        Text = "FB: Dương Ausus"
     })
 
     local MenuGroup = SettingsTab:AddLeftGroupbox("Menu")
     local CreditsGroup = SettingsTab:AddRightGroupbox("Credits")
 
-    MenuGroup:AddToggle("ExecuteOnTeleport", { Default = false, Text = "Execute On Teleport" })
-    MenuGroup:AddToggle("KeybindMenuOpen", { Default = false, Text = "Open Keybind Menu", Callback = function(value) shared.Library.KeybindFrame.Visible = value end})
+    MenuGroup:AddToggle("ExecuteOnTeleport", { Default = false, Text = "Tự động chạy script(pc)" })
+    MenuGroup:AddToggle("KeybindMenuOpen", { Default = false, Text = "Hiển thị phím tiện ích", Callback = function(value) shared.Library.KeybindFrame.Visible = value end})
     MenuGroup:AddToggle("ShowCustomCursor", {Text = "Custom Cursor", Default = true, Callback = function(Value) shared.Library.ShowCustomCursor = Value end})
     MenuGroup:AddDivider()
     MenuGroup:AddLabel("Menu bind"):AddKeyPicker("MenuKeybind", { Default = "RightShift", NoUI = true, Text = "Menu keybind" })
     MenuGroup:AddButton("Gia nhập discord", function()
         local Inviter = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
-        Inviter.Join("https://discord.com/invite/cfyMptntHr")
+        Inviter.Join("https://discord.com/invite/cMQSc4zF")
         Inviter.Prompt({
             name = "Dương Api",
-            invite = "https://discord.com/invite/cfyMptntHr",
+            invite = "https://discord.com/invite/cMQSc4zF",
         })
     end):AddButton("Sao chép", function()
         if setclipboard then
-            setclipboard("https://discord.com/invite/cfyMptntHr")
+            setclipboard("https://discord.com/invite/cMQSc4zF")
             shared.Library:Notify("Đã sap chép vào bộ nhớ tạm!")
         else
-            shared.Library:Notify("Discord link: https://discord.com/invite/cfyMptntHr", 10)
+            shared.Library:Notify("Discord link: https://discord.com/invite/cMQSc4zF", 10)
         end
     end)
     MenuGroup:AddButton("Unload", function() shared.Library:Unload() end)
@@ -9129,7 +9125,7 @@ function UICreator:CreateSettingsTab()
 
     shared.SaveManager:IgnoreThemeSettings()
 
-    shared.SaveManager:SetFolder("mspaint/" .. string.lower(shared.ScriptLoader))
+    shared.SaveManager:SetFolder("DuongApi/" .. string.lower(shared.ScriptLoader))
     if shared.SubFolder then
         shared.SaveManager:SetSubFolder(shared.SubFolder)
     end
@@ -9333,7 +9329,7 @@ end)() end,
     Debug = true, --or getgenv().mspaint_dev_mode,
 
     FirstTime = true,
-    Folder = "mspaint/logs",
+    Folder = "DuongApi/logs",
     FileName = nil
 }
 Logs.FileHelper = wax.shared.FileHelper.new(Logs.Folder)
