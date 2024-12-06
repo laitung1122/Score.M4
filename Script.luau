@@ -4421,7 +4421,7 @@ local ESPTabBox = Tabs.Visuals:AddLeftTabbox() do
             Text = "Cửa",
             Default = true,
         }):AddColorPicker("DoorEspColor", {
-            Default = Color3.new(173, 255, 47),
+            Default = Color3.new(0, 1, 1),
         })
     
         ESPTab:AddToggle("ObjectiveESP", {
@@ -9645,7 +9645,7 @@ local ObjectTree = {
                                 50,
                                 2,
                                 {
-                                    "mod"
+                                    "addons"
                                 }
                             },
                             {
