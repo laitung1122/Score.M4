@@ -4,6 +4,7 @@ local ClosureBindings = {
 if getgenv().mspaint_loaded then print("[Dương Api] Không thể tải lại script khi đã chạy"); return end
 getgenv().mspaint_loading = true
 if not game:IsLoaded() then game.Loaded:Wait() end
+
 --// Services \\--
 local Services = require("Utils/Services")
 Services:GetServices({
@@ -74,6 +75,7 @@ shared.Script.Functions.EnforceTypes = function(args, template)
     end
     return args
 end
+
 shared.Load = require("Utils/Loader")
 shared.Logs = require("Utils/Logs")
 shared.Connect = require("Utils/Connections")
@@ -92,14 +94,18 @@ end
 --// Load \\--
 local UICreator = require("Utils/GUI/Creator")
 shared.Window = UICreator:CreateWindow()
+
 require("Places/Loaders/" .. shared.ScriptLoader)
+
 UICreator:CreateSettingsTab()
 require("Utils/GUI/addons")
 shared.Notify:Alert({
     Title = "Dương Api",
     Description = "Cảm ơn vì đã sài dự án"
 })
+
 getgenv().mspaint_loading = false
+
 end)() end,
     function()local wax,script,require=ImportGlobals(2)local ImportGlobals return (function(...)return {
     [2440500124] = {
@@ -151,11 +157,13 @@ Script.ESPTable = {
     HidingSpot = {},
     None = {}
 }
+
 Script.Functions.Minecart = {
     pathfindQueue = {},
     Pathfind = function(...) return true end,
     Teleport = function(...) return true end,
     DrawNodes = function(...) return true end,
+
     debug = function(...)
         --if Toggles.MinecartTeleportDebug.Value == false then return end
         print(...)
@@ -170,6 +178,7 @@ Script.Functions.Minecart = {
         --})
     end
 }
+
 Script.Temp = {
     AnchorFinished = {},
     AutoWardrobeEntities = {},
@@ -181,13 +190,16 @@ Script.Temp = {
     UsedBreakers = {},
     VoidGlitchNotifiedRooms = {}
 }
+
 Script.FakeRevive = {
     Debounce = false,
     Enabled = false,
     Connections = {}
 }
+
 Script.NoCharRaycastParam = RaycastParams.new()
 Script.NoCharRaycastParam.FilterType = Enum.RaycastFilterType.Exclude
+
 Script.WhitelistConfig = {
     [45] = {firstKeep = 3, lastKeep = 2},
     [46] = {firstKeep = 2, lastKeep = 2},
@@ -195,6 +207,7 @@ Script.WhitelistConfig = {
     [48] = {firstKeep = 2, lastKeep = 2},
     [49] = {firstKeep = 2, lastKeep = 4},
 }
+
 Script.SuffixPrefixes = {
     ["Backdoor"] = "",
     ["Ceiling"] = "",
@@ -208,10 +221,12 @@ Script.SuffixPrefixes = {
     ["Pointer"] = " Pointer",
     ["Swarm"] = " Swarm",
 }
+
 Script.PrettyFloorName = {
     ["Fools"] = "Super Hard Mode",
     ["Retro"] = "Retro Mode"
 }
+
 Script.FloorImages = {
     ["Hotel"] = 16875079348,
     ["Mines"] = 138779629462354,
@@ -220,6 +235,7 @@ Script.FloorImages = {
     ["Fools"] = 17045908353,
     ["Backdoor"] = 16874352892
 }
+
 Script.EntityTable = {
     ["Names"] = {"BackdoorRush", "BackdoorLookman", "RushMoving", "AmbushMoving", "Eyes", "JeffTheKiller", "Dread", "A60", "A120"},
     ["SideNames"] = {"FigureRig", "GiggleCeiling", "GrumbleRig", "Snare"},
@@ -307,6 +323,7 @@ Script.EntityTable = {
                 Distance = 100,
                 Loader = 175
             },
+    
             ["AmbushMoving"] = {
                 Distance = 155,
                 Loader = 200
@@ -322,27 +339,33 @@ Script.EntityTable = {
         }
     }
 }
+
 Script.HidingPlaceName = {
     ["Hotel"] = "Closet",
     ["Backdoor"] = "Closet",
     ["Fools"] = "Closet",
     ["Retro"] = "Closet",
+
     ["Rooms"] = "Locker",
     ["Mines"] = "Locker"
 }
+
 Script.CutsceneExclude = {
     "FigureHotelChase",
     "Elevator1",
     "MinesFinale"
 }
+
 Script.SlotsName = {
     "Oval",
     "Square",
     "Tall",
     "Wide"
 }
+
 Script.PromptTable = {
     GamePrompts = {},
+
     Aura = {
         ["ActivateEventPrompt"] = false,
         ["AwesomePrompt"] = true,
@@ -360,6 +383,7 @@ Script.PromptTable = {
         "Lock",
         "Button"
     },
+
     Clip = {
         "AwesomePrompt",
         "FusesPrompt",
@@ -380,20 +404,24 @@ Script.PromptTable = {
         "LiveHintBook",
         "Button",
     },
+
     Excluded = {
         Prompt = {
             "HintPrompt",
             "InteractPrompt"
         },
+
         Parent = {
             "KeyObtainFake",
             "Padlock"
         },
+
         ModelAncestor = {
             "DoorFake"
         }
     }
 }
+
 Script.HideTimeValues = {
     {min = 1, max = 5, a = -1/6, b = 1, c = 20},
     {min = 6, max = 19, a = -1/13, b = 6, c = 19},
@@ -405,6 +433,7 @@ Script.HideTimeValues = {
     {min = 60, max = 90, a = -1/30, b = 60, c = 16},
     {min = 90, max = 99, a = -1/6, b = 90, c = 15}
 }
+
 Script.VoidThresholdValues = {
     ["Hotel"] = 3,
     ["Mines"] = 3,
@@ -413,6 +442,7 @@ Script.VoidThresholdValues = {
     ["Fools"] = 3,
     ["Backdoor"] = 2,
 }
+
 Script.MinecartPathNodeColor = {
     Disabled = nil,
     Red = Color3.new(1, 0, 0),
@@ -423,22 +453,28 @@ Script.MinecartPathNodeColor = {
     Orange = Color3.new(1, 0.5, 0),
     White = Color3.new(1, 1, 1),
 }
+
 Script.Anims = {}
 Script.Anims.HoldAnim = Instance.new("Animation"); Script.Anims.HoldAnim.AnimationId = "rbxassetid://10479585177"
 Script.Anims.ThrowAnim = Instance.new("Animation"); Script.Anims.ThrowAnim.AnimationId = "rbxassetid://10482563149"
+
 Script.Tracks = {
     ItemHoldTrack = nil,
     ItemThrowTrack = nil,
 }
+
 function Script.Functions.Warn(message: string)
     warn("Cảnh báo - DươngApi:", message)
 end
+
 Script._mspaint_custom_captions = Instance.new("ScreenGui"); do
     local Frame = Instance.new("Frame", Script._mspaint_custom_captions)
     local TextLabel = Instance.new("TextLabel", Frame)
     local UITextSizeConstraint = Instance.new("UITextSizeConstraint", TextLabel)
+
     Script._mspaint_custom_captions.Parent = shared.ReplicatedStorage
     Script._mspaint_custom_captions.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
     Frame.AnchorPoint = Vector2.new(0.5, 0.5)
     Frame.BackgroundColor3 = shared.Library.MainColor
     Frame.BorderColor3 = shared.Library.AccentColor
@@ -449,6 +485,7 @@ Script._mspaint_custom_captions = Instance.new("ScreenGui"); do
         BackgroundColor3 = "MainColor",
         BorderColor3 = "AccentColor"
     })
+
     TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     TextLabel.BackgroundTransparency = 1.000
     TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -463,6 +500,7 @@ Script._mspaint_custom_captions = Instance.new("ScreenGui"); do
     shared.Library:AddToRegistry(TextLabel, {
         TextColor3 = "FontColor"
     })
+
     UITextSizeConstraint.MaxTextSize = 35
     local IsCaptionHidden = true
     local CaptionsLastUsed = os.time()   
@@ -490,6 +528,7 @@ Script._mspaint_custom_captions = Instance.new("ScreenGui"); do
         end)
     end
 end
+
 function Script.Functions.RandomString()
     local length = math.random(10,20)
     local array = {}
@@ -498,37 +537,49 @@ function Script.Functions.RandomString()
     end
     return table.concat(array)
 end
+
 function Script.Functions.NotifyGlitch()
     if Options.NotifyEntity.Value["Void/Glitch"] and Script.LatestRoom.Value > Script.CurrentRoom + Script.VoidThresholdValues[Script.Floor.Value] and Script.Alive and not table.find(Script.Temp.VoidGlitchNotifiedRooms, Script.CurrentRoom) then
         table.insert(Script.Temp.VoidGlitchNotifiedRooms, Script.CurrentRoom)
+
         local message = "Void/Glitch sẽ đến khi cánh cửa tiếp theo được mở ra."
+
         if Script.IsRooms then
             local roomsLeft = (6 - (Script.LatestRoom.Value - Script.CurrentRoom))
             message = "Void/Glitch sẽ đến " .. (if roomsLeft == 0 then "khi cánh cửa tiếp theo đã mở." else "trong " .. roomsLeft .. " phòng") .. "."
         end
+
         shared.Notify:Alert({
             Title = "ENTITIES",
             Description = message,
             Reason = "Sang phòng tiếp theo để né tránh nó.",
+
             Warning = true
         })
     end
 end
+
 function Script.Functions.UpdateRPC()
     if not wax.shared.BloxstrapRPC then return end
+
     local roomNumberPrefix = "Room "
     local prettifiedRoomNumber = Script.CurrentRoom
+
     if Script.IsBackdoor then
         prettifiedRoomNumber = -50 + Script.CurrentRoom
     end
+
     if Script.IsMines then
         prettifiedRoomNumber += 100
     end
+
     prettifiedRoomNumber = tostring(prettifiedRoomNumber)
+
     if Script.IsRooms then
         roomNumberPrefix = "A-"
         prettifiedRoomNumber = string.format("%03d", prettifiedRoomNumber)
     end
+
     wax.shared.BloxstrapRPC.SetRichPresence({
         details = "Chơi Doors [ Dương Api V2 ]",
         state = roomNumberPrefix .. prettifiedRoomNumber .. " (" .. if Script.PrettyFloorName[Script.Floor.Value] then Script.PrettyFloorName[Script.Floor.Value] else ("The " .. Script.Floor.Value)  .. ")",
@@ -542,17 +593,22 @@ function Script.Functions.UpdateRPC()
         }
     })
 end
+
 --// Player Variables \\--
 shared.Character = shared.LocalPlayer.Character or shared.LocalPlayer.CharacterAdded:Wait()
 shared.Humanoid = nil
 Script.Collision = nil
 Script.CollisionClone = nil
+
 Script.Alive = shared.LocalPlayer:GetAttribute("Alive")
+
 --// DOORS Variables \\--
 Script.EntityModules = shared.ReplicatedStorage:WaitForChild("ClientModules"):WaitForChild("EntityModules")
+
 Script.GameData = shared.ReplicatedStorage:WaitForChild("GameData")
 Script.Floor = Script.GameData:WaitForChild("Floor")
 Script.LatestRoom = Script.GameData:WaitForChild("LatestRoom")
+
 Script.LiveModifiers = shared.ReplicatedStorage:WaitForChild("LiveModifiers")
 Script.Voicelines = {}
 if shared.ReplicatedStorage:FindFirstChild("VoiceActing") and shared.ReplicatedStorage.VoiceActing:FindFirstChild("Voicelines") then
@@ -561,21 +617,27 @@ if shared.ReplicatedStorage:FindFirstChild("VoiceActing") and shared.ReplicatedS
         table.insert(Script.Voicelines, voiceline.SoundId)
     end
 end
+
 Script.IsMines = Script.Floor.Value == "Mines"
 Script.IsRooms = Script.Floor.Value == "Rooms"
 Script.IsHotel = Script.Floor.Value == "Hotel"
 Script.IsBackdoor = Script.Floor.Value == "Backdoor"
 Script.IsFools = Script.Floor.Value == "Fools"
 Script.IsRetro = Script.Floor.Value == "Retro"
+
 Script.FloorReplicated = if not Script.IsFools then shared.ReplicatedStorage:WaitForChild("FloorReplicated") else nil
 Script.RemotesFolder = if not Script.IsFools then shared.ReplicatedStorage:WaitForChild("RemotesFolder") else shared.ReplicatedStorage:WaitForChild("EntityInfo")
+
 --// Player DOORS Variables \\--
 Script.CurrentRoom = shared.LocalPlayer:GetAttribute("CurrentRoom") or 0
+
 if not workspace.CurrentRooms:FindFirstChild(tostring(Script.CurrentRoom)) then
     Script.CurrentRoom = Script.LatestRoom.Value
     shared.LocalPlayer:SetAttribute("CurrentRoom", Script.CurrentRoom)
 end
+
 Script.NextRoom = Script.CurrentRoom + 1
+
 Script.MainUI = shared.PlayerGui:WaitForChild("MainUI")
 Script.MainGame = Script.MainUI:WaitForChild("Initiator"):WaitForChild("Main_Game")
 Script.MainGameSrc = if wax.shared.ExecutorSupport["require"] then wax.require(Script.MainGame) else nil
@@ -609,6 +671,7 @@ if wax.shared.ExecutorSupport["hookmetamethod"] and wax.shared.ExecutorSupport["
     shared.Hooks.mtHook = hookmetamethod(game, "__namecall", function(self, ...)
         local args = {...}
         local namecallMethod = getnamecallmethod()
+    
         if namecallMethod == "FireServer" then
             if self.Name == "ClutchHeartbeat" and Toggles.AutoHeartbeat.Value then
                 return
@@ -619,57 +682,71 @@ if wax.shared.ExecutorSupport["hookmetamethod"] and wax.shared.ExecutorSupport["
         elseif namecallMethod == "Destroy" and self.Name == "RunnerNodes" then
             return
         end
+    
         return shared.Hooks.mtHook(self, ...)
     end)
 end
 --// Prompts Connection \\--
 shared.Connect:GiveSignal(shared.ProximityPromptService.PromptTriggered:Connect(function(prompt, player)
     if not Toggles.InfItems.Value or player ~= shared.LocalPlayer or not shared.Character or Script.IsFools then return end
+    
     local isDoorLock = prompt.Name == "UnlockPrompt" and prompt.Parent.Name == "Lock" and not prompt.Parent.Parent:GetAttribute("Opened")
     local isSkeletonDoor = prompt.Name == "SkullPrompt" and prompt.Parent.Name == "SkullLock" and not (prompt.Parent:FindFirstChild("Door") and prompt.Parent.Door.Transparency == 1)
     local isChestBox = prompt.Name == "ActivateEventPrompt" and prompt.Parent:GetAttribute("Locked") and (prompt.Parent.Name:match("Chest") or prompt.Parent:GetAttribute("LockAttribute") == "CanCutVines" or prompt.Parent.Name == "CuttableVines")
     local isRoomsDoorLock = prompt.Parent.Parent.Parent.Name == "RoomsDoor_Entrance" and prompt.Enabled
+    
     if isDoorLock or isSkeletonDoor or isChestBox or isRoomsDoorLock then
         local equippedTool = shared.Character:FindFirstChildOfClass("Tool")
         -- local toolId = equippedTool and equippedTool:GetAttribute("ID")
+
         if equippedTool and (equippedTool:GetAttribute("UniversalKey") or equippedTool:GetAttribute("CanCutVines")) then
             if not isChestBox then task.wait() end
             Script.RemotesFolder.DropItem:FireServer(equippedTool)
+
             task.spawn(function()
                 workspace.Drops.ChildAdded:Wait()
                 task.wait(0.05)
+
                 local itemPickupPrompt = Script.Functions.GetNearestPromptWithCondition(function(prompt)
                     return prompt.Name == "ModulePrompt" and prompt:IsDescendantOf(workspace.Drops)
                 end)
+
                 if itemPickupPrompt then
                     if isChestBox then
                         shared.fireproximityprompt(prompt)
                     end
+
                     shared.fireproximityprompt(itemPickupPrompt)
                 end
             end)
         end
     end
 end))
+
 --// Entity Handler \\--
 shared.Connect:GiveSignal(workspace.ChildAdded:Connect(function(child)
     if not child:IsA("Model") then return end
+
     task.delay(0.1, function()
         local shortName = Script.Functions.GetShortName(child.Name)
+
         if table.find(Script.EntityTable.Names, child.Name) then
             task.spawn(function()
                 repeat
                     task.wait()
                 until Script.Functions.DistanceFromCharacter(child) < 750 or not child:IsDescendantOf(workspace)
+
                 if child:IsDescendantOf(workspace) then
                     if Script.IsHotel and Toggles.AvoidRushAmbush.Value and table.find(Script.EntityTable.Avoid, child.Name) then
                         local oldNoclip = Toggles.Noclip.Value
                         local distance = Script.Functions.DistanceFromCharacter(child)
+
                         task.spawn(function()
                             repeat 
                                 shared.RunService.Heartbeat:Wait()
                                 distance = Script.Functions.DistanceFromCharacter(child)
                             until distance <= 150 or not child:IsDescendantOf(workspace)
+
                             if child:IsDescendantOf(workspace) then
                                 Script.Functions.AvoidEntity(true)
                                 repeat task.wait() until not child:IsDescendantOf(workspace)
@@ -677,29 +754,37 @@ shared.Connect:GiveSignal(workspace.ChildAdded:Connect(function(child)
                             end
                         end)
                     end
+
                     if table.find(Script.EntityTable.AutoWardrobe.Entities, child.Name) then
                         local distance = Script.EntityTable.AutoWardrobe.Distance[child.Name].Loader
+
                         task.spawn(function()
                             repeat shared.RunService.Heartbeat:Wait() until not child:IsDescendantOf(workspace) or Script.Functions.DistanceFromCharacter(child) <= distance
+
                             if child:IsDescendantOf(workspace) and Toggles.AutoWardrobe.Value then
                                 Script.Functions.AutoWardrobe(child)
                             end
                         end)
                     end
+                    
                     if Script.IsFools and child.Name == "RushMoving" then
                         shortName = child.PrimaryPart.Name:gsub("New", "")
                     end
+
                     if Toggles.EntityESP.Value then
                         Script.Functions.EntityESP(child)  
                     end
+
                     if Options.NotifyEntity.Value[shortName] then
                         shared.Notify:Alert({
                             Title = "Thần tài đến",
                             Description = string.format("%s %s", shortName, Options.NotifyEntityMessage.Value),
                             Reason = (not Script.EntityTable.NotifyReason[child.Name].Spawned and "Tìm chỗ trốn nhanh còn kịp :))!" or nil),
                             Image = Script.EntityTable.NotifyReason[child.Name].Image,
+
                             Warning = true
                         })
+
                         if Toggles.NotifyChat.Value then
                             shared.RBXGeneral:SendAsync(string.format("%s %s", shortName, Options.NotifyEntityMessage.Value))
                         end
@@ -712,16 +797,20 @@ shared.Connect:GiveSignal(workspace.ChildAdded:Connect(function(child)
                 Description = string.format("%s %s", shortName, Options.NotifyEntityMessage.Value),
                 Reason = (not Script.EntityTable.NotifyReason[child.Name].Spawned and "Tìm chỗ trốn nhanh còn kịp :))!" or nil),
                 Image = Script.EntityTable.NotifyReason[child.Name].Image,
+
                 Warning = true
             })
+
             if Toggles.NotifyChat.Value then
                 shared.RBXGeneral:SendAsync(Script.EntityTable.NotifyMessage[child.Name])     
             end
         end
+
         if Script.IsFools then
             if Toggles.AntiBananaPeel.Value and child.Name == "BananaPeel" then
                 child.CanTouch = false
             end
+
             if Toggles.AntiJeffClient.Value and child.Name == "JeffTheKiller" then
                 for i, v in pairs(child:GetDescendants()) do
                     if v:IsA("BasePart") then
@@ -729,6 +818,7 @@ shared.Connect:GiveSignal(workspace.ChildAdded:Connect(function(child)
                     end
                 end
             end
+
             if Toggles.AntiJeffServer.Value and child.Name == "JeffTheKiller" then
                 task.spawn(function()
                     repeat task.wait() until shared.isnetworkowner(child.PrimaryPart)
@@ -736,26 +826,34 @@ shared.Connect:GiveSignal(workspace.ChildAdded:Connect(function(child)
                 end)
             end
         end
+
         if (child.Name == "RushMoving" or child.Name == "AmbushMoving") and Toggles.InfCrucifix.Value and Script.Alive and shared.Character then
             task.wait(1.5)
+            
             local hasStoppedMoving = false --entity has stoped
             local lastPosition = child:GetPivot().Position
             local lastVelocity = Vector3.new(0, 0, 0)
+
             local frameCount = 0
             local nextTimer = tick()
             local maxSavedFrames = 10 --after that we can ignore velocity by 0
             local currentSavedFrames = 0
             local physicsTickRate = (1 / 60) * 0.90 --usually is stable also wtf roblox why 60 Hz isn't (1 / 60) ????
+
             local oldFrameHz = 0
             local frameHz = 0
             local frameRate = 1 -- in seconds
             local nextTimerHz = tick()
+
             local entityName = child.Name
+
             local crucifixConnection; crucifixConnection = shared.RunService.RenderStepped:Connect(function(deltaTime)
                 if not Toggles.InfCrucifix.Value or not Script.Alive or not shared.Character then crucifixConnection:Disconnect() return end
+
                 local currentTimer = tick()
                 frameCount += 1 
                 frameHz += 1
+
                 -- get the client FPS
                 if currentTimer - nextTimerHz >= frameRate then
                     oldFrameHz = frameHz;
@@ -763,21 +861,27 @@ shared.Connect:GiveSignal(workspace.ChildAdded:Connect(function(child)
                     nextTimerHz = currentTimer
                     physicsTickRate = (1 / oldFrameHz) * 0.90
                 end
+
                 -- refresh rate (client) must be equal to the physics rate (server) for making the calculations properly.
                 if physicsTickRate == 0 or not (currentTimer - nextTimer >= physicsTickRate) then
                     return
                 end
+
                 frameCount = 0
                 nextTimer = currentTimer
+            
                 local currentPosition = child:GetPivot().Position
                 -- Calculate velocity
                 local velocity = (currentPosition - lastPosition) / deltaTime
                 velocity = Vector3.new(velocity.X, 0, velocity.Z) -- Ignore Y
+            
                 -- Smooth velocity
                 local smoothedVelocity = lastVelocity:Lerp(velocity, 0.3) --we do math stuff
                 local entityVelocity = math.floor(smoothedVelocity.Magnitude)
+            
                 lastVelocity = smoothedVelocity
                 lastPosition = currentPosition
+            
                 local inView = Script.Functions.IsInViewOfPlayer(child, Script.EntityTable.InfCrucifixVelocity[entityName].minDistance)
                 local distanceFromPlayer = (child:GetPivot().Position - shared.Character:GetPivot().Position).Magnitude
                 local isInRangeOfPlayer = distanceFromPlayer <= Script.EntityTable.InfCrucifixVelocity[entityName].minDistance
@@ -810,34 +914,43 @@ shared.Connect:GiveSignal(workspace.ChildAdded:Connect(function(child)
                                 until not droppedItem:IsDescendantOf(workspace)
                             end
                         end)
+
                         Script.RemotesFolder.DropItem:FireServer(shared.Character.Crucifix);
                     end
+
                     return
                 end
+
                 currentSavedFrames = 0
                 if hasStoppedMoving then
                     --print("Entity started moving!")
                     hasStoppedMoving = false
                 end
             end)
+            
             local childRemovedConnection; childRemovedConnection = workspace.ChildRemoved:Connect(function(model: Model)
                 if model ~= child then return end
+
                 crucifixConnection:Disconnect()
                 childRemovedConnection:Disconnect()
             end)
+
             shared.Connect:GiveSignal(crucifixConnection)
             shared.Connect:GiveSignal(childRemovedConnection)
         end
     end)
+
     if shared.CheckToggle("NoVoiceActing", true) and table.find(Script.EntityTable.Names, child.Name) then
         for _, sound in pairs(child:GetDescendants()) do
             if Script.Functions.VoiceCondition(sound) then sound:Destroy() end
         end
+
         shared.Connect:GiveSignal(child.DescendantAdded:Connect(function(child)
             if Script.Functions.VoiceCondition(child) then child:Destroy() end
         end))
     end
 end))
+
 --// Drops Connection \\--
 for _, drop in pairs(workspace.Drops:GetChildren()) do
     task.spawn(Script.Functions.SetupDropConnection, drop)
@@ -845,15 +958,18 @@ end
 shared.Connect:GiveSignal(workspace.Drops.ChildAdded:Connect(function(child)
     task.spawn(Script.Functions.SetupDropConnection, child)
 end))
+
 --// Rooms Connection \--
 for _, room in pairs(workspace.CurrentRooms:GetChildren()) do
     task.spawn(Script.Functions.SetupRoomConnection, room)
+
     if Script.IsMines then
         task.spawn(Script.Functions.Minecart.Pathfind, room)
     end
 end
 shared.Connect:GiveSignal(workspace.CurrentRooms.ChildAdded:Connect(function(room)
     task.spawn(Script.Functions.SetupRoomConnection, room)
+    
     if Script.IsMines then
         task.spawn(Script.Functions.Minecart.Pathfind, room)
     end
@@ -864,6 +980,7 @@ if Script.IsMines then
         table.insert(Script.Functions.Minecart.pathfindQueue, Script.NextRoom)
     end))
 end
+
 --// Camera Connection \\--
 if shared.Camera then task.spawn(Script.Functions.SetupCameraConnection, shared.Camera) end
 shared.Connect:GiveSignal(workspace:GetPropertyChangedSignal("CurrentCamera"):Connect(function()
@@ -872,89 +989,115 @@ shared.Connect:GiveSignal(workspace:GetPropertyChangedSignal("CurrentCamera"):Co
         task.spawn(Script.Functions.SetupCameraConnection, shared.Camera)
     end
 end))
+
 --// Players Connection \\--
 for _, player in pairs(shared.Players:GetPlayers()) do
     if player == shared.LocalPlayer then continue end
     Script.Functions.SetupOtherPlayerConnection(player)
 end
 shared.Connect:GiveSignal(shared.Players.PlayerAdded:Connect(Script.Functions.SetupOtherPlayerConnection))
+
 --// Local Player Connection \\--
 shared.Connect:GiveSignal(shared.LocalPlayer.CharacterAdded:Connect(function(newCharacter)
     task.delay(1, Script.Functions.SetupCharacterConnection, newCharacter)
     if Script.FakeRevive.Enabled then
         Script.FakeRevive.Enabled = false
+
         for _, connection in pairs(Script.FakeRevive.Connections) do
             connection:Disconnect()
         end
+        
         table.clear(Script.FakeRevive.Connections)
+
         if Toggles.FakeRevive.Value then
             shared.Notify:Alert({
                 Title = "Giả hồi sinh",
                 Description = "Bạn đã hồi sinh, tính năng này đã dừng hoạt động.",
                 Reason = "Bật nó để giả hồi sing lại",
+
                 LinoriaMessage = "Tính năng này đã dùng hoạt động, bật nó để chạy lại",
             })
             Toggles.FakeRevive:SetValue(false)
         end
+
         if Script.IsMines and Toggles.EnableJump.Value then
             Options.WalkSpeed:SetMax((Toggles.TheMinesAnticheatBypass.Value and Script.Bypassed) and 75 or 18)
         else
             Options.WalkSpeed:SetMax((Script.IsMines and Toggles.TheMinesAnticheatBypass.Value and Script.Bypassed) and 75 or 22)
         end
+
         Options.FlySpeed:SetMax((Script.IsMines and Toggles.TheMinesAnticheatBypass.Value and Script.Bypassed) and 75 or 22)
     end
 end))
+
 shared.Connect:GiveSignal(shared.LocalPlayer:GetAttributeChangedSignal("Alive"):Connect(function()
     Script.Alive = shared.LocalPlayer:GetAttribute("Alive")
+
     if not Script.Alive and Script.IsFools and Toggles.InfRevives.Value then
         task.delay(1.25, function()
             Script.RemotesFolder.Revive:FireServer()
         end)
     end
 end))
+
 shared.Connect:GiveSignal(shared.PlayerGui.ChildAdded:Connect(function(child)
     if child.Name == "MainUI" then
         Script.MainUI = child
+
         task.delay(1, function()
             if Script.MainUI then
                 Script.MainGame = Script.MainUI:WaitForChild("Initiator"):WaitForChild("Main_Game")
+
                 if Script.MainGame then
                     if wax.shared.ExecutorSupport["require"] then Script.MainGameSrc = wax.require(Script.MainGame) end
+
                     if Script.MainGame:WaitForChild("Health", 5) then
                         if Script.IsHotel and Toggles.NoJammin.Value and Script.LiveModifiers:FindFirstChild("Jammin") then
                             local jamSound = Script.MainGame:FindFirstChild("Jam", true)
                             if jamSound then jamSound.Playing = false end
                         end
                     end
+
                     if Script.MainGame:WaitForChild("RemoteListener", 5) then
+
                         if Toggles.NoEntityJumpscare.Value then
                             local jumpscaresFolder = Script.MainGame:FindFirstChild("Jumpscares", true)
+                            
                             if jumpscaresFolder then
                                 jumpscaresFolder.Name = "_Jumpscares"
                             end
                         end
+
                         local modules = Script.MainGame:FindFirstChild("Modules", true)
                         if not modules then return end
+                    
                         if Toggles.AntiDread.Value then
                             local module = modules:FindFirstChild("Dread", true)
+    
                             if module then
                                 module.Name = "_Dread"
                             end
                         end
+
                         if Toggles.AntiScreech.Value then
                             local module = modules:FindFirstChild("Screech", true)
+    
                             if module then
                                 module.Name = "_Screech"
                             end
                         end
+
                         if Toggles.NoSpiderJumpscare.Value then
                             local module = modules:FindFirstChild("SpiderJumpscare", true)
+    
                             if module then
                                 module.Name = "_SpiderJumpscare"
                             end
                         end
+
                         if (Script.IsHotel or Script.IsRooms) and Toggles.AntiA90.Value then
                             local module = modules:FindFirstChild("A90", true)
+    
                             if module then
                                 module.Name = "_A90"
                             end
@@ -965,36 +1108,47 @@ shared.Connect:GiveSignal(shared.PlayerGui.ChildAdded:Connect(function(child)
         end)
     end
 end))
+
 --// ESP Handler \\--
 shared.Connect:GiveSignal(Script.LatestRoom:GetPropertyChangedSignal("Value"):Connect(function()
     Script.Functions.NotifyGlitch()
 end))
+
 shared.Connect:GiveSignal(shared.LocalPlayer:GetAttributeChangedSignal("CurrentRoom"):Connect(function()
     if Script.CurrentRoom == shared.LocalPlayer:GetAttribute("CurrentRoom") then return end
+
     Script.CurrentRoom = shared.LocalPlayer:GetAttribute("CurrentRoom")
     Script.NextRoom = Script.CurrentRoom + 1
     task.spawn(Script.Functions.UpdateRPC)
+
     Script.Functions.NotifyGlitch()
+
     local currentRoomModel = workspace.CurrentRooms:FindFirstChild(Script.CurrentRoom)
     local nextRoomModel = workspace.CurrentRooms:FindFirstChild(Script.NextRoom)
+
     if Script.IsMines and Script.Bypassed and currentRoomModel:GetAttribute("RawName") == "HaltHallway" then
         Script.Bypassed = false
         shared.Notify:Alert({
             Title = "Bỏ qua anticheat",
             Description = "Halt đã làm hỏng tính năng này.",
             Reason = "Tiếp cận cái thang để bật lại.",
+
             LinoriaMessage = "Halt đã làm hỏng tính năng này, tiếp cận cái thang để bật lại.",
         })
+
         Options.WalkSpeed:SetMax(Toggles.SpeedBypass.Value and 75 or (Toggles.EnableJump.Value and 18 or 22))
         Options.FlySpeed:SetMax(Toggles.SpeedBypass.Value and 75 or 22)
     end
+
     if Toggles.DoorESP.Value then
         for _, doorEsp in pairs(Script.ESPTable.Door) do
             doorEsp.Destroy()
         end
+
         if currentRoomModel then
             task.spawn(Script.Functions.DoorESP, currentRoomModel)
         end
+
         if nextRoomModel then
             task.spawn(Script.Functions.DoorESP, nextRoomModel)
         end
@@ -1029,69 +1183,90 @@ shared.Connect:GiveSignal(shared.LocalPlayer:GetAttributeChangedSignal("CurrentR
             goldEsp.Destroy()
         end
     end
+
     if currentRoomModel then
         for _, asset in pairs(currentRoomModel:GetDescendants()) do
             if Toggles.ObjectiveESP.Value then
                 task.spawn(Script.Functions.ObjectiveESP, asset)
             end
+
             if Toggles.EntityESP.Value and table.find(Script.EntityTable.SideNames, asset.Name) then    
                 task.spawn(Script.Functions.SideEntityESP, asset)
             end
+    
             if Toggles.ItemESP.Value and Script.Functions.ItemCondition(asset) then
                 task.spawn(Script.Functions.ItemESP, asset)
             end
+
             if Toggles.ChestESP.Value and (asset:GetAttribute("Storage") == "ChestBox" or asset.Name == "Toolshed_Small") then
                 task.spawn(Script.Functions.ChestESP, asset)
             end
+
             if Toggles.HidingSpotESP.Value and (asset:GetAttribute("LoadModule") == "Wardrobe" or asset:GetAttribute("LoadModule") == "Bed" or asset.Name == "Rooms_Locker" or asset.Name == "RetroWardrobe") then
                 Script.Functions.HidingSpotESP(asset)
             end
+
             if Toggles.GoldESP.Value and asset.Name == "GoldPile" then
                 Script.Functions.GoldESP(asset)
             end
         end
     end
 end))
+
 --// UIS Connection \\--
 shared.Connect:GiveSignal(shared.UserInputService.InputBegan:Connect(function(input, gameProcessed)
     if gameProcessed then return end
     if shared.UserInputService:GetFocusedTextBox() then return end
+
     if shared.CheckToggle("GrabBananaJeffToggle", true) and shared.Library.IsMobile and input.UserInputType == Enum.UserInputType.Touch then
         if Script.Temp.HoldingItem then
             return Script.Functions.ThrowBananaJeff()
         end
+
         local touchPos = input.Position
         local ray = workspace.CurrentCamera:ViewportPointToRay(touchPos.X, touchPos.Y)
         local result = workspace:Raycast(ray.Origin, ray.Direction * 500, RaycastParams.new())
+        
         local target = result and result.Instance
+
         if target and shared.isnetworkowner(target) then
             if target.Name == "BananaPeel" then
                 Script.Tracks.ItemHoldTrack:Play()
+
                 if not target:FindFirstChildOfClass("BodyGyro") then
                     Instance.new("BodyGyro", target)
                 end
+
                 if not target:GetAttribute("Clip") then target:SetAttribute("Clip", target.CanCollide) end
+
                 target.CanTouch = false
                 target.CanCollide = false
+
                 Script.Temp.HoldingItem = target
             elseif target:FindFirstAncestorWhichIsA("Model").Name == "JeffTheKiller" then
                 Script.Tracks.ItemHoldTrack:Play()
+
                 local jeff = target:FindFirstAncestorWhichIsA("Model")
+
                 for _, part in ipairs(jeff:GetDescendants()) do
                     if part:IsA("BasePart") then
                         if not part:GetAttribute("Clip") then part:SetAttribute("Clip", target.CanCollide) end
+
                         part.CanTouch = false
                         part.CanCollide = false
                     end
                 end
+
                 if not jeff.PrimaryPart:FindFirstChildOfClass("BodyGyro") then
                     Instance.new("BodyGyro", jeff.PrimaryPart)
                 end
+
                 Script.Temp.HoldingItem = jeff.PrimaryPart
             end
         end
     end
 end))
+
 shared.Connect:GiveSignal(shared.RunService.RenderStepped:Connect(function()
     local isThirdPersonEnabled = Toggles.ThirdPerson.Value and (shared.Library.IsMobile or Options.ThirdPersonKey:GetState())
     if Script.MainGameSrc then
@@ -1099,13 +1274,16 @@ shared.Connect:GiveSignal(shared.RunService.RenderStepped:Connect(function()
             shared.Camera.CFrame = Script.MainGameSrc.finalCamCFrame * CFrame.new(1.5, -0.5, 6.5)
         end
         Script.MainGameSrc.fovtarget = Options.FOV.Value
+
         if Toggles.NoCamBob.Value then
             Script.MainGameSrc.bobspring.Position = Vector3.zero
             Script.MainGameSrc.spring.Position = Vector3.zero
         end
+
         if Toggles.NoCamShake.Value then
             Script.MainGameSrc.csgo = CFrame.new()
         end
+
         if Toggles.ViewmodelOffset.Value then
             Script.MainGameSrc.tooloffset = Vector3.new(Options.ToolOffsetX.Value, Options.ToolOffsetY.Value, Options.ToolOffsetZ.Value)
         end
@@ -1113,8 +1291,10 @@ shared.Connect:GiveSignal(shared.RunService.RenderStepped:Connect(function()
         if isThirdPersonEnabled then
             shared.Camera.CFrame = shared.Camera.CFrame * CFrame.new(1.5, -0.5, 6.5)
         end
+
         shared.Camera.FieldOfView = Options.FOV.Value
     end
+
     if shared.Character then
         if shared.Character:FindFirstChild("Head") and 
             not (
@@ -1124,12 +1304,15 @@ shared.Connect:GiveSignal(shared.RunService.RenderStepped:Connect(function()
             shared.Character:SetAttribute("ShowInFirstPerson", isThirdPersonEnabled)
             shared.Character.Head.LocalTransparencyModifier = isThirdPersonEnabled and 0 or 1
         end
+
         if shared.Humanoid and Toggles.EnableSpeedHack.Value then
             shared.Humanoid.WalkSpeed = if shared.Character:GetAttribute("Climbing") then Options.LadderSpeed.Value else Options.WalkSpeed.Value
         end
+
         if shared.RootPart then
             shared.RootPart.CanCollide = not Toggles.Noclip.Value
         end
+        
         if Script.Collision then
             if Toggles.Noclip.Value then
                 Script.Collision.CanCollide = not Toggles.Noclip.Value and not (Toggles.CollisionOffsetGodmode.Value or shared.Library.IsMobile or Options.CollisionOffsetGodmodeKey:GetState())
@@ -1137,52 +1320,66 @@ shared.Connect:GiveSignal(shared.RunService.RenderStepped:Connect(function()
                     Script.Collision.CollisionCrouch.CanCollide = not Toggles.Noclip.Value and not (Toggles.CollisionOffsetGodmode.Value or shared.Library.IsMobile or Options.CollisionOffsetGodmodeKey:GetState())
                 end
             end
+
             if (Toggles.CollisionOffsetGodmode.Value and (shared.Library.IsMobile or Options.CollisionOffsetGodmodeKey:GetState())) and Script.CollisionClone then
                 local raycast = workspace:Raycast(shared.RootPart.Position, Vector3.new(0, -1000, 0), Script.NoCharRaycastParam)
+
                 if raycast then
                     Script.Collision.Position = shared.RootPart.Position - Vector3.new(0, raycast.Distance - 0.9, 0)
                     Script.CollisionClone.Position = Script.Collision.Position + Vector3.new(0, 2.5, 0)
                 end
             end
         end
+
         if shared.Character:FindFirstChild("UpperTorso") then
             shared.Character.UpperTorso.CanCollide = not Toggles.Noclip.Value
         end
         if shared.Character:FindFirstChild("LowerTorso") then
             shared.Character.LowerTorso.CanCollide = not Toggles.Noclip.Value
         end
+
         if Toggles.DoorReach.Value and workspace.CurrentRooms:FindFirstChild(Script.LatestRoom.Value) then
             local door = workspace.CurrentRooms[Script.LatestRoom.Value]:FindFirstChild("Door")
+
             if door and door:FindFirstChild("ClientOpen") then
                 door.ClientOpen:FireServer()
             end
         end
+
         if Toggles.AutoInteract.Value and (shared.Library.IsMobile or Options.AutoInteractKey:GetState()) then
             local prompts = Script.Functions.GetAllPromptsWithCondition(function(prompt)
                 if not prompt.Parent then return false end
+
                 if Options.AutoInteractIgnore.Value["Jeff Items"] and prompt.Parent:GetAttribute("JeffShop") then return false end
                 if Options.AutoInteractIgnore.Value["Unlock w/ Lockpick"] and (prompt.Name == "UnlockPrompt" or prompt.Parent:GetAttribute("Locked")) and shared.Character:FindFirstChild("Lockpick") then return false end
                 if Options.AutoInteractIgnore.Value["Paintings"] and prompt.Name == "PropPrompt" then return false end
                 if Options.AutoInteractIgnore.Value["Gold"] and prompt.Name == "LootPrompt" then return false end
                 if Options.AutoInteractIgnore.Value["Light Source Items"] and prompt.Parent:GetAttribute("Tool_LightSource") and not prompt.Parent:GetAttribute("Tool_CanCutVines") then return false end
                 if Options.AutoInteractIgnore.Value["Skull Prompt"] and prompt.Name == "SkullPrompt" then return false end
+
                 if prompt.Parent:GetAttribute("PropType") == "Battery" and not (shared.Character:FindFirstChildOfClass("Tool") and (shared.Character:FindFirstChildOfClass("Tool"):GetAttribute("RechargeProp") == "Battery" or shared.Character:FindFirstChildOfClass("Tool"):GetAttribute("StorageProp") == "Battery")) then return false end 
                 if prompt.Parent:GetAttribute("PropType") == "Heal" and shared.Humanoid and shared.Humanoid.Health == shared.Humanoid.MaxHealth then return false end
                 if prompt.Parent.Name == "MinesAnchor" then return false end
+
                 if Script.IsRetro and prompt.Parent.Parent.Name == "RetroWardrobe" then return false end
+
                 return Script.PromptTable.Aura[prompt.Name] ~= nil
             end)
+
             for _, prompt: ProximityPrompt in pairs(prompts) do
                 task.spawn(function()
                     -- checks if distance can interact with prompt and if prompt can be interacted again
                     if Script.Functions.DistanceFromCharacter(prompt.Parent) < prompt.MaxActivationDistance and (not prompt:GetAttribute("Interactions" .. shared.LocalPlayer.Name) or Script.PromptTable.Aura[prompt.Name] or table.find(Script.PromptTable.AuraObjects, prompt.Parent.Name)) then
                         if prompt.Parent.Name == "Slot" and prompt.Parent:GetAttribute("Hint") then
                             if Script.Temp.PaintingDebounce[prompt] then return end
+
                             local currentPainting = shared.Character:FindFirstChild("Prop")
                             local slotPainting = prompt.Parent:FindFirstChild("Prop")
+
                             local currentHint = (currentPainting and currentPainting:GetAttribute("Hint"))
                             local slotHint = (slotPainting and slotPainting:GetAttribute("Hint"))
                             local promptHint = prompt.Parent:GetAttribute("Hint")
+
                             --print(currentHint, slotHint, promptHint)
                             if slotHint ~= promptHint and (currentHint == promptHint or slotPainting) then
                                 Script.Temp.PaintingDebounce[prompt] = true
@@ -1190,43 +1387,54 @@ shared.Connect:GiveSignal(shared.RunService.RenderStepped:Connect(function()
                                 task.wait(0.3)
                                 Script.Temp.PaintingDebounce[prompt] = false    
                             end
+        
                             return
                         end
+                        
                         shared.fireproximityprompt(prompt)
                     end
                 end)
             end
         end
+
         if Toggles.SpamOtherTools.Value and (shared.Library.IsMobile or Options.SpamOtherTools:GetState()) then
             for _, player in pairs(shared.Players:GetPlayers()) do
                 if player == shared.LocalPlayer then continue end
+                
                 for _, tool in pairs(player.Backpack:GetChildren()) do
                     tool:FindFirstChildOfClass("RemoteEvent"):FireServer()
                 end
+                
                 local toolRemote = player.Character:FindFirstChild("Remote", true)
                 if toolRemote then
                     toolRemote:FireServer()
                 end
             end
         end
+
         if Toggles.AnticheatManipulation.Value and (shared.Library.IsMobile or Options.AnticheatManipulationKey:GetState()) then
             shared.Character:PivotTo(shared.Character:GetPivot() * CFrame.new(0, 0, 1000))
         end
+
         if Script.IsMines then
             if Toggles.AutoAnchorSolver.Value and Script.LatestRoom.Value == 50 and Script.MainUI.MainFrame:FindFirstChild("AnchorHintFrame") then
                 local prompts = Script.Functions.GetAllPromptsWithCondition(function(prompt)
                     return prompt.Name == "ActivateEventPrompt" and prompt.Parent:IsA("Model") and prompt.Parent.Name == "MinesAnchor" and not prompt.Parent:GetAttribute("Activated")
                 end)
+
                 local CurrentGameState = {
                     DesignatedAnchor = Script.MainUI.MainFrame.AnchorHintFrame.AnchorCode.Text,
                     AnchorCode = Script.MainUI.MainFrame.AnchorHintFrame.Code.Text
                 }
+
                 for _, prompt in pairs(prompts) do
                     task.spawn(function()
                         local Anchor = prompt.Parent
                         local CurrentAnchor = Anchor.Sign.TextLabel.Text
+
                         if not (Script.Functions.DistanceFromCharacter(prompt.Parent) < prompt.MaxActivationDistance) then return end
                         if CurrentAnchor ~= CurrentGameState.DesignatedAnchor then return end
+
                         local result = Anchor:FindFirstChildOfClass("RemoteFunction"):InvokeServer(CurrentGameState.AnchorCode)
                         if result then
                             shared.Notify:Alert({
@@ -1247,48 +1455,63 @@ shared.Connect:GiveSignal(shared.RunService.RenderStepped:Connect(function()
                 })
                 Script.Temp.HoldingItem = nil
             end
+    
             if HoldingItem and Toggles.GrabBananaJeffToggle.Value then
                 if HoldingItem:FindFirstChildOfClass("BodyGyro") then
                     HoldingItem.CanTouch = false
                     HoldingItem.CFrame = shared.Character.RightHand.CFrame * CFrame.Angles(math.rad(-90), 0, 0)
                 end
             end
+            
             if not shared.Library.IsMobile then
                 local isGrabbing = Options.GrabBananaJeff:GetState() and Toggles.GrabBananaJeffToggle.Value
                 local isThrowing = Options.ThrowBananaJeff:GetState()
+                
                 if isThrowing and HoldingItem and shared.isnetworkowner(HoldingItem) then
                     Script.Functions.ThrowBananaJeff()
                 end
+                
                 local target = shared.LocalPlayer:GetMouse().Target
+                
                 if not target then return end
                 if isGrabbing and shared.isnetworkowner(target) then
                     if target.Name == "BananaPeel" then
                         Script.Tracks.ItemHoldTrack:Play()
+    
                         if not target:FindFirstChildOfClass("BodyGyro") then
                             Instance.new("BodyGyro", target)
                         end
+    
                         if not target:GetAttribute("Clip") then target:SetAttribute("Clip", target.CanCollide) end
+    
                         target.CanTouch = false
                         target.CanCollide = false
+    
                         Script.Temp.HoldingItem = target
                     elseif target:FindFirstAncestorWhichIsA("Model").Name == "JeffTheKiller" then
                         Script.Tracks.ItemHoldTrack:Play()
+    
                         local jeff = target:FindFirstAncestorWhichIsA("Model")
+    
                         for _, i in ipairs(jeff:GetDescendants()) do
                             if i:IsA("BasePart") then
                                 if not i:GetAttribute("Clip") then i:SetAttribute("Clip", target.CanCollide) end
+    
                                 i.CanTouch = false
                                 i.CanCollide = false
                             end
                         end
+    
                         if not jeff.PrimaryPart:FindFirstChildOfClass("BodyGyro") then
                             Instance.new("BodyGyro", jeff.PrimaryPart)
                         end
+    
                         Script.Temp.HoldingItem = jeff.PrimaryPart
                     end
                 end
             end
         end
+
         if Toggles.AntiEyes.Value and (workspace:FindFirstChild("Eyes") or workspace:FindFirstChild("BackdoorLookman")) then
             if not Script.IsFools then
                 -- lsplash meanie for removing other args in motorreplication
@@ -1298,6 +1521,7 @@ shared.Connect:GiveSignal(shared.RunService.RenderStepped:Connect(function()
             end
         end
     end
+
     task.spawn(function()
         for guidance, part in pairs(Script.Temp.Guidance) do
             if not guidance:IsDescendantOf(workspace) then continue end
@@ -1305,6 +1529,7 @@ shared.Connect:GiveSignal(shared.RunService.RenderStepped:Connect(function()
         end
     end)
 end))
+
 shared.Connect:GiveSignal(shared.RunService.RenderStepped:Connect(function()
     if Toggles["ShowCustomCursor"] and not Toggles.ShowCustomCursor.Value and shared.Library.Toggled then
         shared.UserInputService.MouseBehavior = Enum.MouseBehavior.Default
@@ -1312,23 +1537,30 @@ shared.Connect:GiveSignal(shared.RunService.RenderStepped:Connect(function()
         shared.UserInputService.MouseIconEnabled = true
     end
 end))
+
 --// Load \\--
 task.spawn(Script.Functions.SetupCharacterConnection, shared.Character)
+
 shared.Library:OnUnload(function()
     print("Unloading DOORS...")
     if shared.Hooks.mtHook then hookmetamethod(game, "__namecall", shared.Hooks.mtHook) end
     if shared.Hooks._fixDistanceFromCharacter then hookmetamethod(shared.Hooks.LocalPlayer, "__namecall", shared.Hooks._fixDistanceFromCharacter) end
+
     if Script.FakeRevive.Enabled then
         for _, connection in pairs(Script.FakeRevive.Connections) do
             if connection.Connected then connection:Disconnect() end
         end
+
         table.clear(Script.FakeRevive.Connections)
     end
+
     if shared.Character and shared.Character:FindFirstChildOfClass("Tool") and Script.MainGameSrc then
         local tool = shared.Character:FindFirstChildOfClass("Tool")
+
         if not tool:GetAttribute("ToolOffset") then return end
         Script.MainGameSrc.tooloffset = tool:GetAttribute("ToolOffset")
     end
+    
     if wax.shared.BloxstrapRPC then
         wax.shared.BloxstrapRPC.SetRichPresence({
             details = "<reset>",
@@ -1341,10 +1573,13 @@ shared.Library:OnUnload(function()
             }
         })
     end
+
     if shared.Character then
         shared.Character:SetAttribute("CanJump", false)
+
         local speedBoostAssignObj = Script.IsFools and shared.Humanoid or shared.Character
         speedBoostAssignObj:SetAttribute("SpeedBoostBehind", 0)
+
         if (Toggles.CollisionOffsetGodmode.Value and (shared.Library.IsMobile or Options.CollisionOffsetGodmodeKey:GetState())) and Script.Collision and shared.RootPart then
             if Script.Collision.Position ~= shared.RootPart.Position then
                 Script.Collision.Position = shared.RootPart.Position
@@ -1352,15 +1587,18 @@ shared.Library:OnUnload(function()
             end
         end
     end
+
     if Script.Alive then
         shared.Lighting.Ambient = workspace.CurrentRooms[Script.CurrentRoom]:GetAttribute("Ambient")
     else
         shared.Lighting.Ambient = Color3.new(0, 0, 0)
     end
+
     if Script.EntityModules then
         local haltModule = Script.EntityModules:FindFirstChild("_Shade")
         local glitchModule = Script.EntityModules:FindFirstChild("_Glitch")
         local voidModule = Script.EntityModules:FindFirstChild("_Void")
+
         if haltModule then
             haltModule.Name = "Shade"
         end
@@ -1371,15 +1609,19 @@ shared.Library:OnUnload(function()
             voidModule.Name = "Void"
         end
     end
+
     local voicelines = shared.ReplicatedStorage:FindFirstChild("_Voicelines", true)
     if voicelines then
         voicelines.Name = "Voicelines"
     end
+
     if Script.MainGame then
         local modules = Script.MainGame:FindFirstChild("Modules", true)
+
         local dreadModule = modules and modules:FindFirstChild("_Dread", true)
         local screechModule = modules and modules:FindFirstChild("_Screech", true)
         local spiderModule = modules and modules:FindFirstChild("_SpiderJumpscare", true)
+
         if dreadModule then
             dreadModule.Name = "Dread"
         end
@@ -1390,35 +1632,44 @@ shared.Library:OnUnload(function()
             spiderModule.Name = "SpiderJumpscare"
         end
     end
+
     if Script.MainGameSrc then
         Script.MainGameSrc.fovtarget = 70
     else
         shared.Camera.FieldOfView = 70
     end
+
     if shared.RootPart then
         local existingProperties = shared.RootPart.CustomPhysicalProperties
         shared.RootPart.CustomPhysicalProperties = PhysicalProperties.new(Script.Temp.NoAccelValue, existingProperties.Friction, existingProperties.Elasticity, existingProperties.FrictionWeight, existingProperties.ElasticityWeight)
     end
+
     if Script.Tracks.ItemHoldTrack then Script.Tracks.ItemHoldTrack:Stop() end
     if Script.Tracks.ItemThrowTrack then Script.Tracks.ItemThrowTrack:Stop() end
     shared.Twerk:Disable()
+
     for _, animation in pairs(Script.Anims) do
         animation:Destroy()
     end
+
     if Script.IsBackdoor then
         local clientRemote = Script.FloorReplicated.ClientRemote
         local internal_temp_mspaint = clientRemote:FindFirstChild("_mspaint")
+
         if internal_temp_mspaint and #internal_temp_mspaint:GetChildren() ~= 0 then
             for i,v in pairs(internal_temp_mspaint:GetChildren()) do
                 v.Parent = clientRemote.Haste
             end
         end
+
         internal_temp_mspaint:Destroy()
     end
+
     if Script.IsMines then
         local acbypasspart = workspace:FindFirstChild("_internal_mspaint_acbypassprogress")
         if acbypasspart then acbypasspart:Destroy() end
     end
+
     if Script.IsRooms then
         if workspace:FindFirstChild("_internal_mspaint_pathfinding_nodes") then
             workspace:FindFirstChild("_internal_mspaint_pathfinding_nodes"):Destroy()
@@ -1427,66 +1678,84 @@ shared.Library:OnUnload(function()
             workspace:FindFirstChild("_internal_mspaint_pathfinding_block"):Destroy()
         end
     end
+
     if Script._mspaint_custom_captions then
         Script._mspaint_custom_captions:Destroy()
     end
+
     if Script.Collision and not (Toggles.CollisionOffsetGodmode.Value and (shared.Library.IsMobile or Options.CollisionOffsetGodmodeKey:GetState())) then
         Script.Collision.CanCollide = Script.MainGameSrc and not Script.MainGameSrc.crouching or not shared.Character:GetAttribute("Crouching")
+
         if Script.Collision:FindFirstChild("CollisionCrouch") then
             Script.Collision.CollisionCrouch.CanCollide = if Script.MainGameSrc then Script.MainGameSrc.crouching else shared.Character:GetAttribute("Crouching")
         end
     end
+
     if Script.CollisionClone then Script.CollisionClone:Destroy() end
+
     for _, antiBridge in pairs(Script.Temp.Bridges) do antiBridge:Destroy() end
     for _, antiBridge in pairs(Script.Temp.PipeBridges) do antiBridge:Destroy() end
+
     for _, espType in pairs(Script.ESPTable) do
         for _, esp in pairs(espType) do
             esp.Destroy()
         end
     end
+
     for _, category in pairs(Script.FeatureConnections) do
         for _, connection in pairs(category) do
             connection:Disconnect()
         end
     end
+    
     for _, object in pairs(workspace.CurrentRooms:GetDescendants()) do
         if Script.Functions.PromptCondition(object) then
             if not object:GetAttribute("Hold") then object:SetAttribute("Hold", object.HoldDuration) end
             if not object:GetAttribute("Distance") then object:SetAttribute("Distance", object.MaxActivationDistance) end
             if not object:GetAttribute("Clip") then object:SetAttribute("Clip", object.RequiresLineOfSight) end
+
             object.HoldDuration = object:GetAttribute("Hold")
             object.MaxActivationDistance = object:GetAttribute("Distance")
             object.RequiresLineOfSight = object:GetAttribute("Clip")
         elseif object:IsA("BasePart") then
             if not object:GetAttribute("Material") then object:SetAttribute("Material", object.Material) end
             if not object:GetAttribute("Reflectance") then object:SetAttribute("Reflectance", object.Reflectance) end
+
             object.Material = object:GetAttribute("Material")
             object.Reflectance = object:GetAttribute("Reflectance")
         elseif object:IsA("Decal") then
             if not object:GetAttribute("Transparency") then object:SetAttribute("Transparency", object.Transparency) end
+
             if not table.find(Script.SlotsName, object.Name) then
                 object.Transparency = object:GetAttribute("Transparency")
             end
         end
     end
+
     workspace.Terrain.WaterReflectance = 1
     workspace.Terrain.WaterTransparency = 1
     workspace.Terrain.WaterWaveSize = 0.05
     workspace.Terrain.WaterWaveSpeed = 8
     shared.Lighting.GlobalShadows = true
+
     print("Ngừng tải doors!")
 end)
+
 shared.SubFolder = Script.Floor.Value
 getgenv().mspaint_loaded = true
+
 end)() end,
     [7] = function()local wax,script,require=ImportGlobals(7)local ImportGlobals return (function(...)--// Loading Wait \\--
 if shared.LocalPlayer.PlayerGui:FindFirstChild("LoadingUI") and shared.LocalPlayer.PlayerGui.LoadingUI.Enabled then
     repeat task.wait() until not shared.LocalPlayer.PlayerGui.LoadingUI.Enabled
 end
+
 shared.Character = shared.LocalPlayer.Character or shared.LocalPlayer.CharacterAdded:Wait()
+
 --// Linoria \\--
 local Toggles = shared.Toggles
 local Options = shared.Options
+
 --// Variables \\--
 local Script = shared.Script
 Script.CurrentBadge = 0
@@ -1560,52 +1829,66 @@ Script.Achievements = {
     "SurviveHide",
     "JoinAgain"
 }
+
 Script.RemotesFolder = shared.ReplicatedStorage:WaitForChild("RemotesFolder")
 Script.CreateElevator = Script.RemotesFolder:WaitForChild("CreateElevator")
+
 Script.MainUI = shared.PlayerGui:WaitForChild("MainUI")
 Script.LobbyFrame = Script.MainUI:WaitForChild("LobbyFrame")
 Script.AchievementsFrame = Script.LobbyFrame:WaitForChild("Achievements")
 Script.CreateElevatorFrame = Script.LobbyFrame:WaitForChild("CreateElevator")
+
 Script.LobbyElevators = workspace:WaitForChild("Lobby"):WaitForChild("LobbyElevators")
+
 --// Functions \\--
 function Script.Functions.SetupVariables()
     if wax.shared.ExecutorSupport["require"] then
         for achievementName, _ in pairs(wax.require(shared.ReplicatedStorage.Achievements)) do
             if table.find(Script.Achievements, achievementName) then continue end
+    
             table.insert(Script.Achievements, achievementName)
         end
     else
         local badgeList = Script.AchievementsFrame:WaitForChild("List", math.huge)
+
         if badgeList then
             repeat task.wait(0.5) until #badgeList:GetChildren() ~= 0
+            
             shared.Connect:GiveSignal(badgeList.ChildAdded:Connect(function(badge)
                 if not badge:IsA("ImageButton") then return end
                 if table.find(Script.Achievements, badge.Name) then return end
                 table.insert(Script.Achievements, badge.Name)
             end))
+
             for _, badge in pairs(badgeList:GetChildren()) do
                 if not badge:IsA("ImageButton") then continue end
                 if table.find(Script.Achievements, badge.Name) then continue end
+
                 table.insert(Script.Achievements, badge.Name)
             end
         end
     end
 end
+
 function Script.Functions.LoopAchievements()
     task.spawn(function()
         while Toggles.LoopAchievements.Value and not shared.Library.Unloaded do
             if Script.CurrentBadge >= #Script.Achievements then Script.CurrentBadge = 0 end
             Script.CurrentBadge += 1
+
             local random = Script.Achievements[Script.CurrentBadge]
             Script.RemotesFolder.FlexAchievement:FireServer(random)
+
             task.wait(Options.LoopAchievementsSpeed.Value)
         end
     end)
 end
+
 function Script.Functions.SetupCharacterConnection(newCharacter)
     shared.Character = newCharacter
     shared.Humanoid = shared.Character:FindFirstChildWhichIsA("Humanoid")
     shared.RootPart = shared.Character:FindFirstChild("HumanoidRootPart") or shared.Character.PrimaryPart
+
     if shared.Humanoid then
         shared.Twerk:Setup()
         if Toggles.Twerk.Value then
@@ -1613,24 +1896,31 @@ function Script.Functions.SetupCharacterConnection(newCharacter)
         end
     end
 end
+
 shared.Load("Utils", "Preset")
+
 --// Tabs \\--
 Script.Tabs = {
     Main = shared.Window:AddTab("Main")
 }
+
 shared.Load("Tabs", "Main")
+
 --// Code \\--
 task.spawn(Script.Functions.SetupVariables)
 task.spawn(Script.Functions.LoadPresets)
+
 task.spawn(Script.Functions.SetupCharacterConnection, shared.Character)
 shared.Connect:GiveSignal(shared.LocalPlayer.CharacterAdded:Connect(function(newCharacter)
     task.delay(1, Script.Functions.SetupCharacterConnection, newCharacter)
 end))
+
 getgenv().mspaint_loaded = true
 end)() end,
     [9] = function()local wax,script,require=ImportGlobals(9)local ImportGlobals return (function(...)--// Linoria \\--
 local Toggles = shared.Toggles
 local Options = shared.Options
+
 --// Variables \\--
 local Script = shared.Script
 Script.LoadedRooms = {}
@@ -1648,18 +1938,23 @@ Script.ESPTable = {
     Table = {},
     None = {}
 }
+
 Script.EntityNames = {
     ["monster"] = "A-60",
     ["monster2"] = "A-120",
     ["Spirit"] = "Pnevma"
 }
+
 Script.CurrentAmbient = shared.Lighting.Ambient
+
 Script._mspaint_custom_captions = Instance.new("ScreenGui") do
     local Frame = Instance.new("Frame", Script._mspaint_custom_captions)
     local TextLabel = Instance.new("TextLabel", Frame)
     local UITextSizeConstraint = Instance.new("UITextSizeConstraint", TextLabel)
+
     Script._mspaint_custom_captions.Parent = shared.ReplicatedStorage
     Script._mspaint_custom_captions.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
     Frame.AnchorPoint = Vector2.new(0.5, 0.5)
     Frame.BackgroundColor3 = shared.Library.MainColor
     Frame.BorderColor3 = shared.Library.AccentColor
@@ -1670,6 +1965,7 @@ Script._mspaint_custom_captions = Instance.new("ScreenGui") do
         BackgroundColor3 = "MainColor",
         BorderColor3 = "AccentColor"
     })
+
     TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     TextLabel.BackgroundTransparency = 1.000
     TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -1684,22 +1980,29 @@ Script._mspaint_custom_captions = Instance.new("ScreenGui") do
     shared.Library:AddToRegistry(TextLabel, {
         TextColor3 = "FontColor"
     })
+
     UITextSizeConstraint.MaxTextSize = 35
+
     function Script.Functions.HideCaptions()
         Script._mspaint_custom_captions.Parent = shared.ReplicatedStorage
     end
+
     local CaptionsLastUsed = os.time()
     function Script.Functions.Captions(caption: string)
         CaptionsLastUsed = os.time()
+
         if Script._mspaint_custom_captions.Parent == shared.ReplicatedStorage then
             local success = pcall(function()
                 Script._mspaint_custom_captions.Parent = if gethui then gethui() else shared.CoreGui
             end)
+
             if not success then
                 Script._mspaint_custom_captions.Parent = shared.PlayerGui
             end 
         end
+        
         TextLabel.Text = caption
+
         task.spawn(function()
             task.wait(5)
             if os.time() - CaptionsLastUsed >= 5 then
@@ -1708,10 +2011,13 @@ Script._mspaint_custom_captions = Instance.new("ScreenGui") do
         end)
     end
 end
+
 --// Player Variables \\--
 shared.Character = shared.LocalPlayer.Character or shared.LocalPlayer.CharacterAdded:Wait()
 shared.Humanoid = nil
+
 Script.MainUI = shared.PlayerGui:WaitForChild("MainGui")
+
 --// Functions \--
 function Script.Functions.RandomString()
     local length = math.random(10,20)
@@ -1721,87 +2027,108 @@ function Script.Functions.RandomString()
     end
     return table.concat(array)
 end
+
 shared.Load("Utils", "Assets")
 shared.Load("Utils", "Chat")
 shared.Load("Utils", "ESP")
+
 shared.Load("Utils", "ConnectionsFuncs")
+
 --// Tabs \\--
 Script.Tabs = {
     Main = shared.Window:AddTab("Main"),
     Visuals = shared.Window:AddTab("Visuals")
 }
+
 shared.Load("Tabs", "Main")
 shared.Load("Tabs", "Visuals")
+
 --// Metamethod hooks \\--
 if wax.shared.ExecutorSupport["hookmetamethod"] and wax.shared.ExecutorSupport["getnamecallmethod"] then
     shared.Hooks.mtHook = hookmetamethod(game, "__namecall", function(self, ...)
         local args = {...}
         local namecall = getnamecallmethod()
+    
         if getcallingscript() and namecall == "SetCore" and args[1] == "DevConsoleVisible" and args[2] == false then
             args[2] = game:GetService("StarterGui"):GetCore("DevConsoleVisible")
             return shared.Hooks.mtHook(self, table.unpack(args))
         end
+    
         return shared.Hooks.mtHook(self, ...)
     end)
 end
+
 --// Connections \\--
 shared.Connect:GiveSignal(shared.LocalPlayer.CharacterAdded:Connect(function(newCharacter)
     task.delay(1, Script.Functions.SetupCharacterConnection, newCharacter)
 end))
+
 shared.Connect:GiveSignal(shared.PlayerGui.ChildAdded:Connect(function(child)
     if child.Name == "MainGui" then
         task.delay(1, Script.Functions.SetupUIConnection, child)
     end
 end))
+
 shared.Connect:GiveSignal(workspace.rooms.ChildAdded:Connect(function(room)
     Script.Functions.SetupRoomConnection(room)
 end))
 shared.Connect:GiveSignal(workspace.next.ChildAdded:Connect(function(room)
     Script.Functions.SetupRoomConnection(room)
 end))
+
 --// Entity Handler
 shared.Connect:GiveSignal(workspace.ChildAdded:Connect(function(child)
     local entityName = Script.EntityNames[child.Name]
     if not entityName then return end
+
     if child:FindFirstChild("wind") then
         entityName = "A-200"
     end
+
     if Toggles.EntityESP.Value then
         Script.Functions.EntityESP(child, entityName)
     end
+
     if Toggles.NotifyEntity.Value then
         shared.Notify:Alert({
             Title = "ENTITIES",
             Description = entityName .. " Đã xuất hiện!"
         })
+    
         if Toggles.NotifyChat.Value then
             Script.Functions.Chat(string.format("%s %s", entityName, Options.NotifyEntityMessage.Value))
         end
     end
 end))
+
 shared.Connect:GiveSignal(shared.RunService.RenderStepped:Connect(function()
     if shared.Character then
         if shared.Humanoid then
             if Toggles.SpeedHack.Value then shared.Humanoid.WalkSpeed = Options.WalkSpeed.Value end
         end
     end
+
     if wax.shared.ExecutorSupport["getrenv"] then
         if Toggles.InfStamina.Value then
             getrenv()._G.stamina = 100
         end
+    
         if Toggles.InfFlashlight.Value then
             getrenv()._G.flashlightcharge = 100
         end
     end
 end))
+
 --// Load \\--
 Instance.new("BoolValue", shared.LocalPlayer).Name = "cheats"
 task.spawn(Script.Functions.SetupCharacterConnection, shared.Character)
 task.spawn(Script.Functions.SetupLightingConnection)
 task.spawn(Script.Functions.SetupUIConnection)
+
 --// Unload \\--
 shared.Library:OnUnload(function()
     if shared.Hooks.mtHook then hookmetamethod(game, "__namecall", shared.Hooks.mtHook) end
+
     local slender = Script.MainUI and Script.MainUI:FindFirstChild("slender")
     if slender then
         slender.ImageTransparency = 0
@@ -1809,35 +2136,44 @@ shared.Library:OnUnload(function()
             bar.Visible = true
         end
     end
+
     for _, espType in pairs(Script.ESPTable) do
         for _, esp in pairs(espType) do
             esp.Destroy()
         end
     end
+
     for _, category in pairs(Script.FeatureConnections) do
         for _, connection in pairs(category) do
             connection:Disconnect()
         end
     end
+
     print("Unloading " .. shared.ScriptName .. "...")
 end)
+
 getgenv().mspaint_loaded = true
 end)() end,
     [10] = function()local wax,script,require=ImportGlobals(10)local ImportGlobals return (function(...)--// Linoria \\--
 local Toggles = shared.Toggles
 local Options = shared.Options
+
 --// Variables \\--
 local Script = shared.Script
+
 --// Player Variables \\--
 shared.Character = shared.LocalPlayer.Character or shared.LocalPlayer.CharacterAdded:Wait()
 shared.Humanoid = nil
+
 --// Functions \\--
 Script._mspaint_custom_captions = Instance.new("ScreenGui") do
     local Frame = Instance.new("Frame", Script._mspaint_custom_captions)
     local TextLabel = Instance.new("TextLabel", Frame)
     local UITextSizeConstraint = Instance.new("UITextSizeConstraint", TextLabel)
+
     Script._mspaint_custom_captions.Parent = shared.ReplicatedStorage
     Script._mspaint_custom_captions.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
     Frame.AnchorPoint = Vector2.new(0.5, 0.5)
     Frame.BackgroundColor3 = shared.Library.MainColor
     Frame.BorderColor3 = shared.Library.AccentColor
@@ -1848,6 +2184,7 @@ Script._mspaint_custom_captions = Instance.new("ScreenGui") do
         BackgroundColor3 = "MainColor",
         BorderColor3 = "AccentColor"
     })
+
     TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     TextLabel.BackgroundTransparency = 1.000
     TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -1862,22 +2199,29 @@ Script._mspaint_custom_captions = Instance.new("ScreenGui") do
     shared.Library:AddToRegistry(TextLabel, {
         TextColor3 = "FontColor"
     })
+
     UITextSizeConstraint.MaxTextSize = 35
+
     function Script.Functions.HideCaptions()
         Script._mspaint_custom_captions.Parent = shared.ReplicatedStorage
     end
+
     local CaptionsLastUsed = os.time()
     function Script.Functions.Captions(caption: string)
         CaptionsLastUsed = os.time()
+
         if Script._mspaint_custom_captions.Parent == shared.ReplicatedStorage then
             local success = pcall(function()
                 Script._mspaint_custom_captions.Parent = if gethui then gethui() else shared.CoreGui
             end)
+
             if not success then
                 Script._mspaint_custom_captions.Parent = shared.PlayerGui
             end 
         end
+        
         TextLabel.Text = caption
+
         task.spawn(function()
             task.wait(5)
             if os.time() - CaptionsLastUsed >= 5 then
@@ -1886,63 +2230,80 @@ Script._mspaint_custom_captions = Instance.new("ScreenGui") do
         end)
     end
 end
+
 shared.Load("Utils", "ConnectionsFuncs")
+
 --// Tabs \\--
 Script.Tabs = {
     Main = shared.Window:AddTab("Main"),
 }
+
 shared.Load("Tabs", "Main")
+
 --// Metamethod hooks \\--
+
 --// Connections \\--
 shared.Connect:GiveSignal(shared.LocalPlayer.CharacterAdded:Connect(function(newCharacter)
     task.delay(1, Script.Functions.SetupCharacterConnection, newCharacter)
 end))
+
 --// Load \\--
 task.spawn(Script.Functions.SetupCharacterConnection, shared.Character)
+
 --// Unload \\--
 shared.Library:OnUnload(function()
     print("Unloading " .. shared.ScriptName .. "...")
 end)
+
 getgenv().mspaint_loaded = true
 end)() end,
     [14] = function()local wax,script,require=ImportGlobals(14)local ImportGlobals return (function(...)--// Linoria \\--
 local Toggles = shared.Toggles
 local Options = shared.Options
+
 --// Variables \\--
 local Script = shared.Script
 local Tabs = Script.Tabs
+
 --// Exploits \\--
 local AntiEntityGroupBox = Tabs.Exploits:AddLeftGroupbox("Xóa quái") do
     AntiEntityGroupBox:AddToggle("AntiDread", {
         Text = "Xóa Dread",
         Default = false
     })
+
     AntiEntityGroupBox:AddToggle("AntiHalt", {
         Text = "Xóa Halt",
         Default = false
     })
+
     AntiEntityGroupBox:AddToggle("AntiScreech", {
         Text = "Xóa Screech",
         Default = false
     })
+
     AntiEntityGroupBox:AddToggle("AntiDupe", {
         Text = "Chống " .. (Script.IsBackdoor and "Vacuum" or "Dupe"),
         Default = false
     })
+
     AntiEntityGroupBox:AddToggle("AntiEyes", {
         Text = "Chống " .. (Script.IsBackdoor and "Lookman" or "Eyes"),
         Default = false
     })
+
     AntiEntityGroupBox:AddToggle("AntiSnare", {
         Text = "Tránh bẫy",
         Default = false
     })
+
     AntiEntityGroupBox:AddToggle("AntiHearing", {
         Text = "Chống figure nghe thấy",
         Default = false,
         Visible = not Script.IsFools
     })
 end
+
 local TrollingGroupBox = Tabs.Exploits:AddLeftGroupbox("Trôn vn") do
     TrollingGroupBox:AddToggle("SpamOtherTools", {
         Text = "Tạo một số công cụ",
@@ -1953,20 +2314,24 @@ local TrollingGroupBox = Tabs.Exploits:AddLeftGroupbox("Trôn vn") do
         Mode = shared.Library.IsMobile and "Toggle" or "Hold",
         SyncToggleState = shared.Library.IsMobile
     })
+
     TrollingGroupBox:AddToggle("UpsideDown", {
         Text = "Lộn ngược",
         Default = false
     })
+
     TrollingGroupBox:AddToggle("Twerk", {
         Text = "Nhảy",
         Default = false
     })
 end
+
 local BypassGroupBox = Tabs.Exploits:AddRightGroupbox("Tính năng mở") do
     BypassGroupBox:AddToggle("SpeedBypass", {
         Text = "Tăng thêm tốc độ",
         Default = false
     })
+
     BypassGroupBox:AddSlider("SpeedBypassDelay", {
         Text = "Độ trễ của tốc độ",
         Default = 0.23,
@@ -1975,7 +2340,9 @@ local BypassGroupBox = Tabs.Exploits:AddRightGroupbox("Tính năng mở") do
         Rounding = 3,
         Compact = true
     })
+
     BypassGroupBox:AddDivider()
+
     BypassGroupBox:AddToggle("AnticheatManipulation", {
         Text = "Thao tác chống gian lận",
         Default = false,
@@ -1985,6 +2352,7 @@ local BypassGroupBox = Tabs.Exploits:AddRightGroupbox("Tính năng mở") do
         Mode = shared.Library.IsMobile and "Toggle" or "Hold",
         SyncToggleState = shared.Library.IsMobile
     })
+
     BypassGroupBox:AddToggle("CollisionOffsetGodmode", {
         Text = "Bât tử",
         Default = false,
@@ -1996,12 +2364,15 @@ local BypassGroupBox = Tabs.Exploits:AddRightGroupbox("Tính năng mở") do
         Text = "Bất tử",
         SyncToggleState = true
     })
+
     BypassGroupBox:AddDivider()
+    
     BypassGroupBox:AddToggle("InfItems", {
         Text = "Vô hạn vật phẩm",
         Default = false,
         Visible = not Script.IsFools
     })
+
     BypassGroupBox:AddToggle("InfCrucifix", {
         Text = "Vô hạn thánh giá",
         Default = false,
@@ -2009,39 +2380,49 @@ local BypassGroupBox = Tabs.Exploits:AddRightGroupbox("Tính năng mở") do
         Tooltip = "Rất rủi ro, không đảm bảo 100% hoạt động tốt",
         Risky = true
     })
+
     BypassGroupBox:AddDivider()
+
     BypassGroupBox:AddToggle("FakeRevive", {
         Text = "Giả hồi sinh",
         Default = false
     })
+
     BypassGroupBox:AddToggle("DeleteSeek", {
         Text = "Xóa seek (FE)",
-        Default = false
+        Default = true
     })
 end
+
 --// Anti Entity \\--
 Toggles.AntiDread:OnChanged(function(value)
     if not Script.MainGame then return end
     local modules = Script.MainGame:FindFirstChild("Modules", true)
     local module = modules and (modules:FindFirstChild("Dread", true) or modules:FindFirstChild("_Dread", true))
+
     if module then
         module.Name = if value then "_Dread" else "Dread"
     end
 end)
+
 Toggles.AntiHalt:OnChanged(function(value)
     if not Script.EntityModules then return end
     local module = Script.EntityModules:FindFirstChild("Shade") or Script.EntityModules:FindFirstChild("_Shade")
+
     if module then
         module.Name = if value then "_Shade" else "Shade"
     end
 end)
+
 Toggles.AntiScreech:OnChanged(function(value)
     if not Script.MainGame then return end
     local module = Script.MainGame:FindFirstChild("Screech", true) or Script.MainGame:FindFirstChild("_Screech", true)
+
     if module then
         module.Name = if value then "_Screech" else "Screech"
     end
 end)
+
 Toggles.AntiDupe:OnChanged(function(value)
     for _, room in pairs(workspace.CurrentRooms:GetChildren()) do
         for _, dupeRoom in pairs(room:GetChildren()) do
@@ -2051,9 +2432,11 @@ Toggles.AntiDupe:OnChanged(function(value)
         end
     end
 end)
+
 Toggles.AntiSnare:OnChanged(function(value)
     for _, room in pairs(workspace.CurrentRooms:GetChildren()) do
         if not room:FindFirstChild("Assets") then continue end
+
         for _, snare in pairs(room.Assets:GetChildren()) do
             if snare.Name == "Snare" then
                 snare:WaitForChild("Hitbox", 5).CanTouch = not value
@@ -2061,33 +2444,42 @@ Toggles.AntiSnare:OnChanged(function(value)
         end
     end
 end)
+
 Toggles.AntiHearing:OnChanged(function(value)
     if Script.IsFools then return end
     Script.RemotesFolder.Crouch:FireServer(value)
 end)
+
 --// Trolling \\--
 Toggles.UpsideDown:OnChanged(function(value)
     if not Script.Collision then return end
+    
     -- im sorry deivid
     if value then
         local rotation = Script.Collision.Rotation
         Script.Collision.Rotation = Vector3.new(rotation.X, rotation.Y, -90)
+
         task.spawn(function()
             repeat task.wait() until not Toggles.UpsideDown.Value or shared.Library.Unloaded
+            
             if Script.Collision and shared.Library.Unloaded ~= true then
                 rotation = Script.Collision.Rotation
+    
                 Script.Collision.Rotation = Vector3.new(rotation.X, rotation.Y, 90)
             end
         end)
     end
 end)
+
 Toggles.Twerk:OnChanged(function(value)
     shared.Twerk:Set(value)
 end)
+
 --// Bypass \\--
 function Script.Functions.SpeedBypass()
     if Script.SpeedBypassing or not Script.CollisionClone then return end
     Script.SpeedBypassing = true
+
     task.spawn(function()
         while Toggles.SpeedBypass.Value and Script.CollisionClone and not shared.Library.Unloaded and not Script.FakeRevive.Enabled do
             if shared.RootPart.Anchored then
@@ -2099,25 +2491,31 @@ function Script.Functions.SpeedBypass()
             end
             task.wait(Options.SpeedBypassDelay.Value)
         end
+
         Script.SpeedBypassing = false
         if Script.CollisionClone then
             Script.CollisionClone.Massless = true
         end
     end)
 end
+
 Toggles.SpeedBypass:OnChanged(function(value)
     if value then
         Options.WalkSpeed:SetMax(75)
         Options.FlySpeed:SetMax(75)
+        
         Script.Functions.SpeedBypass()
     else
         if Script.FakeRevive.Enabled then return end
+
         local speed = if Script.Bypassed then 75 elseif Toggles.EnableJump.Value then 18 else 22
         local flySpeed = if Script.Bypassed then 75 else 22
+
         Options.WalkSpeed:SetMax(speed)
         Options.FlySpeed:SetMax(flySpeed)
     end
 end)
+
 Toggles.FakeRevive:OnChanged(function(value)
     if value and Script.Alive and shared.Character and not Script.FakeRevive.Enabled then
         if Script.LatestRoom and Script.LatestRoom.Value == 0 then
@@ -2128,27 +2526,33 @@ Toggles.FakeRevive:OnChanged(function(value)
             })
             repeat task.wait() until Script.LatestRoom.Value > 0
         end
+
         shared.Notify:Alert({
             Title = "Dương Api",
             Description = "Tìm mơi nào đó để chết hoặc chờ 20 giây sẽ hoạt động",
             Reason = "Bạn vẫn chưa hẹo",
             Time = 20
         })
+        
         local oxygenModule = Script.MainGame:FindFirstChild("Oxygen")
         local healthModule = Script.MainGame:FindFirstChild("Health")
         local cameraModule = Script.MainGame:FindFirstChild("Camera")
         local inventoryModule = Script.MainGame:FindFirstChild("Inventory")
+
         if oxygenModule and healthModule then
             task.delay(0.5, function()
                 if not Toggles.FakeRevive.Value then return end
+
                 oxygenModule.Enabled = false
                 healthModule.Enabled = false
                 inventoryModule.Enabled = false
             end)
         end
+
         repeat task.wait(0.25)
             Script.RemotesFolder.Underwater:FireServer(true)
         until not Script.Alive or not Toggles.FakeRevive.Value
+
         if Script.Alive and not Toggles.FakeRevive.Value then
             Script.RemotesFolder.Underwater:FireServer(false)
             shared.Notify:Alert({
@@ -2160,33 +2564,43 @@ Toggles.FakeRevive:OnChanged(function(value)
             healthModule.Enabled = true
             return
         end
+
         Toggles.SpeedBypass:SetValue(false)
         Options.WalkSpeed:SetMax(75)
         Options.FlySpeed:SetMax(75)
+
         Script.FakeRevive.Enabled = true
         workspace.Gravity = 0
+
         if shared.CameraModule then
             shared.CameraModule.Enabled = false
         end
+
         task.wait(0.1)
         for _, hotbarItem in pairs(Script.MainUI.MainFrame.Hotbar:GetChildren()) do
             if not hotbarItem:IsA("TextButton") then continue end
             hotbarItem.Visible = false
         end
+
         local tool = Instance.new("Tool") do
             tool.RequiresHandle = false
             tool.Name = "AttachTool"
             tool.Parent = shared.Character
+
             shared.Humanoid.Name = "old_Humanoid"
             local newHumanoid = shared.Humanoid:Clone()
             newHumanoid.Parent = shared.Character
             newHumanoid.Name = "Humanoid"
+
             task.wait()
+
             shared.Humanoid:Destroy()
             shared.Camera.CameraSubject = shared.Character
             shared.Humanoid.DisplayDistanceType = Enum.HumanoidDisplayDistanceType.None
+
             local determined_cframe = shared.RootPart.CFrame * CFrame.new(0, 0, 0) * CFrame.new(math.random(-100, 100)/200,math.random(-100, 100)/200,math.random(-100, 100)/200)
             shared.RootPart.CFrame = determined_cframe
+            
             local atempts = 0
             repeat task.wait()
                 atempts = atempts + 1
@@ -2194,6 +2608,7 @@ Toggles.FakeRevive:OnChanged(function(value)
             until (tool.Parent ~= shared.Character or not shared.RootPart or not shared.RootPart.Parent or atempts > 250) and atempts > 2
             tool:Destroy()
         end
+
         -- setup shared.Character
         for _, part in pairs(shared.Character:GetDescendants()) do
             if part:IsA("BasePart") and part.Name ~= "UpperTorso" and part.Name ~= "Collision" and part.Parent.Name ~= "Collision" then 
@@ -2202,11 +2617,13 @@ Toggles.FakeRevive:OnChanged(function(value)
                 part.CustomPhysicalProperties = PhysicalProperties.new(100, 0.3, 0.5, 1, 1)
             end
         end
+
         for _, weld in pairs(shared.Character:GetChildren()) do
             if weld:IsA("Weld") then
                 weld:Destroy()
             end
         end
+
         shared.Camera:Destroy()
         task.wait(0.1)
         workspace.CurrentCamera.CameraSubject = shared.Character:FindFirstChildWhichIsA('Humanoid')
@@ -2216,18 +2633,23 @@ Toggles.FakeRevive:OnChanged(function(value)
         shared.LocalPlayer.CameraMode = "Classic"
         shared.Character.Head.Anchored = false
         shared.Camera = workspace.CurrentCamera
+
         -- setup fake char
         local humanoidDescription = shared.Players:GetHumanoidDescriptionFromUserId(shared.LocalPlayer.UserId)
         humanoidDescription.HeightScale = 1.2
+
         local previewCharacter = shared.Players:CreateHumanoidModelFromDescription(humanoidDescription, Enum.HumanoidRigType.R15) do
             previewCharacter.Parent = shared.Workspace
             previewCharacter.Name = "PreviewCharacter"
+
             previewCharacter.HumanoidRootPart.Anchored = true
             shared.Character.UpperTorso.CanCollide = false
         end
+
         Script.FakeRevive.Connections["HidingFix"] = shared.UserInputService.InputBegan:Connect(function(input, gameProcessed)
             if shared.UserInputService:GetFocusedTextBox() then return end
             if gameProcessed then return end
+
             if input.KeyCode == Enum.KeyCode.W or input.KeyCode == Enum.KeyCode.A or input.KeyCode == Enum.KeyCode.S or input.KeyCode == Enum.KeyCode.D then
                 if shared.Character:GetAttribute("Hiding") then
                     for i = 1, 50 do
@@ -2237,7 +2659,9 @@ Toggles.FakeRevive:OnChanged(function(value)
                 end
             end
         end)
+
         shared.Connect:GiveSignal(Script.FakeRevive.Connections["HidingFix"])
+
         -- animation setup
         task.spawn(function()
             local anims = shared.Character:WaitForChild("Animations", 10) or previewCharacter:WaitForChild("Animations", 10);
@@ -2245,9 +2669,11 @@ Toggles.FakeRevive:OnChanged(function(value)
             local walk, idle = previewCharacter.Humanoid:LoadAnimation(anims.Forward), previewCharacter.Humanoid:LoadAnimation(anims.Idle);
             local interact = previewCharacter.Humanoid:LoadAnimation(anims.Interact);
             oldCrouchSpeed = crouch.Speed;
+
             local function playWalkingAnim(key)
                 repeat
                     if idle.isPlaying then idle:Stop() end
+
                     if shared.Character:GetAttribute("Crouching") then
                         if not crouch.isPlaying then crouch:Play() crouch:AdjustSpeed(oldCrouchSpeed) end
                         if walk.isPlaying then walk:Stop() end
@@ -2255,18 +2681,23 @@ Toggles.FakeRevive:OnChanged(function(value)
                         if crouch.isPlaying then crouch:Stop() end
                         if not walk.isPlaying then walk:Play() end
                     end
+
                     task.wait(0.5)
                 until not shared.UserInputService:IsKeyDown(key) and not shared.UserInputService:GetFocusedTextBox()
             end
+
             Script.FakeRevive.Connections["AnimationHandler"] = shared.UserInputService.InputBegan:Connect(function(input)
                 if shared.UserInputService:GetFocusedTextBox() then return end
                 if input.KeyCode == Enum.KeyCode.W or input.KeyCode == Enum.KeyCode.S or input.KeyCode == Enum.KeyCode.A or input.KeyCode == Enum.KeyCode.D then
                     playWalkingAnim(input.KeyCode)
                 end
             end)
+
             shared.Connect:GiveSignal(Script.FakeRevive.Connections["AnimationHandler"])
+
             Script.FakeRevive.Connections["AnimationHandler2"] = shared.UserInputService.InputEnded:Connect(function(input)
                 if shared.UserInputService:GetFocusedTextBox() then return end
+
                 if input.KeyCode == Enum.KeyCode.W or input.KeyCode == Enum.KeyCode.S then
                     task.wait(0.1)
                     if walk.isPlaying then walk:Stop() end
@@ -2279,108 +2710,142 @@ Toggles.FakeRevive:OnChanged(function(value)
                     if not idle.isPlaying then idle:Play() end
                 end
             end)
+
             shared.Connect:GiveSignal(Script.FakeRevive.Connections["AnimationHandler2"])
+
             -- Tool Handler (kinda broken) --
             if shared.Character:WaitForChild("RightHand", math.huge) then
                 local rightGrip = Instance.new("Weld", shared.Character.RightHand)
                 rightGrip.C0 = CFrame.new(0, -0.15, -1.5, 1, 0, -0, 0, 0, 1, 0, -1, 0)
                 rightGrip.Part0 = shared.Character.RightHand
+        
                 local toolsAnim = {}
                 local currentTool = nil
                 local doorInteractables = { "Key", "Lockpick" }
+
                 Script.FakeRevive.Connections["ToolAnimHandler"] = shared.Character.ChildAdded:Connect(function(tool)
                     if tool:IsA("Tool") then
                         for _, anim in pairs(toolsAnim) do
                             anim:Stop()
                         end
+        
                         table.clear(toolsAnim)
+        
                         local anims = tool:WaitForChild("Animations")
                         currentTool = tool
+        
                         for i, v in pairs(anims:GetChildren()) do
                             if v:IsA("Animation") then
                                 toolsAnim[v.Name] = previewCharacter.Humanoid:LoadAnimation(v)
                             end
                         end
+        
                         if toolsAnim.idle then toolsAnim.idle:Play(0.4, 1, 1) end
                         if toolsAnim.equip then toolsAnim.equip:Play(0.05, 1, 1) end
+        
                         local toolHandle = tool:WaitForChild("Handle", 3)
                         if toolHandle and shared.Character:FindFirstChild("RightHand") then
                             rightGrip.Parent = shared.Character.RightHand
                             rightGrip.C1 = tool.Grip
                             rightGrip.Part1 = toolHandle        
                         end
+        
                         local animation_state = false
                         tool.Activated:Connect(function()
                             if table.find(doorInteractables, tool.Name) then return end
+        
                             local anim = toolsAnim.use or (tool:GetAttribute("LightSource") and toolsAnim.open)
+        
                             if anim then
                                 if wax.shared.ExecutorSupport["require"] then wax.require(tool.ToolModule).fire() end
                                 local toolRemote = tool:FindFirstChild("Remote")
                                 if toolRemote then
                                     toolRemote:FireServer()
                                 end
+
                                 if tool:GetAttribute("LightSource") then
                                     if animation_state then
                                         anim:Stop()
                                     else
                                         anim:Play()
                                     end
+                                    
                                     animation_state = not animation_state
                                     return
                                 end
+        
                                 anim:Play()
                             end
                         end)
                     end
                 end)
+
                 shared.Connect:GiveSignal(Script.FakeRevive.Connections["ToolAnimHandler"])
+        
                 -- Prompts handler
                 local holding, holdStart, startDurability = false, 0, 0
                 Script.FakeRevive.Connections["ToolAnimHandler2"] = shared.ProximityPromptService.PromptButtonHoldBegan:Connect(function(prompt)
                     if (currentTool and table.find(doorInteractables, currentTool.Name)) and (prompt.Name == "UnlockPrompt" and prompt.Parent.Name == "Lock") then
                         holding = true; holdStart = tick(); startDurability = currentTool:GetAttribute("Durability")
+                        
                         toolsAnim.use:Play()
                     end
                 end)
+
                 shared.Connect:GiveSignal(Script.FakeRevive.Connections["ToolAnimHandler2"])
+
                 Script.FakeRevive.Connections["ToolAnimInteractHandler"] = shared.ProximityPromptService.PromptButtonHoldEnded:Connect(function(prompt)
                     if (currentTool and table.find(doorInteractables, currentTool.Name)) and (prompt.Name == "UnlockPrompt" and prompt.Parent.Name == "Lock") then
                         if holdStart == 0 then return end
+        
                         if startDurability and currentTool:GetAttribute("Durability") < startDurability then
                             toolsAnim.use:Stop()
                             toolsAnim.usebreak:Play()
+        
                             return
                         end
+                        
                         if holding and tick() - holdStart > prompt.HoldDuration then
                             holding = false; holdStart = 0
+        
                             toolsAnim.use:Stop()
                             toolsAnim.usefinish:Play()
+                            
                             return
                         end
+        
                         holding = false; holdStart = 0
+        
                         toolsAnim.use:Stop()
                     end
                 end)
+
                 shared.Connect:GiveSignal(Script.FakeRevive.Connections["ToolAnimInteractHandler"])
+                
                 Script.FakeRevive.Connections["ToolAnimUnequipHandler"] = shared.Character.ChildRemoved:Connect(function(v)
                     if v:IsA("Tool") then
                         rightGrip.Part1 = nil
                         rightGrip.C1 = CFrame.new()
                         rightGrip.Parent = nil
+        
                         for _, anim in pairs(toolsAnim) do
                             anim:Stop()
                         end
+        
                         currentTool = nil
                     end
                 end)
+
                 shared.Connect:GiveSignal(Script.FakeRevive.Connections["ToolAnimUnequipHandler"])
             end
         end)
+
         -- movement code
         local function generateCharacterCFrame(obj)
             local obj_pos = obj.Position
             return CFrame.new(obj_pos, obj_pos - (Vector3.new(shared.Camera.CFrame.Position.X, obj_pos.Y, shared.Camera.CFrame.Position.Z) - obj_pos).unit)
         end
+
         local function usePreviewCharacter(doStepped)
             -- fuck you roblox for using head instead of primarypart or char:GetPivot() 
             -- mstudio45 2023 ^^
@@ -2388,29 +2853,39 @@ Toggles.FakeRevive:OnChanged(function(value)
                 shared.Hooks._fixDistanceFromCharacter = hookmetamethod(shared.LocalPlayer, "__namecall", function(self, ...)
                     local method = getnamecallmethod();
                     local args = {...}
+                
                     if method == "DistanceFromCharacter" then
                         if typeof(args[1]) == "Vector3" then
                             return Script.Functions.DistanceFromCharacter(args[1])
                         end
+                        
                         return 9999;
                     end
+                
                     return shared.Hooks._fixDistanceFromCharacter(self, ...)
                 end)
             end
+
             if doStepped ~= false then
                 shared.Library:Notify("You are not longer visible to others because you have lost Network Ownership of your shared.Character.", 5);
+
                 for _,v in pairs(previewCharacter:GetDescendants()) do
                     if v:IsA("BasePart") then 
                         v.CanCollide = false
                     end
                 end
+
                 for _, connection in pairs(Script.FakeRevive.Connections) do
                     connection:Disconnect()
                 end
+                
                 table.clear(Script.FakeRevive.Connections)
             end
+
             if previewCharacter:FindFirstChild("Humanoid") then previewCharacter.Humanoid.DisplayDistanceType = Enum.HumanoidDisplayDistanceType.None end
+            
             Toggles.Fly:SetValue(true)
+
             shared.Connect:GiveSignal(shared.RunService.RenderStepped:Connect(function()
                 if doStepped ~= false then previewCharacter:PivotTo(generateCharacterCFrame(shared.Character:GetPivot())) end
                 if shared.RootPart then 
@@ -2419,14 +2894,18 @@ Toggles.FakeRevive:OnChanged(function(value)
                 end
             end))
         end
+
         if shared.Character:FindFirstChild("LeftFoot") then shared.Character.LeftFoot.CanCollide = true end
         if shared.Character:FindFirstChild("RightFoot") then shared.Character.RightFoot.CanCollide = true end
+        
         Script.FakeRevive.Connections["mainStepped"] = shared.RunService.RenderStepped:Connect(function()
             -- deivid gonna get mad at this line :content:
             if shared.Character:FindFirstChild("Humanoid") then shared.Character.Humanoid.WalkSpeed = Options.WalkSpeed.Value end
+
             if shared.RootPart and shared.RootPart.Position.Y < -150 then
                 shared.RootPart.Position = workspace.SpawnLocation.Position
             end
+
             if shared.Character:FindFirstChild("UpperTorso") then
                 shared.Character.UpperTorso.CanCollide = false 
             else
@@ -2436,31 +2915,39 @@ Toggles.FakeRevive:OnChanged(function(value)
                     if totalParts <= 2 then
                         task.spawn(usePreviewCharacter)
                         Script.FakeRevive.Connections["mainStepped"]:Disconnect()
+
                         for _, connection in pairs(Script.FakeRevive.Connections) do
                             connection:Disconnect()
                         end
+                        
                         table.clear(Script.FakeRevive.Connections)
                         return
                     end
                 end
             end
+
             if not shared.Character:FindFirstChild("HumanoidRootPart") then
                 shared.Library:Notify("You have completely lost Network Ownership of your shared.Character which resulted of breaking Fake Death.", 5);
                 task.spawn(usePreviewCharacter, false)
                 Script.FakeRevive.Connections["mainStepped"]:Disconnect()
+
                 for _, connection in pairs(Script.FakeRevive.Connections) do
                     connection:Disconnect()
                 end
+                
                 table.clear(Script.FakeRevive.Connections)
                 return
             end
+            
             previewCharacter:PivotTo(generateCharacterCFrame(shared.RootPart.CFrame * CFrame.new(0,1000,0)))
+
             local charPartCFrames = {}
             for _, part in ipairs(previewCharacter:GetDescendants()) do
                 if part:IsA("BasePart") then
                     charPartCFrames[part.Name..part.ClassName] = part.CFrame
                 end
             end
+
             for _, part in ipairs(shared.Character:GetDescendants()) do
                 if part:IsA("BasePart") then
                     if part.Name == "RagdollCollision" then
@@ -2471,90 +2958,120 @@ Toggles.FakeRevive:OnChanged(function(value)
                             part.CFrame = (charPartCFrames[part.Name..part.ClassName] - Vector3.new(0,1000,0))
                         end
                     end
+                    
                     if part.Name ~= "HumanoidRootPart" then
                         if part.Parent == shared.Character or part.Parent:IsA("Accessory") then
                             part.LocalTransparencyModifier = 0
                         end
+
                         part.AssemblyAngularVelocity = Vector3.zero
                         part.AssemblyLinearVelocity = Vector3.zero
                     end
                 end
             end
         end)
+
         shared.Connect:GiveSignal(Script.FakeRevive.Connections["mainStepped"])
+
         task.wait(0.1)
         local function fixUI()
             local setComponentVisibility = {
                 Script.MainUI.HodlerRevive,
                 Script.MainUI.Statistics,
+                
                 Script.MainUI.DeathPanelDead,
                 Script.MainUI.DeathPanel,
+
                 Script.MainUI.MainFrame.Healthbar,
+
                 ["visible_real"] = Script.MainUI.MainFrame.PromptFrame.CenterImage,
                 ["deivid_ballers_fake"] = Script.MainUI.MainFrame.PromptFrame.Holder,
+
                 Script.MainUI.MainFrame.Hotbar,
                 Script.MainUI.MainFrame.InventoryCap,
                 Script.MainUI.MainFrame.InventoryLeftArrow,
                 Script.MainUI.MainFrame.InventoryRightArrow,
             }
+
             for i,v in pairs(setComponentVisibility) do
                 local target_visibility = (typeof(i) == "string" and true or false)
+
                 v:GetPropertyChangedSignal("Visible"):Connect(function()
                     v.Visible = target_visibility
                 end)
+
                 v.Visible = target_visibility
             end
+
             shared.StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Backpack, true)
         end
+
         task.spawn(fixUI)
+
         shared.UserInputService.MouseBehavior = Enum.MouseBehavior.Default
         shared.UserInputService.MouseIconEnabled = true
         shared.UserInputService.MouseIcon = "rbxassetid://2833720882"
+
         task.wait()
         shared.Character.HumanoidRootPart.Anchored = false
+
         if Script.MainGameSrc then Script.MainGameSrc.dead = false end
+        
         shared.ProximityPromptService.Enabled = true
         Script.FakeRevive.Connections["ProximityPromptEnabler"] = shared.ProximityPromptService:GetPropertyChangedSignal("Enabled"):Connect(function()
             shared.ProximityPromptService.Enabled = true
         end)
+
         shared.Connect:GiveSignal(Script.FakeRevive.Connections["ProximityPromptEnabler"])
+
         workspace.Gravity = 90
+
         -- ESP Fix :smartindividual:
         for _, room in pairs(workspace.CurrentRooms:GetChildren()) do
             task.spawn(function()
                 local roomDetectPart = room:WaitForChild(room.Name, math.huge)
                 if roomDetectPart then
                     roomDetectPart.Size = Vector3.new(roomDetectPart.Size.X, roomDetectPart.Size.Y * 250, roomDetectPart.Size.Z)
+
                     local touchEvent = roomDetectPart.Touched:Connect(function(hit)
                         if hit.Parent == shared.LocalPlayer.Character and not Script.FakeRevive.Debounce then
                             Script.FakeRevive.Debounce = true
                             shared.LocalPlayer:SetAttribute("CurrentRoom", tonumber(room.Name))
+                            
                             task.wait(0.075)
                             Script.FakeRevive.Debounce = false
                         end
                     end)
+                    
                     table.insert(Script.FakeRevive.Connections, touchEvent)
                     shared.Connect:GiveSignal(touchEvent)
                 end
             end)
         end
+
         Script.FakeRevive.Connections["CurrentRoomFix"] = workspace.CurrentRooms.ChildAdded:Connect(function(room)
             local roomDetectPart = room:WaitForChild(room.Name, math.huge)
+
             if roomDetectPart then
                 roomDetectPart.Size = Vector3.new(roomDetectPart.Size.X, roomDetectPart.Size.Y * 100, roomDetectPart.Size.Z)
+
                 local touchEvent = roomDetectPart.Touched:Connect(function(hit)
                     if hit.Parent == shared.LocalPlayer.Character and not Script.FakeRevive.Debounce then
                         Script.FakeRevive.Debounce = true
                         shared.LocalPlayer:SetAttribute("CurrentRoom", tonumber(room.Name))
+
                         task.wait(0.075)
                         Script.FakeRevive.Debounce = false
                     end
                 end)
+                
                 table.insert(Script.FakeRevive.Connections, touchEvent)
                 shared.Connect:GiveSignal(touchEvent)
             end
         end)
+
         shared.Connect:GiveSignal(Script.FakeRevive.Connections["CurrentRoomFix"])
+
         shared.Notify:Alert({
             Title = "Dương Api",
             Description = "Tính năng đã hoạt động, chúc vui vẻ:))!",
@@ -2562,8 +3079,10 @@ Toggles.FakeRevive:OnChanged(function(value)
         })
     end
 end)
+
 Toggles.CollisionOffsetGodmode:OnChanged(function(value)
     if not Script.Collision then return end
+
     if value then
         Script.Collision.CanCollide = false
         Script.Collision.CollisionCrouch.CanCollide = false
@@ -2578,9 +3097,11 @@ end)() end,
     [15] = function()local wax,script,require=ImportGlobals(15)local ImportGlobals return (function(...)--// Linoria \\--
 local Toggles = shared.Toggles
 local Options = shared.Options
+
 --// Variables \\--
 local Script = shared.Script
 local Tabs = Script.Tabs
+
 --// Floor \\--
 if Script.IsHotel then
     local Hotel_AntiEntityGroupBox = Tabs.Floor:AddLeftGroupbox("Anti-Entity") do
@@ -2589,6 +3110,7 @@ if Script.IsHotel then
             Default = false
         })
     end
+
     local Hotel_BypassGroupBox = Tabs.Floor:AddLeftGroupbox("Bypass") do
         Hotel_BypassGroupBox:AddToggle("AvoidRushAmbush", {
             Text = "Né Rush/Ambush",
@@ -2597,6 +3119,7 @@ if Script.IsHotel then
             Risky = true
         })
     end
+
     local Hotel_FarmGroupBox = Tabs.Floor:AddLeftGroupbox("Farm") do
         Hotel_FarmGroupBox:AddToggle("KnobFarm", {
             Text = "Cày knob",
@@ -2604,20 +3127,24 @@ if Script.IsHotel then
             Default = false
         })
     end
+
     local Hotel_ModifiersGroupBox = Tabs.Floor:AddRightGroupbox("Modifiers") do
         Hotel_ModifiersGroupBox:AddToggle("NoVoiceActing", {
             Text = "Xóa âm thanh lồng tiếng",
             Default = false
         })
+
         Hotel_ModifiersGroupBox:AddToggle("AntiA90", {
             Text = "Xóa A90",
             Default = false
         })
+
         Hotel_ModifiersGroupBox:AddToggle("NoJammin", {
             Text = "Không có Jammin",
             Default = false
         })
     end
+
     Toggles.AntiSeekObstructions:OnChanged(function(value)
         for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
             if v.Name == "ChandelierObstruction" or v.Name == "Seek_Arm" then
@@ -2627,21 +3154,26 @@ if Script.IsHotel then
             end
         end
     end)
+
     Toggles.KnobFarm:OnChanged(function(value)
         local reviveCutscene = shared.ReplicatedStorage:FindFirstChild("ReviveCutscene", true) or shared.ReplicatedStorage:FindFirstChild("_ReviveCutscene", true)
+    
         if reviveCutscene then
             reviveCutscene.Name = if value then "_ReviveCutscene" else "ReviveCutscene"
         end
+
         if value then
             task.spawn(function()
                 while task.wait(0.25) and Toggles.KnobFarm.Value and not shared.Library.Unloaded do
                     repeat task.wait() until Script.LatestRoom.Value == 100 or not (Toggles.KnobFarm.Value and not shared.Library.Unloaded)
                     if not (Toggles.KnobFarm.Value and not shared.Library.Unloaded) then break end
+
                     if not Script.Alive then
                         Script.RemotesFolder.Revive:FireServer()
                         repeat task.wait() until Script.Alive
                         task.wait(3)
                     end
+
                     local figure = workspace.CurrentRooms:FindFirstChild("FigureRig", true)
                     if figure then
                         repeat
@@ -2649,6 +3181,7 @@ if Script.IsHotel then
                             shared.Character:PivotTo(figure.Root.CFrame)
                         until not Script.Alive or not (Toggles.KnobFarm.Value and not shared.Library.Unloaded)
                         if not (Toggles.KnobFarm.Value and not shared.Library.Unloaded) then break end
+
                         task.wait()
                         Script.RemotesFolder.Statistics:FireServer()
                     end
@@ -2656,27 +3189,34 @@ if Script.IsHotel then
             end)
         end
     end)
+
     Toggles.NoVoiceActing:OnChanged(function(value)
         local voiceActing = shared.ReplicatedStorage:FindFirstChild("VoiceActing")
         if not voiceActing then return end
+
         local voicelines = voiceActing:FindFirstChild("Voicelines") or voiceActing:FindFirstChild("_Voicelines")
         if voicelines then
             voicelines.Name = if value then "_Voicelines" else "Voicelines"
         end
     end)
+
     Toggles.AntiA90:OnChanged(function(value)
         if not Script.MainGame then return end
         local module = Script.MainGame:FindFirstChild("A90", true) or Script.MainGame:FindFirstChild("_A90", true)
+    
         if module then
             module.Name = value and "_A90" or "A90"
         end
     end)
+
     Toggles.NoJammin:OnChanged(function(value)
         if not Script.LiveModifiers:FindFirstChild("Jammin") then return end
+
         if Script.MainGame then
             local jamSound = Script.MainGame:FindFirstChild("Jam", true)
             if jamSound then jamSound.Playing = not value end
         end
+
         local jamminEffect = shared.SoundService:FindFirstChild("Jamming", true)
         if jamminEffect then jamminEffect.Enabled = not value end
     end)
@@ -2690,28 +3230,34 @@ elseif Script.IsMines then
             Rounding = 0
         })
     end
+
     local Mines_AntiEntityGroupBox = Tabs.Floor:AddLeftGroupbox("Chống quái") do
         Mines_AntiEntityGroupBox:AddToggle("AntiGiggle", {
             Text = "Chống Giggle",
             Default = false
         })
+
         Mines_AntiEntityGroupBox:AddToggle("AntiGloomEgg", {
             Text = "Chống Gloom Egg",
             Default = false
         })
+
         Mines_AntiEntityGroupBox:AddToggle("AntiBridgeFall", {
             Text = "Chống Đá rơi vô đầu :)",
             Default = false
         })
+
         Mines_AntiEntityGroupBox:AddToggle("AntiPipeGap", {
             Text = "Chống Pipe Gap",
             Default = false
         })
+
         Mines_AntiEntityGroupBox:AddToggle("AntiSeekFlood", {
             Text = "Chống Seek Flood",
             Default = false
         })
     end
+
     local Mines_AutomationGroupBox = Tabs.Floor:AddRightGroupbox("Tự động") do
         Mines_AutomationGroupBox:AddButton({
             Text = "Phá đảo cửa 200",
@@ -2722,12 +3268,17 @@ elseif Script.IsMines then
                         Description = "Bạn chưa tới cửa 200...",
                         Time = 5
                     })
+
                     return
                 end
+
                 local bypassing = Toggles.SpeedBypass.Value
                 local startPos = shared.RootPart.CFrame
+
                 Toggles.SpeedBypass:SetValue(false)
+
                 local damHandler = workspace.CurrentRooms[Script.LatestRoom.Value]:FindFirstChild("_DamHandler")
+
                 if damHandler then
                     if damHandler:FindFirstChild("PlayerBarriers1") then
                         for _, pump in pairs(damHandler.Flood1.Pumps:GetChildren()) do
@@ -2736,8 +3287,10 @@ elseif Script.IsMines then
                             shared.forcefireproximityprompt(pump.Wheel.ValvePrompt)
                             task.wait(0.25)
                         end
+
                         task.wait(8)
                     end
+
                     if damHandler:FindFirstChild("PlayerBarriers2") then
                         for _, pump in pairs(damHandler.Flood2.Pumps:GetChildren()) do
                             shared.Character:PivotTo(pump.Wheel.CFrame)
@@ -2745,8 +3298,10 @@ elseif Script.IsMines then
                             shared.forcefireproximityprompt(pump.Wheel.ValvePrompt)
                             task.wait(0.25)
                         end
+
                         task.wait(8)
                     end
+
                     if damHandler:FindFirstChild("PlayerBarriers3") then
                         for _, pump in pairs(damHandler.Flood3.Pumps:GetChildren()) do
                             shared.Character:PivotTo(pump.Wheel.CFrame)
@@ -2754,31 +3309,38 @@ elseif Script.IsMines then
                             shared.forcefireproximityprompt(pump.Wheel.ValvePrompt)
                             task.wait(0.25)
                         end
+
                         task.wait(10)
                     end
                 end
+
                 local generator = workspace.CurrentRooms[shared.LatestRoom.Value]:FindFirstChild("MinesGenerator", true)
+
                 if generator then
                     shared.Character:PivotTo(generator.PrimaryPart.CFrame)
                     task.wait(0.25)
                     shared.forcefireproximityprompt(generator.Lever.LeverPrompt)
                     task.wait(0.25)
                 end
+
                 Toggles.SpeedBypass:SetValue(bypassing)
                 shared.Character:PivotTo(startPos)
             end
         })
+
         Mines_AutomationGroupBox:AddToggle("TheMinesAnticheatBypass", {
             Text = "Bỏ qua chống gian lận",
             Default = false
         })
     end
+
     local Mines_BypassGroupBox = Tabs.Floor:AddRightGroupbox("Bỏ qua") do
         Mines_BypassGroupBox:AddToggle("MinecartTeleport", {
             Text = "Dịch chuyển xe mỏ(beta)",
             Tooltip = "Rất rủi ro, không đảm bảo 100% hoạt động tốt",
             Default = false
         })
+
         Mines_BypassGroupBox:AddToggle("MinecartTeleportDebug", {
             Text = "Vá lỗi dịch chuyển",
             Tooltip = "Rất rủi ro, không đảm bảo 100% hoạt động tốt",
@@ -2786,12 +3348,14 @@ elseif Script.IsMines then
             Visible = true,
         })
     end
+    
     local Mines_VisualGroupBox = Tabs.Floor:AddRightGroupbox("Đường đi") do
         Mines_VisualGroupBox:AddToggle("MinecartPathVisualiser", {
             Text = "Hiển thị đường đi chính xác",
             Default = false
         })
     end
+
     Toggles.TheMinesAnticheatBypass:OnChanged(function(value)
         if value then
             local progressPart = Instance.new("Part", shared.Workspace) do
@@ -2800,11 +3364,13 @@ elseif Script.IsMines then
                 progressPart.Name = "_internal_mspaint_acbypassprogress"
                 progressPart.Transparency = 1
             end
+
             if shared.Library.IsMobile then
                 shared.Notify:Alert({
                     Title = "Dương Api",
                     Description = "To bypass the ac, you must interact with a ladder.",
                     Reason = "Ladder ESP has been enabled, do not move while on the ladder.",
+
                     LinoriaMessage = "To bypass the anticheat, you must interact with a ladder. Ladder ESP has been enabled.\nDo not move while on the ladder.",
                     Time = progressPart
                 })
@@ -2813,10 +3379,13 @@ elseif Script.IsMines then
                     Title = "Dương Api",
                     Description = "To bypass the ac, you must interact with a ladder.",
                     Reason = "Ladder ESP has been enabled, do not move while on the ladder.",
+
                     LinoriaMessage = "To bypass the anticheat, you must interact with a ladder. Ladder ESP has been enabled.\nDo not move while on the ladder.",
                     Time = progressPart
                 })
             end
+            
+
             -- Ladder ESP
             for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
                 if v:IsA("Model") and v.Name == "Ladder" then
@@ -2830,22 +3399,27 @@ elseif Script.IsMines then
             end
         else
             if workspace:FindFirstChild("_internal_mspaint_acbypassprogress") then workspace:FindFirstChild("_internal_mspaint_acbypassprogress"):Destroy() end
+
             for _, ladderEsp in pairs(Script.ESPTable.None) do
                 ladderEsp.Destroy()
             end
+
             if Script.Bypassed and not Script.FakeRevive.Enabled then
                 Script.RemotesFolder.ClimbLadder:FireServer()
                 Script.Bypassed = false
+                
                 Options.WalkSpeed:SetMax(Toggles.SpeedBypass.Value and 75 or (Toggles.EnableJump.Value and 18 or 22))
                 Options.FlySpeed:SetMax(Toggles.SpeedBypass.Value and 75 or 22)
             end
         end
     end)
+
     Options.MaxSlopeAngle:OnChanged(function(value)
         if shared.Humanoid then
             shared.Humanoid.MaxSlopeAngle = value
         end
     end)
+
     Toggles.AntiGiggle:OnChanged(function(value)
         for _, room in pairs(workspace.CurrentRooms:GetChildren()) do
             for _, giggle in pairs(room:GetChildren()) do
@@ -2855,6 +3429,7 @@ elseif Script.IsMines then
             end
         end
     end)
+
     -- this shits bad, but it doesnt go through all parts, so its optimized :cold_face:
     Toggles.AntiGloomEgg:OnChanged(function(value)
         for _, room in pairs(workspace.CurrentRooms:GetChildren()) do
@@ -2869,14 +3444,17 @@ elseif Script.IsMines then
             end
         end
     end)
+
     Toggles.AntiBridgeFall:OnChanged(function(value)
         if value then
             for _, room in pairs(workspace.CurrentRooms:GetChildren()) do
                 if not room:FindFirstChild("Parts") then continue end
+
                 for _, bridge in pairs(room.Parts:GetChildren()) do
                     if bridge.Name == "Bridge" then
                         for _, barrier in pairs(bridge:GetChildren()) do
                             if not (barrier.Name == "PlayerBarrier" and barrier.Size.Y == 2.75 and (barrier.Rotation.X == 0 or barrier.Rotation.X == 180)) then continue end
+
                             local clone = barrier:Clone()
                             clone.CFrame = clone.CFrame * CFrame.new(0, 0, -5)
                             clone.Color = Color3.new(1, 1, 1)
@@ -2884,6 +3462,7 @@ elseif Script.IsMines then
                             clone.Size = Vector3.new(clone.Size.X, clone.Size.Y, 11)
                             clone.Transparency = 0
                             clone.Parent = bridge
+                            
                             table.insert(Script.Temp.Bridges, clone)
                         end
                     end
@@ -2895,10 +3474,12 @@ elseif Script.IsMines then
             end
         end
     end)
+
     Toggles.AntiPipeGap:OnChanged(function(value)
         if value then
             for _, room in pairs(workspace.CurrentRooms:GetChildren()) do
                 if not room:FindFirstChild("Assets") then continue end
+
                 for _, killBrick in pairs(room.Assets:GetChildren()) do
                     if killBrick.Name == "KillBrick" then
                         local clone = killBrick:Clone()
@@ -2908,6 +3489,7 @@ elseif Script.IsMines then
                         clone.Size = Vector3.new(9, 4, clone.Size.Z)
                         clone.Transparency = 0
                         clone.Parent = killBrick.Parent
+                        
                         table.insert(Script.Temp.PipeBridges, clone)
                     end
                 end
@@ -2918,8 +3500,10 @@ elseif Script.IsMines then
             end
         end
     end)
+
     Toggles.AntiSeekFlood:OnChanged(function(value)
         local room = workspace.CurrentRooms:FindFirstChild("100")
+        
         if room and room:FindFirstChild("_DamHandler") then
             local seekFlood = room._DamHandler:FindFirstChild("SeekFloodline")
             if seekFlood then
@@ -2927,6 +3511,7 @@ elseif Script.IsMines then
             end
         end
     end)
+
     Toggles.MinecartTeleport:OnChanged(function(value)
         if value then
             for _, room in pairs(workspace.CurrentRooms:GetChildren()) do
@@ -2934,6 +3519,7 @@ elseif Script.IsMines then
             end
         end
     end)
+
     Toggles.MinecartPathVisualiser:OnChanged(function(value)
         for _, room in pairs(workspace.CurrentRooms:GetChildren()) do
             task.spawn(Script.Functions.Minecart.DrawNodes, room)
@@ -2946,19 +3532,24 @@ elseif Script.IsBackdoor then
             Default = false
         })
     end
+
     local Backdoors_VisualGroupBox = Tabs.Floor:AddRightGroupbox("Visual") do
         Backdoors_VisualGroupBox:AddToggle("HasteClock", {
             Text = "Đồng hồ haste",
             Default = true
         })
     end
+
     Toggles.AntiHasteJumpscare:OnChanged(function(value)
         local clientRemote = shared.ReplicatedStorage.FloorReplicated.ClientRemote
         local internal_temp_mspaint = clientRemote:FindFirstChild("_mspaint")
+        
         if not internal_temp_mspaint then internal_temp_mspaint = Instance.new("Folder", clientRemote); internal_temp_mspaint.Name = "_mspaint" end
+
         if value then
             for i,v in pairs(clientRemote.Haste:GetChildren()) do
                 if v:IsA("RemoteEvent") then continue end
+
                 v.Parent = internal_temp_mspaint
             end
         else
@@ -2967,16 +3558,19 @@ elseif Script.IsBackdoor then
             end
         end
     end)
+
     Toggles.HasteClock:OnChanged(function(value)
         if not value then
             Script.Functions.HideCaptions()
         end
     end)
+
     function Script.Functions.TimerFormat(seconds: number)
         local minutes = math.floor(seconds / 60)
         local remainingSeconds = seconds % 60
         return string.format("%02d:%02d", minutes, remainingSeconds)
     end
+
     shared.Connect:GiveSignal(Script.FloorReplicated.DigitalTimer:GetPropertyChangedSignal("Value"):Connect(function()
         if Toggles.HasteClock.Value and Script.FloorReplicated.ScaryStartsNow.Value then
             Script.Functions.Captions(Script.Functions.TimerFormat(Script.FloorReplicated.DigitalTimer.Value))
@@ -2989,22 +3583,29 @@ elseif Script.IsRooms then
             Default = false
         })
     end
+
     local Rooms_AutomationGroupBox = Tabs.Floor:AddRightGroupbox("Tự động") do
         Rooms_AutomationGroupBox:AddToggle("AutoRooms", {
             Text = "Tự động A1000",
             Default = false
         })
+
         Rooms_AutomationGroupBox:AddLabel("Cài đặt khuyên dùng:\nTốc độ chạy 22-30 và tắt xuyên tường", true)
+
         Rooms_AutomationGroupBox:AddDivider()
+
         Rooms_AutomationGroupBox:AddToggle("AutoRoomsDebug", { 
             Text = "Hiển thị vá lỗi",
             Default = false
         })
+        
         Rooms_AutomationGroupBox:AddToggle("ShowAutoRoomsPathNodes", { 
             Text = "Hiển thị ghi chú",
             Default = true
         })
+
     end
+
     Toggles.AntiA90:OnChanged(function(value)
         if Toggles.AutoRooms.Value and not value then
             shared.Notify:Alert({
@@ -3012,30 +3613,39 @@ elseif Script.IsRooms then
                 Description = "Tính năng xóa A90 cần thiết để chạy ổn định!",
                 Reason = "Đã bật tính năng xóa A90",
             })
+            
             Toggles.AntiA90:SetValue(true)
         end
+
         if not Script.MainGame then return end
         local module = Script.MainGame:FindFirstChild("A90", true) or Script.MainGame:FindFirstChild("_A90", true)
+    
         if module then
             module.Name = value and "_A90" or "A90"
         end
     end)
+
     function Script.Functions.GetAutoRoomsPathfindingGoal(): BasePart
         local entity = (workspace:FindFirstChild("A60") or workspace:FindFirstChild("A120"))
         if entity and entity.PrimaryPart.Position.Y > -10 then
             local GoalLocker = Script.Functions.GetNearestAssetWithCondition(function(asset)
                 return asset.Name == "Rooms_Locker" and not asset.HiddenPlayer.Value and asset.PrimaryPart.Position.Y > -10
             end)
+
             return GoalLocker.PrimaryPart
         end
+
         return workspace.CurrentRooms[Script.LatestRoom.Value].RoomExit
     end
+
     local _internal_mspaint_pathfinding_nodes = Instance.new("Folder", shared.Workspace) do
         _internal_mspaint_pathfinding_nodes.Name = "_internal_mspaint_pathfinding_nodes"
     end
+
     local _internal_mspaint_pathfinding_block = Instance.new("Folder", shared.Workspace) do
         _internal_mspaint_pathfinding_block.Name = "_internal_mspaint_pathfinding_block"
     end
+
     Toggles.ShowAutoRoomsPathNodes:OnChanged(function(value)
         for _, node in pairs(_internal_mspaint_pathfinding_nodes:GetChildren()) do
             node.Transparency = value and 0.5 or 1
@@ -3044,12 +3654,16 @@ elseif Script.IsRooms then
             nodeBlock.Transparency = value and 0.9 or 1
         end
     end)
+
     shared.Connect:GiveSignal(shared.RunService.RenderStepped:Connect(function()
         if not Toggles.AutoRooms.Value then return end
+
         local entity = (workspace:FindFirstChild("A60") or workspace:FindFirstChild("A120"))
         local isEntitySpawned = (entity and entity.PrimaryPart.Position.Y > -10)
+        
         if isEntitySpawned and not shared.RootPart.Anchored then
             local pathfindingGoal = Script.Functions.GetAutoRoomsPathfindingGoal()
+
             if Script.Functions.IsPromptInRange(pathfindingGoal.Parent.HidePrompt) then
                 shared.forcefireproximityprompt(pathfindingGoal.Parent.HidePrompt)
             end
@@ -3059,13 +3673,16 @@ elseif Script.IsRooms then
             end
         end
     end))
+
     Toggles.AutoRooms:OnChanged(function(value)
         local hasResetFailsafe = false
+
         local function nodeCleanup()
             _internal_mspaint_pathfinding_nodes:ClearAllChildren()
             _internal_mspaint_pathfinding_block:ClearAllChildren()
             hasResetFailsafe = true
         end
+
         local function moveToCleanup()
             if shared.Humanoid then
                 shared.Humanoid:Move(shared.RootPart.Position)
@@ -3074,16 +3691,21 @@ elseif Script.IsRooms then
             end
             nodeCleanup()
         end
+
         if value then
             Toggles.AntiA90:SetValue(true)
             local lastRoomValue = 0
+
             local function createNewBlockedPoint(point: PathWaypoint)
                 local block = Instance.new("Part", _internal_mspaint_pathfinding_block)
                 local pathMod = Instance.new("PathfindingModifier", block)
                 pathMod.Label = "_ms_pathBlock"
+
                 block.Name = "_mspaint_blocked_path"
                 block.Shape = Enum.PartType.Block
+
                 local sizeY = 10
+                
                 block.Size = Vector3.new(1, sizeY, 1)
                 block.Color = Color3.fromRGB(255, 130, 30)
                 block.Material = Enum.Material.Neon
@@ -3092,16 +3714,21 @@ elseif Script.IsRooms then
                 block.CanCollide = false
                 block.Transparency = Toggles.ShowAutoRoomsPathNodes.Value and 0.9 or 1
             end
+
             local function doAutoRooms()
                 local pathfindingGoal = Script.Functions.GetAutoRoomsPathfindingGoal()
+
                 if Script.LatestRoom.Value ~= lastRoomValue then
                     _internal_mspaint_pathfinding_block:ClearAllChildren()
                     lastRoomValue = Script.LatestRoom.Value
                 end
+                
                --shared.Notify:Log({
                     --Title = "Dương Api",
                     --Description = "Xác định vật thể thành công",
                 --}, Toggles.AutoRoomsDebug.Value)
+            
+
                 local path = shared.PathfindingService:CreatePath({
                     AgentCanJump = false,
                     AgentCanClimb = false,
@@ -3111,13 +3738,16 @@ elseif Script.IsRooms then
                         _ms_pathBlock = 8 --cost will increase the more stuck you get.
                     }
                 })
+
                 --shared.Notify:Log({
                     --Title = "Dương Api",
                     --Description = "Đang tạo đường đi...",
                 --}, Toggles.AutoRoomsDebug.Value)
+
                 path:ComputeAsync(shared.RootPart.Position - Vector3.new(0, 2.5, 0), pathfindingGoal.Position)
                 local waypoints = path:GetWaypoints()
                 local waypointAmount = #waypoints
+
                 if path.Status == Enum.PathStatus.Success then
                     hasResetFailsafe = true
                     task.spawn(function()
@@ -3136,11 +3766,14 @@ elseif Script.IsRooms then
                             hasResetFailsafe = true
                         end
                     end)
+
                     shared.Notify:Log({
                         Title = "Dương Api",
                         Description = "Xác định thành công, đã tạo " .. waypointAmount .. " điểm!",
                     }, Toggles.AutoRoomsDebug.Value)
+
                     _internal_mspaint_pathfinding_nodes:ClearAllChildren()
+
                     for i, waypoint in pairs(waypoints) do
                         local node = Instance.new("Part", _internal_mspaint_pathfinding_nodes) do
                             node.Name = "_internal_node_" .. i
@@ -3153,6 +3786,7 @@ elseif Script.IsRooms then
                             node.Transparency = Toggles.ShowAutoRoomsPathNodes.Value and 0.5 or 1
                         end
                     end
+
                     local lastWaypoint = nil
                     for i, waypoint in pairs(waypoints) do
                         local moveToFinished = false
@@ -3160,10 +3794,13 @@ elseif Script.IsRooms then
                         local waypointConnection = shared.Humanoid.MoveToFinished:Connect(function() moveToFinished = true end)
                         if not moveToFinished or not Toggles.AutoRooms.Value then
                             shared.Humanoid:MoveTo(waypoint.Position)
+                            
                             local entity = (workspace:FindFirstChild("A60") or workspace:FindFirstChild("A120"))
                             local isEntitySpawned = (entity and entity.PrimaryPart.Position.Y > -10)
+
                             if isEntitySpawned and not shared.RootPart.Anchored and pathfindingGoal.Parent.Name ~= "Rooms_Locker" then
                                 waypointConnection:Disconnect()
+
                                 if not Toggles.AutoRooms.Value then
                                     nodeCleanup()
                                     break
@@ -3172,29 +3809,38 @@ elseif Script.IsRooms then
                                         _internal_mspaint_pathfinding_nodes:FindFirstChild("_internal_node_" .. i):Destroy()
                                     end
                                 end
+
                                 break
                             end
+
                             task.delay(1, function()
                                 if moveToFinished then return end
                                 if (not Toggles.AutoRooms.Value or shared.Library.Unloaded) then return moveToCleanup() end
+
                                 repeat task.wait(0.25) until (not shared.Character:GetAttribute("Hiding") and not shared.Character.PrimaryPart.Anchored)
+
                                 shared.Notify:Alert({
                                     Title = "Dương Api",
                                     Description = "Có vẻ bạn đang bị kẹt, đang tính toán đường mới...",
                                     Reason = "Thất bại khi di chuyển tới điểm chấm",
                                 })
+
                                 recalculate = true
                                 if lastWaypoint == nil and waypointAmount > 1 then
                                     waypoint = waypoints[i+1]
                                 else
                                     waypoint = waypoints[i-1]
                                 end
+
                                 createNewBlockedPoint(waypoint)
                             end)
                         end
+
                         repeat task.wait() until moveToFinished or not Toggles.AutoRooms.Value or recalculate or shared.Library.Unloaded
                         lastWaypoint = waypoint
+
                         waypointConnection:Disconnect()
+
                         if not Toggles.AutoRooms.Value then
                             nodeCleanup()
                             break
@@ -3203,6 +3849,7 @@ elseif Script.IsRooms then
                                 _internal_mspaint_pathfinding_nodes:FindFirstChild("_internal_node_" .. i):Destroy()
                             end
                         end
+
                         if recalculate then break end
                     end
                 else
@@ -3212,6 +3859,7 @@ elseif Script.IsRooms then
                     }, Toggles.AutoRoomsDebug.Value)
                 end
             end
+
             -- Movement
             while Toggles.AutoRooms.Value and not shared.Library.Unloaded do
                 if Script.LatestRoom.Value == 1000 then
@@ -3220,6 +3868,7 @@ elseif Script.IsRooms then
                         Description = "Bạn đã tới A-1000",
                         Reason = "A-1000 sửa lại bởi dương",
                     })
+
                     break
                 end
                 doAutoRooms()
@@ -3237,11 +3886,13 @@ elseif Script.IsFools then
             Mode = "Hold",
             Text = "Nhặt Banana / Jeff",
         })
+    
         Fools_TrollingGroupBox:AddLabel("Throw"):AddKeyPicker("ThrowBananaJeff", {
             Default = "G",
             Mode = "Hold",
             Text = "Ném"
         })
+
         Fools_TrollingGroupBox:AddSlider("ThrowStrength", {
             Text = "Lực ném",
             Default = 1,
@@ -3250,18 +3901,25 @@ elseif Script.IsFools then
             Rounding = 1,
             Compact = true
         })
+
         function Script.Functions.ThrowBananaJeff()
             local target = Script.Temp.HoldingItem
+
             Script.Tracks.ItemHoldTrack:Stop()
             Script.Tracks.ItemThrowTrack:Play()
+
             task.wait(0.35)
+
             if target:FindFirstChildWhichIsA("BodyGyro") then
                 target:FindFirstChildWhichIsA("BodyGyro"):Destroy()
             end
+
             local velocity = shared.LocalPlayer:GetMouse().Hit.LookVector * 0.5 * 200 * Options.ThrowStrength.Value
             local spawnPos = shared.Camera.CFrame:ToWorldSpace(CFrame.new(0,0,-3) * CFrame.lookAt(Vector3.new(0, 0, 0), shared.Camera.CFrame.LookVector))
+            
             target.CFrame = spawnPos
             target.Velocity = velocity
+
             if target:FindFirstAncestorWhichIsA("Model").Name == "JeffTheKiller" then
                 for _,i in ipairs(target:FindFirstAncestorWhichIsA("Model"):GetDescendants()) do
                     if i:IsA("BasePart") then
@@ -3273,42 +3931,52 @@ elseif Script.IsFools then
                 target.CanTouch = not Toggles.AntiBananaPeel.Value
                 target.CanCollide = target:GetAttribute("Clip") or true
             end
+
             Script.Temp.HoldingItem = nil
         end
     end
+
     local Fools_AntiEntityGroupBox = Tabs.Floor:AddRightGroupbox("Anti-Entity") do
         Fools_AntiEntityGroupBox:AddToggle("AntiSeekObstructions", {
             Text = "Xóa vật cản từ seek",
             Default = false
         })
+
         Fools_AntiEntityGroupBox:AddToggle("AntiBananaPeel", {
             Text = "Chống Banana",
             Default = false
         })
+
         Fools_AntiEntityGroupBox:AddToggle("AntiJeffClient", {
             Text = "Chống Jeff",
             Default = false
         })
     end
+
     local Fools_BypassGroupBox = Tabs.Floor:AddRightGroupbox("Bypass") do
         Fools_BypassGroupBox:AddToggle("InfRevives", {
             Text = "Hồi sinh vô tận",
             Default = false
         })
+
         Fools_BypassGroupBox:AddToggle("AntiJeffServer", {
             Text = "Xóa jeff (FE)",
             Default = false
         })
+
         Fools_BypassGroupBox:AddDivider()
+
         Fools_BypassGroupBox:AddToggle("GodmodeNoclipBypassFools", {
             Text = "Bất tử",
             Default = false
         })
+
         Fools_BypassGroupBox:AddToggle("FigureGodmodeFools", {
             Text = "Bất tử trước figure",
             Default = false
         })
     end
+
     Toggles.AntiSeekObstructions:OnChanged(function(value)
         for i, v in pairs(workspace.CurrentRooms:GetDescendants()) do
             if v.Name == "ChandelierObstruction" or v.Name == "Seek_Arm" then
@@ -3318,6 +3986,7 @@ elseif Script.IsFools then
             end
         end
     end)
+    
     Toggles.AntiBananaPeel:OnChanged(function(value)
         for _, peel in pairs(workspace:GetChildren()) do
             if peel.Name == "BananaPeel" then
@@ -3325,6 +3994,7 @@ elseif Script.IsFools then
             end
         end
     end)
+
     Toggles.AntiJeffClient:OnChanged(function(value)
         for _, jeff in pairs(workspace:GetChildren()) do
             if jeff:IsA("Model") and jeff.Name == "JeffTheKiller" then
@@ -3336,6 +4006,7 @@ elseif Script.IsFools then
             end
         end
     end)
+
     Toggles.AntiJeffServer:OnChanged(function(value)
         if value then
             for _, jeff in pairs(workspace:GetChildren()) do
@@ -3348,11 +4019,13 @@ elseif Script.IsFools then
             end
         end
     end)
+
     Toggles.InfRevives:OnChanged(function(value)
         if value and not shared.LocalPlayer:GetAttribute("Alive") then
             Script.RemotesFolder.Revive:FireServer()
         end
     end)
+
     Toggles.GodmodeNoclipBypassFools:OnChanged(function(value)
         if value and shared.Humanoid and Script.Collision then
             shared.Humanoid.HipHeight = 3.01
@@ -3360,6 +4033,7 @@ elseif Script.IsFools then
             Script.Collision.Position = Script.Collision.Position - Vector3.new(0, 8, 0)
             task.wait()
             shared.Humanoid.HipHeight = 3
+            
             -- don't want to put collision up when you load the script 
             -- im sorry deivid
             task.spawn(function()
@@ -3372,14 +4046,17 @@ elseif Script.IsFools then
             end)
         end
     end)
+
     Toggles.FigureGodmodeFools:OnChanged(function(value)
         if value and not Toggles.GodmodeNoclipBypassFools.Value then Toggles.GodmodeNoclipBypassFools:SetValue(true); shared.Notify:Alert({Title = "Figure Godmode", Description = "Godmode/Noclip Bypass is required to use figure godmode", Reason = "Godmode/Noclip Bypass not enabled"}) end
         if Script.LatestRoom.Value ~= 50 or Script.LatestRoom.Value ~= 100 then return end
+
         for _, figure in pairs(workspace.CurrentRooms:GetDescendants()) do
             if figure:IsA("Model") and figure.Name == "FigureRagdoll" then
                 for i, v in pairs(figure:GetDescendants()) do
                     if v:IsA("BasePart") then
                         if not v:GetAttribute("Clip") then v:SetAttribute("Clip", v.CanCollide) end
+
                         v.CanTouch = not value
                         v.CanCollide = not value
                     end
@@ -3388,19 +4065,23 @@ elseif Script.IsFools then
         end
     end)
 end
+
 end)() end,
     [16] = function()local wax,script,require=ImportGlobals(16)local ImportGlobals return (function(...)--// Linoria \\--
 local Toggles = shared.Toggles
 local Options = shared.Options
+
 --// Variables \\--
 local Script = shared.Script
 local Tabs = Script.Tabs
+
 --// Main \\--
 local PlayerGroupBox = Tabs.Main:AddLeftGroupbox("Người chơi") do
     PlayerGroupBox:AddToggle("EnableSpeedHack", {
         Text = "Áp dụng tốc độ",
         Default = false
     })
+
     PlayerGroupBox:AddSlider("WalkSpeed", {
         Text = "Tốc độ",
         Default = 15,
@@ -3409,6 +4090,7 @@ local PlayerGroupBox = Tabs.Main:AddLeftGroupbox("Người chơi") do
         Rounding = 0,
         Compact = true
     })
+
     PlayerGroupBox:AddSlider("LadderSpeed", {
         Text = "Tốc độ leo thang",
         Default = 15,
@@ -3417,11 +4099,13 @@ local PlayerGroupBox = Tabs.Main:AddLeftGroupbox("Người chơi") do
         Rounding = 0,
         Compact = true
     })
+
     PlayerGroupBox:AddToggle("EnableJump", {
         Text = "Nút nhảy",
         Default = false,
         Visible = not Script.IsFools
     })
+
     PlayerGroupBox:AddSlider("JumpBoost", {
         Text = "Lực nhảy",
         Default = 5,
@@ -3431,20 +4115,26 @@ local PlayerGroupBox = Tabs.Main:AddLeftGroupbox("Người chơi") do
         Compact = true,
         Visible = not Script.IsFools
     })
+
     PlayerGroupBox:AddToggle("NoAccel", {
         Text = "Không gia tốc",
         Default = false
     })
+
     PlayerGroupBox:AddDivider()
+
     PlayerGroupBox:AddToggle("InstaInteract", {
         Text = "Tương tác tức thì",
         Default = false
     })
+
     PlayerGroupBox:AddToggle("FastClosetExit", {
         Text = "Thoát khỏi tủ nhanh",
         Default = false
     })
+
     PlayerGroupBox:AddDivider()
+
     PlayerGroupBox:AddToggle("Noclip", {
         Text = "Xuyên tường",
         Default = false
@@ -3454,6 +4144,7 @@ local PlayerGroupBox = Tabs.Main:AddLeftGroupbox("Người chơi") do
         Text = "Xuyên tuòng",
         SyncToggleState = true
     })
+
     PlayerGroupBox:AddToggle("Fly", {
         Text = "Bay",
         Default = false
@@ -3463,6 +4154,7 @@ local PlayerGroupBox = Tabs.Main:AddLeftGroupbox("Người chơi") do
         Text = "Bay",
         SyncToggleState = true
     })
+    
     PlayerGroupBox:AddSlider("FlySpeed", {
         Text = "Tốc độ bay",
         Default = 15,
@@ -3472,15 +4164,18 @@ local PlayerGroupBox = Tabs.Main:AddLeftGroupbox("Người chơi") do
         Compact = true,
     })
 end
+
 local ReachGroupBox = Tabs.Main:AddLeftGroupbox("Thao tác") do
     ReachGroupBox:AddToggle("DoorReach", {
         Text = "Mở cửa từ xa",
         Default = false
     })
+
     ReachGroupBox:AddToggle("PromptClip", {
         Text = "Clip nhắc nhở",
         Default = false
     })
+
     ReachGroupBox:AddSlider("PromptReachMultiplier", {
         Text = "Khoảng cách mở",
         Default = 1,
@@ -3489,6 +4184,7 @@ local ReachGroupBox = Tabs.Main:AddLeftGroupbox("Thao tác") do
         Rounding = 1
     })
 end
+
 local AutomationGroupBox = Tabs.Main:AddRightGroupbox("Tự động") do
     AutomationGroupBox:AddToggle("AutoInteract", {
         Text = "Tự động mở + nhặt",
@@ -3499,18 +4195,23 @@ local AutomationGroupBox = Tabs.Main:AddRightGroupbox("Tự động") do
         Text = "Tự động mở + nhặt",
         SyncToggleState = shared.Library.IsMobile
     })
+
     AutomationGroupBox:AddDropdown("AutoInteractIgnore", {
         AllowNull = true,
         Values = {"Jeff Items", "Unlock w/ Lockpick", "Paintings", "Gold", "Light Source Items", "Skull Prompt"},
         Default = {"Jeff Items","Paintings"},
         Multi = true,
+
         Text = "Ignore List"
     })
+
     AutomationGroupBox:AddDivider()
+
     AutomationGroupBox:AddToggle("AutoWardrobeNotif", {
         Text = "Thông báo tự động ẩn nấp",
         Default = false
     })
+
     AutomationGroupBox:AddToggle("AutoWardrobe", {
         Text = "Tự động ẩn nấp",
         Default = true,
@@ -3524,16 +4225,19 @@ local AutomationGroupBox = Tabs.Main:AddRightGroupbox("Tự động") do
         SyncToggleState = true
     })
     AutomationGroupBox:AddDivider()
+
     AutomationGroupBox:AddToggle("AutoHeartbeat", {
         Text = "Tự động win mini game tim đập",
         Default = false,
         Visible = wax.shared.ExecutorSupport["getnamecallmethod"]
     })
+
     if Script.IsHotel or Script.IsFools then
         AutomationGroupBox:AddToggle("AutoLibrarySolver", {
             Text = "Tự động giải mã thư viện",
             Default = false
         })
+
         AutomationGroupBox:AddSlider("AutoLibraryDistance", {
             Text = "Khoảng cách giải mã",
             Default = 20,
@@ -3542,26 +4246,33 @@ local AutomationGroupBox = Tabs.Main:AddRightGroupbox("Tự động") do
             Rounding = 0,
             Compact = true
         })
+
         AutomationGroupBox:AddDivider()
+
         AutomationGroupBox:AddDropdown("AutoBreakerSolverMethod", {
             AllowNull = false,
             Values = {"Legit", "Exploit"},
             Default = "Legit",
             Multi = false,
+
             Text = "Phương pháp giải mã hộp cầu chì"
         })
+
         AutomationGroupBox:AddToggle("AutoBreakerSolver", {
             Text = "Tự động giải mã hộp cầu chì",
             Default = false
         })
+
         Toggles.AutoLibrarySolver:OnChanged(function(value)
             if value then
                 for _, player in pairs(shared.Players:GetPlayers()) do
                     if not player.Character then continue end
                     local tool = player.Character:FindFirstChildOfClass("Tool")
+
                     if tool and tool.Name:match("LibraryHintPaper") then
                         local code = Script.Functions.GetPadlockCode(tool)
                         local padlock = workspace:FindFirstChild("Padlock", true)
+
                         if tonumber(code) and Script.Functions.DistanceFromCharacter(padlock) <= Options.AutoLibraryDistance.Value then
                             Script.RemotesFolder.PL:FireServer(code)
                         end
@@ -3569,10 +4280,12 @@ local AutomationGroupBox = Tabs.Main:AddRightGroupbox("Tự động") do
                 end
             end
         end)
+
         Toggles.AutoBreakerSolver:OnChanged(function(value)
             if value then
                 local elevatorBreaker = workspace.CurrentRooms:FindFirstChild("ElevatorBreaker", true)
                 if not elevatorBreaker then return end
+    
                 Script.Functions.SolveBreakerBox(elevatorBreaker)
             end
         end)
@@ -3583,6 +4296,7 @@ local AutomationGroupBox = Tabs.Main:AddRightGroupbox("Tự động") do
         })
     end
 end
+
 local MiscGroupBox = Tabs.Main:AddRightGroupbox("Tính năng phụ") do
     MiscGroupBox:AddButton({
         Text = "Hồi sinh",
@@ -3591,6 +4305,7 @@ local MiscGroupBox = Tabs.Main:AddRightGroupbox("Tính năng phụ") do
         end,
         DoubleClick = true
     })
+
     MiscGroupBox:AddButton({
         Text = "Chơi lại",
         Func = function()
@@ -3598,6 +4313,7 @@ local MiscGroupBox = Tabs.Main:AddRightGroupbox("Tính năng phụ") do
         end,
         DoubleClick = true
     })
+
     MiscGroupBox:AddButton({
         Text = "Về sảnh",
         Func = function()
@@ -3606,24 +4322,31 @@ local MiscGroupBox = Tabs.Main:AddRightGroupbox("Tính năng phụ") do
         DoubleClick = true
     })
 end
+
 --// Player \\--
 Toggles.EnableJump:OnChanged(function(value)
     if Script.IsFools then return end
+
     if shared.Character then
         shared.Character:SetAttribute("CanJump", value)
     end
+
     if not value and shared.CheckToggle("SpeedBypass", true) and Options.WalkSpeed.Max ~= 22 and not Script.FakeRevive.Enabled then
         Options.WalkSpeed:SetMax(22)
     end
 end)
+
 Options.JumpBoost:OnChanged(function(value)
     if Script.IsFools or not Toggles.EnableJump.Value then return end
     shared.Humanoid.JumpHeight = value
 end)
+
 Toggles.NoAccel:OnChanged(function(value)
     if not shared.RootPart then return end
+
     if value then
         Script.Temp.NoAccelValue = shared.RootPart.CustomPhysicalProperties.Density
+        
         local existingProperties = shared.RootPart.CustomPhysicalProperties
         shared.RootPart.CustomPhysicalProperties = PhysicalProperties.new(100, existingProperties.Friction, existingProperties.Elasticity, existingProperties.FrictionWeight, existingProperties.ElasticityWeight)
     else
@@ -3631,6 +4354,7 @@ Toggles.NoAccel:OnChanged(function(value)
         shared.RootPart.CustomPhysicalProperties = PhysicalProperties.new(Script.Temp.NoAccelValue, existingProperties.Friction, existingProperties.Elasticity, existingProperties.FrictionWeight, existingProperties.ElasticityWeight)
     end
 end)
+
 Toggles.InstaInteract:OnChanged(function(value)
     for _, prompt in pairs(workspace.CurrentRooms:GetDescendants()) do
         if prompt:IsA("ProximityPrompt") then
@@ -3643,13 +4367,17 @@ Toggles.InstaInteract:OnChanged(function(value)
         end
     end
 end)
+
 Toggles.Fly:OnChanged(function(value)
     if not shared.Fly.FlyBody then shared.Fly:Setup() end
+
     shared.Fly:Set(value)
 end)
+
 Options.FlySpeed:OnChanged(function(value)
     shared.Fly:SetSpeed(value)
 end)
+
 --// Reach \\--
 Toggles.PromptClip:OnChanged(function(value)
     for _, prompt in pairs(workspace.CurrentRooms:GetDescendants()) do        
@@ -3662,10 +4390,12 @@ Toggles.PromptClip:OnChanged(function(value)
         end
     end
 end)
+
 Options.PromptReachMultiplier:OnChanged(function(value)
     for _, prompt in pairs(workspace.CurrentRooms:GetDescendants()) do
         if Script.Functions.PromptCondition(prompt) then
             if not prompt:GetAttribute("Distance") then prompt:SetAttribute("Distance", prompt.MaxActivationDistance) end
+
             prompt.MaxActivationDistance = prompt:GetAttribute("Distance") * value
         end
     end
@@ -3674,13 +4404,16 @@ end)() end,
     [17] = function()local wax,script,require=ImportGlobals(17)local ImportGlobals return (function(...)--// Linoria \\--
 local Toggles = shared.Toggles
 local Options = shared.Options
+
 --// Variables \\--
 local Script = shared.Script
 local Tabs = Script.Tabs
+
 local CaptionStyles = {"Linoria"}
 if wax.shared.ExecutorSupport["firesignal"] then
     table.insert(CaptionStyles, "Doors")
 end
+
 --// Visuals \\--
 local ESPTabBox = Tabs.Visuals:AddLeftTabbox() do
     local ESPTab = ESPTabBox:AddTab("Định vị") do
@@ -3690,48 +4423,56 @@ local ESPTabBox = Tabs.Visuals:AddLeftTabbox() do
         }):AddColorPicker("DoorEspColor", {
             Default = Color3.new(0, 1, 1),
         })
+    
         ESPTab:AddToggle("ObjectiveESP", {
             Text = "Đồ vật",
             Default = true,
         }):AddColorPicker("ObjectiveEspColor", {
             Default = Color3.new(0, 1, 0),
         })
+    
         ESPTab:AddToggle("EntityESP", {
             Text = "Quái",
             Default = true,
         }):AddColorPicker("EntityEspColor", {
             Default = Color3.new(1, 0, 0),
         })
+    
         ESPTab:AddToggle("ItemESP", {
             Text = "Vật phẩm",
             Default = false,
         }):AddColorPicker("ItemEspColor", {
             Default = Color3.new(1, 0, 1),
         })
+    
         ESPTab:AddToggle("ChestESP", {
             Text = "Rương",
             Default = false,
         }):AddColorPicker("ChestEspColor", {
             Default = Color3.new(1, 1, 0),
         })
+    
         ESPTab:AddToggle("PlayerESP", {
             Text = "Người chơi",
             Default = false,
         }):AddColorPicker("PlayerEspColor", {
             Default = Color3.new(1, 1, 1),
         })
+    
         ESPTab:AddToggle("HidingSpotESP", {
             Text = Script.HidingPlaceName[Script.Floor.Value],
             Default = false,
         }):AddColorPicker("HidingSpotEspColor", {
             Default = Color3.new(0, 0.5, 0),
         })
+    
         ESPTab:AddToggle("GoldESP", {
             Text = "Vàng",
             Default = false,
         }):AddColorPicker("GoldEspColor", {
             Default = Color3.new(1, 1, 0),
         })
+    
         ESPTab:AddToggle("GuidingLightESP", {
             Text = "Điểm sáng",
             Default = false,
@@ -3739,16 +4480,20 @@ local ESPTabBox = Tabs.Visuals:AddLeftTabbox() do
             Default = Color3.new(0, 0.5, 1),
         })
     end
+
     local ESPSettingsTab = ESPTabBox:AddTab("Cài đặt") do
         ESPSettingsTab:AddToggle("ESPRainbow", {
             Text = "Định vị màu cầu vồng",
             Default = false,
         })
+
         ESPSettingsTab:AddDivider()
+
         ESPSettingsTab:AddToggle("ESPHighlight", {
             Text = "Thêm điểm kẻ sáng",
             Default = true
         })
+
         ESPSettingsTab:AddSlider("ESPFillTransparency", {
             Text = "Độ mờ vật thể",
             Default = 0.75,
@@ -3756,6 +4501,7 @@ local ESPTabBox = Tabs.Visuals:AddLeftTabbox() do
             Max = 1,
             Rounding = 2
         })
+    
         ESPSettingsTab:AddSlider("ESPOutlineTransparency", {
             Text = "Độ mờ đường kẻ",
             Default = 0,
@@ -3763,11 +4509,14 @@ local ESPTabBox = Tabs.Visuals:AddLeftTabbox() do
             Max = 1,
             Rounding = 2
         })
+
         ESPSettingsTab:AddDivider()
+
         ESPSettingsTab:AddToggle("ESPDistance", {
             Text = "Hiển thị khoảng cách",
             Default = true
         })
+    
         ESPSettingsTab:AddSlider("ESPTextSize", {
             Text = "Kích cỡ chữ",
             Default = 18,
@@ -3775,23 +4524,30 @@ local ESPTabBox = Tabs.Visuals:AddLeftTabbox() do
             Max = 26,
             Rounding = 0
         })
+    
         ESPSettingsTab:AddDivider()
+
         ESPSettingsTab:AddToggle("ESPTracer", {
             Text = "Hiển thị đường kẻ",
             Default = false
         })
+
         ESPSettingsTab:AddDropdown("ESPTracerStart", {
             AllowNull = false,
             Values = {"Bottom", "Center", "Top", "Mouse"},
             Default = "Bottom",
             Multi = false,
+
             Text = "Vị trí đường kẻ"
         })
+
         ESPSettingsTab:AddDivider()
+
         ESPSettingsTab:AddToggle("ESPArrow", {
             Text = "Hiển thị mũi tên",
             Default = false
         })
+
         ESPSettingsTab:AddSlider("ESPArrowCenterOffset", {
             Text = "Độ rộng mũi tên",
             Default = 300,
@@ -3801,6 +4557,7 @@ local ESPTabBox = Tabs.Visuals:AddLeftTabbox() do
         })
     end
 end
+
 local AmbientGroupBox = Tabs.Visuals:AddLeftGroupbox("Thị giác") do
     AmbientGroupBox:AddSlider("Brightness", {
         Text = "Độ sáng",
@@ -3809,59 +4566,73 @@ local AmbientGroupBox = Tabs.Visuals:AddLeftGroupbox("Thị giác") do
         Max = 3,
         Rounding = 1,
     })
+
     AmbientGroupBox:AddToggle("Fullbright", {
         Text = "Map sáng",
         Default = false,
     })
+
     AmbientGroupBox:AddToggle("NoFog", {
         Text = "Xóa sương mù",
         Default = false,
     })
+
     AmbientGroupBox:AddToggle("AntiLag", {
         Text = "Giảm lag",
         Default = false,
     })
 end
+
 local NotifyTabBox = Tabs.Visuals:AddRightTabbox() do
     local NotifyTab = NotifyTabBox:AddTab("Thông báo") do
         NotifyTab:AddDropdown("NotifyEntity", {
             AllowNull = true,
             Values = {"Blitz", "Lookman", "Rush", "Ambush", "Eyes", "Halt Room", "A60", "A120", "Jeff The Killer", "Gloombat Swarm", "Void/Glitch"},
-            Default = {},
+            Default = {"Rush","Ambush","Eyes"},
             Multi = true,
+
             Text = "Cảnh báo quái"
         })
+
         NotifyTab:AddToggle("NotifyPadlock", {
             Text = "Thông báo mã thư viện",
             Default = false,
         })
+
         NotifyTab:AddToggle("NotifyOxygen", {
             Text = "Hiển thị oxygen còn lại",
             Default = false,
         })
+
         NotifyTab:AddToggle("NotifyHideTime", {
             Text = "Hiển thị thời gian ẩn",
             Default = false,
         })
     end
+
     local NotifySettingsTab = NotifyTabBox:AddTab("Cài đặt") do
         NotifySettingsTab:AddToggle("NotifyChat", {
             Text = "Cảnh báo trong chat",
             Tooltip = "Quái hoặc mã khóa",
             Default = false,
         })
+
         NotifySettingsTab:AddInput("NotifyEntityMessage", {
             Default = "đã xuất hiện!",
             Numeric = false,
             Finished = true,
             ClearTextOnFocus = false,
+
             Text = "Tin nhắn cảnh báo"
         })
+
         NotifySettingsTab:AddDivider()
+        
         NotifySettingsTab:AddToggle("NotifySound", {
             Text = "Chạy âm thanh cảnh báo",
             Default = true,
         })
+
         NotifySettingsTab:AddSlider("NotifyVolume", {
             Text = "Âm lượng",
             Default = 2,
@@ -3869,30 +4640,38 @@ local NotifyTabBox = Tabs.Visuals:AddRightTabbox() do
             Max = 5,
             Rounding = 1
         })
+
         NotifySettingsTab:AddDropdown("NotifySide", {
             AllowNull = false,
             Values = {"Left", "Right"},
             Default = "Right",
             Multi = false,
+
             Text = "Vị trí cảnh báo"
         })
+
         NotifySettingsTab:AddDropdown("NotifyStyle", {
             AllowNull = false,
             Values = {"Linoria", "Doors"},
             Default = "Doors",
             Multi = false,
+
             Text = "Phong cách cảnh báo"
         })
+
         NotifySettingsTab:AddDivider()
+        
         NotifySettingsTab:AddDropdown("CaptionStyle", {
             AllowNull = false,
             Values = CaptionStyles,
             Default = "Doors",
             Multi = false,
+
             Text = "Phong cách tiêu đề"
         })
     end
 end
+
 local SelfTabBox = Tabs.Visuals:AddRightTabbox() do
     local SelfTab = SelfTabBox:AddTab("Bản thân") do
         SelfTab:AddToggle("ThirdPerson", {
@@ -3904,6 +4683,7 @@ local SelfTabBox = Tabs.Visuals:AddRightTabbox() do
             Mode = "Toggle",
             SyncToggleState = not shared.Library.IsMobile -- ????
         })
+        
         SelfTab:AddSlider("FOV", {
             Text = "Độ cong tầm nhìn",
             Default = 70,
@@ -3911,24 +4691,29 @@ local SelfTabBox = Tabs.Visuals:AddRightTabbox() do
             Max = 120,
             Rounding = 0
         })
+        
         SelfTab:AddToggle("NoCamBob", {
             Text = "Không lắc lư màn",
             Default = false,
             Visible = wax.shared.ExecutorSupport["require"]
         })
+    
         SelfTab:AddToggle("NoCamShake", {
             Text = "Không rung màn",
             Default = false,
             Visible = wax.shared.ExecutorSupport["require"]
         })
+    
         SelfTab:AddToggle("NoCutscenes", {
             Text = "Không đoạn cắt cảnh",
             Default = false,
         })
+    
         SelfTab:AddToggle("TranslucentHidingSpot", {
             Text = "Làm nơi ẩn nấp",
             Default = false
         })
+        
         SelfTab:AddSlider("HidingTransparency", {
             Text = "Độ mờ",
             Default = 0.5,
@@ -3937,14 +4722,17 @@ local SelfTabBox = Tabs.Visuals:AddRightTabbox() do
             Rounding = 1,
             Compact = true,
         })
+
         if wax.shared.ExecutorSupport["require"] then
             SelfTab:AddDivider()
         end
+
         SelfTab:AddToggle("ViewmodelOffset", {
             Text = "Tầm nhìn theo góc độ(giỏi toán)",
             Default = false,
             Visible = wax.shared.ExecutorSupport["require"]
         })
+
         SelfTab:AddSlider("ToolOffsetX", {
             Text = "X",
             Default = 0,
@@ -3954,6 +4742,7 @@ local SelfTabBox = Tabs.Visuals:AddRightTabbox() do
             Compact = true,
             Visible = wax.shared.ExecutorSupport["require"]
         })
+
         SelfTab:AddSlider("ToolOffsetY", {
             Text = "Y",
             Default = 0,
@@ -3963,6 +4752,7 @@ local SelfTabBox = Tabs.Visuals:AddRightTabbox() do
             Compact = true,
             Visible = wax.shared.ExecutorSupport["require"]
         })
+
         SelfTab:AddSlider("ToolOffsetZ", {
             Text = "Z",
             Default = 0,
@@ -3973,31 +4763,37 @@ local SelfTabBox = Tabs.Visuals:AddRightTabbox() do
             Visible = wax.shared.ExecutorSupport["require"]
         })
     end
+
     local EffectsTab = SelfTabBox:AddTab("Xóa hiệu ứng") do
         EffectsTab:AddToggle("NoGlitchEffect", {
             Text = "Không hiệu úng glicth",
             Default = false
         })
+
         EffectsTab:AddToggle("NoVoidEffect", {
             Text = "Không hiệu ứng lồng tiếng",
             Default = false
         })
+
         EffectsTab:AddToggle("NoEntityJumpscare", {
             Text = "Không dọa",
             Default = false
         })
+
         EffectsTab:AddToggle("NoSpiderJumpscare", {
             Text = "Không bị nhện dọa",
             Default = false
         })
     end
 end
+
 --// ESP \\--
 Toggles.DoorESP:OnChanged(function(value)
     if value then
         if workspace.CurrentRooms[Script.CurrentRoom]:FindFirstChild("Door") then
             Script.Functions.DoorESP(workspace.CurrentRooms[Script.CurrentRoom])
         end
+
         if workspace.CurrentRooms[Script.NextRoom]:FindFirstChild("Door") then
             Script.Functions.DoorESP(workspace.CurrentRooms[Script.NextRoom])
         end
@@ -4005,11 +4801,13 @@ Toggles.DoorESP:OnChanged(function(value)
         for _, connection in pairs(Script.FeatureConnections.Door) do
             connection:Disconnect()
         end
+
         for _, esp in pairs(Script.ESPTable.Door) do
             esp.Destroy()
         end
     end
 end)
+
 Options.DoorEspColor:OnChanged(function(value)
     for _, esp in pairs(Script.ESPTable.Door) do
         esp.Update({
@@ -4019,6 +4817,7 @@ Options.DoorEspColor:OnChanged(function(value)
         })
     end
 end)
+
 Toggles.ObjectiveESP:OnChanged(function(value)
     if value then
         local currentRoomModel = workspace.CurrentRooms:FindFirstChild(Script.CurrentRoom)
@@ -4033,6 +4832,7 @@ Toggles.ObjectiveESP:OnChanged(function(value)
         end
     end
 end)
+
 Options.ObjectiveEspColor:OnChanged(function(value)
     for _, esp in pairs(Script.ESPTable.Objective) do
         esp.Update({
@@ -4042,6 +4842,7 @@ Options.ObjectiveEspColor:OnChanged(function(value)
         })
     end
 end)
+
 Toggles.EntityESP:OnChanged(function(value)
     if value then
         for _, entity in pairs(workspace:GetChildren()) do
@@ -4049,6 +4850,7 @@ Toggles.EntityESP:OnChanged(function(value)
                 Script.Functions.EntityESP(entity)
             end
         end
+
         local currentRoomModel = workspace.CurrentRooms:FindFirstChild(Script.CurrentRoom)
         if currentRoomModel then
             for _, entity in pairs(currentRoomModel:GetDescendants()) do
@@ -4066,6 +4868,7 @@ Toggles.EntityESP:OnChanged(function(value)
         end
     end
 end)
+
 Options.EntityEspColor:OnChanged(function(value)
     for _, esp in pairs(Script.ESPTable.Entity) do
         esp.Update({
@@ -4075,6 +4878,7 @@ Options.EntityEspColor:OnChanged(function(value)
         })
     end
 end)
+
 Toggles.ItemESP:OnChanged(function(value)
     if value then
         for _, item in pairs(workspace.Drops:GetChildren()) do
@@ -4082,6 +4886,7 @@ Toggles.ItemESP:OnChanged(function(value)
                 Script.Functions.ItemESP(item, true)
             end
         end
+
         local currentRoomModel = workspace.CurrentRooms:FindFirstChild(Script.CurrentRoom)
         if currentRoomModel then
             for _, item in pairs(currentRoomModel:GetDescendants()) do
@@ -4094,11 +4899,13 @@ Toggles.ItemESP:OnChanged(function(value)
         for _, esp in pairs(Script.ESPTable.DroppedItem) do
             esp.Destroy()
         end
+
         for _, esp in pairs(Script.ESPTable.Item) do
             esp.Destroy()
         end
     end
 end)
+
 Options.ItemEspColor:OnChanged(function(value)
     for _, esp in pairs(Script.ESPTable.DroppedItem) do
         esp.Update({
@@ -4107,6 +4914,7 @@ Options.ItemEspColor:OnChanged(function(value)
             TextColor = value,
         })
     end
+
     for _, esp in pairs(Script.ESPTable.Item) do
         esp.Update({
             FillColor = value,
@@ -4115,6 +4923,7 @@ Options.ItemEspColor:OnChanged(function(value)
         })
     end
 end)
+
 Toggles.ChestESP:OnChanged(function(value)
     if value then
         local currentRoomModel = workspace.CurrentRooms:FindFirstChild(Script.CurrentRoom)
@@ -4131,6 +4940,7 @@ Toggles.ChestESP:OnChanged(function(value)
         end
     end
 end)
+
 Options.ChestEspColor:OnChanged(function(value)
     for _, esp in pairs(Script.ESPTable.Chest) do
         esp.Update({
@@ -4140,10 +4950,12 @@ Options.ChestEspColor:OnChanged(function(value)
         })
     end
 end)
+
 Toggles.PlayerESP:OnChanged(function(value)
     if value then
         for _, player in pairs(shared.Players:GetPlayers()) do
             if player == shared.LocalPlayer or not player.Character then continue end
+            
             Script.Functions.PlayerESP(player.Character)
         end
     else
@@ -4155,6 +4967,7 @@ Toggles.PlayerESP:OnChanged(function(value)
         end
     end
 end)
+
 Options.PlayerEspColor:OnChanged(function(value)
     for _, esp in pairs(Script.ESPTable.Player) do
         esp.Update({
@@ -4164,6 +4977,7 @@ Options.PlayerEspColor:OnChanged(function(value)
         })
     end
 end)
+
 Toggles.HidingSpotESP:OnChanged(function(value)
     if value then
         local currentRoomModel = workspace.CurrentRooms:FindFirstChild(Script.CurrentRoom)
@@ -4180,6 +4994,7 @@ Toggles.HidingSpotESP:OnChanged(function(value)
         end
     end
 end)
+
 Options.HidingSpotEspColor:OnChanged(function(value)
     for _, esp in pairs(Script.ESPTable.HidingSpot) do
         esp.Update({
@@ -4189,6 +5004,7 @@ Options.HidingSpotEspColor:OnChanged(function(value)
         })
     end
 end)
+
 Toggles.GoldESP:OnChanged(function(value)
     if value then
         local currentRoomModel = workspace.CurrentRooms:FindFirstChild(Script.CurrentRoom)
@@ -4205,6 +5021,7 @@ Toggles.GoldESP:OnChanged(function(value)
         end
     end
 end)
+
 Options.GoldEspColor:OnChanged(function(value)
     for _, esp in pairs(Script.ESPTable.Gold) do
         esp.Update({
@@ -4214,6 +5031,7 @@ Options.GoldEspColor:OnChanged(function(value)
         })
     end
 end)
+
 Toggles.GuidingLightESP:OnChanged(function(value)
     if value then
         for _, guidance in pairs(shared.Camera:GetChildren()) do
@@ -4227,6 +5045,7 @@ Toggles.GuidingLightESP:OnChanged(function(value)
         end
     end
 end)
+
 Options.GuidingLightEspColor:OnChanged(function(value)
     for _, esp in pairs(Script.ESPTable.Guiding) do
         esp.Update({
@@ -4236,10 +5055,12 @@ Options.GuidingLightEspColor:OnChanged(function(value)
         })
     end
 end)
+
 --// ESP Settings \\--
 Toggles.ESPRainbow:OnChanged(function(value)
     shared.ESPLibrary.Rainbow.Set(value)
 end)
+
 Toggles.ESPHighlight:OnChanged(function(value)
     for _, espType in pairs(Script.ESPTable) do
         for _, esp in pairs(espType) do
@@ -4247,6 +5068,7 @@ Toggles.ESPHighlight:OnChanged(function(value)
         end
     end
 end)
+
 Options.ESPFillTransparency:OnChanged(function(value)
     for _, espType in pairs(Script.ESPTable) do
         for _, esp in pairs(espType) do
@@ -4254,6 +5076,7 @@ Options.ESPFillTransparency:OnChanged(function(value)
         end
     end
 end)
+
 Options.ESPOutlineTransparency:OnChanged(function(value)
     for _, espType in pairs(Script.ESPTable) do
         for _, esp in pairs(espType) do
@@ -4261,9 +5084,11 @@ Options.ESPOutlineTransparency:OnChanged(function(value)
         end
     end
 end)
+
 Toggles.ESPDistance:OnChanged(function(value)
     shared.ESPLibrary.Distance.Set(value)
 end)
+
 Options.ESPTextSize:OnChanged(function(value)
     for _, espType in pairs(Script.ESPTable) do
         for _, esp in pairs(espType) do
@@ -4271,9 +5096,11 @@ Options.ESPTextSize:OnChanged(function(value)
         end
     end
 end)
+
 Toggles.ESPTracer:OnChanged(function(value)
     shared.ESPLibrary.Tracers.Set(value)
 end)
+
 Options.ESPTracerStart:OnChanged(function(value)
     for _, espType in pairs(Script.ESPTable) do
         for _, esp in pairs(espType) do
@@ -4281,9 +5108,11 @@ Options.ESPTracerStart:OnChanged(function(value)
         end
     end
 end)
+
 Toggles.ESPArrow:OnChanged(function(value)
     shared.ESPLibrary.Arrows.Set(value)
 end)
+
 Options.ESPArrowCenterOffset:OnChanged(function(value)
     for _, espType in pairs(Script.ESPTable) do
         for _, esp in pairs(espType) do
@@ -4291,10 +5120,12 @@ Options.ESPArrowCenterOffset:OnChanged(function(value)
         end
     end
 end)
+
 --// Ambient \\--
 Options.Brightness:OnChanged(function(value)
     shared.Lighting.Brightness = value
 end)
+
 Toggles.Fullbright:OnChanged(function(value)
     if value then
         shared.Lighting.Ambient = Color3.new(1, 1, 1)
@@ -4306,59 +5137,73 @@ Toggles.Fullbright:OnChanged(function(value)
         end
     end
 end)
+
 Toggles.NoFog:OnChanged(function(value)
     if not shared.Lighting:GetAttribute("FogStart") then shared.Lighting:SetAttribute("FogStart", shared.Lighting.FogStart) end
     if not shared.Lighting:GetAttribute("FogEnd") then shared.Lighting:SetAttribute("FogEnd", shared.Lighting.FogEnd) end
+
     shared.Lighting.FogStart = value and 0 or shared.Lighting:GetAttribute("FogStart")
     shared.Lighting.FogEnd = value and math.huge or shared.Lighting:GetAttribute("FogEnd")
+
     local fog = shared.Lighting:FindFirstChildOfClass("Atmosphere")
     if fog then
         if not fog:GetAttribute("Density") then fog:SetAttribute("Density", fog.Density) end
+
         fog.Density = value and 0 or fog:GetAttribute("Density")
     end
 end)
+
 shared.Connect:GiveSignal(shared.Lighting:GetPropertyChangedSignal("Brightness"):Connect(function()
     shared.Lighting.Brightness = Options.Brightness.Value
 end))
+
 shared.Connect:GiveSignal(shared.Lighting:GetPropertyChangedSignal("Ambient"):Connect(function()
     if Toggles.Fullbright.Value then
         shared.Lighting.Ambient = Color3.new(1, 1, 1)
     end
 end))
+
 shared.Connect:GiveSignal(shared.Lighting:GetPropertyChangedSignal("FogStart"):Connect(function()
     if Toggles.NoFog.Value then
         shared.Lighting.FogStart = 0
     end
 end))
+
 shared.Connect:GiveSignal(shared.Lighting:GetPropertyChangedSignal("FogEnd"):Connect(function()
     if Toggles.NoFog.Value then
         shared.Lighting.FogEnd = math.huge
     end
 end))
+
 Toggles.AntiLag:OnChanged(function(value)
     for _, object in pairs(workspace.CurrentRooms:GetDescendants()) do
         if object:IsA("BasePart") then
             if not object:GetAttribute("Material") then object:SetAttribute("Material", object.Material) end
             if not object:GetAttribute("Reflectance") then object:SetAttribute("Reflectance", object.Reflectance) end
+
             object.Material = value and Enum.Material.Plastic or object:GetAttribute("Material")
             object.Reflectance = value and 0 or object:GetAttribute("Reflectance")
         elseif object:IsA("Decal") then
             if not object:GetAttribute("Transparency") then object:SetAttribute("Transparency", object.Transparency) end
+
             if not table.find(Script.SlotsName, object.Name) then
                 object.Transparency = value and 1 or object:GetAttribute("Transparency")
             end
         end
     end
+
     workspace.Terrain.WaterReflectance = if value then 0 else 1
     workspace.Terrain.WaterTransparency = if value then 0 else 1
     workspace.Terrain.WaterWaveSize = if value then 0 else 0.05
     workspace.Terrain.WaterWaveSpeed = if value then 0 else 8
     shared.Lighting.GlobalShadows = not value
 end)
+
 --// Notifier \\--
 if Script.IsBackdoor then
     local clientRemote = Script.FloorReplicated.ClientRemote
     local haste_incoming_progress = nil
+
     shared.Connect:GiveSignal(clientRemote.Haste.Remote.OnClientEvent:Connect(function(value)
         if not value and Toggles.NotifyEntity.Value then
             haste_incoming_progress = Instance.new("Part", shared.Workspace); do
@@ -4367,127 +5212,160 @@ if Script.IsBackdoor then
                 haste_incoming_progress.Name = "_internal_mspaint_haste"
                 haste_incoming_progress.Transparency = 1
             end
+
             shared.Notify:Alert({
                 Title = "ENTITIES",
                 Description = "Haste đang đến tìm cần gạt khẩn cấp m!",
                 Time = haste_incoming_progress,
+
                 Warning = true
             })
+
             repeat task.wait() until not haste_incoming_progress or not Toggles.NotifyEntity.Value or not shared.Character:GetAttribute("Alive")
             if haste_incoming_progress then haste_incoming_progress:Destroy() end
         end
+        
         if value and haste_incoming_progress then
             haste_incoming_progress:Destroy()
         end
     end))
 end
+
 shared.Connect:GiveSignal(Script.RemotesFolder.HideMonster.OnClientEvent:Connect(function()
     if Script.IsBackdoor or Script.IsRooms or Script.IsRetro then return end
+
     local hideTime = Script.Functions.CalculateHideTime(Script.CurrentRoom) or math.huge
     local finalTime = tick() + math.round(hideTime)
+
     if Toggles.NotifyHideTime.Value and hideTime ~= math.huge then
         while shared.Character:GetAttribute("Hiding") and Script.Alive and not shared.Library.Unloaded and Toggles.NotifyHideTime.Value do
             local remainingTime = math.max(0, finalTime - tick())
+
             if wax.shared.ExecutorSupport["firesignal"] then
                 if Options.NotifyStyle.Value == "Doors" then
                     firesignal(Script.RemotesFolder.Caption.OnClientEvent, string.format("%.1f", remainingTime))
                 elseif Options.NotifyStyle.Value == "Linoria" then
                     Script.Functions.Captions(string.format("%.1f", remainingTime))
                 end
+
             else
                 Script.Functions.Captions(string.format("%.1f", remainingTime))
             end
+
             task.wait()
         end
     end
 end))
+
 Options.NotifyVolume:OnChanged(function(value)
     shared.NotifyVolume = value
 end)
+
 Options.NotifySide:OnChanged(function(value)
     shared.Library.NotifySide = value
 end)
+
 Options.NotifyStyle:OnChanged(function(value)
     shared.NotifyStyle = value
 end)
+
 Toggles.NoCutscenes:OnChanged(function(value)
     if Script.MainGame then
         local cutscenes = Script.MainGame:FindFirstChild("Cutscenes", true)
         if cutscenes then
             for _, cutscene in pairs(cutscenes:GetChildren()) do
                 if table.find(Script.CutsceneExclude, cutscene.Name) then continue end
+    
                 local defaultName = cutscene.Name:gsub("_", "")
                 cutscene.Name = value and "_" .. defaultName or defaultName
             end
         end
     end
+
     if Script.FloorReplicated then
         for _, cutscene in pairs(Script.FloorReplicated:GetChildren()) do
             if not cutscene:IsA("ModuleScript") or table.find(Script.CutsceneExclude, cutscene.Name) then continue end
+
             local defaultName = cutscene.Name:gsub("_", "")
             cutscene.Name = value and "_" .. defaultName or defaultName
         end
     end
 end)
+
 Toggles.TranslucentHidingSpot:OnChanged(function(value)
     if value and shared.Character:GetAttribute("Hiding") then
         for _, obj in pairs(workspace.CurrentRooms:GetDescendants()) do
             if not obj:IsA("ObjectValue") and obj.Name ~= "HiddenPlayer" then continue end
+
             if obj.Value == shared.Character then
                 task.spawn(function()
                     local affectedParts = {}
                     for _, v in pairs(obj.Parent:GetChildren()) do
                         if not v:IsA("BasePart") then continue end
+
                         v.Transparency = Options.HidingTransparency.Value
                         table.insert(affectedParts, v)
                     end
+
                     repeat task.wait()
                         for _, part in pairs(affectedParts) do
                             task.wait()
                             part.Transparency = Options.HidingTransparency.Value
                         end
                     until not shared.Character:GetAttribute("Hiding") or not Toggles.TranslucentHidingSpot.Value
+                    
                     for _, v in pairs(affectedParts) do
                         v.Transparency = 0
                     end
                 end)
+
                 break
             end
         end
     end
 end)
+
 --// Self \\--
 Toggles.NoGlitchEffect:OnChanged(function(value)
     if not Script.EntityModules then return end
     local module = Script.EntityModules:FindFirstChild("Glitch") or Script.EntityModules:FindFirstChild("_Glitch")
+
     if module then
         module.Name = if value then "_Glitch" else "Glitch"
     end
 end)
+
 Toggles.NoVoidEffect:OnChanged(function(value)
     if not Script.EntityModules then return end
     local module = Script.EntityModules:FindFirstChild("Void") or Script.EntityModules:FindFirstChild("_Void")
+
     if module then
         module.Name = if value then "_Void" else "Void"
     end
 end)
+
 Toggles.NoSpiderJumpscare:OnChanged(function(value)
     if not Script.MainGame then return end
     local module = Script.MainGame:FindFirstChild("SpiderJumpscare", true) or Script.MainGame:FindFirstChild("_SpiderJumpscare", true)
+
     if module then
         module.Name = if value then "_SpiderJumpscare" else "SpiderJumpscare"
     end
 end)
+
 Toggles.NoEntityJumpscare:OnChanged(function(value)
     if not Script.MainGame then return end
     local jumpscaresFolder = Script.MainGame:FindFirstChild("Jumpscares", true) or Script.MainGame:FindFirstChild("_Jumpscares", true)
+
     if jumpscaresFolder then
         jumpscaresFolder.Name = if value then "_Jumpscares" else "Jumpscares"
     end
 end)
+
 Toggles.ViewmodelOffset:OnChanged(function(value)
     if not value and shared.Character and shared.Character:FindFirstChildOfClass("Tool") and Script.MainGameSrc then
         local tool = shared.Character:FindFirstChildOfClass("Tool")
+
         if not tool:GetAttribute("ToolOffset") then return end
         Script.MainGameSrc.tooloffset = tool:GetAttribute("ToolOffset")
     end
@@ -4496,30 +5374,37 @@ end)() end,
     [19] = function()local wax,script,require=ImportGlobals(19)local ImportGlobals return (function(...)--// Linoria \\--
 local Toggles = shared.Toggles
 local Options = shared.Options
+
 --// Variables \\--
 local Script = shared.Script
 local Tabs = Script.Tabs
+
 ---// Main \\--
 local SniperGroupbox = Tabs.Main:AddLeftGroupbox("Sniper") do
     SniperGroupbox:AddToggle("ElevatorSniper", {
         Text = "Vô thang máy đã chọn",
         Default = false
     })
+
     SniperGroupbox:AddDropdown("ElevatorSniperTarget", {
         SpecialType = "Player",
         Multi = false,
+
         Text = "Người chơi"
     })
 end
+
 local OtherGroupbox = Tabs.Main:AddRightGroupbox("Other") do
     OtherGroupbox:AddToggle("Twerk", {
         Text = "Nhảy",
         Default = false
     })
+
     OtherGroupbox:AddToggle("LoopAchievements", {
         Text = "Hiệu ứng đổi danh hiệu",
         Default = false
     })
+
     OtherGroupbox:AddSlider("LoopAchievementsSpeed", {
         Text = "Tốc độ đổi",
         Default = 0.05,
@@ -4528,7 +5413,9 @@ local OtherGroupbox = Tabs.Main:AddRightGroupbox("Other") do
         Rounding = 2,
         Compact = true
     })
+
     OtherGroupbox:AddDivider()
+
     OtherGroupbox:AddButton("Create Retro Elevator", function()
         local data = {
             ["FriendsOnly"] = Script.CreateElevatorFrame.Settings.FriendsOnly:GetAttribute("Setting"),
@@ -4538,9 +5425,11 @@ local OtherGroupbox = Tabs.Main:AddRightGroupbox("Other") do
             },
             ["MaxPlayers"] = Script.CreateElevatorFrame.Settings.MaxPlayers.Toggle.Text
         }
+
         Script.CreateElevator:FireServer(data)
     end)
 end
+
 if wax.shared.ExecutorSupport["_SupportsFileSystem"] then
     local PresetGroupbox = Tabs.Main:AddLeftGroupbox("Presets") do
         PresetGroupbox:AddInput('Elevator_PresetName', { Text = 'Preset name' })
@@ -4553,39 +5442,48 @@ if wax.shared.ExecutorSupport["_SupportsFileSystem"] then
                     })
                     return
                 end
+    
                 local presetData = {
                     Floor = "Hotel",
                     MaxPlayers = 1,
                     Modifiers = {},
                     FriendsOnly = true
                 }
+    
                 for _, floor in pairs(Script.CreateElevatorFrame.Floors:GetChildren()) do
                     if floor:IsA("TextLabel") and floor.Visible then
                         presetData.Floor = floor.Name
                         break
                     end
                 end
+    
                 for _, modifier in pairs(Script.CreateElevatorFrame.Modifiers:GetChildren()) do
                     if modifier:GetAttribute("Enabled") then
                         table.insert(presetData.Modifiers, modifier.Name)    
                     end
                 end
+    
                 presetData.MaxPlayers = tonumber(Script.CreateElevatorFrame.Settings.MaxPlayers.Toggle.Text)
                 presetData.FriendsOnly = Script.CreateElevatorFrame.Settings.FriendsOnly:GetAttribute("Setting")
+    
                 Script.Functions.CreatePreset(Options.Elevator_PresetName.Value, presetData)
                 shared.Notify:Alert({
                     Description = 'Created elevator preset "' .. Options.Elevator_PresetName.Value .. '" with ' .. #presetData.Modifiers .. " modifiers"
                 })
+    
                 Script.Functions.LoadPresets()
                 Options.Elevator_PresetList:SetValues(Script.ElevatorPresets)
                 Options.Elevator_PresetList:SetValue(nil)
             end
         })
+    
         PresetGroupbox:AddDivider()
+    
         PresetGroupbox:AddDropdown('Elevator_PresetList', { Text = 'Preset list', Values = Script.ElevatorPresets, AllowNull = true })
         PresetGroupbox:AddButton('Load Preset', function()
             Script.Functions.LoadPreset(Options.Elevator_PresetList.Value)
         end)
+    
         PresetGroupbox:AddButton('Override Preset', function()
             local presetData = {
                 Floor = "Hotel",
@@ -4593,27 +5491,34 @@ if wax.shared.ExecutorSupport["_SupportsFileSystem"] then
                 Modifiers = {},
                 FriendsOnly = true
             }
+    
             for _, floor in pairs(Script.CreateElevatorFrame.Floors:GetChildren()) do
                 if floor:IsA("TextLabel") and floor.Visible then
                     presetData.Floor = floor.Name
                     break
                 end
             end
+    
             for _, modifier in pairs(Script.CreateElevatorFrame.Modifiers:GetChildren()) do
                 if modifier:GetAttribute("Enabled") then
                     table.insert(presetData.Modifiers, modifier.Name)    
                 end
             end
+    
             presetData.MaxPlayers = tonumber(Script.CreateElevatorFrame.Settings.MaxPlayers.Toggle.Text)
             presetData.FriendsOnly = Script.CreateElevatorFrame.Settings.FriendsOnly:GetAttribute("Setting")
+    
             shared.Notify:Alert({
                 Description = "Overrided preset: " .. Options.Elevator_PresetList.Value
             })
+    
             Script.Functions.CreatePreset(Options.Elevator_PresetList.Value, presetData)
+            
             Script.Functions.LoadPresets()
             Options.Elevator_PresetList:SetValues(Script.ElevatorPresets)
             Options.Elevator_PresetList:SetValue(nil)
         end)
+    
         PresetGroupbox:AddButton('Delete Preset', function()
             if not Script.PresetHelper.IsFile(Options.Elevator_PresetList.Value .. ".json") then
                 shared.Notify:Alert({
@@ -4621,39 +5526,49 @@ if wax.shared.ExecutorSupport["_SupportsFileSystem"] then
                 })
                 return
             end
+    
             local success, err = pcall(function()
                 Script.PresetHelper.DeleteFile(Options.Elevator_PresetList.Value .. ".json")
             end)
+    
             if not success then
                 shared.Notify:Alert({
                     Description = "Failed to delete preset: " .. Options.Elevator_PresetList.Value
                 })
                 return
             end
+    
             shared.Notify:Alert({
                 Description = "Deleted preset: " .. Options.Elevator_PresetList.Value
             })
+            
             Script.Functions.LoadPresets()
             Options.Elevator_PresetList:SetValues(Script.ElevatorPresets)
             Options.Elevator_PresetList:SetValue(nil)
         end)
+    
         PresetGroupbox:AddButton('Refresh Presets', function()
             Script.Functions.LoadPresets()
             Options.Elevator_PresetList:SetValues(Script.ElevatorPresets)
             Options.Elevator_PresetList:SetValue(nil)
         end)
+    
     end
 end
+
 --// Sniper \\--
 shared.Connect:GiveSignal(shared.RunService.RenderStepped:Connect(function()
     if Toggles.ElevatorSniper.Value and Options.ElevatorSniperTarget.Value then
         local targetCharacter = workspace:FindFirstChild(Options.ElevatorSniperTarget.Value)
         if not targetCharacter then return end
+
         local targetElevatorID = targetCharacter:GetAttribute("InGameElevator")
         local currentElevatorID = shared.Character:GetAttribute("InGameElevator")
         if currentElevatorID == targetElevatorID then return end
+
         if targetElevatorID ~= nil then    
             local targetElevator = Script.LobbyElevators:FindFirstChild("LobbyElevator-" .. targetElevatorID) 
+
             if not targetElevator then
                 for _, elevator in pairs(Script.LobbyElevators:GetChildren()) do
                     if elevator.Name:match(Options.ElevatorSniperTarget.Value) then
@@ -4661,6 +5576,7 @@ shared.Connect:GiveSignal(shared.RunService.RenderStepped:Connect(function()
                     end
                 end
             end
+
             if targetElevator then
                 Script.RemotesFolder.ElevatorJoin:FireServer(targetElevator)
             end
@@ -4669,12 +5585,14 @@ shared.Connect:GiveSignal(shared.RunService.RenderStepped:Connect(function()
         end
     end
 end))
+
 --// Other \\--
 Toggles.LoopAchievements:OnChanged(function(value)
     if value then
         Script.Functions.LoopAchievements()
     end
 end)
+
 Toggles.Twerk:OnChanged(function(value)
     shared.Twerk:Set(value)
 end)
@@ -4682,16 +5600,20 @@ end)() end,
     [21] = function()local wax,script,require=ImportGlobals(21)local ImportGlobals return (function(...)--// Linoria \\--
 local Toggles = shared.Toggles
 local Options = shared.Options
+
 --// Variables \\--
 local Script = shared.Script
 local Tabs = Script.Tabs
+
 Script.LastSpeed = if shared.Humanoid then shared.Humanoid.WalkSpeed else 16
+
 --// Main \\--
 local PlayerGroupBox = Tabs.Main:AddLeftGroupbox("Player") do
     PlayerGroupBox:AddToggle("SpeedHack", {
         Text = "Speed Hack",
         Default = false
     })
+
     PlayerGroupBox:AddSlider("WalkSpeed", {
         Text = "Walk Speed",
         Default = 16,
@@ -4700,33 +5622,41 @@ local PlayerGroupBox = Tabs.Main:AddLeftGroupbox("Player") do
         Rounding = 0,
         Compact = true
     })
+
     PlayerGroupBox:AddDivider()
+
     PlayerGroupBox:AddToggle("InfStamina", {
         Text = "Infinite Stamina",
         Default = false,
         Visible = wax.shared.ExecutorSupport["getrenv"]
     })
+
     PlayerGroupBox:AddToggle("InfFlashlight", {
         Text = "Infinite Flashlight",
         Default = false,
         Visible = wax.shared.ExecutorSupport["getrenv"]
     })
 end
+
 --// Player \\--
 Toggles.SpeedHack:OnChanged(function(value)
     if not shared.Humanoid then return end
+
     if value then
         Script.LastSpeed = shared.Humanoid.WalkSpeed
     end
+
     shared.Humanoid.WalkSpeed = if value then Options.WalkSpeed.Value else Script.LastSpeed
 end)
 end)() end,
     [22] = function()local wax,script,require=ImportGlobals(22)local ImportGlobals return (function(...)--// Linoria \\--
 local Toggles = shared.Toggles
 local Options = shared.Options
+
 --// Variables \\--
 local Script = shared.Script
 local Tabs = Script.Tabs
+
 --// Visuals \\--
 local ESPTabBox = Tabs.Visuals:AddLeftTabbox() do
     local ESPTab = ESPTabBox:AddTab("ESP") do
@@ -4736,24 +5666,28 @@ local ESPTabBox = Tabs.Visuals:AddLeftTabbox() do
         }):AddColorPicker("DoorEspColor", {
             Default = Color3.new(0, 1, 1),
         })
+
         ESPTab:AddToggle("EntityESP", {
             Text = "Entity",
             Default = false,
         }):AddColorPicker("EntityEspColor", {
             Default = Color3.new(1, 0, 0),
         })
+
         ESPTab:AddToggle("BatteryESP", {
             Text = "Battery",
             Default = false,
         }):AddColorPicker("BatteryEspColor", {
             Default = Color3.new(1, 1, 0),
         })
+
         ESPTab:AddToggle("LockerESP", {
             Text = "Locker",
             Default = false,
         }):AddColorPicker("LockerEspColor", {
             Default = Color3.new(0, 0.5, 0),
         })
+
         ESPTab:AddToggle("TableESP", {
             Text = "Table",
             Default = false,
@@ -4761,16 +5695,20 @@ local ESPTabBox = Tabs.Visuals:AddLeftTabbox() do
             Default = Color3.new(0, 1, 0),
         })
     end
+
     local ESPSettingsTab = ESPTabBox:AddTab("Settings") do
         ESPSettingsTab:AddToggle("ESPRainbow", {
             Text = "Rainbow ESP",
             Default = false,
         })
+
         ESPSettingsTab:AddDivider()
+
         ESPSettingsTab:AddToggle("ESPHighlight", {
             Text = "Enable Highlight",
             Default = true
         })
+
         ESPSettingsTab:AddSlider("ESPFillTransparency", {
             Text = "Fill Transparency",
             Default = 0.75,
@@ -4778,6 +5716,7 @@ local ESPTabBox = Tabs.Visuals:AddLeftTabbox() do
             Max = 1,
             Rounding = 2
         })
+    
         ESPSettingsTab:AddSlider("ESPOutlineTransparency", {
             Text = "Outline Transparency",
             Default = 0,
@@ -4785,11 +5724,14 @@ local ESPTabBox = Tabs.Visuals:AddLeftTabbox() do
             Max = 1,
             Rounding = 2
         })
+
         ESPSettingsTab:AddDivider()
+
         ESPSettingsTab:AddToggle("ESPDistance", {
             Text = "Show Distance",
             Default = true
         })
+    
         ESPSettingsTab:AddSlider("ESPTextSize", {
             Text = "Text Size",
             Default = 22,
@@ -4797,23 +5739,30 @@ local ESPTabBox = Tabs.Visuals:AddLeftTabbox() do
             Max = 26,
             Rounding = 0
         })
+    
         ESPSettingsTab:AddDivider()
+
         ESPSettingsTab:AddToggle("ESPTracer", {
             Text = "Enable Tracer",
             Default = false
         })
+
         ESPSettingsTab:AddDropdown("ESPTracerStart", {
             AllowNull = false,
             Values = {"Bottom", "Center", "Top", "Mouse"},
             Default = "Bottom",
             Multi = false,
+
             Text = "Tracer Start Position"
         })
+
         ESPSettingsTab:AddDivider()
+
         ESPSettingsTab:AddToggle("ESPArrow", {
             Text = "Enable Arrow",
             Default = false
         })
+
         ESPSettingsTab:AddSlider("ESPArrowCenterOffset", {
             Text = "Arrow Center Offset",
             Default = 300,
@@ -4823,20 +5772,24 @@ local ESPTabBox = Tabs.Visuals:AddLeftTabbox() do
         })
     end
 end
+
 local AmbientGroupBox = Tabs.Visuals:AddLeftGroupbox("Ambient") do
     AmbientGroupBox:AddToggle("Fullbright", {
         Text = "Fullbright",
         Default = false,
     })
+
     AmbientGroupBox:AddToggle("NoFlashlightShadow", {
         Text = "No Flashlight Shadow",
         Default = false,
     })
+
     AmbientGroupBox:AddToggle("NoBlur", {
         Text = "No Blur",
         Default = false,
     })
 end
+
 local NotifyTabBox = Tabs.Visuals:AddRightTabbox() do
     local NotifyTab = NotifyTabBox:AddTab("Notifier") do
         NotifyTab:AddToggle("NotifyEntity", {
@@ -4844,23 +5797,29 @@ local NotifyTabBox = Tabs.Visuals:AddRightTabbox() do
             Default = false,
         })
     end
+
     local NotifySettingsTab = NotifyTabBox:AddTab("Settings") do
         NotifySettingsTab:AddToggle("NotifyChat", {
             Text = "Notify Chat",
             Default = false,
         })
+
         NotifySettingsTab:AddInput("NotifyEntityMessage", {
             Default = "has spawned!",
             Numeric = false,
             Finished = true,
             ClearTextOnFocus = false,
+
             Text = "Entity Notifier Message"
         })
+
         NotifySettingsTab:AddDivider()
+        
         NotifySettingsTab:AddToggle("NotifySound", {
             Text = "Play Alert Sound",
             Default = true,
         })
+
         NotifySettingsTab:AddSlider("NotifyVolume", {
             Text = "Notify Volume",
             Default = 2,
@@ -4868,21 +5827,25 @@ local NotifyTabBox = Tabs.Visuals:AddRightTabbox() do
             Max = 5,
             Rounding = 1
         })
+
         NotifySettingsTab:AddDropdown("NotifySide", {
             AllowNull = false,
             Values = {"Left", "Right"},
             Default = "Right",
             Multi = false,
+
             Text = "Notification Side"
         })
     end
 end
+
 --// ESP \\--
 Toggles.DoorESP:OnChanged(function(value)
     if value then
         for _, room in pairs(workspace.rooms:GetChildren()) do
             Script.Functions.DoorESP(room)
         end
+
         for _, room in pairs(workspace.next:GetChildren()) do
             Script.Functions.DoorESP(room)
         end
@@ -4890,11 +5853,13 @@ Toggles.DoorESP:OnChanged(function(value)
         for _, connection in pairs(Script.FeatureConnections.Door) do
             connection:Disconnect()
         end
+
         for _, esp in pairs(Script.ESPTable.Door) do
             esp.Destroy()
         end
     end
 end)
+
 Options.DoorEspColor:OnChanged(function(value)
     for _, esp in pairs(Script.ESPTable.Door) do
         esp.Update({
@@ -4904,6 +5869,7 @@ Options.DoorEspColor:OnChanged(function(value)
         })
     end
 end)
+
 Options.EntityEspColor:OnChanged(function(value)
     for _, esp in pairs(Script.ESPTable.Entity) do
         esp.Update({
@@ -4913,12 +5879,14 @@ Options.EntityEspColor:OnChanged(function(value)
         })
     end
 end)
+
 Toggles.BatteryESP:OnChanged(function(value)
     if value then
         for _, battery in pairs(workspace.rooms:GetDescendants()) do
             if battery.Name ~= "battery" then continue end
             Script.Functions.BatteryESP(battery)
         end
+
         for _, battery in pairs(workspace.next:GetDescendants()) do
             if battery.Name ~= "battery" then continue end
             Script.Functions.BatteryESP(battery)
@@ -4929,12 +5897,14 @@ Toggles.BatteryESP:OnChanged(function(value)
         end
     end
 end)
+
 Toggles.LockerESP:OnChanged(function(value)
     if value then
         for _, hideLocker in pairs(workspace.rooms:GetDescendants()) do
             if hideLocker.Name ~= "hidelocker" then continue end
             Script.Functions.LockerESP(hideLocker)
         end
+
         for _, hideLocker in pairs(workspace.next:GetDescendants()) do
             if hideLocker.Name ~= "hidelocker" then continue end
             Script.Functions.LockerESP(hideLocker)
@@ -4945,6 +5915,7 @@ Toggles.LockerESP:OnChanged(function(value)
         end
     end
 end)
+
 Options.LockerEspColor:OnChanged(function(value)
     for _, esp in pairs(Script.ESPTable.Locker) do
         esp.Update({
@@ -4954,12 +5925,14 @@ Options.LockerEspColor:OnChanged(function(value)
         })
     end
 end)
+
 Toggles.TableESP:OnChanged(function(value)
     if value then
         for _, hideTable in pairs(workspace.rooms:GetDescendants()) do
             if hideTable.Name ~= "hidetable" then continue end
             Script.Functions.TableESP(hideTable)
         end
+
         for _, hideTable in pairs(workspace.next:GetDescendants()) do
             if hideTable.Name ~= "hidetable" then continue end
             Script.Functions.TableESP(hideTable)
@@ -4970,6 +5943,7 @@ Toggles.TableESP:OnChanged(function(value)
         end
     end
 end)
+
 Options.TableEspColor:OnChanged(function(value)
     for _, esp in pairs(Script.ESPTable.Table) do
         esp.Update({
@@ -4979,10 +5953,12 @@ Options.TableEspColor:OnChanged(function(value)
         })
     end
 end)
+
 --// ESP Settings \\--
 Toggles.ESPRainbow:OnChanged(function(value)
     shared.ESPLibrary.Rainbow.Set(value)
 end)
+
 Toggles.ESPHighlight:OnChanged(function(value)
     for _, espType in pairs(Script.ESPTable) do
         for _, esp in pairs(espType) do
@@ -4990,6 +5966,7 @@ Toggles.ESPHighlight:OnChanged(function(value)
         end
     end
 end)
+
 Options.ESPFillTransparency:OnChanged(function(value)
     for _, espType in pairs(Script.ESPTable) do
         for _, esp in pairs(espType) do
@@ -4997,6 +5974,7 @@ Options.ESPFillTransparency:OnChanged(function(value)
         end
     end
 end)
+
 Options.ESPOutlineTransparency:OnChanged(function(value)
     for _, espType in pairs(Script.ESPTable) do
         for _, esp in pairs(espType) do
@@ -5004,9 +5982,11 @@ Options.ESPOutlineTransparency:OnChanged(function(value)
         end
     end
 end)
+
 Toggles.ESPDistance:OnChanged(function(value)
     shared.ESPLibrary.Distance.Set(value)
 end)
+
 Options.ESPTextSize:OnChanged(function(value)
     for _, espType in pairs(Script.ESPTable) do
         for _, esp in pairs(espType) do
@@ -5014,9 +5994,11 @@ Options.ESPTextSize:OnChanged(function(value)
         end
     end
 end)
+
 Toggles.ESPTracer:OnChanged(function(value)
     shared.ESPLibrary.Tracers.Set(value)
 end)
+
 Options.ESPTracerStart:OnChanged(function(value)
     for _, espType in pairs(Script.ESPTable) do
         for _, esp in pairs(espType) do
@@ -5024,9 +6006,11 @@ Options.ESPTracerStart:OnChanged(function(value)
         end
     end
 end)
+
 Toggles.ESPArrow:OnChanged(function(value)
     shared.ESPLibrary.Arrows.Set(value)
 end)
+
 Options.ESPArrowCenterOffset:OnChanged(function(value)
     for _, espType in pairs(Script.ESPTable) do
         for _, esp in pairs(espType) do
@@ -5034,6 +6018,7 @@ Options.ESPArrowCenterOffset:OnChanged(function(value)
         end
     end
 end)
+
 --// Ambient \\--
 Toggles.Fullbright:OnChanged(function(value)
     if value then
@@ -5042,8 +6027,10 @@ Toggles.Fullbright:OnChanged(function(value)
         shared.Lighting.Ambient = Script.CurrentAmbient
     end
 end)
+
 Toggles.NoFlashlightShadow:OnChanged(function(value)
     local slender = Script.MainUI and Script.MainUI:FindFirstChild("slender")
+
     if slender then
         slender.ImageTransparency = if value then 1 else 0
         for _, bar in pairs(slender:GetChildren()) do
@@ -5051,16 +6038,20 @@ Toggles.NoFlashlightShadow:OnChanged(function(value)
         end
     end
 end)
+
 Toggles.NoBlur:OnChanged(function(value)
     local blur = shared.Lighting:FindFirstChildOfClass("BlurEffect")
+
     if blur then
         blur.Enabled = not value
     end
 end)
+
 --// Notifier \\--
 Options.NotifyVolume:OnChanged(function(value)
     shared.NotifyVolume = value
 end)
+
 Options.NotifySide:OnChanged(function(value)
     shared.Library.NotifySide = value
 end)
@@ -5068,8 +6059,10 @@ end)() end,
     [26] = function()local wax,script,require=ImportGlobals(26)local ImportGlobals return (function(...)--// Linoria \\--
 local Toggles = shared.Toggles
 local Options = shared.Options
+
 --// Variables \\--
 local Script = shared.Script
+
 --// Functions \\--
 function Script.Functions.PromptCondition(prompt)
     local modelAncestor = prompt:FindFirstAncestorOfClass("Model")
@@ -5080,42 +6073,52 @@ function Script.Functions.PromptCondition(prompt)
             and not (table.find(Script.PromptTable.Excluded.ModelAncestor, modelAncestor and modelAncestor.Name or ""))
         )
 end
+
 function Script.Functions.ItemCondition(item)
     return item:IsA("Model") and (item:GetAttribute("Pickup") or item:GetAttribute("PropType")) and not item:GetAttribute("FuseID")
 end
+
 function Script.Functions.VoiceCondition(sound: Sound)
     return sound:IsA("Sound") and table.find(Script.Voicelines, sound.SoundId)
 end
+
 function Script.Functions.ChildCheck(child)
     -- optimization (ty lsplash)
     if (child.Name == "AnimSaves" or child.Name == "Keyframe" or child:IsA("KeyframeSequence")) then
         child:Destroy()
         return
     end
+    
     -- skip
     if not (child:IsA("ProximityPrompt") or child:IsA("Model") or child:IsA("BasePart") or child:IsA("Decal") or child:IsA("Sound")) then
         return
     end
+            
     if Script.Functions.PromptCondition(child) then
         task.defer(function()
             if not child:GetAttribute("Hold") then child:SetAttribute("Hold", child.HoldDuration) end
             if not child:GetAttribute("Distance") then child:SetAttribute("Distance", child.MaxActivationDistance) end
             if not child:GetAttribute("Clip") then child:SetAttribute("Clip", child.RequiresLineOfSight) end
         end)
+
         task.defer(function()
             child.MaxActivationDistance = child:GetAttribute("Distance") * Options.PromptReachMultiplier.Value
+    
             if Toggles.InstaInteract.Value then
                 child.HoldDuration = 0
             end
+    
             if Toggles.PromptClip.Value then
                 child.RequiresLineOfSight = false
             end
         end)
+
         table.insert(Script.PromptTable.GamePrompts, child)
     elseif child:IsA("Model") then
         if child.Name == "ElevatorBreaker" and Toggles.AutoBreakerSolver.Value then
             Script.Functions.SolveBreakerBox(child)
         end
+
         if Script.IsMines and Toggles.TheMinesAnticheatBypass.Value and child.Name == "Ladder" then
             Script.Functions.ESP({
                 Type = "None",
@@ -5124,23 +6127,28 @@ function Script.Functions.ChildCheck(child)
                 Color = Color3.new(0, 0, 1)
             })
         end
+
         if (child.Name == "GiggleCeiling" and Toggles.AntiGiggle.Value) or (child.Name == "Snare" and Toggles.AntiSnare.Value) then
             local hitbox = child:WaitForChild("Hitbox", 5)
             if hitbox then hitbox.CanTouch = false end
         elseif (child:GetAttribute("LoadModule") == "DupeRoom" or child:GetAttribute("LoadModule") == "SpaceSideroom") and Toggles.AntiDupe.Value then
             Script.Functions.DisableDupe(child, true, child:GetAttribute("LoadModule") == "SpaceSideroom")
         end
+
         if (Script.IsHotel or Script.IsFools) and (child.Name == "ChandelierObstruction" or child.Name == "Seek_Arm") and Toggles.AntiSeekObstructions.Value then
             for i,v in pairs(child:GetDescendants()) do
                 if v:IsA("BasePart") then v.CanTouch = false end
             end
         end
+
         if Script.IsFools then
             if Toggles.FigureGodmodeFools.Value and child.Name == "FigureRagdoll" then
                 for i, v in pairs(child:GetDescendants()) do
                     if v:IsA("BasePart") then
                         if not v:GetAttribute("Clip") then v:SetAttribute("Clip", v.CanCollide) end
+
                         v.CanTouch = false
+
                         -- woudn't want figure to just dip into the ground
                         task.spawn(function()
                             repeat task.wait() until (Script.LatestRoom.Value == 50 or Script.LatestRoom.Value == 100)
@@ -5163,12 +6171,15 @@ function Script.Functions.ChildCheck(child)
                 child.CanTouch = false
             end
         end
+
         if Toggles.AntiLag.Value then
             if not child:GetAttribute("Material") then child:SetAttribute("Material", child.Material) end
             if not child:GetAttribute("Reflectance") then child:SetAttribute("Reflectance", child.Reflectance) end
+    
             child.Material = Enum.Material.Plastic
             child.Reflectance = 0
         end
+
         if Script.IsMines then
             if Toggles.AntiBridgeFall.Value and child.Name == "PlayerBarrier" and child.Size.Y == 2.75 and (child.Rotation.X == 0 or child.Rotation.X == 180) then
                 local clone = child:Clone()
@@ -5178,6 +6189,7 @@ function Script.Functions.ChildCheck(child)
                 clone.Size = Vector3.new(clone.Size.X, clone.Size.Y, 11)
                 clone.Transparency = 0
                 clone.Parent = child.Parent
+                
                 table.insert(Script.Temp.Bridges, clone)
             elseif Toggles.AntiPipeGap.Value and child.Name == "KillBrick" and child.Parent.Name == "Assets" then
                 local clone = child:Clone()
@@ -5187,6 +6199,7 @@ function Script.Functions.ChildCheck(child)
                 clone.Size = Vector3.new(9, 4, clone.Size.Z)
                 clone.Transparency = 0
                 clone.Parent = child.Parent
+                
                 table.insert(Script.Temp.PipeBridges, clone)
             elseif Toggles.AntiSeekFlood.Value and child.Name == "SeekFloodline" then
                 child.CanCollide = true
@@ -5194,6 +6207,7 @@ function Script.Functions.ChildCheck(child)
         end
     elseif child:IsA("Decal") and Toggles.AntiLag.Value then
         if not child:GetAttribute("Transparency") then child:SetAttribute("Transparency", child.Transparency) end
+
         if not table.find(Script.SlotsName, child.Name) then
             child.Transparency = 1
         end
@@ -5201,14 +6215,17 @@ function Script.Functions.ChildCheck(child)
         child:Destroy()
     end
 end
+
 function Script.Functions.IsPromptInRange(prompt: ProximityPrompt)
     return Script.Functions.DistanceFromCharacter(prompt:FindFirstAncestorWhichIsA("BasePart") or prompt:FindFirstAncestorWhichIsA("Model") or prompt.Parent) <= prompt.MaxActivationDistance
 end
+
 function Script.Functions.GetNearestAssetWithCondition(condition: () -> ())
     local nearestDistance = math.huge
     local nearest
     for _, room in pairs(workspace.CurrentRooms:GetChildren()) do
         if not room:FindFirstChild("Assets") then continue end
+
         for _, asset in pairs(room.Assets:GetChildren()) do
             if condition(asset) and Script.Functions.DistanceFromCharacter(asset) < nearestDistance then
                 nearestDistance = Script.Functions.DistanceFromCharacter(asset)
@@ -5216,58 +6233,75 @@ function Script.Functions.GetNearestAssetWithCondition(condition: () -> ())
             end
         end
     end
+
     return nearest
 end
+
 function Script.Functions.GetAllPromptsWithCondition(condition)
     assert(typeof(condition) == "function", "Expected a function as condition argument but got " .. typeof(condition))
+    
     local validPrompts = {}
     for _, prompt in pairs(Script.PromptTable.GamePrompts) do
         if not prompt or not prompt:IsDescendantOf(workspace) then continue end
+
         local success, returnData = pcall(function()
             return condition(prompt)
         end)
+
         assert(success, "An error has occured while running condition function.\n" .. tostring(returnData))
         assert(typeof(returnData) == "boolean", "Expected condition function to return a boolean")
+        
         if returnData then
             table.insert(validPrompts, prompt)
         end
     end
+
     return validPrompts
 end
+
 function Script.Functions.GetNearestPromptWithCondition(condition)
     local prompts = Script.Functions.GetAllPromptsWithCondition(condition)
+
     local nearestPrompt = nil
     local oldHighestDistance = math.huge
     for _, prompt in pairs(prompts) do
         local promptParent = prompt:FindFirstAncestorWhichIsA("BasePart") or prompt:FindFirstAncestorWhichIsA("Model")
+
         if promptParent and Script.Functions.DistanceFromCharacter(promptParent) < oldHighestDistance then
             nearestPrompt = prompt
             oldHighestDistance = Script.Functions.DistanceFromCharacter(promptParent)
         end
     end
+
     return nearestPrompt
 end
 end)() end,
     [27] = function()local wax,script,require=ImportGlobals(27)local ImportGlobals return (function(...)--// Linoria \\--
 local Toggles = shared.Toggles
 local Options = shared.Options
+
 --// Variables \\--
 local Script = shared.Script
+
 --// Functions \\--
 function Script.Functions.GenerateAutoWardrobeExclusions(targetWardrobePrompt: ProximityPrompt)
     if not workspace.CurrentRooms:FindFirstChild(Script.CurrentRoom) then return {targetWardrobePrompt.Parent} end
     local ignore = { targetWardrobePrompt.Parent }
+
     if workspace.CurrentRooms[Script.CurrentRoom]:FindFirstChild("Assets") then
         for _, asset in pairs(workspace.CurrentRooms[Script.CurrentRoom].Assets:GetChildren()) do
             if asset.Name == "Pillar" then table.insert(ignore, asset) end
         end
     end
+
     return ignore
 end
+
 function Script.Functions.AutoWardrobe(child, index: number | nil)
     -- Entity check
     if not child then return end
     if not child:IsDescendantOf(workspace) then return end
+
     -- Toggles check
     if not Toggles.AutoWardrobeNotif or not Toggles.AutoWardrobe then return end
     if not Toggles.AutoWardrobe.Value or not Script.Alive then
@@ -5275,18 +6309,23 @@ function Script.Functions.AutoWardrobe(child, index: number | nil)
         if index then
             table.remove(Script.Temp.AutoWardrobeEntities, index)
         end
+
         return
     end
+
     local NotifPrefix = "Dương Api";
     task.spawn(function() 
         shared.Notify:Log({
             Title = NotifPrefix,
             Description = "Đứng trước tủ đi còn lại để anh lo:))",
+    
             LinoriaMessage = "[" .. NotifPrefix .. "] Đứng trước tủ đi còn lại để anh lo:))"
         }, Toggles.AutoWardrobeNotif.Value)
     end)
+
     local entityIndex = #Script.Temp.AutoWardrobeEntities + 1
     Script.Temp.AutoWardrobeEntities[entityIndex] = child
+
     -- Get wardrobe
     local distance = Script.EntityTable.AutoWardrobe.Distance[child.Name].Distance;
     local targetWardrobeChecker = function(prompt)
@@ -5295,6 +6334,7 @@ function Script.Functions.AutoWardrobe(child, index: number | nil)
         if prompt.Parent:FindFirstChild("Main") and prompt.Parent.Main:FindFirstChild("HideEntityOnSpot") then
             if prompt.Parent.Main.HideEntityOnSpot.Whispers.Playing == true then return false end -- Hide
         end
+
         return prompt.Name == "HidePrompt" and (prompt.Parent:GetAttribute("LoadModule") == "Wardrobe" or prompt.Parent:GetAttribute("LoadModule") == "Bed" or prompt.Parent.Name == "Rooms_Locker") and not prompt.Parent.HiddenPlayer.Value and (Script.Functions.DistanceFromCharacter(prompt.Parent) < prompt.MaxActivationDistance * Options.PromptReachMultiplier.Value)
     end
     local targetWardrobePrompt = Script.Functions.GetNearestPromptWithCondition(targetWardrobeChecker)
@@ -5303,36 +6343,45 @@ function Script.Functions.AutoWardrobe(child, index: number | nil)
             repeat task.wait()
                 targetWardrobePrompt = Script.Functions.GetNearestPromptWithCondition(targetWardrobeChecker)
             until targetWardrobePrompt ~= nil or shared.Character:GetAttribute("Hiding") or (not Toggles.AutoWardrobe.Value or not Script.Alive or not child or not child:IsDescendantOf(workspace)) or shared.Library.Unloaded
+
             if (not Toggles.AutoWardrobe.Value or not Script.Alive or not child or not child:IsDescendantOf(workspace)) or shared.Library.Unloaded then
                 return
             end
         end
     end
     getPrompt()
+
     -- Hide Checks
     if shared.Character:GetAttribute("Hiding") then return end
     if not Toggles.AutoWardrobe.Value or not Script.Alive or shared.Library.Unloaded then return end  
+
     -- Hide
     task.spawn(function() 
         shared.Notify:Log({
             Title = NotifPrefix,
             Description = "Đang bắt đầu làm việc...",
+    
             LinoriaMessage = "[" .. NotifPrefix .. "] Đang bắt đầu làm việc..."
         }, Toggles.AutoWardrobeNotif.Value)
     end)
+    
     local exclusion = Script.Functions.GenerateAutoWardrobeExclusions(targetWardrobePrompt)
     local atempts, maxAtempts = 0, 60
     local isSafeCheck = function(addMoreDist)
         local isSafe = true
         for _, entity in pairs(Script.Temp.AutoWardrobeEntities) do
             if isSafe == false then break end
+
             local distanceEntity = Script.EntityTable.AutoWardrobe.Distance[child.Name].Distance;
+
             local entityDeleted = (entity == nil or entity.Parent == nil)
             local inView = Script.Functions.IsInViewOfPlayer(entity.PrimaryPart, distanceEntity + (addMoreDist == true and 15 or 0), exclusion)
             local isClose = Script.Functions.DistanceFromCharacter(entity:GetPivot().Position) < distanceEntity + (addMoreDist == true and 15 or 0)
+
             isSafe = entityDeleted == true and true or (inView == false and isClose == false);
             if isSafe == false then break end
         end
+
         return isSafe
     end
     local waitForSafeExit; waitForSafeExit = function()
@@ -5343,12 +6392,14 @@ function Script.Functions.AutoWardrobe(child, index: number | nil)
             task.spawn(function()
                 repeat task.wait()
                     if not Script.Alive or not child or not child:IsDescendantOf(workspace) then break end
+
                     if shared.Character:GetAttribute("Hiding") and Script.Functions.IsInViewOfPlayer(child.PrimaryPart, distance, exclusion) then
                         didPlayerSeeEntity = true
                         break
                     end
                 until false == true
             end)
+
             repeat task.wait(0.15)
                 local isSafe = isSafeCheck()
                 if didPlayerSeeEntity == true and isSafe == true then
@@ -5356,9 +6407,11 @@ function Script.Functions.AutoWardrobe(child, index: number | nil)
                         shared.Notify:Log({
                             Title = NotifPrefix,
                             Description = "Đang ra khỏi tủ, quái đã đi ra xa.",
+                            
                             LinoriaMessage = "[" .. NotifPrefix .. "] Đang ra khỏi tủ, quái đã đi ra xa."
                         }, Toggles.AutoWardrobeNotif.Value)
                     end)
+
                     break
                 else
                     if isSafe == true and not child:IsDescendantOf(workspace) then 
@@ -5366,37 +6419,47 @@ function Script.Functions.AutoWardrobe(child, index: number | nil)
                             shared.Notify:Log({
                                 Title = NotifPrefix,
                                 Description = "Đang ra khỏi tủ, quái đã bị xóa.",
+                                
                                 LinoriaMessage = "[" .. NotifPrefix .. "] Đang ra khỏi tủ, quái đã bị xóa."
                             }, Toggles.AutoWardrobeNotif.Value)
                         end)
+
                         break 
                     end          
                 end
+
                 if not Script.Alive then  
                     if Toggles.AutoWardrobeNotif.Value then shared.Notify:Log("[" .. NotifPrefix .. "] Tự dừng lại vì người dùng quá đẹp trai.") end             
                     task.spawn(function() 
                         shared.Notify:Log({
                             Title = NotifPrefix,
                             Description = "Tự dừng lại vì người dùng quá đẹp trai.",
+                            
                             LinoriaMessage = "[" .. NotifPrefix .. "] Tự dừng lại vì người dùng quá đẹp trai."
                         }, Toggles.AutoWardrobeNotif.Value)
                     end)
+
                     break 
                 end                             
             until false == true          
         end
+
         return true
     end
     local hide = function()
         if (shared.Character:GetAttribute("Hiding") and shared.RootPart.Anchored) then return false end
+
         getPrompt()
         repeat task.wait()
             atempts += 1
+
             shared.forcefireproximityprompt(targetWardrobePrompt)
         until atempts > maxAtempts or not Script.Alive or (shared.Character:GetAttribute("Hiding") and shared.RootPart.Anchored)
+
         if atempts > maxAtempts or not Script.Alive then return false end
         return true
     end
+
     if child.Name == "AmbushMoving" then
         local LastPos = child:GetPivot().Position
         local IsMoving = false
@@ -5407,32 +6470,40 @@ function Script.Functions.AutoWardrobe(child, index: number | nil)
                 IsMoving = diff.Magnitude > 0
             until not child or not child:IsDescendantOf(workspace)
         end)
+
         repeat task.wait()
             task.spawn(function() 
                 shared.Notify:Log({
                     Title = NotifPrefix,
                     Description = "Đợi ambush đến gàn để hệ thống làm việc:)",
+    
                     LinoriaMessage = "[" .. NotifPrefix .. "] Đợi ambush đến gàn để hệ thống làm việc:)",
                 }, Toggles.AutoWardrobeNotif.Value)
             end)
+
             repeat task.wait() until (IsMoving == true and Script.Functions.DistanceFromCharacter(child:GetPivot().Position) <= distance) or (not child or not child:IsDescendantOf(workspace))
             if not child or not child:IsDescendantOf(workspace) then break end
+            
             local success = hide()
             if success then
                 task.spawn(function() 
                     shared.Notify:Log({
                         Title = NotifPrefix,
                         Description = "Bình tĩnh đợi nó mất, nhanh tay rồi hẹo đéo ai cứu:))",
+    
                         LinoriaMessage = "[" .. NotifPrefix .. "] Bình tĩnh đợi nó mất, nhanh tay rồi hẹo đéo ai cứu:))",
                     }, Toggles.AutoWardrobeNotif.Value)
                 end)
+
                 repeat task.wait() until (IsMoving == false and Script.Functions.DistanceFromCharacter(child:GetPivot().Position) >= distance) or (not child or not child:IsDescendantOf(workspace));
                 if not child or not child:IsDescendantOf(workspace) then break end
+
                 Script.RemotesFolder.CamLock:FireServer()
             end
         until (not child or not child:IsDescendantOf(workspace)) or not Script.Alive
     else
         repeat task.wait() until isSafeCheck(true, true) == false
+
         repeat
             local success = hide()
             if success then
@@ -5440,14 +6511,17 @@ function Script.Functions.AutoWardrobe(child, index: number | nil)
                 repeat task.wait() until finished == true        
                 Script.RemotesFolder.CamLock:FireServer()
             end
+            
             task.wait()
         until isSafeCheck()
     end
+
     table.remove(Script.Temp.AutoWardrobeEntities, entityIndex)
     task.spawn(function() 
         shared.Notify:Log({
             Title = NotifPrefix,
             Description = "Hoàn thành.",
+    
             LinoriaMessage = "[" .. NotifPrefix .. "] Hoàn thành.",
         }, Toggles.AutoWardrobeNotif.Value)
     end)
@@ -5456,11 +6530,14 @@ end)() end,
     [28] = function()local wax,script,require=ImportGlobals(28)local ImportGlobals return (function(...)--// Linoria \\--
 local Toggles = shared.Toggles
 local Options = shared.Options
+
 --// Variables \\--
 local Script = shared.Script
+
 --// Functions \\--
 function Script.Functions.EnableBreaker(breaker, value)
     breaker:SetAttribute("Enabled", value)
+
     if value then
         breaker:FindFirstChild("PrismaticConstraint", true).TargetPosition = -0.2
         breaker.Light.Material = Enum.Material.Neon
@@ -5471,24 +6548,31 @@ function Script.Functions.EnableBreaker(breaker, value)
         breaker.Light.Material = Enum.Material.Glass
         breaker.Sound.Pitch = 1.2
     end
+
     breaker.Sound:Play()
 end
+
 function Script.Functions.SolveBreakerBox(breakerBox)
     if not Options.AutoBreakerSolverMethod then return end
     if not breakerBox then return end
+
     local code = breakerBox:FindFirstChild("Code", true)
     local correct = breakerBox:FindFirstChild("Correct", true)
+
     repeat task.wait() until code.Text ~= "..." or not breakerBox:IsDescendantOf(workspace)
     if not breakerBox:IsDescendantOf(workspace) then return end
+
     shared.Notify:Alert({
         Title = "Auto Breaker Solver",
         Description = "Đang giải mã hộp cầu chì...",
         Reason = ""
     })
+
     if Options.AutoBreakerSolverMethod.Value == "Legit" then
         Script.Temp.UsedBreakers = {}
         if shared.Connections["Reset"] then shared.Connections["Reset"]:Disconnect() end
         if shared.Connections["Code"] then shared.Connections["Code"]:Disconnect() end
+
         local breakers = {}
         for _, breaker in pairs(breakerBox:GetChildren()) do
             if breaker.Name == "BreakerSwitch" then
@@ -5496,11 +6580,14 @@ function Script.Functions.SolveBreakerBox(breakerBox)
                 breakers[id] = breaker
             end
         end
+
         if code:FindFirstChild("Frame") then
             Script.Functions.AutoBreaker(code, breakers)
+
             shared.Connections["Reset"] = correct:GetPropertyChangedSignal("Playing"):Connect(function()
                 if correct.Playing then table.clear(Script.Temp.UsedBreakers) end
             end)
+
             shared.Connections["Code"] = code:GetPropertyChangedSignal("Text"):Connect(function()
                 task.delay(0.1, Script.Functions.AutoBreaker, code, breakers)
             end)
@@ -5509,25 +6596,31 @@ function Script.Functions.SolveBreakerBox(breakerBox)
         repeat task.wait(0.1)
             Script.RemotesFolder.EBF:FireServer()
         until not workspace.CurrentRooms["100"]:FindFirstChild("DoorToBreakDown")
+
         shared.Notify:Alert({
             Title = "Dương Api",
             Description = "Giải mã hộp cầu chì thành công.",
         })
     end
 end
+
 function Script.Functions.AutoBreaker(code, breakers)
     local newCode = code.Text
     if not tonumber(newCode) and newCode ~= "??" then return end
+
     local isEnabled = code.Frame.BackgroundTransparency == 0
     local breaker = breakers[newCode]
+
     if newCode == "??" and #Script.Temp.UsedBreakers == 9 then
         for i = 1, 10 do
             local id = string.format("%02d", i)
+
             if not table.find(Script.Temp.UsedBreakers, id) then
                 breaker = breakers[id]
             end
         end
     end
+
     if breaker then
         table.insert(Script.Temp.UsedBreakers, newCode)
         if breaker:GetAttribute("Enabled") ~= isEnabled then
@@ -5539,39 +6632,49 @@ end)() end,
     [29] = function()local wax,script,require=ImportGlobals(29)local ImportGlobals return (function(...)--// Linoria \\--
 local Toggles = shared.Toggles
 local Options = shared.Options
+
 --// Variables \\--
 local Script = shared.Script
+
 local GodmodeRaycastParams = RaycastParams.new()
 GodmodeRaycastParams.FilterType = Enum.RaycastFilterType.Exclude
+
 --// Functions \\--
 function Script.Functions.CameraCheck(child)
     if child:IsA("BasePart") and child.Name == "Guidance" and Toggles.GuidingLightESP.Value then
         Script.Functions.GuidingLightEsp(child)
     end
 end
+
 function Script.Functions.SetupCameraConnection(camera)
     for _, child in pairs(camera:GetChildren()) do
         task.spawn(Script.Functions.CameraCheck, child)
     end
+
     shared.Connections["CameraChildAdded"] = camera.ChildAdded:Connect(function(child)
         task.spawn(Script.Functions.CameraCheck, child)
     end)
 end
+
 function Script.Functions.SetupRoomConnection(room)
     if Options.NotifyEntity.Value["Halt Room"] and room:GetAttribute("RawName") == "HaltHallway" then
         shared.Notify:Alert({
             Title = "ENTITIES",
             Description = "Halt sẽ xuất hiện ở phòng kế tiếp!",
             Image = Script.EntityTable.NotifyReason["HaltRoom"].Image,
+
             Warning = true
         })
     end
+
     for _, child in pairs(room:GetDescendants()) do
         if Toggles.DeleteSeek.Value and shared.RootPart and child.Name == "Collision" then
             task.spawn(Script.Functions.DeleteSeek, child)
         end
+
         task.spawn(Script.Functions.ChildCheck, child)
     end
+
     shared.Connections[room.Name .. "DescendantAdded"] = room.DescendantAdded:Connect(function(child)
         if tonumber(room.Name) == Script.CurrentRoom then
             if Script.Functions.ObjectiveESP(child) then
@@ -5584,99 +6687,125 @@ function Script.Functions.SetupRoomConnection(room)
                 return
             end
         end
+
         if Toggles.DeleteSeek.Value and shared.RootPart and child.Name == "Collision" then
             task.spawn(Script.Functions.DeleteSeek, child)
         end
+
         task.delay(0.1, Script.Functions.ChildCheck, child)
     end)
 end
+
 function Script.Functions.SetupDropConnection(drop)
     if Toggles.ItemESP.Value then
         Script.Functions.ItemESP(drop, true)
     end
+
     task.spawn(function()
         local prompt = drop:WaitForChild("ModulePrompt", 3)
+
         if prompt then
             table.insert(Script.PromptTable.GamePrompts, prompt)
         end
     end)
 end
+
 function Script.Functions.SetupCharacterConnection(newCharacter)
     shared.Character = newCharacter
     if shared.Character then
         Script.NoCharRaycastParam.FilterDescendantsInstances = {shared.Character}
+
         if Toggles.EnableJump.Value then
             shared.Character:SetAttribute("CanJump", true)
         end
+
         for _, oldConnection in pairs(Script.FeatureConnections.Character) do
             oldConnection:Disconnect()
         end
+
         Script.FeatureConnections.Character["ChildAdded"] = shared.Character.ChildAdded:Connect(function(child)
             if not (child:IsA("Tool") and child.Name:match("LibraryHintPaper")) then return end
+
             task.wait(0.1)
             local code = Script.Functions.GetPadlockCode(child)
             local output, count = string.gsub(code, "_", "x")
             local padlock = workspace:FindFirstChild("Padlock", true)
+
             if Toggles.AutoLibrarySolver.Value and tonumber(code) and Script.Functions.DistanceFromCharacter(padlock) <= Options.AutoLibraryDistance.Value then
                 Script.RemotesFolder.PL:FireServer(code)
             end
+
             if Toggles.NotifyPadlock.Value and count < 5 then
                 shared.Notify:Alert({
                     Title = "Dương Api",
                     Description = string.format("Mã thư viện: %s", output),
                     Reason = if tonumber(code) then "Giải mã thư viện" else "Bạn vẫn còn thiếu một số quyển vở",
                 })
+
                 if Toggles.NotifyChat.Value and count == 0 then
                     shared.RBXGeneral:SendAsync(string.format("Library Code: %s", output))
                 end
             end
         end)
+
         Script.FeatureConnections.Character["CanJump"] = shared.Character:GetAttributeChangedSignal("CanJump"):Connect(function()
             if not Toggles.EnableJump then return end
             if not Toggles.EnableJump.Value then return end
+
             if not shared.Character:GetAttribute("CanJump") then
                 shared.Character:SetAttribute("CanJump", true)
             end
         end)
+
         Script.FeatureConnections.Character["Crouching"] = shared.Character:GetAttributeChangedSignal("Crouching"):Connect(function()
             if not Toggles.AntiHearing then return end
             if not Toggles.AntiHearing.Value then return end
+
             if not shared.Character:GetAttribute("Crouching") then
                 Script.RemotesFolder.Crouch:FireServer(true)
             end
         end)
+
         Script.FeatureConnections.Character["Hiding"] = shared.Character:GetAttributeChangedSignal("Hiding"):Connect(function()
             if not shared.Character:GetAttribute("Hiding") then return end
             if not Toggles.TranslucentHidingSpot or not Options.HidingTransparency then return end
             if not Toggles.TranslucentHidingSpot.Value then return end
+
             for _, obj in pairs(workspace.CurrentRooms:GetDescendants()) do
                 if not obj:IsA("ObjectValue") and obj.Name ~= "HiddenPlayer" then continue end
+
                 if obj.Value == shared.Character then
                     task.spawn(function()
                         local affectedParts = {}
                         for _, part in pairs(obj.Parent:GetChildren()) do
                             if not part:IsA("BasePart") or part.Name:match("Collision") then continue end
+
                             part.Transparency = Options.HidingTransparency.Value
                             table.insert(affectedParts, part)
                         end
+
                         repeat task.wait()
                             for _, part in pairs(affectedParts) do
                                 task.wait()
                                 part.Transparency = Options.HidingTransparency.Value
                             end
                         until not shared.Character:GetAttribute("Hiding") or not Toggles.TranslucentHidingSpot.Value
+                        
                         for _, part in pairs(affectedParts) do
                             part.Transparency = 0
                         end
                     end)
+
                     break
                 end
             end
         end)
+
         Script.FeatureConnections.Character["Oxygen"] = shared.Character:GetAttributeChangedSignal("Oxygen"):Connect(function()
             if not Toggles.NotifyOxygen then return end
             if not Toggles.NotifyOxygen.Value then return end
             if shared.Character:GetAttribute("Oxygen") >= 100 then return end
+
             if wax.shared.ExecutorSupport["firesignal"] then 
                 if Options.CaptionStyle.Value == "Doors" then
                     firesignal(Script.RemotesFolder.Caption.OnClientEvent, string.format("Oxygen: %.1f", shared.Character:GetAttribute("Oxygen")))
@@ -5688,26 +6817,33 @@ function Script.Functions.SetupCharacterConnection(newCharacter)
             end
         end)
     end
+
     shared.Humanoid = shared.Character:WaitForChild("Humanoid")
     if shared.Humanoid then
         for _, oldConnection in pairs(Script.FeatureConnections.Humanoid) do
             oldConnection:Disconnect()
         end
+
         shared.Twerk:Setup()
         if Toggles.Twerk.Value then
             shared.Twerk:Enable()
         end
+
         Script.FeatureConnections.Humanoid["Move"] = shared.Humanoid:GetPropertyChangedSignal("MoveDirection"):Connect(function()
             if not Toggles.FastClosetExit then return end
+
             if Toggles.FastClosetExit.Value and shared.Humanoid.MoveDirection.Magnitude > 0 and shared.Character:GetAttribute("Hiding") then
                 Script.RemotesFolder.CamLock:FireServer()
             end
         end)
+
         Script.FeatureConnections.Humanoid["Jump"] = shared.Humanoid:GetPropertyChangedSignal("JumpHeight"):Connect(function()
             if not Script.IsFools and Toggles.EnableJump.Value then
                 shared.Humanoid.JumpHeight = Options.JumpBoost.Value
             end
+
             if not Toggles.SpeedBypass then return end
+
             if not Toggles.SpeedBypass.Value and Script.LatestRoom.Value < 100 and not Script.FakeRevive.Enabled then
                 if shared.Humanoid.JumpHeight > 0 then
                     Script.LastSpeed = Options.WalkSpeed.Value
@@ -5719,52 +6855,64 @@ function Script.Functions.SetupCharacterConnection(newCharacter)
                 end
             end
         end)
+
         Script.FeatureConnections.Humanoid["Died"] = shared.Humanoid.Died:Connect(function()
             if Script.CollisionClone then
                 Script.CollisionClone:Destroy()
             end
         end)
+
         if Script.IsFools then
             Script.Tracks.ItemHoldTrack = shared.Humanoid:LoadAnimation(Script.Anims.HoldAnim)
             Script.Tracks.ItemThrowTrack = shared.Humanoid:LoadAnimation(Script.Anims.ThrowAnim)
         end
     end
+
     shared.RootPart = shared.Character:WaitForChild("HumanoidRootPart")
     if shared.RootPart then
         if Toggles.NoAccel.Value then
             Script.Temp.NoAccelValue = shared.RootPart.CustomPhysicalProperties.Density
+            
             local existingProperties = shared.RootPart.CustomPhysicalProperties
             shared.RootPart.CustomPhysicalProperties = PhysicalProperties.new(100, existingProperties.Friction, existingProperties.Elasticity, existingProperties.FrictionWeight, existingProperties.ElasticityWeight)
         end
+
         Script.FeatureConnections.RootPart["RootChildAdded"] = shared.RootPart.ChildAdded:Connect(function(child)
             if shared.CheckToggle("NoVoiceActing", true) and Script.Functions.VoiceCondition(child) then
                 child:Destroy() 
             end
         end)
+
         Script.FeatureConnections.RootPart["Touched"] = shared.RootPart.Touched:Connect(function(touchedPart)
             if tonumber(touchedPart.Name) and touchedPart.Name == touchedPart.Parent.Name then
                 shared.LocalPlayer:SetAttribute("CurrentRoom", tonumber(touchedPart.Name))
             end
         end)
     end
+
     Script.Collision = shared.Character:WaitForChild("Collision")
     if Script.Collision then
         if Toggles.UpsideDown.Value then
             Script.Collision.Rotation = Vector3.new(Script.Collision.Rotation.X, Script.Collision.Rotation.Y, -90)
         end
+
         Script.FeatureConnections.Player["CollisionOffsetGodmodeCanCollide"] = Script.Collision:GetPropertyChangedSignal("CanCollide"):Connect(function()
             if not (Toggles.CollisionOffsetGodmode.Value and (shared.Library.IsMobile or Options.CollisionOffsetGodmodeKey:GetState())) then return end
             Script.Collision.CollisionGroup = "PlayerCrouching"
             Script.Collision.CollisionCrouch.CollisionGroup = "PlayerCrouching"
+
             Script.Collision.CanCollide = false
             Script.Collision.CollisionCrouch.CanCollide = false
         end)
+
         Script.FeatureConnections.Player["CollisionOffsetGodmodeCrouchCanCollide"] = Script.Collision.CollisionCrouch:GetPropertyChangedSignal("CanCollide"):Connect(function()
             if not (Toggles.CollisionOffsetGodmode.Value and (shared.Library.IsMobile or Options.CollisionOffsetGodmodeKey:GetState())) then return end
             Script.Collision.CollisionGroup = "PlayerCrouching"
             Script.Collision.CollisionCrouch.CollisionGroup = "PlayerCrouching"
+
             Script.Collision.CanCollide = false
             Script.Collision.CollisionCrouch.CanCollide = false
+
             local crouchAnimID = shared.Character.Animations.Crouch.AnimationId
             for _, track in pairs(shared.Humanoid:GetPlayingAnimationTracks()) do
                 if track.Animation.AnimationId == crouchAnimID then
@@ -5773,8 +6921,10 @@ function Script.Functions.SetupCharacterConnection(newCharacter)
                 end
             end
         end)
+        
         Script.Collision.CanQuery = false
         Script.Collision.CollisionCrouch.CanQuery = false
+
         Script.CollisionClone = Script.Collision:Clone()
         Script.CollisionClone.CanCollide = false
         Script.CollisionClone.Massless = true
@@ -5783,69 +6933,88 @@ function Script.Functions.SetupCharacterConnection(newCharacter)
         if Script.CollisionClone:FindFirstChild("CollisionCrouch") then
             Script.CollisionClone.CollisionCrouch:Destroy()
         end
+
         Script.CollisionClone.Parent = shared.Character
     end
+
     if Script.IsMines then
         if shared.Character then
             shared.Connections["AnticheatBypassTheMines"] = shared.Character:GetAttributeChangedSignal("Climbing"):Connect(function()
                 if not Toggles.TheMinesAnticheatBypass then return end
                 if not Toggles.TheMinesAnticheatBypass.Value then return end
                 if not shared.Character:GetAttribute("Climbing") then return end
+
                 task.wait(1)
                 shared.Character:SetAttribute("Climbing", false)
+
                 Script.Bypassed = true
+
                 for _, ladderEsp in pairs(Script.ESPTable.None) do
                     ladderEsp.Destroy()
                 end
+
                 Options.WalkSpeed:SetMax(75)
                 Options.FlySpeed:SetMax(75)
+
                 shared.Notify:Alert({
                     Title = "Anticheat Bypass",
                     Description = "Bypassed the anticheat successfully!",
                     Reason = "This will only last until the next cutscene!",
+
                     LinoriaMessage = "Bypassed the anticheat successfully! This will only last until the next cutscene",
+
                     Time = 7
                 })
                 if workspace:FindFirstChild("_internal_mspaint_acbypassprogress") then workspace:FindFirstChild("_internal_mspaint_acbypassprogress"):Destroy() end
             end)
         end
+
         if shared.Humanoid then
             shared.Humanoid.MaxSlopeAngle = Options.MaxSlopeAngle.Value
         end
     end
 end
+
 function Script.Functions.SetupOtherPlayerConnection(player: Player)
     if player.Character then
         task.spawn(Script.Functions.SetupOtherCharacterConnection, player.Character)
     end
+
     shared.Connect:GiveSignal(player.CharacterAdded:Connect(function(newCharacter)
         if Toggles.PlayerESP and Toggles.PlayerESP.Value then
             task.delay(1, Script.Functions.PlayerESP, newCharacter)
         end
+
         task.delay(1, Script.Functions.SetupOtherCharacterConnection, newCharacter)
     end))
 end
+
 function Script.Functions.SetupOtherCharacterConnection(character: Model)
     shared.Connections[character.Name .. "ChildAdded"] = character.ChildAdded:Connect(function(child)
         if not (child:IsA("Tool") and child.Name:match("LibraryHintPaper")) then return end
+
         task.wait(0.1)
         local code = Script.Functions.GetPadlockCode(child)
         local output, count = string.gsub(code, "_", "x")
         local padlock = workspace:FindFirstChild("Padlock", true)
+
         if Toggles.AutoLibrarySolver.Value and tonumber(code) and Script.Functions.DistanceFromCharacter(padlock) <= Options.AutoLibraryDistance.Value then
             Script.RemotesFolder.PL:FireServer(code)
         end
+
         if Toggles.NotifyPadlock.Value and count < 5 then
             shared.Notify:Alert({
                 Title = "Dương Api",
                 Description = string.format("Mã thư viện: %s", output),
                 Reason = if tonumber(code) then "Giải mã khóa" else "Bạn vẫn còn thiếu một số vở",
             })
+
             if Toggles.NotifyChat.Value and count == 0 then
                 shared.RBXGeneral:SendAsync(string.format("Mã thư viện: %s", output))
             end
         end
     end)
+
     local otherRootPart = character:WaitForChild("HumanoidRootPart")
     if otherRootPart then
         shared.Connections[character.Name .. "RootChildAdded"] = otherRootPart.ChildAdded:Connect(function(child)
@@ -5855,14 +7024,17 @@ function Script.Functions.SetupOtherCharacterConnection(character: Model)
         end)
     end
 end
+
 end)() end,
     [30] = function()local wax,script,require=ImportGlobals(30)local ImportGlobals return (function(...)--// Linoria \\--
 local Toggles = shared.Toggles
 local Options = shared.Options
+
 --// Variables \\--
 local Script = shared.Script
 local ESPLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/deividcomsono/MS-ESP/refs/heads/main/source.lua"))()
 shared.ESPLibrary = ESPLibrary
+
 type ESP = {
     Color: Color3,
     IsEntity: boolean,
@@ -5873,8 +7045,10 @@ type ESP = {
     TextParent: Instance,
     Type: string
 }
+
 function Script.Functions.ESP(args: ESP)
     if not args.Object then return Script.Functions.Warn("ESP Object is nil") end
+
     local ESPManager = {
         Object = args.Object,
         Text = args.Text or "No Text",
@@ -5885,73 +7059,92 @@ function Script.Functions.ESP(args: ESP)
         IsDoubleDoor = args.IsDoubleDoor or false,
         Type = args.Type or "None",
         OnDestroy = args.OnDestroy or nil,
+
         Invisible = false,
         Humanoid = nil
     }
+
     if ESPManager.IsEntity and ESPManager.Object.PrimaryPart then
         if ESPManager.Object.PrimaryPart.Transparency == 1 then
             ESPManager.Invisible = true
             ESPManager.Object.PrimaryPart.Transparency = 0.99
         end
+
         local humanoid = ESPManager.Object:FindFirstChildOfClass("Humanoid")
         if not humanoid then humanoid = Instance.new("Humanoid", ESPManager.Object) end
         ESPManager.Humanoid = humanoid
     end
+
     local ESPInstance = ESPLibrary.ESP.Highlight({
         Name = ESPManager.Text,
         Model = ESPManager.Object,
         MaxDistance = ESPManager.MaxDistance,
         StudsOffset = ESPManager.Offset,
+
         FillColor = ESPManager.Color,
         OutlineColor = ESPManager.Color,
         TextColor = ESPManager.Color,
         TextSize = Options.ESPTextSize.Value or 16,
+
         FillTransparency = Options.ESPFillTransparency.Value,
         OutlineTransparency = Options.ESPOutlineTransparency.Value,
+
         Tracer = {
             Enabled = true,
             From = Options.ESPTracerStart.Value,
             Color = ESPManager.Color
         },
+        
         Arrow = {
             Enabled = true,
             CenterOffset = Options.ESPArrowCenterOffset.Value,
             Color = ESPManager.Color
         },
+
         OnDestroy = ESPManager.OnDestroy or function()
             if ESPManager.Object.PrimaryPart and ESPManager.Invisible then ESPManager.Object.PrimaryPart.Transparency = 1 end
             if ESPManager.Humanoid then ESPManager.Humanoid:Destroy() end
         end
     })
+
     table.insert(Script.ESPTable[args.Type], ESPInstance)
+
     return ESPInstance
 end
+
 function Script.Functions.DoorESP(room)
     local door = room:WaitForChild("Door", 5)
+
     if door then
         local doorNumber = tonumber(room.Name) + 1
         if Script.IsMines then
             doorNumber += 100
         end
+
         local opened = door:GetAttribute("Opened")
         local locked = room:GetAttribute("RequiresKey")
+
         local doorState = if opened then "[mở]" elseif locked then "[Khóa]" else ""
         local doorIdx = Script.Functions.RandomString()
+
         local doorEsp = Script.Functions.ESP({
             Type = "Door",
             Object = door:WaitForChild("Door"),
             Text = string.format("Cửa %s %s", doorNumber, doorState),
             Color = Options.DoorEspColor.Value,
+
             OnDestroy = function()
                 if Script.FeatureConnections.Door[doorIdx] then Script.FeatureConnections.Door[doorIdx]:Disconnect() end
             end
         })
+
         Script.FeatureConnections.Door[doorIdx] = door:GetAttributeChangedSignal("Mở"):Connect(function()
             if doorEsp then doorEsp.SetText(string.format("Cửa %s [Mở]", doorNumber)) end
             if Script.FeatureConnections.Door[doorIdx] then Script.FeatureConnections.Door[doorIdx]:Disconnect() end
         end)
     end
 end 
+
 function Script.Functions.ObjectiveESP(child)
     -- Backdoor
     if child.Name == "TimerLever" then
@@ -6022,6 +7215,7 @@ function Script.Functions.ObjectiveESP(child)
         })
     elseif child.Name == "MinesAnchor" then
         local sign = child:WaitForChild("Sign", 5)
+
         if sign and sign:FindFirstChild("TextLabel") then
             Script.Functions.ESP({
                 Type = "Objective",
@@ -6033,17 +7227,21 @@ function Script.Functions.ObjectiveESP(child)
     elseif child.Name == "WaterPump" then
         local wheel = child:WaitForChild("Wheel", 5)
         local onFrame = child:FindFirstChild("OnFrame", true)
+
         if wheel and (onFrame and onFrame.Visible) then
             local pumpIdx = Script.Functions.RandomString()
+
             local pumpEsp = Script.Functions.ESP({
                 Type = "Objective",
                 Object = wheel,
                 Text = "Máy bơm nước",
                 Color = Options.ObjectiveEspColor.Value,
+
                 OnDestroy = function()
                     if Script.FeatureConnections.Pump[pumpIdx] then Script.FeatureConnections.Pump[pumpIdx]:Disconnect() end
                 end
             })
+
             Script.FeatureConnections.Pump[pumpIdx] = onFrame:GetPropertyChangedSignal("Visible"):Connect(function()
                 if pumpEsp then pumpEsp.Destroy() end
             end)
@@ -6051,8 +7249,10 @@ function Script.Functions.ObjectiveESP(child)
     else 
         return false
     end
+
     return true
 end
+
 function Script.Functions.EntityESP(entity)
     Script.Functions.ESP({
         Type = "Entity",
@@ -6062,8 +7262,10 @@ function Script.Functions.EntityESP(entity)
         IsEntity = entity.Name ~= "JeffTheKiller",
     })
 end
+
 function Script.Functions.SideEntityESP(entity)
     if entity.Name == "Snare" and not entity:FindFirstChild("Hitbox") then return end
+
     Script.Functions.ESP({
         Type = "SideEntity",
         Object = entity,
@@ -6072,6 +7274,7 @@ function Script.Functions.SideEntityESP(entity)
         Color = Options.EntityEspColor.Value,
     })
 end
+
 function Script.Functions.ItemESP(item, dropped)
     Script.Functions.ESP({
         Type = dropped and "DroppedItem" or "Item",
@@ -6080,10 +7283,12 @@ function Script.Functions.ItemESP(item, dropped)
         Color = Options.ItemEspColor.Value
     })
 end
+
 function Script.Functions.ChestESP(chest)
     local text = chest.Name:gsub("Box", ""):gsub("_Vine", ""):gsub("_Small", ""):gsub("Locked", "")
     local locked = chest:GetAttribute("Locked")
     local state = if locked then "[Khóa]" else ""
+
     Script.Functions.ESP({
         Type = "Chest",
         Object = chest,
@@ -6091,8 +7296,10 @@ function Script.Functions.ChestESP(chest)
         Color = Options.ChestEspColor.Value
     })
 end
+
 function Script.Functions.PlayerESP(character: Model)
     if not (character and character.PrimaryPart and character:FindFirstChild("Humanoid") and character.Humanoid.Health > 0) then return end
+
     local playerEsp = Script.Functions.ESP({
         Type = "Player",
         Object = character,
@@ -6100,6 +7307,7 @@ function Script.Functions.PlayerESP(character: Model)
         TextParent = character.PrimaryPart,
         Color = Options.PlayerEspColor.Value
     })
+
     Script.FeatureConnections.Player[character.Name] = character.Humanoid.HealthChanged:Connect(function(newHealth)
         if newHealth > 0 then
             playerEsp.SetText(string.format("%s [%.1f]", character.Name, newHealth))
@@ -6109,6 +7317,7 @@ function Script.Functions.PlayerESP(character: Model)
         end
     end)
 end
+
 function Script.Functions.HidingSpotESP(spot)
     Script.Functions.ESP({
         Type = "HidingSpot",
@@ -6117,6 +7326,7 @@ function Script.Functions.HidingSpotESP(spot)
         Color = Options.HidingSpotEspColor.Value
     })
 end
+
 function Script.Functions.GoldESP(gold)
     Script.Functions.ESP({
         Type = "Gold",
@@ -6125,21 +7335,26 @@ function Script.Functions.GoldESP(gold)
         Color = Options.GoldEspColor.Value
     })
 end
+
 function Script.Functions.GuidingLightEsp(guidance)
     local part = guidance:Clone()
     part.Anchored = true
     part.Size = Vector3.new(3, 3, 3)
     part.Transparency = 0.5
     part.Name = "_Guidance"
+
     part:ClearAllChildren()
     part.Parent = shared.Workspace
+
     Script.Temp.Guidance[guidance] = part
+
     local guidanceEsp = Script.Functions.ESP({
         Type = "Guiding",
         Object = part,
         Text = "Guidance",
         Color = Options.GuidingLightEspColor.Value
     })
+
     guidance.AncestryChanged:Connect(function()
         if not guidance:IsDescendantOf(workspace) then
             if Script.Temp.Guidance[guidance] then Script.Temp.Guidance[guidance] = nil end
@@ -6152,8 +7367,10 @@ end)() end,
     [31] = function()local wax,script,require=ImportGlobals(31)local ImportGlobals return (function(...)--// Linoria \\--
 local Toggles = shared.Toggles
 local Options = shared.Options
+
 --// Variables \\--
 local Script = shared.Script
+
 --// Functions \\--
 function Script.Functions.CalculateHideTime(room: number)
     for _, range in ipairs(Script.HideTimeValues) do
@@ -6161,28 +7378,36 @@ function Script.Functions.CalculateHideTime(room: number)
             return math.round(range.a * (room - range.b) + range.c)
         end
     end    
+
     return nil
 end
+
 function Script.Functions.GetShortName(entityName: string)
     if Script.EntityTable.ShortNames[entityName] then
         return Script.EntityTable.ShortNames[entityName]
     end
+
     for suffix, fix in pairs(Script.SuffixPrefixes) do
         entityName = entityName:gsub(suffix, fix)
     end
+
     return entityName
 end
+
 function Script.Functions.DisableDupe(dupeRoom, value, isSpaceRoom)
     if isSpaceRoom then
         local collision = dupeRoom:WaitForChild("Collision", 5)
+        
         if collision then
             collision.CanCollide = value
             collision.CanTouch = not value
         end
     else
         local doorFake = dupeRoom:WaitForChild("DoorFake", 5)
+        
         if doorFake then
             doorFake:WaitForChild("Hidden", 5).CanTouch = not value
+    
             local lock = doorFake:WaitForChild("Lock", 5)
             if lock and lock:FindFirstChild("UnlockPrompt") then
                 lock.UnlockPrompt.Enabled = not value
@@ -6190,17 +7415,21 @@ function Script.Functions.DisableDupe(dupeRoom, value, isSpaceRoom)
         end
     end
 end
+
 function Script.Functions.DeleteSeek(collision: BasePart)
     if not shared.RootPart then return end
+
     task.spawn(function()
         local attemps = 0
         repeat task.wait() attemps += 1 until collision.Parent or attemps > 200
+        
         if collision:IsDescendantOf(workspace) and (collision.Parent and collision.Parent.Name == "TriggerEventCollision") then
             shared.Notify:Alert({
                 Title = "Dương Api",
                 Description = "Đang xóa seek, bình tĩnh :)...",
                 Reason = "",
             })
+
             task.delay(4, function()
                 if collision:IsDescendantOf(workspace) then
                     shared.Notify:Alert({
@@ -6210,9 +7439,11 @@ function Script.Functions.DeleteSeek(collision: BasePart)
                     })
                 end
             end)
+            
             if shared.firetouch then
                 shared.RootPart.Anchored = true
                 task.delay(0.25, function() shared.RootPart.Anchored = false end)
+
                 repeat
                     if collision:IsDescendantOf(workspace) then shared.firetouch(collision, shared.RootPart, 1) end
                     task.wait()
@@ -6225,6 +7456,7 @@ function Script.Functions.DeleteSeek(collision: BasePart)
                 repeat task.wait() until not collision:IsDescendantOf(workspace) or not Toggles.DeleteSeek.Value
                 shared.RootPart.Anchored = false
             end
+            
             if not collision:IsDescendantOf(workspace) then
                 shared.Notify:Log({
                     Title = "Dương Api",
@@ -6234,8 +7466,10 @@ function Script.Functions.DeleteSeek(collision: BasePart)
         end
     end)
 end
+
 function Script.Functions.AvoidEntity(value: boolean, oldNoclip: boolean)
     if not shared.RootPart or not Script.Collision then return end
+
     local lastCFrame = shared.RootPart.CFrame
     task.wait()
     if value then
@@ -6254,6 +7488,7 @@ end)() end,
     [32] = function()local wax,script,require=ImportGlobals(32)local ImportGlobals return (function(...)--// Linoria \\--
 local Toggles = shared.Toggles
 local Options = shared.Options
+
 --// Variables \\--
 local Script = shared.Script
 type tPathfind = {
@@ -6263,17 +7498,20 @@ type tPathfind = {
     fake: table,
     destroyed: boolean -- if the pathfind was destroyed for the Teleport
 }
+
 type tGroupTrack = {
     nodes: table,
     hasStart: boolean,
     hasEnd: boolean,
 }
+
 --@Internal nodes sorted by @GetNodes or @Pathfind
 type tSortedNodes = {
     real: table,
     fake: table,
     room: number,
 }
+
 local function tGroupTrackNew(startNode: Part | nil): tGroupTrack
     local create: tGroupTrack = {
         nodes = startNode and {startNode} or {},
@@ -6282,6 +7520,7 @@ local function tGroupTrackNew(startNode: Part | nil): tGroupTrack
     }
     return create
 end
+
 --@Internal funtion
 local function changeNodeColor(node: Model, color: Color3): Model
     if color == nil then
@@ -6297,12 +7536,14 @@ local function changeNodeColor(node: Model, color: Color3): Model
     node.Size = Vector3.new(0.7, 0.7, 0.7)
     return node
 end
+
 --@Internal function
 --@Return #boolean. True if the pathfind algorithm was ran.
 local function HasAlreadyPathfind(nodesFolder: Folder): boolean
     local hasPathfind = nodesFolder:GetAttribute("_mspaint_nodes_pathfind")
     return hasPathfind
 end
+
 --@Internal function
 local function HasNodesToPathfind(room: Model)
     local roomNumber = tonumber(room.Name)
@@ -6313,6 +7554,7 @@ local function HasNodesToPathfind(room: Model)
     Script.Functions.Minecart.debug("[HasNodesToPathfind]: " .. tostring(result) .. " - " .. room.Name)
     return result
 end
+
 --@Internal funtion
 local function sortNodes(nodes: table, reversed: boolean) -- Sort nodes by their number
     table.sort(nodes, function(a, b)
@@ -6325,12 +7567,14 @@ local function sortNodes(nodes: table, reversed: boolean) -- Sort nodes by their
     end)
     return nodes
 end
+
 --@Internal function
 --@Return #table with a sorted array of real and fake nodes and the room number. 
 --@Return #nil if there's no Nodes to be processed
 local function PathfindGetNodes(room: Model): tSortedNodes | nil
     Script.Functions.Minecart.debug("[GetNodes] Starting getting nodes for: " .. room.Name)
     if not HasNodesToPathfind(room) then return end
+
     local Nodes = {
         real = {},
         fake = {}
@@ -6340,27 +7584,34 @@ local function PathfindGetNodes(room: Model): tSortedNodes | nil
         Script.Functions.Minecart.debug("[GetNodes] No node has been found for the room: " .. room.Name)
         return
     end
+
     if not HasAlreadyPathfind(nodeArray) then 
         Script.Functions.Minecart.debug("[GetNodes] Pathfind not initialized for room: " .. room.Name)
         Script.Functions.Minecart.Pathfind(room, true)
         return 
     end
+
     Script.Functions.Minecart.debug("[GetNodes] Get real & fake nodes for room: " .. room.Name, " - nodes:" .. tostring(#nodeArray:GetChildren()))
+
     for _, node: Part in ipairs(nodeArray:GetChildren()) do
         --check for real nodes
+        
         local realNumber = node:GetAttribute("_mspaint_real_node")
         if realNumber then table.insert(Nodes.real, node) continue end
         --check for fake nodes
         local fakeNumber = node:GetAttribute("_mspaint_fake_node")
         if fakeNumber then table.insert(Nodes.fake, node) end
     end
+
     --If there's no nodes, return the empty table
     if #Nodes.real <= 0 and #Nodes.fake <= 0 then 
         Script.Functions.Minecart.debug("[GetNodes] No node has been mapped yet for room: " .. room.Name)
         return
     end
+
     local sortedReal = sortNodes(Nodes.real)
     local sortedFake = sortNodes(Nodes.fake)
+
     local nodesList = {
         real = sortedReal,
         fake = sortedFake,
@@ -6369,6 +7620,7 @@ local function PathfindGetNodes(room: Model): tSortedNodes | nil
     Script.Functions.Minecart.debug("[GetNodes] Successfully sent sorted nodes in room: " .. room.Name) 
     return nodesList
 end
+
 --@Internal function
 --@Return nil. __Set the node attribute.__ Can only be called after the __@Pathfind function is completed.__
 local function PathfindSetNodes(nodes: table, nameAttribute: string)
@@ -6377,6 +7629,7 @@ local function PathfindSetNodes(nodes: table, nameAttribute: string)
         node:SetAttribute(nameAttribute, i)
     end
 end
+
 local WhitelistConfig = {
     [45] = {firstKeep = 3, lastKeep = 2},
     [46] = {firstKeep = 2, lastKeep = 2},
@@ -6384,13 +7637,18 @@ local WhitelistConfig = {
     [48] = {firstKeep = 2, lastKeep = 2},
     [49] = {firstKeep = 2, lastKeep = 4},
 }
+
 --@Internal function
 local function NodeDestroy(nodesList: tSortedNodes)
     if not nodesList then return end
+
     print("[NodeDestroy] Attempting to destroy nodes in room: " .. tostring(nodesList.roomNumber))
+
     local roomConfig = WhitelistConfig[nodesList.roomNumber]
+
     local _firstKeep = roomConfig.firstKeep
     local _lastKeep  = roomConfig.lastKeep
+
     local _removeTotal = #nodesList.real - (_firstKeep + _lastKeep) --remove nodes that arent in the first or last
     for idx=1, _removeTotal do
         local node = nodesList.real[_firstKeep + 1]
@@ -6398,13 +7656,16 @@ local function NodeDestroy(nodesList: tSortedNodes)
         node:Destroy()
         table.remove(nodesList.real, _firstKeep + 1)
     end
+
     --Destroy all the fake nodes
     for _, node in ipairs(nodesList.fake) do
         node:Destroy()
         table.remove(nodesList.fake, 1)
     end
+
     Script.Functions.Minecart.debug(string.format("[NodeDestroy] Task completed, remaining: Real nodes: %d | Fake nodes %s", #nodesList.real, #nodesList.fake))
 end
+
 --@Internal function
 --@Return #boolean. True if the pathfind algorithm was ran.
 local function HasAlreadyDestroyed(room: Model): boolean
@@ -6418,6 +7679,7 @@ local function HasAlreadyDestroyed(room: Model): boolean
     Script.Functions.Minecart.debug("[HasAlreadyDestroyed] Destroyed: " .. tostring(result))
     return result
 end
+
 --The Minecart Teleport Function, this will be called with @NodeDestroy.
 --[[
     Use "_mspaint_player_teleported" to track the status of the Teleport meaning that:
@@ -6428,24 +7690,30 @@ end
 local MinecartFound = false
 function Script.Functions.Minecart.Teleport(room: Model)
     if not Toggles.MinecartTeleport.Value then return end
+
     local roomNumber = tonumber(room.Name)
     if not (roomNumber >= 45 and roomNumber <= 49) then return end
     Script.Functions.Minecart.debug("[Teleport] Was called for room: " .. room.Name)
+
     if not HasAlreadyDestroyed(room) then
         local nodesList = PathfindGetNodes(room)
         if not nodesList then return end
         NodeDestroy(nodesList)
         room:SetAttribute("_mspaint_player_teleported", false)
     end
+
     local hasAlreadyTeleported = room:GetAttribute("_mspaint_player_teleported")
     Script.Functions.Minecart.debug("[Teleport] Player already teleported:" .. tostring(hasAlreadyTeleported))
+
     --Setup minecart teleport if room 45 is added.
     if roomNumber == 45 and not hasAlreadyTeleported then
         task.spawn(function()
+
             --Delete old notification
             if workspace:FindFirstChild("_internal_mspaint_minecart_teleport") then 
                 workspace:FindFirstChild("_internal_mspaint_minecart_teleport"):Destroy() 
             end
+
             local progressPart = Instance.new("Part", workspace) do
                 progressPart.Anchored = true
                 progressPart.CanCollide = false
@@ -6455,9 +7723,11 @@ function Script.Functions.Minecart.Teleport(room: Model)
             shared.Notify:Alert({
                 Title = "Dương Api",
                 Description = "Tính năng đã sẵn sàng, chờ người dùng lên xe mỏ...",
+
                 Time = progressPart
             })
         end)
+
         Script.Functions.Minecart.debug("[Teleport] Minecart Teleport initialization room:" .. room.Name)
         --LSplash actually fix your game omg...
         local minecartRigs = {}
@@ -6476,25 +7746,33 @@ function Script.Functions.Minecart.Teleport(room: Model)
                 end
             end
         end)
+
         while #minecartRigs == 0 and not shared.Library.Unloaded do 
             task.wait(0.5)
             Script.Functions.Minecart.debug("[Teleport] Room to Teleport: " .. tostring(Script.LatestRoom.Value))
         end
+
         Script.Functions.Minecart.debug("[Teleport] MinecartRig Found! Initializing Teleport...")
+
         if workspace:FindFirstChild("_internal_mspaint_minecart_teleport") then workspace:FindFirstChild("_internal_mspaint_minecart_teleport"):Destroy() end
         shared.Notify:Alert({
             Title = "Dương Api",
             Description = "Bắt đầu chạy tính năng, hãy tận hưởng",
+
             Time = 10
         })
+
         task.wait(1.5)
+
         local startRoomNumber = math.min(49, Script.LatestRoom.Value)
         while startRoomNumber >= 45 and startRoomNumber <= 49 do
             if shared.Library.Unloaded then break end
+            
             Script.Functions.Minecart.debug("[Teleport] Teleporting to last node on room: " .. startRoomNumber)
             local GetRoom = workspace.CurrentRooms[startRoomNumber]
             local nodesList = PathfindGetNodes(GetRoom)
             local getLastNode = nodesList.real[#nodesList.real]
+
             repeat
                 shared.RunService.RenderStepped:Wait()
                 for _, minecart in pairs(minecartRigs) do
@@ -6502,6 +7780,7 @@ function Script.Functions.Minecart.Teleport(room: Model)
                 end
             until GetRoom:WaitForChild("Door"):GetAttribute("Opened")
             GetRoom:SetAttribute("_mspaint_player_teleported", true)
+
             startRoomNumber += 1
             MinecartFound = true
             task.wait(1.2)
@@ -6509,23 +7788,29 @@ function Script.Functions.Minecart.Teleport(room: Model)
         Script.Functions.Minecart.debug("[Teleport] Finished!")
     end
 end
+
 --External function to be called.
 function Script.Functions.Minecart.DrawNodes(room: Model)
     local nodesList = PathfindGetNodes(room)
     if not nodesList then return end
+
     local espRealColor = if Toggles.MinecartPathVisualiser.Value then Script.MinecartPathNodeColor.Green else Script.MinecartPathNodeColor.Disabled
+
     --[ESP] Draw the real path
     for _, realNode in ipairs(nodesList.real) do
         changeNodeColor(realNode, espRealColor)
     end
+
     --[ESP] Draw the fake path
      for idx, fakeNode in ipairs(nodesList.fake) do
          changeNodeColor(fakeNode, MinecartPathNodeColor.Red)
      end
 end
+
 --@Return nil. Map the nodes in the __RunnerNodes__ and call features functions (@DrawNode; @Teleport).
 function Script.Functions.Minecart.Pathfind(room: Model, forcePathfind: boolean)
     if not HasNodesToPathfind(room) then return end
+
     if not forcePathfind then
         --wait until SendRunnerNodes is trigged
         local pathTimeout = tick() + 5
@@ -6533,40 +7818,55 @@ function Script.Functions.Minecart.Pathfind(room: Model, forcePathfind: boolean)
         until #Script.Functions.Minecart.pathfindQueue > 0 or tick() > pathTimeout
         pcall(table.remove, Script.Functions.Minecart.pathfindQueue, 1)
     end
+
     local nodesFolder = room:FindFirstChild("RunnerNodes")
     if (nodesFolder == nil) then return end
+
     local nodes = nodesFolder:GetChildren()
+
     local numOfNodes = #nodes
     if numOfNodes <= 0 then return end 
+
     if HasAlreadyPathfind(nodesFolder) then return end
     Script.Functions.Minecart.debug("[Pathfind] Initialized pathfind for room: " .. room.Name .. " - nodes: ", numOfNodes)
+
     --[[
         Pathfind is a computational expensive process to make, 
         however we don't have node loops, 
         so we can ignore a few verifications.
         If you want to understand how this is working, search for "Pathfiding Algorithms"
+
         The shortest explanation i can give is that, this is a custom pathfinding to find "gaps" between
         nodes and creating "path" groups. With the groups estabilished we can make the correct validations.
+
         -Bacalhauz
     ]]
     --Distance weights [DO NOT EDIT, unless something breaks...]
     local _shortW = 4
     local _longW = 24
+
     local doorModel = room:WaitForChild("Door", 5) -- Will be used to find the correct last node.
+
     local _startNode = nodes[1]
     local _lastNode = nil --we need to find this node.
+
     local _gpID = 1
     local stackNode = {} --Group all track groups here.
     stackNode[_gpID] = tGroupTrackNew()
+    
     --Ensure sort all nodes properly (reversed)
     nodes = sortNodes(nodes, true)
+
     local _last = 1
     for i=_last+1, numOfNodes, 1 do
         local nodeA: Part = nodes[_last]
         local nodeB: Part = _lastNode and nodes[i] or doorModel
+
         local distance = (nodeA:GetPivot().Position - nodeB:GetPivot().Position).Magnitude
+
         local isEndNode = distance <= _shortW
         local isNodeNear = (distance > _shortW and distance <= _longW)
+
         local _currNodeTask = "Track"
         if isNodeNear or isEndNode then
             if not _lastNode then -- this will only be true, once.
@@ -6576,6 +7876,7 @@ function Script.Functions.Minecart.Pathfind(room: Model, forcePathfind: boolean)
         else
             _currNodeTask = "Fake"
         end
+
         --check if group is diff, ignore "End" or "Start" tasks
         if  (_currNodeTask == "Fake" or _currNodeTask == "End") and _lastNode then
             _gpID += 1
@@ -6585,8 +7886,10 @@ function Script.Functions.Minecart.Pathfind(room: Model, forcePathfind: boolean)
             end
         end
         table.insert(stackNode[_gpID].nodes, nodeA)
+
         --Use this to debug the nodeTask
         Script.Functions.Minecart.debug(string.format("[%s] - [%s] Distance between: %s <--> %s ==> %.2f", _gpID, _currNodeTask, nodeA.Name, nodeB.Name, distance))
+
         _last = i
         --_lastNodeTask = _currNodeTask
     end
@@ -6594,6 +7897,7 @@ function Script.Functions.Minecart.Pathfind(room: Model, forcePathfind: boolean)
     table.insert(stackNode[_gpID].nodes, _startNode)
     --if we only have one group, means that there's no fake path.
     local hasMoreThanOneGroup = _gpID > 1
+
     local _closestNodes = {} --unwanted nodes if any
     local hasIncorrectPath = false -- if this is true, we're cooked. No path for you ):
     if hasMoreThanOneGroup then
@@ -6601,33 +7905,44 @@ function Script.Functions.Minecart.Pathfind(room: Model, forcePathfind: boolean)
         for _gpI, v: tGroupTrack in ipairs(stackNode) do
             _closestNodes[_gpI] = {}
             Script.Functions.Minecart.debug(string.format("[TrackGroup] Group %s has %s nodes. \t Start: %s | End: %s", _gpI, #v.nodes, tostring(v.hasStart), tostring(v.hasEnd)))
+
             if _gpI <= 1 then continue end
             Script.Functions.Minecart.debug(string.format("[TrackGroup] Group %s was selected to deep pathfinding", _gpI))
+
             --Sort table for the normal flow, A -> B (was B -> A before)
             v.nodes = sortNodes(v.nodes, false)
+
             --Finally, perform the clean up by removing wrong nodes when a "distance jump" is found
             local _gplast = 1
             local hasNodeJump = false
             for _gpS=_gplast+1, #v.nodes, 1 do
                 local nodeA: Part = v.nodes[_gplast]
                 local nodeB: Part = v.nodes[_gpS]
+
                 local distance = (nodeA:GetPivot().Position - nodeB:GetPivot().Position).Magnitude
+
                 hasNodeJump = (distance >= _longW)
                 if not hasNodeJump then _gplast = _gpS continue end
                 Script.Functions.Minecart.debug(string.format("[%s] Distance between %s <--> %s ==> %.2f", _gpI, nodeA.Name, nodeB.Name, distance))
+
                 --Ok, we found a node jump, now we need to know what should be the closest node
                 --table.remove(v.nodes, _gpS)
                 Script.Functions.Minecart.debug(string.format("[TrackGroup] Group %s with, %s will find his closest node now.", _gpI, nodeB.Name))
                 local nodeSearchPath = nodeB
+
                 --Search again with the nodeSearchPath
                 local closestDistance = math.huge
+
                 local _gpFlast = #v.nodes
                 for i=_gpFlast-1, 1, -1 do
+
                     local fnode = v.nodes[_gpFlast]
                     local Sdistance = (nodeSearchPath:GetPivot().Position - fnode:GetPivot().Position).Magnitude
                     _gpFlast = i
+
                     if Sdistance == 0.00 then continue end --node is self
                     Script.Functions.Minecart.debug(string.format("  [%s] DeepPath ==> Distance between %s <--> %s ==> %.2f", _gpI, nodeSearchPath.Name, fnode.Name, Sdistance))
+
                     if Sdistance <= closestDistance then
                         closestDistance = Sdistance
                         table.insert(_closestNodes[_gpI], fnode)
@@ -6637,6 +7952,7 @@ function Script.Functions.Minecart.Pathfind(room: Model, forcePathfind: boolean)
                     break
                 end
                 --table.insert(v.nodes, _gpS, nodeSearchPath)
+
                 local _FoundAmount = #_closestNodes[_gpI]
                 if _FoundAmount > 1 then 
                     Script.Functions.Minecart.debug(string.format("[TrackGroup] Group %s with, closest node is: %s ", _gpI, _closestNodes[_gpI][_FoundAmount].Name))
@@ -6650,11 +7966,14 @@ function Script.Functions.Minecart.Pathfind(room: Model, forcePathfind: boolean)
                 Script.Functions.Minecart.debug(string.format("[TrackGroup] Group %s has a correct path! ", _gpI))
             end
         end
+
         for _gpI, v: tGroupTrack in ipairs(stackNode) do
             Script.Functions.Minecart.debug(string.format("[TrackGroup -- VERIFY] Group %s has %s nodes. \t Start: %s | End: %s", _gpI, #v.nodes, tostring(v.hasStart), tostring(v.hasEnd)))
         end
     end
+
     if hasIncorrectPath then return end
+
     --finally, draw the correct path. gg
     local realNodes = {} --our precious nodes finally here :pray:
     local fakeNodes = {} --we hate you but ok
@@ -6663,6 +7982,7 @@ function Script.Functions.Minecart.Pathfind(room: Model, forcePathfind: boolean)
         if _gpFI == 1 and hasMoreThanOneGroup then
             finalWrongNode = true 
         end
+
         for _, vfinal in ipairs(v.nodes) do
             if finalWrongNode then
                 table.insert(fakeNodes, vfinal)
@@ -6670,20 +7990,24 @@ function Script.Functions.Minecart.Pathfind(room: Model, forcePathfind: boolean)
             end
             table.insert(realNodes, vfinal)
         end
+
         --Draw wrong path calculated on DeepPath.
         for _, nfinal in ipairs(_closestNodes[_gpFI]) do
             table.insert(fakeNodes, nfinal)
         end
     end
     --our result is stored in the part itself in order.
+
     local nodesList: tSortedNodes = {
         real = sortNodes(realNodes, false),
         fake = sortNodes(fakeNodes, false)
     }
+
     nodesFolder:SetAttribute("_mspaint_nodes_pathfind", true)
     PathfindSetNodes(nodesList.real, "_mspaint_real_node")
     PathfindSetNodes(nodesList.fake, "_mspaint_fake_node")
     --Call any feature that requires the pathfind nodes--
+
     Script.Functions.Minecart.DrawNodes(room)
     Script.Functions.Minecart.Teleport(room)
 end
@@ -6691,17 +8015,21 @@ end)() end,
     [33] = function()local wax,script,require=ImportGlobals(33)local ImportGlobals return (function(...)--// Linoria \\--
 local Toggles = shared.Toggles
 local Options = shared.Options
+
 --// Variables \\--
 local Script = shared.Script
+
 --// Functions \\--
 function Script.Functions.GetPadlockCode(paper: Tool)
     if paper:FindFirstChild("UI") then
         local code = {}
+
         for _, image: ImageLabel in pairs(paper.UI:GetChildren()) do
             if image:IsA("ImageLabel") and tonumber(image.Name) then
                 code[image.ImageRectOffset.X .. image.ImageRectOffset.Y] = {tonumber(image.Name), "_"}
             end
         end
+
         for _, image: ImageLabel in pairs(shared.PlayerGui.PermUI.Hints:GetChildren()) do
             if image.Name == "Icon" then
                 if code[image.ImageRectOffset.X .. image.ImageRectOffset.Y] then
@@ -6709,64 +8037,83 @@ function Script.Functions.GetPadlockCode(paper: Tool)
                 end
             end
         end
+
         local normalizedCode = {}
         for _, num in pairs(code) do
             normalizedCode[num[1]] = num[2]
         end
+
         return table.concat(normalizedCode)
     end
+
     return "_____"
 end
 end)() end,
     [34] = function()local wax,script,require=ImportGlobals(34)local ImportGlobals return (function(...)--// Linoria \\--
 local Toggles = shared.Toggles
 local Options = shared.Options
+
 --// Variables \\--
 local Script = shared.Script
+
 --// Functions \\--
 function Script.Functions.DistanceFromCharacter(position: Instance | Vector3, getPositionFromCamera: boolean | nil)
     if not position then return 9e9 end
     if typeof(position) == "Instance" then
         position = position:GetPivot().Position
     end
+
     if getPositionFromCamera and (shared.Camera or workspace.CurrentCamera) then
         local cameraPosition = if shared.Camera then shared.Camera.CFrame.Position else workspace.CurrentCamera.CFrame.Position
+
         return (cameraPosition - position).Magnitude
     end
+
     if shared.RootPart then
         return (shared.RootPart.Position - position).Magnitude
     elseif shared.Camera then
         return (shared.Camera.CFrame.Position - position).Magnitude
     end
+
     return 9e9
 end
+
 function Script.Functions.IsInViewOfPlayer(instance: Instance, range: number | nil, exclude: table | nil)
     if not instance then return false end
     if not Script.Collision then return false end
+
     local raycastParams = RaycastParams.new()
     raycastParams.FilterType = Enum.RaycastFilterType.Exclude
+
     local filter = exclude or {}
     table.insert(filter, shared.Character)
+
     raycastParams.FilterDescendantsInstances = filter
+
     local direction = (instance:GetPivot().Position - Script.Collision.Position).unit * (range or 9e9)
     local raycast = workspace:Raycast(Script.Collision.Position, direction, raycastParams)
+
     if raycast and raycast.Instance then
         if raycast.Instance:IsDescendantOf(instance) or raycast.Instance == instance then
             return true
         end
+
         return false
     end
+
     return false
 end
 end)() end,
     [36] = function()local wax,script,require=ImportGlobals(36)local ImportGlobals return (function(...)--// Linoria \\--
 local Toggles = shared.Toggles
 local Options = shared.Options
+
 --// Variables \\--
 local Script = shared.Script
 Script.PresetHelper = wax.shared.FileHelper.new("mspaint/doors/presets")
 Script.ElevatorPresetData = {}
 Script.ElevatorPresets = {}
+
 -- Functions
 function Script.Functions.CreatePreset(name: string, data: table)
     local presetData = Script.Functions.EnforceTypes(data, {
@@ -6775,16 +8122,20 @@ function Script.Functions.CreatePreset(name: string, data: table)
         Modifiers = nil,
         FriendsOnly = true
     })
+
     Script.PresetHelper.CreateFile(name .. ".json", shared.HttpService:JSONEncode(presetData))
 end
+
 function Script.Functions.LoadPresets()
     table.clear(Script.ElevatorPresets)
     table.clear(Script.ElevatorPresetData)
+
     for _, file in pairs(Script.PresetHelper.GetFilesClean()) do
         local success, ret = pcall(function()
             local data = Script.PresetHelper.ReadFile(file .. ".json")
             return shared.HttpService:JSONDecode(data)
         end)
+
         if success then
             Script.ElevatorPresetData[file] = Script.Functions.EnforceTypes(ret, {
                 Floor = "Hotel",
@@ -6792,6 +8143,7 @@ function Script.Functions.LoadPresets()
                 Modifiers = nil,
                 FriendsOnly = true
             })
+
             table.insert(Script.ElevatorPresets, file)
         else
             shared.Notify:Alert({
@@ -6799,33 +8151,40 @@ function Script.Functions.LoadPresets()
             })
         end
     end
+
     Options.Elevator_PresetList:SetValues(Script.ElevatorPresets)
     Options.Elevator_PresetList:SetValue(nil)
 end
+
 function Script.Functions.LoadPreset(name: string)
     local success, ret = pcall(function()
         local data = Script.PresetHelper.ReadFile(name .. ".json")
         return shared.HttpService:JSONDecode(data)
     end)
+
     if not success then
         shared.Notify:Alert({
             Description = "Failed to load preset: " .. name .. ".json"
         })
         return
     end
+
     local presetData = Script.Functions.EnforceTypes(ret, {
         Floor = "Hotel",
         MaxPlayers = 1,
         Modifiers = nil,
         FriendsOnly = true
     })
+
     local data = {
         ["FriendsOnly"] = presetData.FriendsOnly,
         ["Destination"] = presetData.Floor,
         ["Mods"] = presetData.Modifiers or {},
         ["MaxPlayers"] = tostring(presetData.MaxPlayers)
     }
+
     Script.CreateElevator:FireServer(data)
+
     shared.Notify:Alert({
         Description = "Loaded elevator preset: " .. name
     })
@@ -6834,11 +8193,14 @@ end)() end,
     [38] = function()local wax,script,require=ImportGlobals(38)local ImportGlobals return (function(...)--// Linoria \\--
 local Toggles = shared.Toggles
 local Options = shared.Options
+
 --// Variables \\--
 local Script = shared.Script
+
 --// Functions \\--
 function Script.Functions.ChildCheck(child)
     if not child:IsA("Model") then return end
+
     if Toggles.BatteryESP.Value and child.Name == "battery" then
         Script.Functions.BatteryESP(child)
     elseif Toggles.LockerESP.Value and child.Name == "hidelocker" then
@@ -6851,12 +8213,15 @@ end)() end,
     [39] = function()local wax,script,require=ImportGlobals(39)local ImportGlobals return (function(...)--// Linoria \\--
 local Toggles = shared.Toggles
 local Options = shared.Options
+
 --// Variables \\--
 local Script = shared.Script
+
 --// Functions \\--
 function Script.Functions.Chat(message: string)
     local chatEvents = shared.ReplicatedStorage:FindFirstChild("DefaultChatSystemChatEvents")
     local sayMessage = chatEvents and chatEvents:FindFirstChild("SayMessageRequest")
+
     if sayMessage then
         sayMessage:FireServer(message, "All")
     end
@@ -6865,44 +8230,55 @@ end)() end,
     [40] = function()local wax,script,require=ImportGlobals(40)local ImportGlobals return (function(...)--// Linoria \\--
 local Toggles = shared.Toggles
 local Options = shared.Options
+
 --// Variables \\--
 local Script = shared.Script
+
 --// Functions \\--
 function Script.Functions.SetupCharacterConnection(newCharacter)
     shared.Character = newCharacter
     shared.Humanoid = shared.Character:WaitForChild("Humanoid")
     shared.RootPart = shared.Character:WaitForChild("HumanoidRootPart")
 end
+
 function Script.Functions.SetupLightingConnection()
     shared.Connect:GiveSignal(shared.Lighting:GetPropertyChangedSignal("Ambient"):Connect(function()
         if shared.Lighting.Ambient ~= Script.CurrentAmbient and shared.Lighting.Ambient ~= Color3.new(1, 1, 1) then
             Script.CurrentAmbient = shared.Lighting.Ambient
         end
+
         if Toggles.Fullbright.Value then
             shared.Lighting.Ambient = Color3.new(1, 1, 1)
         end
     end))
+
     shared.Connect:GiveSignal(shared.Lighting.ChildAdded:Connect(function(child)
         if Toggles.NoBlur.Value and child:IsA("Blur") then
             child.Enabled = false
         end
     end))
 end
+
 function Script.Functions.SetupRoomConnection(room)
     if Script.LoadedRooms[room] then return end
     Script.LoadedRooms[room] = true
+
     if Toggles.DoorESP.Value then
         Script.Functions.DoorESP(room)
     end
+
     for _, child in pairs(room:GetDescendants()) do
         task.spawn(Script.Functions.ChildCheck, child)
     end
+
     shared.Connections[room] = room.DescendantAdded:Connect(function(child)
         task.delay(0.1, Script.Functions.ChildCheck, child)
     end)
 end
+
 function Script.Functions.SetupUIConnection(GUI)
     Script.MainUI = GUI or shared.PlayerGui:WaitForChild("MainGui")
+    
     if Toggles.NoFlashlightShadow.Value then
         local slender = Script.MainUI:WaitForChild("slender")
         if slender then
@@ -6917,10 +8293,12 @@ end)() end,
     [41] = function()local wax,script,require=ImportGlobals(41)local ImportGlobals return (function(...)--// Linoria \\--
 local Toggles = shared.Toggles
 local Options = shared.Options
+
 --// Variables \\--
 local Script = shared.Script
 local ESPLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/deividcomsono/MS-ESP/refs/heads/main/source.lua"))()
 shared.ESPLibrary = ESPLibrary
+
 type ESP = {
     Color: Color3,
     IsInvisible: boolean,
@@ -6932,8 +8310,10 @@ type ESP = {
     Type: string,
     OnDestroy: () -> (),
 }
+
 function Script.Functions.ESP(args: ESP)
     if not args.Object then return Script.Functions.Warn("ESP Object is nil") end
+
     local ESPManager = {
         Object = args.Object,
         Text = args.Text or "No Text",
@@ -6943,77 +8323,100 @@ function Script.Functions.ESP(args: ESP)
         IsInvisible = args.IsInvisible or false,
         Type = args.Type or "None",
         OnDestroy = args.OnDestroy or nil,
+
         Humanoid = nil
     }
+
     if ESPManager.IsInvisible and ESPManager.Object.PrimaryPart then
         if ESPManager.Object.PrimaryPart.Transparency == 1 then
             ESPManager.Object.PrimaryPart.Transparency = 0.99
         end
+
         local humanoid = ESPManager.Object:FindFirstChildOfClass("Humanoid")
         if not humanoid then humanoid = Instance.new("Humanoid", ESPManager.Object) end
         ESPManager.Humanoid = humanoid
     end
+
     local ESPInstance = ESPLibrary.ESP.Highlight({
         Name = ESPManager.Text,
         Model = ESPManager.Object,
         MaxDistance = ESPManager.MaxDistance,
         StudsOffset = ESPManager.Offset,
+
         FillColor = ESPManager.Color,
         OutlineColor = ESPManager.Color,
         TextColor = ESPManager.Color,
         TextSize = Options.ESPTextSize.Value or 16,
+
         FillTransparency = Options.ESPFillTransparency.Value,
         OutlineTransparency = Options.ESPOutlineTransparency.Value,
+
         Tracer = {
             Enabled = true,
             From = Options.ESPTracerStart.Value,
             Color = ESPManager.Color
         },
+        
         Arrow = {
             Enabled = true,
             CenterOffset = Options.ESPArrowCenterOffset.Value,
             Color = ESPManager.Color
         },
+
         OnDestroy = ESPManager.OnDestroy or function()
             if ESPManager.Object.PrimaryPart and ESPManager.IsInvisible then ESPManager.Object.PrimaryPart.Transparency = 1 end
             if ESPManager.Humanoid then ESPManager.Humanoid:Destroy() end
         end
     })
+
     table.insert(Script.ESPTable[args.Type], ESPInstance)
+
     return ESPInstance
 end
+
 function Script.Functions.DoorESP(room)
     local door = room:WaitForChild("door", 5)
+
     if door then
         local clickDetector = door:FindFirstChild("ClickDetector")
         if not clickDetector then return end
+
         local roomNumber = if tonumber(room.Name) then room.Name else tostring(workspace.roomnumber.Value + 1)
+
         local doorEsp = Script.Functions.ESP({
             Type = "Door",
             Object = door,
             Text = string.format("Door %s", roomNumber),
             Color = Options.DoorEspColor.Value,
+
             OnDestroy = function()
                 if Script.FeatureConnections.Door[door] then Script.FeatureConnections.Door[door]:Disconnect() end
             end
         })
+
         Script.FeatureConnections.Door[door] = clickDetector.AncestryChanged:Connect(function(_, parent)
             if parent then return end
+            
             if doorEsp then doorEsp.Destroy() end
             if Script.FeatureConnections.Door[door] then Script.FeatureConnections.Door[door]:Disconnect() end
         end)
     end
 end
+
 function Script.Functions.EntityESP(entity, entityName)
     local isInvisible = entity:IsA("BasePart") and entity.Transparency == 1
     local entityModel = if isInvisible then Instance.new("Model") else entity
+
     if isInvisible then
         local entityClone = entity:Clone()
+        
         entityClone.Parent = entityModel
         entityModel.Parent = shared.Workspace
+    
         entityModel.PrimaryPart = entityClone
         entityClone:ClearAllChildren()
         Instance.new("SpecialMesh", entityClone)
+
         shared.Connections[entity] = shared.RunService.Heartbeat:Connect(function()
             if entity:IsDescendantOf(workspace) then
                 entityModel:PivotTo(entity:GetPivot())
@@ -7023,6 +8426,7 @@ function Script.Functions.EntityESP(entity, entityName)
             end
         end)
     end
+
     Script.Functions.ESP({
         Type = "Entity",
         Object = entityModel,
@@ -7031,6 +8435,7 @@ function Script.Functions.EntityESP(entity, entityName)
         IsInvisible = isInvisible,
     })
 end
+
 function Script.Functions.BatteryESP(battery)
     Script.Functions.ESP({
         Type = "Battery",
@@ -7040,27 +8445,33 @@ function Script.Functions.BatteryESP(battery)
         MaxDistance = 300
     })
 end
+
 function Script.Functions.LockerESP(hideLocker)
     local jack = hideLocker:FindFirstChild("jack")
     local extra = if jack then " [Shell]" else ""
+
     local lockerEsp = Script.Functions.ESP({
         Type = "Locker",
         Object = hideLocker,
         Text = string.format("Locker%s", extra),
         Color = Options.LockerEspColor.Value,
         MaxDistance = 200,
+
         OnDestroy = function()
             if Script.FeatureConnections.Shell[jack] then Script.FeatureConnections.Shell[jack]:Disconnect() end
         end
     })
+
     if jack then
         Script.FeatureConnections.Shell[jack] = jack.AncestryChanged:Connect(function(_, parent)
             if parent then return end
+
             if lockerEsp then lockerEsp.Destroy() end
             if Script.FeatureConnections.Shell[jack] then Script.FeatureConnections.Shell[jack]:Disconnect() end
         end)
     end
 end
+
 function Script.Functions.TableESP(hideTable)
     Script.Functions.ESP({
         Type = "Table",
@@ -7075,24 +8486,29 @@ end)() end,
     [43] = function()local wax,script,require=ImportGlobals(43)local ImportGlobals return (function(...)--// Linoria \\--
 local Toggles = shared.Toggles
 local Options = shared.Options
+
 --// Variables \\--
 local Script = shared.Script
+
 --// Functions \\--
 function Script.Functions.SetupCharacterConnection(newCharacter)
     shared.Character = newCharacter
     shared.Humanoid = shared.Character:WaitForChild("Humanoid")
     shared.RootPart = shared.Character:WaitForChild("HumanoidRootPart")
 end
+
 function Script.Functions.SetupBloxstrapRPCConnection()
     shared.Connect:GiveSignal(shared.Players.PlayerAdded:Connect(function(player)
         Script.Functions.UpdateBloxstrapRPC()
     end))
+
     shared.Connect:GiveSignal(shared.Players.PlayerRemoving:Connect(function(player)
         Script.Functions.UpdateBloxstrapRPC()
     end))
 end
 end)() end,
     [45] = function()local wax,script,require=ImportGlobals(45)local ImportGlobals return (function(...)local BloxstrapRPC = {}
+
 type RichPresence = {
     details:     string?,
     state:       string?,
@@ -7101,63 +8517,79 @@ type RichPresence = {
     smallImage:  RichPresenceImage?,
     largeImage:  RichPresenceImage?
 }
+
 type RichPresenceImage = {
     assetId:    number?,
     hoverText:  string?,
     clear:      boolean?,
     reset:      boolean?
 }
+
 function BloxstrapRPC.SendMessage(command: string, data: any)
     local json = shared.HttpService:JSONEncode({
         command = command, 
         data = data
     })
+    
     print("[BloxstrapRPC] " .. json)
 end
+
 function BloxstrapRPC.SetRichPresence(data: RichPresence)
     if data.timeStart ~= nil then
         data.timeStart = math.round(data.timeStart)
     end
+    
     if data.timeEnd ~= nil then
         data.timeEnd = math.round(data.timeEnd)
     end
+    
     BloxstrapRPC.SendMessage("SetRichPresence", data)
 end 
+
 return BloxstrapRPC
 end)() end,
     [46] = function()local wax,script,require=ImportGlobals(46)local ImportGlobals return (function(...)local Connect = {}
 shared.Connections = {}
+
 function Connect:GiveSignal(signal: RBXScriptConnection | RBXScriptSignal)
     table.insert(shared.Connections, signal)
 end
+
 function Connect:DisconnectSignal(signal: RBXScriptConnection | RBXScriptSignal)
     if not signal then return end
+
     if signal.Connected then
         signal:Disconnect()
     end
 end
+
 return Connect
 end)() end,
     [47] = function()local wax,script,require=ImportGlobals(47)local ImportGlobals return (function(...)local ExecutorSupport = {}
 local ExecutorSupportInfo = {}
+
 local executorName = string.split(identifyexecutor() or "None", " ")[1]
 local brokenFeatures = {
     ["Arceus"] = { "require" },
     ["Codex"] = { "require" },
     ["VegaX"] = { "require" },
 }
+
 function test(name: string, func: () -> (), shouldCallback: boolean)
     if typeof(brokenFeatures[executorName]) == "table" and table.find(brokenFeatures[executorName], name) then return false end -- garbage executor 🤯
+    
     local success, errorMessage = false, nil
     if shouldCallback ~= false then
         success, errorMessage = pcall(func)
     else
         success = typeof(func) == "function"
     end
+    
     ExecutorSupportInfo[name] = string.format("%s [%s]%s", (if success then "✅" else "❌"), name, (if errorMessage then (": " .. tostring(errorMessage)) else ""))
     ExecutorSupport[name] = success
     return success
 end
+
 test("readfile", readfile, false)
 test("listfiles", listfiles, false)
 test("writefile", writefile, false)
@@ -7168,9 +8600,12 @@ test("isfolder", isfolder, false)
 test("delfile", delfile, false)
 test("delfolder", delfolder, false)
 test("loadfile", loadfile, false)
+
 test("getrenv", getrenv, false)
+
 test("queue_on_teleport", queue_on_teleport, false)
 test("getcallingscript", getcallingscript, false)
+
 test("require", function()
     --wax.require(shared.Players.LocalPlayer:WaitForChild("PlayerScripts"):FindFirstChildWhichIsA("ModuleScript", true))
     wax.require(shared.Players.LocalPlayer:WaitForChild("PlayerScripts", math.huge):WaitForChild("PlayerModule", 5))
@@ -7185,6 +8620,7 @@ test("getnamecallmethod", function()
     pcall(function()
         game:NAMECALL_METHODS_ARE_IMPORTANT()
     end)
+
     assert(getnamecallmethod() == "NAMECALL_METHODS_ARE_IMPORTANT", "getnamecallmethod did not return the real namecall method")
 end)
 test("hookfunction", function()
@@ -7201,58 +8637,75 @@ end)
 test("firesignal", function()
     local event = Instance.new("BindableEvent")
     local fired = false
+
     event.Event:Once(function(value) fired = value end)
+        
     firesignal(event.Event, true)
     task.wait(0.1)
     event:Destroy()
+
     assert(fired, "Failed to fire a BindableEvent")
 end)
 local canFirePrompt = test("fireproximityprompt", function()
     local prompt = Instance.new("ProximityPrompt", Instance.new("Part", shared.Workspace))
     local triggered = false
+
     prompt.Triggered:Once(function() triggered = true end)
+
     fireproximityprompt(prompt)
     task.wait(0.1)
+
     prompt.Parent:Destroy()
     assert(triggered, "Failed to fire proximity prompt")
 end)
+
 --// Fixes \\--
 if not canFirePrompt then
     local function fireProximityPrompt(prompt: ProximityPrompt, lookToPrompt, doNotDoInstant)
         if not prompt:IsA("ProximityPrompt") then
             return error("ProximityPrompt expected, got " .. typeof(prompt))
         end
+
         local connection
         local promptPosition = prompt.Parent:GetPivot().Position
+    
         local originalEnabled = prompt.Enabled
         local originalHold = prompt.HoldDuration
         local originalLineOfSight = prompt.RequiresLineOfSight
         local originalCamCFrame = workspace.CurrentCamera.CFrame
+        
         prompt.Enabled = true
         prompt.RequiresLineOfSight = false
         if doNotDoInstant ~= true then
             prompt.HoldDuration = 0
         end
+
         if lookToPrompt == true then
             workspace.CurrentCamera.CFrame = CFrame.new(workspace.CurrentCamera.CFrame.Position, promptPosition)
             connection = workspace.CurrentCamera:GetPropertyChangedSignal("CFrame"):Connect(function()
                 workspace.CurrentCamera.CFrame = CFrame.new(workspace.CurrentCamera.CFrame.Position, promptPosition)
             end)
+
             task.wait()
         end
+
         prompt:InputHoldEnd()
         prompt:InputHoldBegin()
         task.wait(prompt.HoldDuration + 0.05)
         prompt:InputHoldEnd()
+
         if connection then connection:Disconnect() end
+
         prompt.Enabled = originalEnabled
         prompt.HoldDuration = originalHold
         prompt.RequiresLineOfSight = originalLineOfSight
         if lookToPrompt == true then workspace.CurrentCamera.CFrame = originalCamCFrame end
     end
+
     shared.fireproximityprompt = function(...)
         return fireProximityPrompt(...)
     end
+
     shared.forcefireproximityprompt = function(prompt)
         return fireProximityPrompt(prompt, true)
     end
@@ -7260,21 +8713,27 @@ else
     shared.fireproximityprompt = fireproximityprompt
     shared.forcefireproximityprompt = fireproximityprompt
 end
+
 if not isnetworkowner then
     function isnetowner(part: BasePart)
         if not part:IsA("BasePart") then
             return error("BasePart expected, got " .. typeof(part))
         end
+
         return part.ReceiveAge == 0
     end
+    
     shared.isnetworkowner = isnetowner
 else
     shared.isnetworkowner = isnetworkowner
 end
+
 shared.firetouch = firetouchinterest or firetouchtransmitter
+
 --// Load \\--
 ExecutorSupport["_ExecutorName"] = executorName
 ExecutorSupport["_SupportsFileSystem"] = (ExecutorSupport["isfile"] and ExecutorSupport["delfile"] and ExecutorSupport["listfiles"] and ExecutorSupport["writefile"] and ExecutorSupport["makefolder"] and ExecutorSupport["isfolder"])
+
 for name, result in pairs(ExecutorSupport) do
     if ExecutorSupportInfo[name] then 
         print(ExecutorSupportInfo[name]) 
@@ -7284,48 +8743,62 @@ for name, result in pairs(ExecutorSupport) do
         print("❓ [" .. tostring(name) .. "]", tostring(result))
     end
 end
+
 return ExecutorSupport
 end)() end,
     [48] = function()local wax,script,require=ImportGlobals(48)local ImportGlobals return (function(...)local FileHelper = {}
+
 function FileHelper.new(basepath: string)
     local self = setmetatable({}, {
         __index = function(self, key)
             local accessed = rawget(self, key)
+
             if typeof(accessed) == "function" then
                 return function(...)
                     if not shared.ExecutorSupport["_SupportsFileSystem"] then return end
+                    
                     return accessed(self, ...)
                 end
             end
+
             return accessed
         end
     })
+
     self.BasePath = basepath
+
     self.BuildPresetStructure = function()
         if not isfolder(self.BasePath) then
             makefolder(self.BasePath)
         end
     end
+
     self.CreateFile = function(name: string, data: string)
         self.BuildPresetStructure()
         writefile(self.BasePath .. "/" .. name, data)
     end
+
     self.AppendFile = function(name: string, data: string)
         self.BuildPresetStructure()
         appendfile(self.BasePath .. "/" .. name, data)
     end
+
     self.GetFiles = function()
         return listfiles(self.BasePath)
     end
+
     self.ReadFile = function(name: string)
         return readfile(self.BasePath .. "/" .. name)
     end
+
     self.IsFile = function(name: string)
         return isfile(self.BasePath .. "/" .. name)
     end
+
     self.DeleteFile = function(name: string)
         delfile(self.BasePath .. "/" .. name)
     end
+
     self.GetFilesClean = function()
         local files = {}
         for _, file in pairs(listfiles(self.BasePath)) do
@@ -7334,125 +8807,163 @@ function FileHelper.new(basepath: string)
                 table.insert(files, name)
             end
         end
+
         return files
     end
+
     self.GetFileNameFromPath = function(path: string, extention: string | nil)
         return FileHelper.GetFileNameFromPath(path, extention)
     end
+
     return self
 end
+
 function FileHelper.GetFileNameFromPath(path: string, extention: string | nil)
     local fileExtension = extention or ".json"
+
     if path:sub(-#fileExtension) == fileExtension then
         path = path:gsub("\\", "/")
+
         local pos = path:find("/[^/]*$")
         if pos then
             return path:sub(pos + 1, -#fileExtension - 1)
         end
     end
+    
     return nil
 end
+
 return FileHelper
 end)() end,
     [50] = function()local wax,script,require=ImportGlobals(50)local ImportGlobals return (function(...)-- Addons
 if getgenv().mspaint_disable_addons or getgenv().mspaint_addons_activated then 
     return {}
 end
+
 task.spawn(function()
     if not wax.shared.ExecutorSupport["_SupportsFileSystem"] then
         warn("[DuongApi] Your executor doesn't support the FileSystem API. Addons will not work.")
         return
     end
+
     getgenv().mspaint_addons_activated = true
+
     if not isfolder("DuongApi/addons") then
         print("[DuongApi] Addons folder doesn't exist. Creating...")
         makefolder("DuongApi/addons")
         return
     end
+    
     repeat task.wait() until getgenv().mspaint_loaded == true
     print("[DuongApi] Loading addons...")
+    
     local function AddAddonElement(LinoriaElement, AddonName, Element)
         if not LinoriaElement then
             warn("[DuongApi] Element '" .. tostring(Element.Name) .. " (" .. tostring(Element.Type) .. ")' didn't load: Invalid Linoria element.")
             return
         end
+
         if typeof(Element) ~= "table" then
             warn("[DuongApi] Element '" .. tostring(Element.Name) .. " (" .. tostring(Element.Type) .. ")' didn't load: Invalid data.")
             return
         end 
+
         if typeof(Element.Type) ~= "string" then 
             warn("[DuongApi] Element '" .. tostring(Element.Name) .. " (" .. tostring(Element.Type) .. ")' didn't load: Invalid name.")
             return 
         end
+
         if typeof(AddonName) ~= "string" then 
             warn("[DuongApi] Element '" .. tostring(Element.Name) .. " (" .. tostring(Element.Type) .. ")' didn't load: Invalid addon name.")
             return 
         end
+
+        
         if Element.Type:sub(1, 3) == "Add" then Element.Type = Element.Type:sub(4) end
+
         -- Elements with no Arguments
         if Element.Type == "Divider" then
             return LinoriaElement:AddDivider()
         end
+
         if Element.Type == "DependencyBox" then
             return LinoriaElement:AddDependencyBox()
         end
+
         if typeof(Element.Name) ~= "string" then 
             warn("[DuongApi] Element '" .. tostring(Element.Name) .. " (" .. tostring(Element.Type) .. ")' didn't load: Invalid name.")
             return 
         end
+
         -- Elements with Arguments
         if typeof(Element.Arguments) == "table" then
             if Element.Type == "Label" then
                 return LinoriaElement:AddLabel(table.unpack(Element.Arguments))
             end
+
             if Element.Type == "Toggle" then
                 return LinoriaElement:AddToggle(AddonName .. "_" .. Element.Name, Element.Arguments)
             end
+            
             if Element.Type == "Button" then
                 return LinoriaElement:AddButton(Element.Arguments)
             end
+            
             if Element.Type == "Slider" then
                 return LinoriaElement:AddSlider(AddonName .. "_" .. Element.Name, Element.Arguments)
             end
+            
             if Element.Type == "Input" then
                 return LinoriaElement:AddInput(AddonName .. "_" .. Element.Name, Element.Arguments)
             end
+            
             if Element.Type == "Dropdown" then
                 return LinoriaElement:AddInput(AddonName .. "_" .. Element.Name, Element.Arguments)
             end
+            
             if Element.Type == "ColorPicker" then
                 return LinoriaElement:AddColorPicker(AddonName .. "_" .. Element.Name, Element.Arguments)        
             end
+            
             if Element.Type == "KeyPicker" then
                 return LinoriaElement:AddKeyPicker(AddonName .. "_" .. Element.Name, Element.Arguments)
             end
         end
+
         warn("[DuongApi] Element '" .. tostring(Element.Name) .. " (" .. tostring(Element.Type) .. ")' didn't load: Invalid element type.")
         return
     end
+    
     local AddonTab, LastGroupbox = nil, "Right"
+    
     local function createAddonTab(hasAddons: boolean)
         if not AddonTab then
             AddonTab = shared.Window:AddTab("Mod [BETA]")
         end
+        
         AddonTab:UpdateWarningBox({
             Visible = true,
             Title = "WARNING",
             Text =  (if not hasAddons then "Thư mục mod của bạn trống!" else "Cái này để thêm tính năng và sẽ rất rủi ro nếu sai sai bản mod")
         })
     end
+
     local containAddonsLoaded = false
     createAddonTab(false)
+    
     for _, file in pairs(listfiles("DuongApi/addons")) do
         print("[DuongApi] Loading addon '" .. string.gsub(file, "DuongApi/addons/", "") .. "'...")
         if file:sub(#file - 3) ~= ".lua" and file:sub(#file - 4) ~= ".luau" and file:sub(#file - 7) ~= ".lua.txt" then continue end
+        
         local success, errorMessage = pcall(function()
             local fileContent = readfile(file)
             local addon = loadstring(fileContent)()
+
             if typeof(addon.Name) ~= "string" or typeof(addon.Elements) ~= "table" then
                 warn("Addon '" .. string.gsub(file, "DuongApi/addons/", "") .. "' didn't load: Invalid Name/Elements.")
                 return 
             end
+
             if typeof(addon.Game) == "string" then
                 if string.lower(addon.Game) ~= string.lower(shared.ScriptLoader) and addon.Game ~= "*" then
                     warn("Addon '" .. string.gsub(file, "DuongApi/addons/", "") .. "' didn't load: Wrong game.")
@@ -7462,6 +8973,7 @@ task.spawn(function()
                 for i, addonGame in pairs(addon.Game) do
                     addon.Game[i] = string.lower(addonGame)
                 end
+
                 if not table.find(addon.Game, string.lower(shared.ScriptLoader)) then
                     warn("Addon '" .. string.gsub(file, "DuongApi/addons/", "") .. "' didn't load: Wrong game.")
                     return
@@ -7470,47 +8982,62 @@ task.spawn(function()
                 warn("Addon '" .. string.gsub(file, "DuongApi/addons", "") .. "' didn't load: Invalid GameId.")
                 return
             end
+
             addon.Name = addon.Name:gsub("%s+", "")
             if typeof(addon.Title) ~= "string" then
                 addon.Title = addon.Name
             end
+
             if not AddonTab then createAddonTab(true) end
+            
             local AddonGroupbox = if LastGroupbox == "Right" then AddonTab:AddLeftGroupbox(addon.Title) else AddonTab:AddRightGroupbox(addon.Title)
             LastGroupbox = if LastGroupbox == "Right" then "Left" else "Right"
             if typeof(addon.Description) == "string" then
                 AddonGroupbox:AddLabel(addon.Description, true)
             end
+
             local function loadElements(linoriaMainElement, elements)
                 if not elements or typeof(elements) ~= "table" then return end
+
                 for _, element in pairs(elements) do                      
                     local linoriaElement = AddAddonElement(linoriaMainElement, addon.Name, element)
+                    
                     loadElements(linoriaElement, element.Elements)
                 end
             end
+
             loadElements(AddonGroupbox, addon.Elements)
         end)
+
         if not success then
             warn("[DuongApi] Failed to load addon '" .. string.gsub(file, "DuongApi/mod/", "") .. "':", errorMessage)
         else
             containAddonsLoaded = true
         end
     end
+    
     createAddonTab(containAddonsLoaded)
 end)
+
 return {}
 end)() end,
     [51] = function()local wax,script,require=ImportGlobals(51)local ImportGlobals return (function(...)local UICreator = {}
+
 local repo = "https://raw.githubusercontent.com/laitung1122/Score.M4/refs/heads/main/"
+
 shared.Library = loadstring(game:HttpGet(repo .. "lib.lua"))()
 local ThemeManager = loadstring(game:HttpGet(repo .. "theme.lua"))()
 shared.SaveManager = loadstring(game:HttpGet(repo .. "save.lua"))()
+
 shared.Toggles = getgenv().Linoria.Toggles
 shared.Options = getgenv().Linoria.Options
+
 getgenv()._internal_unload_mspaint = function()
     getgenv().mspaint_loading = false
     getgenv().mspaint_loaded = false
     task.spawn(shared.Library.Unload)
 end
+
 function UICreator:CreateWindow()
     local Window = shared.Library:CreateWindow({
         Title = "Dương Api V2 (Chính thức) | " .. shared.ScriptName,
@@ -7522,10 +9049,12 @@ function UICreator:CreateWindow()
         TabPadding = 2,
         MenuFadeTime = 0
     })
+
     --// Notificatins \\--
     shared.NotifyStyle = "Linoria"
     shared.NotifyVolume = 2
     shared.Notify = require("Notify")
+
     --// Checker \\--
     shared.CheckToggle = function(toggleName: string, value: boolean)
         return shared.Toggles[toggleName] and shared.Toggles[toggleName].Value == value
@@ -7533,20 +9062,26 @@ function UICreator:CreateWindow()
     shared.CheckOption = function(optionName: string, value: any)
         return shared.Options[optionName] and (typeof(shared.Options[optionName].Value) == "table" and shared.Options[optionName].Value[value] or shared.Options[optionName].Value == value)
     end
+
     --// Unload Handler \\--
     shared.Library:OnUnload(function()
         print("Dừng tải...")
+
         shared.Fly:Stop()
+
         for _, connection in pairs(shared.Connections) do
             connection:Disconnect()
         end
+
         getgenv().mspaint_loading = false
         getgenv().mspaint_loaded = false
         shared.Library.Unloaded = true
         print("Đã tải!")
     end)
+
     return Window
 end
+
 function UICreator:CreateSettingsTab()
     local SettingsTab = shared.Window:AddTab("Cài đặt UI")
     SettingsTab:UpdateWarningBox({
@@ -7554,8 +9089,10 @@ function UICreator:CreateSettingsTab()
         Title = "Nếu thấy bất kì lỗi gì hãy ib tới admin",
         Text = "FB: Dương Ausus"
     })
+
     local MenuGroup = SettingsTab:AddLeftGroupbox("Menu")
     local CreditsGroup = SettingsTab:AddRightGroupbox("Credits")
+
     MenuGroup:AddToggle("ExecuteOnTeleport", { Default = true, Text = "Tự động chạy script(pc)" })
     MenuGroup:AddToggle("KeybindMenuOpen", { Default = false, Text = "Hiển thị phím tiện ích", Callback = function(value) shared.Library.KeybindFrame.Visible = value end})
     MenuGroup:AddToggle("ShowCustomCursor", {Text = "Custom Cursor", Default = true, Callback = function(Value) shared.Library.ShowCustomCursor = Value end})
@@ -7577,36 +9114,52 @@ function UICreator:CreateSettingsTab()
         end
     end)
     MenuGroup:AddButton("Unload", function() shared.Library:Unload() end)
+
     CreditsGroup:AddLabel("Nhà phát triển:")
     CreditsGroup:AddLabel("Dương Modder")
+
     shared.Library.ToggleKeybind = shared.Options.MenuKeybind
+
     ThemeManager:SetLibrary(shared.Library)
     shared.SaveManager:SetLibrary(shared.Library)
+
     shared.SaveManager:IgnoreThemeSettings()
+
     shared.SaveManager:SetFolder("DuongApi/" .. string.lower(shared.ScriptLoader))
     if shared.SubFolder then
         shared.SaveManager:SetSubFolder(shared.SubFolder)
     end
+
     shared.SaveManager:BuildConfigSection(SettingsTab)
     ThemeManager:ApplyToTab(SettingsTab)
+
     shared.SaveManager:LoadAutoloadConfig()
+
     shared.Connect:GiveSignal(shared.LocalPlayer.OnTeleport:Connect(function()
         if not shared.Toggles.ExecuteOnTeleport.Value or getgenv().queued_to_teleport then return end
+
         getgenv().queued_to_teleport = true
         queue_on_teleport([[ loadstring(game:HttpGet("https://raw.githubusercontent.com/Duongbeta1/Exprerador/refs/heads/main/obf_i8Y77atzS122Y2630Fj71ERebxEVYB3a4seoB7OwA9gZ0KAIw3s0BjfYkudnNY26.lua.txt"))() ]])
     end))
+
     return SettingsTab
 end
+
 return UICreator
+
 end)() end,
     [53] = function()local wax,script,require=ImportGlobals(53)local ImportGlobals return (function(...)local Doors = {}
+
 --// Player Variables \\--
 local mainUI
+
 --// Functions \\--
 function Doors:Notify(unsafeOptions)
     assert(typeof(unsafeOptions) == "table", "Expected a table as options argument but got " .. typeof(unsafeOptions))
+
     mainUI = mainUI or shared.PlayerGui:WaitForChild("MainUI", 2.5)
     if not mainUI then return end
+
     local options = shared.Script.Functions.EnforceTypes(unsafeOptions, {
         Title = "No Title",
         Description = "No Text",
@@ -7615,40 +9168,54 @@ function Doors:Notify(unsafeOptions)
         Image = "6023426923",
         Color = nil,
         Time = nil,
+
         TweenDuration = 0.8
     })
+
     local acheivement = mainUI.AchievementsHolder.Achievement:Clone()
     acheivement.Size = UDim2.new(0, 0, 0, 0)
     acheivement.Frame.Position = UDim2.new(1.1, 0, 0, 0)
     acheivement.Name = "LiveAchievement"
     acheivement.Visible = true
+
     acheivement.Frame.TextLabel.Text = options.NotificationType
+
     if options.Color ~= nil then
         acheivement.Frame.TextLabel.TextColor3 = options.Color
         acheivement.Frame.UIStroke.Color = options.Color
         acheivement.Frame.Glow.ImageColor3 = options.Color
     end
+    
     acheivement.Frame.Details.Desc.Text = tostring(options.Description)
     acheivement.Frame.Details.Title.Text = tostring(options.Title)
     acheivement.Frame.Details.Reason.Text = tostring(options.Reason or "")
+
     if options.Image:match("rbxthumb://") or options.Image:match("rbxassetid://") then
         acheivement.Frame.ImageLabel.Image = tostring(options.Image or "rbxassetid://0")
     else
         acheivement.Frame.ImageLabel.Image = "rbxassetid://" .. tostring(options.Image or "0")
     end
+
     acheivement.Parent = mainUI.AchievementsHolder
     acheivement.Sound.SoundId = "rbxassetid://10469938989"
+
     acheivement.Sound.Volume = 1
+
     if shared.Toggles.NotifySound.Value then
         acheivement.Sound:Play()
     end
+
     task.spawn(function()
         acheivement:TweenSize(UDim2.new(1, 0, 0.2, 0), "In", "Quad", options.TweenDuration, true)
+    
         task.wait(0.8)
+    
         acheivement.Frame:TweenPosition(UDim2.new(0, 0, 0, 0), "Out", "Quad", 0.5, true)
+    
         shared.TweenService:Create(acheivement.Frame.Glow, TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.In),{
             ImageTransparency = 1
         }):Play()
+    
         if options.Time ~= nil then
             if typeof(options.Time) == "number" then
                 task.wait(options.Time)
@@ -7658,6 +9225,7 @@ function Doors:Notify(unsafeOptions)
         else
             task.wait(5)
         end
+    
         acheivement.Frame:TweenPosition(UDim2.new(1.1, 0, 0, 0), "In", "Quad", 0.5, true)
         task.wait(0.5)
         acheivement:TweenSize(UDim2.new(1, 0, -0.1, 0), "InOut", "Quad", 0.5, true)
@@ -7665,20 +9233,27 @@ function Doors:Notify(unsafeOptions)
         acheivement:Destroy()
     end)
 end
+
 function Doors:Alert(options)
     assert(typeof(options) == "table", "Expected a table as options argument but got " .. typeof(options))
+
     options["NotificationType"] = "WARNING"
     options["Color"] = Color3.new(1, 0, 0)
     options["TweenDuration"] = 0.3
+
     Doors:Notify(options)
 end
+
 function Doors:Warn(options) Doors:Alert(options) end
+
 return Doors
 end)() end,
     [54] = function()local wax,script,require=ImportGlobals(54)local ImportGlobals return (function(...)local Linoria = {}
+
 function Linoria:Alert(options)
     if not shared.Library then return warn("No Linoria library") end
     Linoria:Notify(options)
+
     if shared.CheckToggle("NotifySound", true) then
         local sound = Instance.new("Sound", shared.SoundService) do
             sound.SoundId = "rbxassetid://4590662766"
@@ -7688,33 +9263,42 @@ function Linoria:Alert(options)
         end
     end
 end
+
 function Linoria:Notify(options)
     if not shared.Library then return warn("No Linoria library") end
+    
     options = shared.Script.Functions.EnforceTypes(options, {
         Description = "No Message",
         Time = 5,
     })
+
     shared.Library:Notify(options.Description, options.Time)
 end
+
 return Linoria
 end)() end,
     [55] = function()local wax,script,require=ImportGlobals(55)local ImportGlobals return (function(...)local Notify = {}
+
 local Linoria = require("Notifiers/Linoria")
 local Doors = require("Notifiers/Doors")
+
 function Notify:Notify(options)
     if shared.NotifyStyle == "Linoria" then
         local linoriaMessage = options["LinoriaMessage"] or options.Description
         options.Description = linoriaMessage
+
         Linoria:Notify(options)
     elseif shared.NotifyStyle == "Doors" and shared.ScriptName == "DOORS" then
         options["Warning"] = nil
         Doors:Notify(options)
     end
 end
+
 function Notify:Alert(options)
     if shared.NotifyStyle == "Linoria" then
         local linoriaMessage = options["LinoriaMessage"] or options.Description
         options.Description = linoriaMessage
+
         Linoria:Alert(options)
     elseif shared.NotifyStyle == "Doors" and shared.ScriptName == "DOORS" then
         if options.Warning then
@@ -7725,32 +9309,40 @@ function Notify:Alert(options)
         end
     end
 end
+
 function Notify:Log(options) Notify:Notify(options) end
+
 return Notify
 end)() end,
     [56] = function()local wax,script,require=ImportGlobals(56)local ImportGlobals return (function(...)return function(scriptType: "Utils" | "Tabs", name: string)
     local scriptPath = script.Parent.Parent.Places[scriptType][shared.ScriptFolder or "Universal"]
+
     if shared.Mapping and shared.Mapping["Exclusions"] then
         local ExclusionPath = shared.ScriptExclusion or shared.Mapping["Main"]
         return require(scriptPath[ExclusionPath][name])
     end
+    
     require(scriptPath[name])
 end
 end)() end,
     [57] = function()local wax,script,require=ImportGlobals(57)local ImportGlobals return (function(...)local Logs = {
     Debug = true, --or getgenv().mspaint_dev_mode,
+
     FirstTime = true,
     Folder = "DuongApi/logs",
     FileName = nil
 }
 Logs.FileHelper = wax.shared.FileHelper.new(Logs.Folder)
+
 --// Functions \\--
 function TableToMessage(tbl: table)
     for idx, val in ipairs(tbl) do
         tbl[idx] = tostring(val)
     end
+    
     return table.concat(tbl, " ")
 end
+
 function GenerateLogFileName()
     local date = os.date("*t")
     return string.format(
@@ -7759,19 +9351,23 @@ function GenerateLogFileName()
         date.hour, date.min, date.sec
     )
 end
+
 function Log(prefix: string, func, ...)
     local message = string.format("[%s] ", prefix) .. TableToMessage({ ... })
     local printer = func or print
     printer(message)
+
     task.spawn(function()
         if wax.shared.ExecutorSupport["_SupportsFileSystem"] then
             if not Logs.FileName then 
                 Logs.FileName = GenerateLogFileName() 
             end
+        
             Logs.FileHelper.AppendFile(Logs.FileName, message)
         end
     end)
 end
+
 function Logs:Log(...) Log("INFO", print, ...) end
 function Logs:Warn(...) Log("WARN", warn, ...) end
 function Logs:Error(...) Log("ERROR", error, ...) end
@@ -7779,69 +9375,90 @@ function Logs:Debug(...)
     if not Logs.Debug then return end
     Log("DEBUG", print, ...) 
 end
+
 return Logs
 end)() end,
     [58] = function()local wax,script,require=ImportGlobals(58)local ImportGlobals return (function(...)local cloneref = (cloneref or function(instance: any) return instance end)
+
 local Services = {}
 function Services:GetService(serviceName: string)
     if shared[serviceName] then return shared[serviceName] end
+
     local service = cloneref(game:GetService(serviceName))
     shared[serviceName] = service
+
     return service
 end
+
 function Services:GetServices(serviceNames: table)
     for _, serviceName: string in ipairs(serviceNames) do
         Services:GetService(serviceName)
     end
 end
+
 return Services
 end)() end,
     [60] = function()local wax,script,require=ImportGlobals(60)local ImportGlobals return (function(...)local ControlModule = if wax.shared.ExecutorSupport["require"] and shared.PlayerScripts:FindFirstChild("PlayerModule") then wax.require(shared.PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")) else { replaced = true }
+
 if ControlModule.replaced == true then
     ControlModule = {
         replaced = true,
+
         GamepadMoveVector = Vector3.zero,
         ThumbstickMoveVector = Vector3.zero,
         ThumbstickRadius = 15,
         TouchInput = nil,
         TouchStartPosition = nil,
     }
+
     function ControlModule:GetMoveVector(): Vector3
         local x, z = 0, 0
+
         if shared.UserInputService:IsKeyDown(Enum.KeyCode.W) then z -= 1 end
         if shared.UserInputService:IsKeyDown(Enum.KeyCode.S) then z += 1 end
         if shared.UserInputService:IsKeyDown(Enum.KeyCode.A) then x -= 1 end
         if shared.UserInputService:IsKeyDown(Enum.KeyCode.D) then x += 1 end
+
         return Vector3.new(x, 0, z) + ControlModule.ThumbstickMoveVector + ControlModule.GamepadMoveVector
     end
+
     shared.Connect:GiveSignal(shared.UserInputService.InputChanged:Connect(function(input, gameProcessed)
         if gameProcessed then return end
+    
         if input.UserInputType == Enum.UserInputType.Gamepad1 and input.KeyCode == Enum.KeyCode.Thumbstick1  then
             ControlModule.GamepadMoveVector = Vector3.new(input.Position.X, 0, -input.Position.Y)
         end
     end))
+    
     shared.Connect:GiveSignal(shared.UserInputService.TouchStarted:Connect(function(input)
         ControlModule.TouchInput = input
         ControlModule.TouchStartPosition = input.Position
     end))
+    
     shared.Connect:GiveSignal(shared.UserInputService.TouchMoved:Connect(function(input)
         if input ~= ControlModule.TouchInput then return end
+        
         if ControlModule.TouchStartPosition and input.Position then
             local moveDirection = (input.Position - ControlModule.TouchStartPosition).Unit
             local distance = (input.Position - ControlModule.TouchStartPosition).Magnitude
+    
             if distance > ControlModule.ThumbstickRadius then
                 distance = ControlModule.ThumbstickRadius
             end
+    
             local adjustedDistance = distance / ControlModule.ThumbstickRadius
             ControlModule.ThumbstickMoveVector = Vector3.new(moveDirection.X * adjustedDistance, 0, moveDirection.Y * adjustedDistance)
         end
     end))
+    
     shared.Connect:GiveSignal(shared.UserInputService.TouchEnded:Connect(function(input)
         if input ~= ControlModule.TouchInput then return end
+        
         ControlModule.ThumbstickMoveVector = Vector3.new(0, 0, 0)
         ControlModule.TouchInput = nil
     end))
 end
+
 return ControlModule
 end)() end,
     [61] = function()local wax,script,require=ImportGlobals(61)local ImportGlobals return (function(...)local Fly = {
@@ -7850,77 +9467,99 @@ end)() end,
     Enabled = false, 
     Speed = 15
 }
+
 function Fly:Setup()
     local flyBody = Instance.new("BodyVelocity")
     flyBody.Velocity = Vector3.zero
     flyBody.MaxForce = Vector3.one * 9e9
+
     local flyGyro = Instance.new("BodyGyro")
     flyGyro.P = 9e4
     flyGyro.MaxTorque = Vector3.one * 9e9
+
     Fly.FlyBody = flyBody
     Fly.FlyGyro = flyGyro
+
     shared.Connections["Fly"] = shared.RunService.RenderStepped:Connect(function()
         if not Fly.Enabled or (if shared.Library then shared.Library.Unloaded == true else true) then return end
+
         local velocity = Vector3.zero
         local moveVector = shared.ControlModule:GetMoveVector()
         velocity = -((shared.Camera.CFrame.LookVector * moveVector.Z) - (shared.Camera.CFrame.RightVector * moveVector.X))
+
         if shared.UserInputService:IsKeyDown(Enum.KeyCode.Space) then velocity += shared.Camera.CFrame.UpVector end
         if shared.UserInputService:IsKeyDown(Enum.KeyCode.LeftShift) then velocity -= shared.Camera.CFrame.UpVector end
+        
         Fly.FlyBody.Velocity = velocity * Fly.Speed
         Fly.FlyGyro.CFrame = shared.Camera.CFrame
     end)
 end
+
 function Fly:Stop()
     if shared.Humanoid then shared.Humanoid.PlatformStand = false end
+
     shared.Connect:DisconnectSignal(shared.Connections["Fly"])
     if Fly.FlyBody then Fly.FlyBody:Destroy() end
     if Fly.FlyGyro then Fly.FlyGyro:Destroy() end
 end
+
 function Fly:Set(value: boolean)
     if not shared.RootPart then
         return warn("shared.RootPart is nil.")
     end
+
     Fly.Enabled = value
     if shared.Humanoid then shared.Humanoid.PlatformStand = value end
     Fly.FlyBody.Parent = if value then shared.RootPart else nil
     Fly.FlyGyro.Parent = if value then shared.RootPart else nil
 end
+
 function Fly:Enable() Fly:Set(true) end
 function Fly:Disable() Fly:Set(false) end
 function Fly:Toggle() Fly:Set(not Fly.Enabled) end
+
 function Fly:SetSpeed(speed: number)
     Fly.Speed = speed
 end
+
 return Fly
 end)() end,
     [62] = function()local wax,script,require=ImportGlobals(62)local ImportGlobals return (function(...)local Twerk = {
     TwerkAnimation = nil,
     TwerkTrack = nil,
 }
+
 function Twerk:Setup()
     if not Twerk.TwerkAnimation then
         Twerk.TwerkAnimation = Instance.new("Animation")
         Twerk.TwerkAnimation.AnimationId = "rbxassetid://12874447851"
     end
     if not shared.Humanoid then return end
+
     Twerk.TwerkTrack = shared.Humanoid:LoadAnimation(Twerk.TwerkAnimation)
     Twerk.TwerkTrack.Looped = true
 end
+
 function Twerk:Set(value: boolean)
     if not shared.Humanoid then return end
+    
     if not Twerk.TwerkAnimation then Twerk:Setup() end
     if not Twerk.TwerkTrack then return end
+
     if value then
         Twerk.TwerkTrack:Play()
     else
         Twerk.TwerkTrack:Stop()
     end
 end
+
 function Twerk:Enable() Twerk:Set(true) end
 function Twerk:Disable() Twerk:Set(false) end
+
 return Twerk
 end)() end
 } -- [RefId] = Closure
+
 -- Holds the actual DOM data
 local ObjectTree = {
     {
@@ -8398,6 +10037,7 @@ local ObjectTree = {
         }
     }
 }
+
 -- Line offsets for debugging (only included when minifyTables is false)
 local LineOffsets = {
     8,
@@ -8444,20 +10084,27 @@ local LineOffsets = {
     [61] = 9523,
     [62] = 9586
 }
+
 -- Misc AOT variable imports
 local WaxVersion = "0.4.1"
 local EnvName = "Script"
+
 -- ++++++++ RUNTIME IMPL BELOW ++++++++ --
+
 -- Localizing certain libraries and built-ins for runtime efficiency
 local string, task, setmetatable, error, next, table, unpack, coroutine, script, type, require, pcall, tostring, tonumber, _VERSION =
       string, task, setmetatable, error, next, table, unpack, coroutine, script, type, require, pcall, tostring, tonumber, _VERSION
+
 local table_insert = table.insert
 local table_remove = table.remove
 local table_freeze = table.freeze or function(t) return t end -- lol
+
 local coroutine_wrap = coroutine.wrap
+
 local string_sub = string.sub
 local string_match = string.match
 local string_gmatch = string.gmatch
+
 -- The Lune runtime has its own `task` impl, but it must be imported by its builtin
 -- module path, "@lune/task"
 if _VERSION and string_sub(_VERSION, 1, 4) == "Lune" then
@@ -8466,11 +10113,14 @@ if _VERSION and string_sub(_VERSION, 1, 4) == "Lune" then
         task = LuneTaskLib
     end
 end
+
 local task_defer = task and task.defer
+
 -- If we're not running on the Roblox engine, we won't have a `task` global
 local Defer = task_defer or function(f, ...)
     coroutine_wrap(f)(...)
 end
+
 -- ClassName "IDs"
 local ClassNameIdBindings = {
     [1] = "Folder",
@@ -8479,52 +10129,70 @@ local ClassNameIdBindings = {
     [4] = "LocalScript",
     [5] = "StringValue",
 }
+
 local RefBindings = {} -- [RefId] = RealObject
+
 local ScriptClosures = {}
 local ScriptClosureRefIds = {} -- [ScriptClosure] = RefId
 local StoredModuleValues = {}
 local ScriptsToRun = {}
+
 -- wax.shared __index/__newindex
 local SharedEnvironment = {}
+
 -- We're creating 'fake' instance refs soley for traversal of the DOM for require() compatibility
 -- It's meant to be as lazy as possible
 local RefChildren = {} -- [Ref] = {ChildrenRef, ...}
+
 -- Implemented instance methods
 local InstanceMethods = {
     GetFullName = { {}, function(self)
         local Path = self.Name
         local ObjectPointer = self.Parent
+
         while ObjectPointer do
             Path = ObjectPointer.Name .. "." .. Path
+
             -- Move up the DOM (parent will be nil at the end, and this while loop will stop)
             ObjectPointer = ObjectPointer.Parent
         end
+
         return Path
     end},
+
     GetChildren = { {}, function(self)
         local ReturnArray = {}
+
         for Child in next, RefChildren[self] do
             table_insert(ReturnArray, Child)
         end
+
         return ReturnArray
     end},
+
     GetDescendants = { {}, function(self)
         local ReturnArray = {}
+
         for Child in next, RefChildren[self] do
             table_insert(ReturnArray, Child)
+
             for _, Descendant in next, Child:GetDescendants() do
                 table_insert(ReturnArray, Descendant)
             end
         end
+
         return ReturnArray
     end},
+
     FindFirstChild = { {"string", "boolean?"}, function(self, name, recursive)
         local Children = RefChildren[self]
+
         for Child in next, Children do
             if Child.Name == name then
                 return Child
             end
         end
+
         if recursive then
             for Child in next, Children do
                 -- Yeah, Roblox follows this behavior- instead of searching the entire base of a
@@ -8533,55 +10201,69 @@ local InstanceMethods = {
             end
         end
     end},
+
     FindFirstAncestor = { {"string"}, function(self, name)
         local RefPointer = self.Parent
         while RefPointer do
             if RefPointer.Name == name then
                 return RefPointer
             end
+
             RefPointer = RefPointer.Parent
         end
     end},
+
     -- Just to implement for traversal usage
     WaitForChild = { {"string", "number?"}, function(self, name)
         return self:FindFirstChild(name)
     end},
 }
+
 -- "Proxies" to instance methods, with err checks etc
 local InstanceMethodProxies = {}
 for MethodName, MethodObject in next, InstanceMethods do
     local Types = MethodObject[1]
     local Method = MethodObject[2]
+
     local EvaluatedTypeInfo = {}
     for ArgIndex, TypeInfo in next, Types do
         local ExpectedType, IsOptional = string_match(TypeInfo, "^([^%?]+)(%??)")
         EvaluatedTypeInfo[ArgIndex] = {ExpectedType, IsOptional}
     end
+
     InstanceMethodProxies[MethodName] = function(self, ...)
         if not RefChildren[self] then
             error("Expected ':' not '.' calling member function " .. MethodName, 2)
         end
+
         local Args = {...}
         for ArgIndex, TypeInfo in next, EvaluatedTypeInfo do
             local RealArg = Args[ArgIndex]
             local RealArgType = type(RealArg)
             local ExpectedType, IsOptional = TypeInfo[1], TypeInfo[2]
+
             if RealArg == nil and not IsOptional then
                 error("Argument " .. RealArg .. " missing or nil", 3)
             end
+
             if ExpectedType ~= "any" and RealArgType ~= ExpectedType and not (RealArgType == "nil" and IsOptional) then
                 error("Argument " .. ArgIndex .. " expects type \"" .. ExpectedType .. "\", got \"" .. RealArgType .. "\"", 2)
             end
         end
+
         return Method(self, ...)
     end
 end
+
 local function CreateRef(className, name, parent)
     -- `name` and `parent` can also be set later by the init script if they're absent
+
     -- Extras
     local StringValue_Value
+
     -- Will be set to RefChildren later aswell
     local Children = setmetatable({}, {__mode = "k"})
+
     -- Err funcs
     local function InvalidMember(member)
         error(member .. " is not a valid (virtual) member of " .. className .. " \"" .. name .. "\"", 3)
@@ -8589,9 +10271,12 @@ local function CreateRef(className, name, parent)
     local function ReadOnlyProperty(property)
         error("Unable to assign (virtual) property " .. property .. ". Property is read only", 3)
     end
+
     local Ref = {}
     local RefMetatable = {}
+
     RefMetatable.__metatable = false
+
     RefMetatable.__index = function(_, index)
         if index == "ClassName" then -- First check "properties"
             return className
@@ -8604,19 +10289,23 @@ local function CreateRef(className, name, parent)
             return StringValue_Value
         else -- Lastly, check "methods"
             local InstanceMethod = InstanceMethodProxies[index]
+
             if InstanceMethod then
                 return InstanceMethod
             end
         end
+
         -- Next we'll look thru child refs
         for Child in next, Children do
             if Child.Name == index then
                 return Child
             end
         end
+
         -- At this point, no member was found; this is the same err format as Roblox
         InvalidMember(index)
     end
+
     RefMetatable.__newindex = function(_, index, value)
         -- __newindex is only for props fyi
         if index == "ClassName" then
@@ -8628,11 +10317,14 @@ local function CreateRef(className, name, parent)
             if value == Ref then
                 return
             end
+
             if parent ~= nil then
                 -- Remove this ref from the CURRENT parent
                 RefChildren[parent][Ref] = nil
             end
+
             parent = value
+
             if value ~= nil then
                 -- And NOW we're setting the new parent
                 RefChildren[value][Ref] = true
@@ -8645,77 +10337,105 @@ local function CreateRef(className, name, parent)
             InvalidMember(index)
         end
     end
+
     RefMetatable.__tostring = function()
         return name
     end
+
     setmetatable(Ref, RefMetatable)
+
     RefChildren[Ref] = Children
+
     if parent ~= nil then
         RefChildren[parent][Ref] = true
     end
+
     return Ref
 end
+
 -- Create real ref DOM from object tree
 local function CreateRefFromObject(object, parent)
     local RefId = object[1]
     local ClassNameId = object[2]
     local Properties = object[3] -- Optional
     local Children = object[4] -- Optional
+
     local ClassName = ClassNameIdBindings[ClassNameId]
+
     local Name = Properties and table_remove(Properties, 1) or ClassName
+
     local Ref = CreateRef(ClassName, Name, parent) -- 3rd arg may be nil if this is from root
     RefBindings[RefId] = Ref
+
     if Properties then
         for PropertyName, PropertyValue in next, Properties do
             Ref[PropertyName] = PropertyValue
         end
     end
+
     if Children then
         for _, ChildObject in next, Children do
             CreateRefFromObject(ChildObject, Ref)
         end
     end
+
     return Ref
 end
+
 local RealObjectRoot = CreateRef("Folder", "[" .. EnvName .. "]")
 for _, Object in next, ObjectTree do
     CreateRefFromObject(Object, RealObjectRoot)
 end
+
 -- Now we'll set script closure refs and check if they should be ran as a BaseScript
 for RefId, Closure in next, ClosureBindings do
     local Ref = RefBindings[RefId]
+
     ScriptClosures[Ref] = Closure
     ScriptClosureRefIds[Ref] = RefId
+
     local ClassName = Ref.ClassName
     if ClassName == "LocalScript" or ClassName == "Script" then
         table_insert(ScriptsToRun, Ref)
     end
 end
+
 local function LoadScript(scriptRef)
     local ScriptClassName = scriptRef.ClassName
+
     -- First we'll check for a cached module value (packed into a tbl)
     local StoredModuleValue = StoredModuleValues[scriptRef]
     if StoredModuleValue and ScriptClassName == "ModuleScript" then
         return unpack(StoredModuleValue)
     end
+
     local Closure = ScriptClosures[scriptRef]
+
     local function FormatError(originalErrorMessage)
         originalErrorMessage = tostring(originalErrorMessage)
+
         local VirtualFullName = scriptRef:GetFullName()
+
         -- Check for vanilla/Roblox format
         local OriginalErrorLine, BaseErrorMessage = string_match(originalErrorMessage, "[^:]+:(%d+): (.+)")
+
         if not OriginalErrorLine or not LineOffsets then
             return VirtualFullName .. ":*: " .. (BaseErrorMessage or originalErrorMessage)
         end
+
         OriginalErrorLine = tonumber(OriginalErrorLine)
+
         local RefId = ScriptClosureRefIds[scriptRef]
         local LineOffset = LineOffsets[RefId]
+
         local RealErrorLine = OriginalErrorLine - LineOffset + 1
         if RealErrorLine < 0 then
             RealErrorLine = "?"
         end
+
         return VirtualFullName .. ":" .. RealErrorLine .. ": " .. BaseErrorMessage
     end
+
     -- If it's a BaseScript, we'll just run it directly!
     if ScriptClassName == "LocalScript" or ScriptClassName == "Script" then
         local RunSuccess, ErrorMessage = pcall(Closure)
@@ -8724,27 +10444,34 @@ local function LoadScript(scriptRef)
         end
     else
         local PCallReturn = {pcall(Closure)}
+
         local RunSuccess = table_remove(PCallReturn, 1)
         if not RunSuccess then
             local ErrorMessage = table_remove(PCallReturn, 1)
             error(FormatError(ErrorMessage), 0)
         end
+
         StoredModuleValues[scriptRef] = PCallReturn
         return unpack(PCallReturn)
     end
 end
+
 -- We'll assign the actual func from the top of this output for flattening user globals at runtime
 -- Returns (in a tuple order): wax, script, require
 function ImportGlobals(refId)
     local ScriptRef = RefBindings[refId]
+
     local function RealCall(f, ...)
         local PCallReturn = {pcall(f, ...)}
+
         local CallSuccess = table_remove(PCallReturn, 1)
         if not CallSuccess then
             error(PCallReturn[1], 3)
         end
+
         return unpack(PCallReturn)
     end
+
     -- `wax.shared` index
     local WaxShared = table_freeze(setmetatable({}, {
         __index = SharedEnvironment,
@@ -8758,44 +10485,57 @@ function ImportGlobals(refId)
             return next, SharedEnvironment
         end,
     }))
+
     local Global_wax = table_freeze({
         -- From AOT variable imports
         version = WaxVersion,
         envname = EnvName,
+
         shared = WaxShared,
+
         -- "Real" globals instead of the env set ones
         script = script,
         require = require,
     })
+
     local Global_script = ScriptRef
+
     local function Global_require(module, ...)
         local ModuleArgType = type(module)
+
         local ErrorNonModuleScript = "Attempted to call require with a non-ModuleScript"
         local ErrorSelfRequire = "Attempted to call require with self"
+
         if ModuleArgType == "table" and RefChildren[module]  then
             if module.ClassName ~= "ModuleScript" then
                 error(ErrorNonModuleScript, 2)
             elseif module == ScriptRef then
                 error(ErrorSelfRequire, 2)
             end
+
             return LoadScript(module)
         elseif ModuleArgType == "string" and string_sub(module, 1, 1) ~= "@" then
             -- The control flow on this SUCKS
+
             if #module == 0 then
                 error("Attempted to call require with empty string", 2)
             end
+
             local CurrentRefPointer = ScriptRef
+
             if string_sub(module, 1, 1) == "/" then
                 CurrentRefPointer = RealObjectRoot
             elseif string_sub(module, 1, 2) == "./" then
                 module = string_sub(module, 3)
             end
+
             local PreviousPathMatch
             for PathMatch in string_gmatch(module, "([^/]*)/?") do
                 local RealIndex = PathMatch
                 if PathMatch == ".." then
                     RealIndex = "Parent"
                 end
+
                 -- Don't advance dir if it's just another "/" either
                 if RealIndex ~= "" then
                     local ResultRef = CurrentRefPointer:FindFirstChild(RealIndex)
@@ -8805,27 +10545,34 @@ function ImportGlobals(refId)
                             ResultRef = CurrentRefParent:FindFirstChild(RealIndex)
                         end
                     end
+
                     if ResultRef then
                         CurrentRefPointer = ResultRef
                     elseif PathMatch ~= PreviousPathMatch and PathMatch ~= "init" and PathMatch ~= "init.server" and PathMatch ~= "init.client" then
                         error("Virtual script path \"" .. module .. "\" not found", 2)
                     end
                 end
+
                 -- For possible checks next cycle
                 PreviousPathMatch = PathMatch
             end
+
             if CurrentRefPointer.ClassName ~= "ModuleScript" then
                 error(ErrorNonModuleScript, 2)
             elseif CurrentRefPointer == ScriptRef then
                 error(ErrorSelfRequire, 2)
             end
+
             return LoadScript(CurrentRefPointer)
         end
+
         return RealCall(require, module, ...)
     end
+
     -- Now, return flattened globals ready for direct runtime exec
     return Global_wax, Global_script, Global_require
 end
+
 for _, ScriptRef in next, ScriptsToRun do
     Defer(LoadScript, ScriptRef)
 end
