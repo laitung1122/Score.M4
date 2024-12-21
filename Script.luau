@@ -63,18 +63,25 @@ shared.Script = {
     Functions = {}
 }
 shared.Hooks = {}
+
 shared.Script.Functions.EnforceTypes = function(args, template)
-    args = if typeof(args) == "table" then args else {}
+    -- Kiểm tra args có phải là bảng (table) không, nếu không thì gán thành bảng rỗng
+    args = typeof(args) == "table" and args or {}
+    
+    -- Lặp qua template để áp đặt các kiểu giá trị
     for key, value in pairs(template) do
         local argValue = args[key]
         if argValue == nil or (value ~= nil and typeof(argValue) ~= typeof(value)) then
+            -- Gán giá trị mặc định từ template nếu giá trị hiện tại không hợp lệ
             args[key] = value
         elseif typeof(value) == "table" then
+            -- Nếu giá trị trong template là bảng, đệ quy để kiểm tra và áp đặt kiểu bên trong
             args[key] = shared.Script.Functions.EnforceTypes(argValue, value)
         end
     end
     return args
 end
+
 
 shared.Load = require("Utils/Loader")
 shared.Logs = require("Utils/Logs")
@@ -463,9 +470,10 @@ Script.Tracks = {
     ItemThrowTrack = nil,
 }
 
-function Script.Functions.Warn(message: string)
+function Script.Functions.Warn(message)
     warn("Cảnh báo - DươngApi:", message)
 end
+
 
 Script._mspaint_custom_captions = Instance.new("ScreenGui"); do
     local Frame = Instance.new("Frame", Script._mspaint_custom_captions)
@@ -508,18 +516,23 @@ Script._mspaint_custom_captions = Instance.new("ScreenGui"); do
         IsCaptionHidden = true
         Script._mspaint_custom_captions.Parent = shared.ReplicatedStorage
     end
-    function Script.Functions.Captions(caption: string)
+    function Script.Functions.Captions(caption)
         CaptionsLastUsed = os.time()
+    
         if IsCaptionHidden then
             local success = pcall(function()
-                Script._mspaint_custom_captions.Parent = if gethui then gethui() else shared.CoreGui
+                Script._mspaint_custom_captions.Parent = gethui and gethui() or shared.CoreGui
             end)
+    
             if not success then
                 Script._mspaint_custom_captions.Parent = shared.PlayerGui
-            end 
+            end
+    
             IsCaptionHidden = false
-        end        
+        end
+    
         TextLabel.Text = caption
+    
         task.spawn(function()
             task.wait(5)
             if os.time() - CaptionsLastUsed >= 5 then
@@ -527,7 +540,7 @@ Script._mspaint_custom_captions = Instance.new("ScreenGui"); do
             end
         end)
     end
-end
+    
 
 function Script.Functions.RandomString()
     local length = math.random(10,20)
@@ -539,25 +552,33 @@ function Script.Functions.RandomString()
 end
 
 function Script.Functions.NotifyGlitch()
-    if Options.NotifyEntity.Value["Void/Glitch"] and Script.LatestRoom.Value > Script.CurrentRoom + Script.VoidThresholdValues[Script.Floor.Value] and Script.Alive and not table.find(Script.Temp.VoidGlitchNotifiedRooms, Script.CurrentRoom) then
+    if Options.NotifyEntity.Value["Void/Glitch"] and 
+       Script.LatestRoom.Value > Script.CurrentRoom + Script.VoidThresholdValues[Script.Floor.Value] and 
+       Script.Alive and 
+       not table.find(Script.Temp.VoidGlitchNotifiedRooms, Script.CurrentRoom) then
+
         table.insert(Script.Temp.VoidGlitchNotifiedRooms, Script.CurrentRoom)
 
         local message = "Void/Glitch sẽ đến khi cánh cửa tiếp theo được mở ra."
 
         if Script.IsRooms then
             local roomsLeft = (6 - (Script.LatestRoom.Value - Script.CurrentRoom))
-            message = "Void/Glitch sẽ đến " .. (if roomsLeft == 0 then "khi cánh cửa tiếp theo đã mở." else "trong " .. roomsLeft .. " phòng") .. "."
+            if roomsLeft == 0 then
+                message = "Void/Glitch sẽ đến khi cánh cửa tiếp theo đã mở."
+            else
+                message = "Void/Glitch sẽ đến trong " .. roomsLeft .. " phòng."
+            end
         end
 
         shared.Notify:Alert({
             Title = "ENTITIES",
             Description = message,
             Reason = "Sang phòng tiếp theo để né tránh nó.",
-
             Warning = true
         })
     end
 end
+
 
 function Script.Functions.UpdateRPC()
     if not wax.shared.BloxstrapRPC then return end
@@ -2390,7 +2411,7 @@ local BypassGroupBox = Tabs.Exploits:AddRightGroupbox("Tính năng mở") do
 
     BypassGroupBox:AddToggle("DeleteSeek", {
         Text = "Xóa seek (FE)",
-        Default = true
+        Default = false
     })
 end
 
@@ -4214,7 +4235,7 @@ local AutomationGroupBox = Tabs.Main:AddRightGroupbox("Tự động") do
 
     AutomationGroupBox:AddToggle("AutoWardrobe", {
         Text = "Tự động ẩn nấp",
-        Default = true,
+        Default = false,
         Tooltip = "Có thể lỗi khi gặp quá nhiều quái cùng lúc",
         Visible = not Script.IsRetro,
         Risky = true
@@ -4234,7 +4255,7 @@ local AutomationGroupBox = Tabs.Main:AddRightGroupbox("Tự động") do
 
     if Script.IsHotel or Script.IsFools then
         AutomationGroupBox:AddToggle("AutoLibrarySolver", {
-            Text = "Tự động giải mã thư viện",
+            Text = " giải mã thư viện",
             Default = false
         })
 
@@ -4587,7 +4608,7 @@ local NotifyTabBox = Tabs.Visuals:AddRightTabbox() do
     local NotifyTab = NotifyTabBox:AddTab("Thông báo") do
         NotifyTab:AddDropdown("NotifyEntity", {
             AllowNull = true,
-            Values = {"Blitz", "Lookman", "Rush", "Ambush", "Eyes", "Halt Room", "A60", "A120", "Jeff The Killer", "Gloombat Swarm", "Void/Glitch"},
+            Values = {"Blitz", "Lookman", "Rush", "Ambush","Eyes", "Halt Room", "A60", "A120", "Jeff The Killer", "Gloombat Swarm", "Void/Glitch"},
             Default = {"Rush","Ambush","Eyes"},
             Multi = true,
 
@@ -7006,8 +7027,10 @@ function Script.Functions.SetupOtherCharacterConnection(character: Model)
             shared.Notify:Alert({
                 Title = "Dương Api",
                 Description = string.format("Mã thư viện: %s", output),
-                Reason = if tonumber(code) then "Giải mã khóa" else "Bạn vẫn còn thiếu một số vở",
+                Reason = tonumber(code) and "Giải mã khóa" or "Bạn vẫn còn thiếu một số vở",
             })
+        end
+        
 
             if Toggles.NotifyChat.Value and count == 0 then
                 shared.RBXGeneral:SendAsync(string.format("Mã thư viện: %s", output))
@@ -7491,6 +7514,8 @@ local Options = shared.Options
 
 --// Variables \\--
 local Script = shared.Script
+
+-- Type Definitions
 type tPathfind = {
     esp: boolean,
     room_number: number, -- the room number
@@ -7512,14 +7537,17 @@ type tSortedNodes = {
     room: number,
 }
 
+-- Function to create a new tGroupTrack
 local function tGroupTrackNew(startNode: Part | nil): tGroupTrack
+    -- Creating tGroupTrack with conditional assignment for nodes
     local create: tGroupTrack = {
-        nodes = startNode and {startNode} or {},
-        hasStart = false,
-        hasEnd   = false,
+        nodes = startNode and {startNode} or {},  -- If startNode is provided, create a table with it, otherwise, use an empty table.
+        hasStart = startNode ~= nil,  -- Set hasStart to true if startNode is provided
+        hasEnd = false,  -- Initially hasEnd is false, this can be updated later
     }
     return create
 end
+
 
 --@Internal funtion
 local function changeNodeColor(node: Model, color: Color3): Model
@@ -7624,11 +7652,33 @@ end
 --@Internal function
 --@Return nil. __Set the node attribute.__ Can only be called after the __@Pathfind function is completed.__
 local function PathfindSetNodes(nodes: table, nameAttribute: string)
-    Script.Functions.Minecart.debug("[SetNodes] Setting pathfind attributes") 
-    for i, node: Part in ipairs(nodes) do
-        node:SetAttribute(nameAttribute, i)
+    -- Kiểm tra xem 'nodes' có phải là bảng hợp lệ không
+    if type(nodes) ~= "table" then
+        Script.Functions.Minecart.debug("[SetNodes] Invalid nodes table!")
+        return
+    end
+
+    -- Kiểm tra xem nameAttribute có phải là chuỗi hợp lệ không
+    if type(nameAttribute) ~= "string" then
+        Script.Functions.Minecart.debug("[SetNodes] Invalid nameAttribute!")
+        return
+    end
+
+    Script.Functions.Minecart.debug("[SetNodes] Setting pathfind attributes")
+
+    -- Duyệt qua tất cả các node trong bảng 'nodes'
+    for i, node in ipairs(nodes) do
+        -- Kiểm tra xem mỗi node có phải là một đối tượng Part không
+        if typeof(node) == "Instance" and node:IsA("Part") then
+            -- Đặt thuộc tính cho mỗi node
+            node:SetAttribute(nameAttribute, i)
+        else
+            -- Ghi log nếu node không phải là một Part hợp lệ
+            Script.Functions.Minecart.debug("[SetNodes] Node at index " .. i .. " is not a valid Part!")
+        end
     end
 end
+
 
 local WhitelistConfig = {
     [45] = {firstKeep = 3, lastKeep = 2},
@@ -7688,6 +7738,7 @@ end
     _mspaint_player_teleported = true ==> Nodes was destroyed + Player sucessfully teleported.
 ]]
 local MinecartFound = false
+
 function Script.Functions.Minecart.Teleport(room: Model)
     if not Toggles.MinecartTeleport.Value then return end
 
@@ -7695,6 +7746,7 @@ function Script.Functions.Minecart.Teleport(room: Model)
     if not (roomNumber >= 45 and roomNumber <= 49) then return end
     Script.Functions.Minecart.debug("[Teleport] Was called for room: " .. room.Name)
 
+    -- Xử lý room chưa bị phá hủy
     if not HasAlreadyDestroyed(room) then
         local nodesList = PathfindGetNodes(room)
         if not nodesList then return end
@@ -7703,50 +7755,65 @@ function Script.Functions.Minecart.Teleport(room: Model)
     end
 
     local hasAlreadyTeleported = room:GetAttribute("_mspaint_player_teleported")
-    Script.Functions.Minecart.debug("[Teleport] Player already teleported:" .. tostring(hasAlreadyTeleported))
+    Script.Functions.Minecart.debug("[Teleport] Player already teleported: " .. tostring(hasAlreadyTeleported))
 
-    --Setup minecart teleport if room 45 is added.
+    -- Khởi tạo teleport nếu phòng là 45 và người chơi chưa được teleport
     if roomNumber == 45 and not hasAlreadyTeleported then
         task.spawn(function()
-
-            --Delete old notification
-            if workspace:FindFirstChild("_internal_mspaint_minecart_teleport") then 
-                workspace:FindFirstChild("_internal_mspaint_minecart_teleport"):Destroy() 
+            -- Xóa thông báo cũ nếu có
+            local teleportNotification = workspace:FindFirstChild("_internal_mspaint_minecart_teleport")
+            if teleportNotification then 
+                teleportNotification:Destroy() 
             end
 
+            -- Tạo thông báo về tiến trình
             local progressPart = Instance.new("Part", workspace) do
                 progressPart.Anchored = true
                 progressPart.CanCollide = false
                 progressPart.Name = "_internal_mspaint_minecart_teleport"
                 progressPart.Transparency = 1
             end
+
+            -- Hiển thị thông báo về tiến trình
             shared.Notify:Alert({
                 Title = "Dương Api",
                 Description = "Tính năng đã sẵn sàng, chờ người dùng lên xe mỏ...",
-
                 Time = progressPart
             })
         end)
 
-        Script.Functions.Minecart.debug("[Teleport] Minecart Teleport initialization room:" .. room.Name)
-        --LSplash actually fix your game omg...
+        Script.Functions.Minecart.debug("[Teleport] Minecart Teleport initialization room: " .. room.Name)
+
+        -- Tìm kiếm MinecartRig
         local minecartRigs = {}
         task.spawn(function()
             while not MinecartFound and not shared.Library.Unloaded do
                 shared.RunService.RenderStepped:Wait()
-                for idx, stuff: Instance in pairs(shared.Camera:GetChildren()) do
-                    if stuff.Name ~= "MinecartRig" then continue end
-                    table.insert(minecartRigs, stuff)
-                    Script.Functions.Minecart.debug("[Teleport] MinecartRig found, adding to table")
-                    repeat 
-                        task.wait()
-                    until not stuff:IsDescendantOf(shared.Camera) 
-                    Script.Functions.Minecart.debug("[Teleport] MinecartRig fake removed.")
-                    table.remove(minecartRigs, idx)
+                for _, stuff in pairs(shared.Camera:GetChildren()) do
+                    if stuff.Name == "MinecartRig" then
+                        table.insert(minecartRigs, stuff)
+                        Script.Functions.Minecart.debug("[Teleport] MinecartRig found, adding to table")
+
+                        -- Đảm bảo rằng MinecartRig được loại bỏ khi không còn trong Camera
+                        repeat 
+                            task.wait()
+                        until not stuff:IsDescendantOf(shared.Camera)
+
+                        Script.Functions.Minecart.debug("[Teleport] MinecartRig fake removed.")
+
+                        -- Loại bỏ MinecartRig khỏi bảng
+                        for i = #minecartRigs, 1, -1 do
+                            if minecartRigs[i] == stuff then
+                                table.remove(minecartRigs, i)
+                                break
+                            end
+                        end
+                    end
                 end
             end
         end)
 
+        -- Chờ để MinecartRig xuất hiện
         while #minecartRigs == 0 and not shared.Library.Unloaded do 
             task.wait(0.5)
             Script.Functions.Minecart.debug("[Teleport] Room to Teleport: " .. tostring(Script.LatestRoom.Value))
@@ -7754,20 +7821,26 @@ function Script.Functions.Minecart.Teleport(room: Model)
 
         Script.Functions.Minecart.debug("[Teleport] MinecartRig Found! Initializing Teleport...")
 
-        if workspace:FindFirstChild("_internal_mspaint_minecart_teleport") then workspace:FindFirstChild("_internal_mspaint_minecart_teleport"):Destroy() end
+        -- Xóa thông báo về tiến trình
+        local teleportNotification = workspace:FindFirstChild("_internal_mspaint_minecart_teleport")
+        if teleportNotification then 
+            teleportNotification:Destroy() 
+        end
+
+        -- Hiển thị thông báo bắt đầu teleport
         shared.Notify:Alert({
             Title = "Dương Api",
             Description = "Bắt đầu chạy tính năng, hãy tận hưởng",
-
             Time = 10
         })
 
         task.wait(1.5)
 
+        -- Khởi tạo quá trình teleport trong các phòng
         local startRoomNumber = math.min(49, Script.LatestRoom.Value)
         while startRoomNumber >= 45 and startRoomNumber <= 49 do
             if shared.Library.Unloaded then break end
-            
+
             Script.Functions.Minecart.debug("[Teleport] Teleporting to last node on room: " .. startRoomNumber)
             local GetRoom = workspace.CurrentRooms[startRoomNumber]
             local nodesList = PathfindGetNodes(GetRoom)
@@ -7779,32 +7852,41 @@ function Script.Functions.Minecart.Teleport(room: Model)
                     minecart.PrimaryPart.CFrame = getLastNode.CFrame
                 end
             until GetRoom:WaitForChild("Door"):GetAttribute("Opened")
-            GetRoom:SetAttribute("_mspaint_player_teleported", true)
 
-            startRoomNumber += 1
+            GetRoom:SetAttribute("_mspaint_player_teleported", true)
+            startRoomNumber = startRoomNumber + 1
             MinecartFound = true
             task.wait(1.2)
         end
+
         Script.Functions.Minecart.debug("[Teleport] Finished!")
     end
 end
+
+
 
 --External function to be called.
 function Script.Functions.Minecart.DrawNodes(room: Model)
     local nodesList = PathfindGetNodes(room)
     if not nodesList then return end
 
-    local espRealColor = if Toggles.MinecartPathVisualiser.Value then Script.MinecartPathNodeColor.Green else Script.MinecartPathNodeColor.Disabled
+    -- Chọn màu sắc cho node theo trạng thái của Toggle
+    local espRealColor
+    if Toggles.MinecartPathVisualiser.Value then
+        espRealColor = Script.MinecartPathNodeColor.Green
+    else
+        espRealColor = Script.MinecartPathNodeColor.Disabled
+    end
 
-    --[ESP] Draw the real path
+    -- [ESP] Vẽ đường dẫn thật
     for _, realNode in ipairs(nodesList.real) do
         changeNodeColor(realNode, espRealColor)
     end
 
-    --[ESP] Draw the fake path
-     for idx, fakeNode in ipairs(nodesList.fake) do
-         changeNodeColor(fakeNode, MinecartPathNodeColor.Red)
-     end
+    -- [ESP] Vẽ đường dẫn giả
+    for _, fakeNode in ipairs(nodesList.fake) do
+        changeNodeColor(fakeNode, Script.MinecartPathNodeColor.Red)
+    end
 end
 
 --@Return nil. Map the nodes in the __RunnerNodes__ and call features functions (@DrawNode; @Teleport).
@@ -9093,7 +9175,7 @@ function UICreator:CreateSettingsTab()
     local MenuGroup = SettingsTab:AddLeftGroupbox("Menu")
     local CreditsGroup = SettingsTab:AddRightGroupbox("Credits")
 
-    MenuGroup:AddToggle("ExecuteOnTeleport", { Default = true, Text = "Tự động chạy script(pc)" })
+    MenuGroup:AddToggle("ExecuteOnTeleport", { Default = false, Text = "Tự động chạy script(pc)" })
     MenuGroup:AddToggle("KeybindMenuOpen", { Default = false, Text = "Hiển thị phím tiện ích", Callback = function(value) shared.Library.KeybindFrame.Visible = value end})
     MenuGroup:AddToggle("ShowCustomCursor", {Text = "Custom Cursor", Default = true, Callback = function(Value) shared.Library.ShowCustomCursor = Value end})
     MenuGroup:AddDivider()
