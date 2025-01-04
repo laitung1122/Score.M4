@@ -3214,6 +3214,54 @@ if Script.IsHotel then
         })
     end
 
+    local CharacterEffectsGroupBox = Tabs.Floor:AddLeftGroupbox("Hiệu ứng người dùng") do
+        -- Thêm Toggle cho Stun
+        CharacterEffectsGroupBox:AddToggle("Stun", {
+            Text = 'Giả chết',
+            Default = false,
+            
+            Callback = function(value)
+                local lplr = game.Players.LocalPlayer
+                
+                -- Thực thi hiệu ứng Stun
+                if value then
+                    lplr.Character:SetAttribute('Stunned', true)
+                    lplr.Character.Humanoid:SetAttribute('Stunned', true)
+                else
+                    lplr.Character:SetAttribute('Stunned', false)
+                    lplr.Character.Humanoid:SetAttribute('Stunned', false)
+                end
+            end
+        })
+    
+        -- Thêm Toggle cho Thinking Animation
+        CharacterEffectsGroupBox:AddToggle("ThinkingAnimation", {
+            Text = 'Hiệu ứng đang nghĩ',
+            Default = false,
+    
+            Callback = function(value)
+                local lplr = game.Players.LocalPlayer
+                local thinkanims = {"18885101321", "18885098453", "18885095182"} -- Mã ID của các animation nghĩ ngợi
+                
+                -- Nếu Toggle được bật, phát animation nghĩ ngợi
+                if value then
+                    local animation = Instance.new("Animation")
+                    animation.AnimationId = "rbxassetid://" .. thinkanims[math.random(1, #thinkanims)]
+                    animtrack = lplr.Character:FindFirstChildWhichIsA("Humanoid"):LoadAnimation(animation)
+                    animtrack.Looped = true
+                    animtrack:Play()
+                else
+                    -- Dừng animation nếu Toggle tắt
+                    if animtrack then
+                        animtrack:Stop()
+                        animtrack:Destroy()
+                    end
+                end
+            end
+        })
+    end
+    
+
     local Hotel_ModifiersGroupBox = Tabs.Floor:AddRightGroupbox("Chức năng khác") do
         Hotel_ModifiersGroupBox:AddToggle("NoVoiceActing", {
             Text = "Xóa âm thanh lồng tiếng",
@@ -3281,71 +3329,6 @@ if Script.IsHotel then
         end
     end)
 end
-
-local GlitchEffectGroupBox = Tabs.Floor:AddRightGroupbox("Glitch Fragment Effects") do
-    -- Thêm Label để hiển thị thông tin
-    GlitchEffectGroupBox:AddLabel("Dương Api")
-
-    -- Thêm Toggle để bật/tắt "Dương Api"
-    GlitchEffectGroupBox:AddToggle("GlitchFragmentEffectPredict", {
-        Text = "Dương Api",
-        Tooltip = "Đừng dùng quá 2 lần nếu không dính lỗi :))",
-        Default = false,
-
-        Callback = function(value)
-            local glitch = game.Players.LocalPlayer.PlayerGui.MainUI.MainFrame.GlitchTrial
-
-            if value then
-                _G.EffectPredicter = true
-                while _G.EffectPredicter do
-                    -- Kiểm tra điều kiện khi glitch không hiển thị
-                    while _G.EffectPredicter and glitch.Visible == false do
-                        task.wait(0.1)
-                    end
-
-                    if _G.EffectPredicter and glitch.Visible then
-                        local text = glitch.TextLabel.Text
-
-                        if text == "NDAxIEZPUkJJRERFTg==" or text == "NDAzIEZPUkJJRERFTg==" then
-                            if text == "NDAxIEZPUkJJRERFTg==" then
-                                getgenv().Library:Notify("[Dương Api] Bạn sẽ có xu", 3)
-                            end
-                            if text == "NDAzIEZPUkJJRERFTg==" then
-                                getgenv().Library:Notify("[Dương Api] Bạn sẽ lấy xu ", 3)
-                            end
-                            task.wait(3)
-                            repeat task.wait(0.1) until glitch.Visible == true
-                        elseif text == "Q0FDSEUgUkVGUkVTSA==" then
-                            getgenv().Library:Notify("[Dương Api] Tất cả đồ trong túi bạn sẽ bay màu", 5)
-                            task.wait(3)
-                            repeat task.wait(0.1) until glitch.Visible == true
-                        elseif text == "UlVOVElNRSBCT09TVA==" or text == "UlVOVElNRSBCT09TVA===" then
-                            getgenv().Library:Notify("[Dương Api] Bạn sẽ tăng tốc chạy", 3.5)
-                            task.wait(3)
-                            repeat task.wait(0.1) until glitch.Visible == true
-                        elseif text == "UE9XRVIgU1VSR0U=" then
-                            getgenv().Library:Notify("[Dương Api] Số máu tối đa của bạn sẽ đổi", 6.5)
-                            task.wait(3)
-                            repeat task.wait(0.1) until glitch.Visible == true
-                        else
-                            getgenv().Library:Notify("[Dương Api] Hiệu ứng ko rõ ràng(có thể do bí ý tưởng:V)", 5)
-                            task.wait(3)
-                            repeat task.wait(0.1) until glitch.Visible == true
-                        end
-                    end
-                    -- Kiểm tra lại sau khi glitch đã được xử lý
-                    while glitch.Visible do
-                        task.wait(0.1)
-                    end
-                    task.wait()
-                end
-            else
-                _G.EffectPredicter = false
-            end
-        end
-    })
-end
-
 
     Toggles.AntiSeekObstructions:OnChanged(function(value)
         for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
