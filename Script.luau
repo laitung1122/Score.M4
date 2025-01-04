@@ -2289,7 +2289,109 @@ local AntiEntityGroupBox = Tabs.Exploits:AddLeftGroupbox("Xóa quái") do
     })
 end
 
-local TrollingGroupBox = Tabs.Exploits:AddLeftGroupbox("Trôn vn") do
+local FigureGroupBox = Tabs.Exploits:AddLeftGroupbox("Xóa Figure + Glumble") do
+    FigureGroupBox:AddLabel("Để xóa figure bạn hãy ấn vô tính năng rồi")
+    FigureGroupBox:AddLabel("đặt đồng hồ báo thức ra rồi chờ 1 lúc")
+        FigureGroupBox:AddButton("Xóa figure", function()
+            if _G.DeletingFigure then
+                getgenv().Library:Notify("Đang chạy tính năng..", 1)
+                return
+            end
+            getgenv().Library:Notify("Đang xóa figure vui lòng chờ đợi", 3)
+            local room = game.Players.LocalPlayer:GetAttribute("CurrentRoom")
+            local crooms = workspace.CurrentRooms
+            _G.notsuccess = 0
+            _G.DeletingFigure = true
+            local Part = Instance.new("Part", workspace)
+            local Attachment1 = Instance.new("Attachment", Part)
+            Part.Anchored = true
+            Part.Position = Vector3.new(0, 0, 0)
+            Attachment1.Position = Vector3.new(0, -49000, 0)
+            if crooms:WaitForChild(room):FindFirstChild("FigureSetup") then
+                if crooms:WaitForChild(room).FigureSetup.FigureRig:FindFirstChild("Root") then
+                    local figure = crooms:WaitForChild(room).FigureSetup.FigureRig
+                    local Torque = Instance.new("Torque")
+                    Torque.Parent = figure.Hitbox
+                    Torque.Torque = Vector3.new(100000, 100000, 100000)
+                    local AlignPosition = Instance.new("AlignPosition")
+                    local Attachment2 = Instance.new("Attachment")
+                    AlignPosition.Parent = figure.Hitbox
+                    Attachment2.Parent = figure.Hitbox
+                    Torque.Attachment0 = Attachment2
+                    AlignPosition.MaxForce = 9999999999999999
+                    AlignPosition.MaxVelocity = math.huge
+                    AlignPosition.Responsiveness = 100
+                    AlignPosition.Attachment0 = Attachment2
+                    AlignPosition.Attachment1 = Attachment1
+                    task.wait(1.5)
+                    Part:Destroy()
+                    Attachment1:Destroy()
+                    Torque:Destroy()
+                    AlignPosition:Destroy()
+                    Attachment2:Destroy()
+                    repeat
+                        _G.notsuccess = _G.notsuccess + 1
+                        task.wait(0.1)
+                    until figure.Hitbox.Position == Vector3.new() or _G.notsuccess == 100
+                    if _G.notsuccess == 100 then
+                        getgenv().Library:Notify("Lỗi, thất bại khi xóa figure", 4)
+                    else
+                        getgenv().Library:Notify("Đã xóa thành công", 4)
+                    end
+                else
+                    getgenv().Library:Notify("Lỗi, không phát hiện thấy figure", 3)
+                end
+            else
+                getgenv().Library:Notify("Lỗi, không phát hiện thấy figure", 3)
+            end
+    
+            _G.DeletingFigure = false
+        end)
+    
+        -- Thêm Toggle để bật/tắt "Invisible Grumbles"
+        FigureGroupBox:AddToggle("Làm glumble vô hình", {
+            Text = "Glumble vô hình",
+            Default = false,
+            Callback = function(value)
+                local room = game.Players.LocalPlayer:GetAttribute("CurrentRoom")
+                local crooms = workspace.CurrentRooms
+    
+                if value then
+                    getgenv().Library:Notify("Đang chạy tính năng...", 3)
+    
+                    if crooms:WaitForChild(room):FindFirstChild("_NestHandler") then
+                        if crooms:WaitForChild(room):WaitForChild("_NestHandler"):FindFirstChild("Grumbles") then
+                            _G.InvisGrumbles = true
+                            for _, grumble in ipairs(crooms:WaitForChild(room):WaitForChild("_NestHandler").Grumbles:GetChildren()) do
+                                grumble.MainPart.GrumbleAttach.CFrame = CFrame.new(Vector3.new(0, 500, 0))
+                            end
+                        else
+                            getgenv().Library:Notify("Lỗi, không phát hiện glumble", 3)
+                            task.wait()
+                            Toggles["TplaysAddonDoors_InvisibleGrumbles"]:SetValue(false)
+                        end
+                    else
+                        getgenv().Library:Notify("Lỗi không phát hiện glumble", 3)
+                        task.wait()
+                        Toggles["TplaysAddonDoors_InvisibleGrumbles"]:SetValue(false)
+                    end
+                else
+                    if _G.InvisGrumbles == true then
+                        _G.InvisGrumbles = false
+                        if crooms:WaitForChild(room):FindFirstChild("_NestHandler") then
+                            if crooms:WaitForChild(room):WaitForChild("_NestHandler"):FindFirstChild("Grumbles") then
+                                for _, grumble in ipairs(crooms:WaitForChild(room):WaitForChild("_NestHandler").Grumbles:GetChildren()) do
+                                    grumble.MainPart.GrumbleAttach.CFrame = CFrame.new(Vector3.new(0, 0, 0))
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+        })
+    end    
+
+local TrollingGroupBox = Tabs.Floor:AddRightGroupbox("Trôn vn") do
     TrollingGroupBox:AddToggle("SpamOtherTools", {
         Text = "Tạo một số công cụ",
         Default = false
