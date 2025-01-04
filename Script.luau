@@ -3137,38 +3137,47 @@ if Script.IsHotel then
         Sound.SoundId = getcustomasset(AssetName .. ".mp3", true)
         return Sound
     end
+    local currentMusic = nil
+    local musicPlaying = false
     local GeometryDashGroupBox = Tabs.Floor:AddLeftGroupbox("Nhạc") do
-        GeometryDashGroupBox:AddButton("Phát nhạc ", function()
-            if not _G.geometrydashloaded then
-                _G.geometrydashloaded = true
-                local music = getGitSoundId(
-                    "https://raw.githubusercontent.com/laitung1122/Score.M4/refs/heads/main/a.mp3",
-                    "bunny"
-                )
-                music.Parent = game.SoundService
-                music.Looped = true
-                music:Play()
-                local decalTexture = "http://www.roblox.com/asset/?id=121618193143066"
-                local function applyDecalsToParts(container)
-                    for _, part in ipairs(container:GetDescendants()) do
-                        if part:IsA("BasePart") and not part:FindFirstAncestorWhichIsA("Model"):FindFirstChildWhichIsA("Humanoid") then
-                            for _, face in ipairs(Enum.NormalId:GetEnumItems()) do
-                                local decal = Instance.new("Decal")
-                                decal.Parent = part
-                                decal.Face = face
-                                decal.Texture = decalTexture
-                            end
+    GeometryDashGroupBox:AddButton("Phát nhạc Bunny Girl Lofi", function()
+        if not musicPlaying then
+            musicPlaying = true
+            currentMusic = getGitSoundId(
+                "https://raw.githubusercontent.com/laitung1122/Score.M4/refs/heads/main/a.mp3",
+                "bunny"
+            )
+            currentMusic.Parent = game.SoundService
+            currentMusic.Looped = true
+            currentMusic:Play()
+            local decalTexture = "http://www.roblox.com/asset/?id=121618193143066"
+            local function applyDecalsToParts(container)
+                for _, part in ipairs(container:GetDescendants()) do
+                    if part:IsA("BasePart") and not part:FindFirstAncestorWhichIsA("Model"):FindFirstChildWhichIsA("Humanoid") then
+                        for _, face in ipairs(Enum.NormalId:GetEnumItems()) do
+                            local decal = Instance.new("Decal")
+                            decal.Parent = part
+                            decal.Face = face
+                            decal.Texture = decalTexture
                         end
                     end
                 end
-                applyDecalsToParts(workspace)
-                workspace.CurrentRooms.ChildAdded:Connect(function(room)
-                    applyDecalsToParts(room)
-                end)
             end
-        end)
-    end
-    
+            applyDecalsToParts(workspace)
+            workspace.CurrentRooms.ChildAdded:Connect(function(room)
+                applyDecalsToParts(room)
+            end)
+        end
+    end)
+    GeometryDashGroupBox:AddButton("Tắt nhạc", function()
+        if musicPlaying and currentMusic then
+            currentMusic:Stop()
+            currentMusic:Destroy()
+            currentMusic = nil
+            musicPlaying = false
+        end
+    end)
+end
 
     Toggles.AntiSeekObstructions:OnChanged(function(value)
         for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
