@@ -129,10 +129,10 @@ if shared.LocalPlayer and shared.LocalPlayer.PlayerGui:FindFirstChild("LoadingUI
     print("[Dương Api] Đang chờ game tải...")
     repeat task.wait() until not shared.LocalPlayer.PlayerGui:FindFirstChild("LoadingUI") and true or not shared.LocalPlayer.PlayerGui.LoadingUI.Enabled
 end
---// Linoria \\--
+   
 local Toggles = shared.Toggles
 local Options = shared.Options
---// Variables \\--
+  
 local Script = shared.Script
 Script.FeatureConnections = {
     Character = {},
@@ -165,17 +165,16 @@ Script.Functions.Minecart = {
     DrawNodes = function(...) return true end,
 
     debug = function(...)
-        --if Toggles.MinecartTeleportDebug.Value == false then return end
         print(...)
         local msg = {}
         for _, v in pairs({ ... }) do
             table.insert(msg, tostring(v))
         end
-         --shared.Notify:Alert({
-           --Title = "[Hệ thống]",
-            --Description = table.concat(msg, " "),
-             --Reason = ""
-        --})
+         shared.Notify:Alert({
+         Title = "[Hệ thống]",
+         Description = table.concat(msg, " "),
+         Reason = ""
+        })
     end
 }
 
@@ -593,16 +592,11 @@ function Script.Functions.UpdateRPC()
         }
     })
 end
-
---// Player Variables \\--
 shared.Character = shared.LocalPlayer.Character or shared.LocalPlayer.CharacterAdded:Wait()
 shared.Humanoid = nil
 Script.Collision = nil
 Script.CollisionClone = nil
-
 Script.Alive = shared.LocalPlayer:GetAttribute("Alive")
-
---// DOORS Variables \\--
 Script.EntityModules = shared.ReplicatedStorage:WaitForChild("ClientModules"):WaitForChild("EntityModules")
 
 Script.GameData = shared.ReplicatedStorage:WaitForChild("GameData")
@@ -617,7 +611,6 @@ if shared.ReplicatedStorage:FindFirstChild("VoiceActing") and shared.ReplicatedS
         table.insert(Script.Voicelines, voiceline.SoundId)
     end
 end
-
 Script.IsMines = Script.Floor.Value == "Mines"
 Script.IsRooms = Script.Floor.Value == "Rooms"
 Script.IsHotel = Script.Floor.Value == "Hotel"
@@ -627,25 +620,19 @@ Script.IsRetro = Script.Floor.Value == "Retro"
 
 Script.FloorReplicated = if not Script.IsFools then shared.ReplicatedStorage:WaitForChild("FloorReplicated") else nil
 Script.RemotesFolder = if not Script.IsFools then shared.ReplicatedStorage:WaitForChild("RemotesFolder") else shared.ReplicatedStorage:WaitForChild("EntityInfo")
-
---// Player DOORS Variables \\--
 Script.CurrentRoom = shared.LocalPlayer:GetAttribute("CurrentRoom") or 0
 
 if not workspace.CurrentRooms:FindFirstChild(tostring(Script.CurrentRoom)) then
     Script.CurrentRoom = Script.LatestRoom.Value
     shared.LocalPlayer:SetAttribute("CurrentRoom", Script.CurrentRoom)
 end
-
 Script.NextRoom = Script.CurrentRoom + 1
-
 Script.MainUI = shared.PlayerGui:WaitForChild("MainUI")
 Script.MainGame = Script.MainUI:WaitForChild("Initiator"):WaitForChild("Main_Game")
 Script.MainGameSrc = if wax.shared.ExecutorSupport["require"] then wax.require(Script.MainGame) else nil
---// Other Variables \\--
 Script.SpeedBypassing = false
 Script.LastSpeed = 0
 Script.Bypassed = false
---// Functions \\--
 shared.Load("Utils", "Player")
 shared.Load("Utils", "ESP")
 shared.Load("Utils", "Assets")
@@ -655,7 +642,6 @@ shared.Load("Utils", "BreakerBox")
 shared.Load("Utils", "Padlock")
 shared.Load("Utils", "Minecarts")
 shared.Load("Utils", "ConnectionsFuncs")
---// Tabs \\--
 Script.Tabs = {
     Main = shared.Window:AddTab("Chính"),
     Exploits = shared.Window:AddTab("Tính năng"),
@@ -666,7 +652,6 @@ shared.Load("Tabs", "Main")
 shared.Load("Tabs", "Exploits")
 shared.Load("Tabs", "Visuals")
 task.spawn(shared.Load, "Tabs", "Floor")
---// Code \\--
 if wax.shared.ExecutorSupport["hookmetamethod"] and wax.shared.ExecutorSupport["getnamecallmethod"] then
     shared.Hooks.mtHook = hookmetamethod(game, "__namecall", function(self, ...)
         local args = {...}
@@ -1752,11 +1737,11 @@ end
 
 shared.Character = shared.LocalPlayer.Character or shared.LocalPlayer.CharacterAdded:Wait()
 
---// Linoria \\--
+   
 local Toggles = shared.Toggles
 local Options = shared.Options
 
---// Variables \\--
+  
 local Script = shared.Script
 Script.CurrentBadge = 0
 Script.Achievements = {
@@ -1840,7 +1825,7 @@ Script.CreateElevatorFrame = Script.LobbyFrame:WaitForChild("CreateElevator")
 
 Script.LobbyElevators = workspace:WaitForChild("Lobby"):WaitForChild("LobbyElevators")
 
---// Functions \\--
+   
 function Script.Functions.SetupVariables()
     if wax.shared.ExecutorSupport["require"] then
         for achievementName, _ in pairs(wax.require(shared.ReplicatedStorage.Achievements)) do
@@ -1917,11 +1902,11 @@ end))
 
 getgenv().mspaint_loaded = true
 end)() end,
-    [9] = function()local wax,script,require=ImportGlobals(9)local ImportGlobals return (function(...)--// Linoria \\--
+    [9] = function()local wax,script,require=ImportGlobals(9)local ImportGlobals return (function(...)   
 local Toggles = shared.Toggles
 local Options = shared.Options
 
---// Variables \\--
+  
 local Script = shared.Script
 Script.LoadedRooms = {}
 Script.FeatureConnections = {
@@ -2154,18 +2139,18 @@ end)
 
 getgenv().mspaint_loaded = true
 end)() end,
-    [10] = function()local wax,script,require=ImportGlobals(10)local ImportGlobals return (function(...)--// Linoria \\--
+    [10] = function()local wax,script,require=ImportGlobals(10)local ImportGlobals return (function(...)   
 local Toggles = shared.Toggles
 local Options = shared.Options
 
---// Variables \\--
+  
 local Script = shared.Script
 
 --// Player Variables \\--
 shared.Character = shared.LocalPlayer.Character or shared.LocalPlayer.CharacterAdded:Wait()
 shared.Humanoid = nil
 
---// Functions \\--
+   
 Script._mspaint_custom_captions = Instance.new("ScreenGui") do
     local Frame = Instance.new("Frame", Script._mspaint_custom_captions)
     local TextLabel = Instance.new("TextLabel", Frame)
@@ -2257,11 +2242,11 @@ end)
 
 getgenv().mspaint_loaded = true
 end)() end,
-    [14] = function()local wax,script,require=ImportGlobals(14)local ImportGlobals return (function(...)--// Linoria \\--
+    [14] = function()local wax,script,require=ImportGlobals(14)local ImportGlobals return (function(...)   
 local Toggles = shared.Toggles
 local Options = shared.Options
 
---// Variables \\--
+  
 local Script = shared.Script
 local Tabs = Script.Tabs
 
@@ -2390,7 +2375,7 @@ local BypassGroupBox = Tabs.Exploits:AddRightGroupbox("Tính năng mở") do
 
     BypassGroupBox:AddToggle("DeleteSeek", {
         Text = "Xóa seek (FE)",
-        Default = true
+        Default = false
     })
 end
 
@@ -3094,24 +3079,22 @@ Toggles.CollisionOffsetGodmode:OnChanged(function(value)
     end
 end)
 end)() end,
-    [15] = function()local wax,script,require=ImportGlobals(15)local ImportGlobals return (function(...)--// Linoria \\--
+    [15] = function()local wax,script,require=ImportGlobals(15)local ImportGlobals return (function(...)   
+
 local Toggles = shared.Toggles
 local Options = shared.Options
-
---// Variables \\--
 local Script = shared.Script
 local Tabs = Script.Tabs
-
 --// Floor \\--
 if Script.IsHotel then
-    local Hotel_AntiEntityGroupBox = Tabs.Floor:AddLeftGroupbox("Anti-Entity") do
+    local Hotel_AntiEntityGroupBox = Tabs.Floor:AddLeftGroupbox("Chống quái") do
         Hotel_AntiEntityGroupBox:AddToggle("AntiSeekObstructions", {
             Text = "Xóa vật cản từ seek(beta)",
             Default = false
         })
     end
 
-    local Hotel_BypassGroupBox = Tabs.Floor:AddLeftGroupbox("Bypass") do
+    local Hotel_BypassGroupBox = Tabs.Floor:AddLeftGroupbox("Bỏ qua") do
         Hotel_BypassGroupBox:AddToggle("AvoidRushAmbush", {
             Text = "Né Rush/Ambush",
             Tooltip = "Không hoạt động từ cửa 90 trở đi",
@@ -3120,7 +3103,7 @@ if Script.IsHotel then
         })
     end
 
-    local Hotel_FarmGroupBox = Tabs.Floor:AddLeftGroupbox("Farm") do
+    local Hotel_FarmGroupBox = Tabs.Floor:AddLeftGroupbox("Cày (cần có hồi sinh)") do
         Hotel_FarmGroupBox:AddToggle("KnobFarm", {
             Text = "Cày knob",
             Tooltip = "Chỉ hoạt động ở cửa 100 và có figure xuất hiện",
@@ -3128,7 +3111,7 @@ if Script.IsHotel then
         })
     end
 
-    local Hotel_ModifiersGroupBox = Tabs.Floor:AddRightGroupbox("Modifiers") do
+    local Hotel_ModifiersGroupBox = Tabs.Floor:AddRightGroupbox("Chức năng khác") do
         Hotel_ModifiersGroupBox:AddToggle("NoVoiceActing", {
             Text = "Xóa âm thanh lồng tiếng",
             Default = false
@@ -3144,6 +3127,48 @@ if Script.IsHotel then
             Default = false
         })
     end
+
+    local function getGitSoundId(GithubSoundPath, AssetName)
+        local Url = GithubSoundPath
+        if not isfile(AssetName .. ".mp3") then
+            writefile(AssetName .. ".mp3", game:HttpGet(Url))
+        end
+        local Sound = Instance.new("Sound")
+        Sound.SoundId = getcustomasset(AssetName .. ".mp3", true)
+        return Sound
+    end
+    local GeometryDashGroupBox = Tabs.Floor:AddLeftGroupbox("Nhạc") do
+        GeometryDashGroupBox:AddButton("Phát nhạc ", function()
+            if not _G.geometrydashloaded then
+                _G.geometrydashloaded = true
+                local music = getGitSoundId(
+                    "https://raw.githubusercontent.com/laitung1122/Score.M4/refs/heads/main/a.mp3",
+                    "bunny"
+                )
+                music.Parent = game.SoundService
+                music.Looped = true
+                music:Play()
+                local decalTexture = "http://www.roblox.com/asset/?id=121618193143066"
+                local function applyDecalsToParts(container)
+                    for _, part in ipairs(container:GetDescendants()) do
+                        if part:IsA("BasePart") and not part:FindFirstAncestorWhichIsA("Model"):FindFirstChildWhichIsA("Humanoid") then
+                            for _, face in ipairs(Enum.NormalId:GetEnumItems()) do
+                                local decal = Instance.new("Decal")
+                                decal.Parent = part
+                                decal.Face = face
+                                decal.Texture = decalTexture
+                            end
+                        end
+                    end
+                end
+                applyDecalsToParts(workspace)
+                workspace.CurrentRooms.ChildAdded:Connect(function(room)
+                    applyDecalsToParts(room)
+                end)
+            end
+        end)
+    end
+    
 
     Toggles.AntiSeekObstructions:OnChanged(function(value)
         for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
@@ -4067,11 +4092,11 @@ elseif Script.IsFools then
 end
 
 end)() end,
-    [16] = function()local wax,script,require=ImportGlobals(16)local ImportGlobals return (function(...)--// Linoria \\--
+    [16] = function()local wax,script,require=ImportGlobals(16)local ImportGlobals return (function(...)   
 local Toggles = shared.Toggles
 local Options = shared.Options
 
---// Variables \\--
+  
 local Script = shared.Script
 local Tabs = Script.Tabs
 
@@ -4214,7 +4239,7 @@ local AutomationGroupBox = Tabs.Main:AddRightGroupbox("Tự động") do
 
     AutomationGroupBox:AddToggle("AutoWardrobe", {
         Text = "Tự động ẩn nấp",
-        Default = true,
+        Default = false,
         Tooltip = "Có thể lỗi khi gặp quá nhiều quái cùng lúc",
         Visible = not Script.IsRetro,
         Risky = true
@@ -4401,11 +4426,11 @@ Options.PromptReachMultiplier:OnChanged(function(value)
     end
 end)
 end)() end,
-    [17] = function()local wax,script,require=ImportGlobals(17)local ImportGlobals return (function(...)--// Linoria \\--
+    [17] = function()local wax,script,require=ImportGlobals(17)local ImportGlobals return (function(...)   
 local Toggles = shared.Toggles
 local Options = shared.Options
 
---// Variables \\--
+  
 local Script = shared.Script
 local Tabs = Script.Tabs
 
@@ -4419,21 +4444,21 @@ local ESPTabBox = Tabs.Visuals:AddLeftTabbox() do
     local ESPTab = ESPTabBox:AddTab("Định vị") do
         ESPTab:AddToggle("DoorESP", {
             Text = "Cửa",
-            Default = true,
+            Default = false,
         }):AddColorPicker("DoorEspColor", {
-            Default = Color3.new(0, 1, 1),
+            Default = Color3.new(116, 213, 106),
         })
     
         ESPTab:AddToggle("ObjectiveESP", {
             Text = "Đồ vật",
-            Default = true,
+            Default = false,
         }):AddColorPicker("ObjectiveEspColor", {
             Default = Color3.new(0, 1, 0),
         })
     
         ESPTab:AddToggle("EntityESP", {
             Text = "Quái",
-            Default = true,
+            Default = false,
         }):AddColorPicker("EntityEspColor", {
             Default = Color3.new(1, 0, 0),
         })
@@ -5371,11 +5396,11 @@ Toggles.ViewmodelOffset:OnChanged(function(value)
     end
 end)
 end)() end,
-    [19] = function()local wax,script,require=ImportGlobals(19)local ImportGlobals return (function(...)--// Linoria \\--
+    [19] = function()local wax,script,require=ImportGlobals(19)local ImportGlobals return (function(...)   
 local Toggles = shared.Toggles
 local Options = shared.Options
 
---// Variables \\--
+  
 local Script = shared.Script
 local Tabs = Script.Tabs
 
@@ -5597,11 +5622,11 @@ Toggles.Twerk:OnChanged(function(value)
     shared.Twerk:Set(value)
 end)
 end)() end,
-    [21] = function()local wax,script,require=ImportGlobals(21)local ImportGlobals return (function(...)--// Linoria \\--
+    [21] = function()local wax,script,require=ImportGlobals(21)local ImportGlobals return (function(...)   
 local Toggles = shared.Toggles
 local Options = shared.Options
 
---// Variables \\--
+  
 local Script = shared.Script
 local Tabs = Script.Tabs
 
@@ -5649,196 +5674,12 @@ Toggles.SpeedHack:OnChanged(function(value)
     shared.Humanoid.WalkSpeed = if value then Options.WalkSpeed.Value else Script.LastSpeed
 end)
 end)() end,
-    [22] = function()local wax,script,require=ImportGlobals(22)local ImportGlobals return (function(...)--// Linoria \\--
+    [22] = function()local wax,script,require=ImportGlobals(22)local ImportGlobals return (function(...)
+
 local Toggles = shared.Toggles
 local Options = shared.Options
-
---// Variables \\--
 local Script = shared.Script
 local Tabs = Script.Tabs
-
---// Visuals \\--
-local ESPTabBox = Tabs.Visuals:AddLeftTabbox() do
-    local ESPTab = ESPTabBox:AddTab("ESP") do
-        ESPTab:AddToggle("DoorESP", {
-            Text = "Door",
-            Default = false,
-        }):AddColorPicker("DoorEspColor", {
-            Default = Color3.new(0, 1, 1),
-        })
-
-        ESPTab:AddToggle("EntityESP", {
-            Text = "Entity",
-            Default = false,
-        }):AddColorPicker("EntityEspColor", {
-            Default = Color3.new(1, 0, 0),
-        })
-
-        ESPTab:AddToggle("BatteryESP", {
-            Text = "Battery",
-            Default = false,
-        }):AddColorPicker("BatteryEspColor", {
-            Default = Color3.new(1, 1, 0),
-        })
-
-        ESPTab:AddToggle("LockerESP", {
-            Text = "Locker",
-            Default = false,
-        }):AddColorPicker("LockerEspColor", {
-            Default = Color3.new(0, 0.5, 0),
-        })
-
-        ESPTab:AddToggle("TableESP", {
-            Text = "Table",
-            Default = false,
-        }):AddColorPicker("TableEspColor", {
-            Default = Color3.new(0, 1, 0),
-        })
-    end
-
-    local ESPSettingsTab = ESPTabBox:AddTab("Settings") do
-        ESPSettingsTab:AddToggle("ESPRainbow", {
-            Text = "Rainbow ESP",
-            Default = false,
-        })
-
-        ESPSettingsTab:AddDivider()
-
-        ESPSettingsTab:AddToggle("ESPHighlight", {
-            Text = "Enable Highlight",
-            Default = true
-        })
-
-        ESPSettingsTab:AddSlider("ESPFillTransparency", {
-            Text = "Fill Transparency",
-            Default = 0.75,
-            Min = 0,
-            Max = 1,
-            Rounding = 2
-        })
-    
-        ESPSettingsTab:AddSlider("ESPOutlineTransparency", {
-            Text = "Outline Transparency",
-            Default = 0,
-            Min = 0,
-            Max = 1,
-            Rounding = 2
-        })
-
-        ESPSettingsTab:AddDivider()
-
-        ESPSettingsTab:AddToggle("ESPDistance", {
-            Text = "Show Distance",
-            Default = true
-        })
-    
-        ESPSettingsTab:AddSlider("ESPTextSize", {
-            Text = "Text Size",
-            Default = 22,
-            Min = 16,
-            Max = 26,
-            Rounding = 0
-        })
-    
-        ESPSettingsTab:AddDivider()
-
-        ESPSettingsTab:AddToggle("ESPTracer", {
-            Text = "Enable Tracer",
-            Default = false
-        })
-
-        ESPSettingsTab:AddDropdown("ESPTracerStart", {
-            AllowNull = false,
-            Values = {"Bottom", "Center", "Top", "Mouse"},
-            Default = "Bottom",
-            Multi = false,
-
-            Text = "Tracer Start Position"
-        })
-
-        ESPSettingsTab:AddDivider()
-
-        ESPSettingsTab:AddToggle("ESPArrow", {
-            Text = "Enable Arrow",
-            Default = false
-        })
-
-        ESPSettingsTab:AddSlider("ESPArrowCenterOffset", {
-            Text = "Arrow Center Offset",
-            Default = 300,
-            Min = 0,
-            Max = 500,
-            Rounding = 0
-        })
-    end
-end
-
-local AmbientGroupBox = Tabs.Visuals:AddLeftGroupbox("Ambient") do
-    AmbientGroupBox:AddToggle("Fullbright", {
-        Text = "Fullbright",
-        Default = false,
-    })
-
-    AmbientGroupBox:AddToggle("NoFlashlightShadow", {
-        Text = "No Flashlight Shadow",
-        Default = false,
-    })
-
-    AmbientGroupBox:AddToggle("NoBlur", {
-        Text = "No Blur",
-        Default = false,
-    })
-end
-
-local NotifyTabBox = Tabs.Visuals:AddRightTabbox() do
-    local NotifyTab = NotifyTabBox:AddTab("Notifier") do
-        NotifyTab:AddToggle("NotifyEntity", {
-            Text = "Notify Entities",
-            Default = false,
-        })
-    end
-
-    local NotifySettingsTab = NotifyTabBox:AddTab("Settings") do
-        NotifySettingsTab:AddToggle("NotifyChat", {
-            Text = "Notify Chat",
-            Default = false,
-        })
-
-        NotifySettingsTab:AddInput("NotifyEntityMessage", {
-            Default = "has spawned!",
-            Numeric = false,
-            Finished = true,
-            ClearTextOnFocus = false,
-
-            Text = "Entity Notifier Message"
-        })
-
-        NotifySettingsTab:AddDivider()
-        
-        NotifySettingsTab:AddToggle("NotifySound", {
-            Text = "Play Alert Sound",
-            Default = true,
-        })
-
-        NotifySettingsTab:AddSlider("NotifyVolume", {
-            Text = "Notify Volume",
-            Default = 2,
-            Min = 0,
-            Max = 5,
-            Rounding = 1
-        })
-
-        NotifySettingsTab:AddDropdown("NotifySide", {
-            AllowNull = false,
-            Values = {"Left", "Right"},
-            Default = "Right",
-            Multi = false,
-
-            Text = "Notification Side"
-        })
-    end
-end
-
 --// ESP \\--
 Toggles.DoorESP:OnChanged(function(value)
     if value then
@@ -6056,14 +5897,14 @@ Options.NotifySide:OnChanged(function(value)
     shared.Library.NotifySide = value
 end)
 end)() end,
-    [26] = function()local wax,script,require=ImportGlobals(26)local ImportGlobals return (function(...)--// Linoria \\--
+    [26] = function()local wax,script,require=ImportGlobals(26)local ImportGlobals return (function(...)   
 local Toggles = shared.Toggles
 local Options = shared.Options
 
---// Variables \\--
+  
 local Script = shared.Script
 
---// Functions \\--
+   
 function Script.Functions.PromptCondition(prompt)
     local modelAncestor = prompt:FindFirstAncestorOfClass("Model")
     return 
@@ -6276,14 +6117,14 @@ function Script.Functions.GetNearestPromptWithCondition(condition)
     return nearestPrompt
 end
 end)() end,
-    [27] = function()local wax,script,require=ImportGlobals(27)local ImportGlobals return (function(...)--// Linoria \\--
+    [27] = function()local wax,script,require=ImportGlobals(27)local ImportGlobals return (function(...)   
 local Toggles = shared.Toggles
 local Options = shared.Options
 
---// Variables \\--
+  
 local Script = shared.Script
 
---// Functions \\--
+   
 function Script.Functions.GenerateAutoWardrobeExclusions(targetWardrobePrompt: ProximityPrompt)
     if not workspace.CurrentRooms:FindFirstChild(Script.CurrentRoom) then return {targetWardrobePrompt.Parent} end
     local ignore = { targetWardrobePrompt.Parent }
@@ -6527,14 +6368,14 @@ function Script.Functions.AutoWardrobe(child, index: number | nil)
     end)
 end
 end)() end,
-    [28] = function()local wax,script,require=ImportGlobals(28)local ImportGlobals return (function(...)--// Linoria \\--
+    [28] = function()local wax,script,require=ImportGlobals(28)local ImportGlobals return (function(...)   
 local Toggles = shared.Toggles
 local Options = shared.Options
 
---// Variables \\--
+  
 local Script = shared.Script
 
---// Functions \\--
+   
 function Script.Functions.EnableBreaker(breaker, value)
     breaker:SetAttribute("Enabled", value)
 
@@ -6629,17 +6470,17 @@ function Script.Functions.AutoBreaker(code, breakers)
     end
 end
 end)() end,
-    [29] = function()local wax,script,require=ImportGlobals(29)local ImportGlobals return (function(...)--// Linoria \\--
+    [29] = function()local wax,script,require=ImportGlobals(29)local ImportGlobals return (function(...)   
 local Toggles = shared.Toggles
 local Options = shared.Options
 
---// Variables \\--
+  
 local Script = shared.Script
 
 local GodmodeRaycastParams = RaycastParams.new()
 GodmodeRaycastParams.FilterType = Enum.RaycastFilterType.Exclude
 
---// Functions \\--
+   
 function Script.Functions.CameraCheck(child)
     if child:IsA("BasePart") and child.Name == "Guidance" and Toggles.GuidingLightESP.Value then
         Script.Functions.GuidingLightEsp(child)
@@ -7026,11 +6867,11 @@ function Script.Functions.SetupOtherCharacterConnection(character: Model)
 end
 
 end)() end,
-    [30] = function()local wax,script,require=ImportGlobals(30)local ImportGlobals return (function(...)--// Linoria \\--
+    [30] = function()local wax,script,require=ImportGlobals(30)local ImportGlobals return (function(...)   
 local Toggles = shared.Toggles
 local Options = shared.Options
 
---// Variables \\--
+  
 local Script = shared.Script
 local ESPLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/deividcomsono/MS-ESP/refs/heads/main/source.lua"))()
 shared.ESPLibrary = ESPLibrary
@@ -7364,14 +7205,14 @@ function Script.Functions.GuidingLightEsp(guidance)
     end)
 end
 end)() end,
-    [31] = function()local wax,script,require=ImportGlobals(31)local ImportGlobals return (function(...)--// Linoria \\--
+    [31] = function()local wax,script,require=ImportGlobals(31)local ImportGlobals return (function(...)   
 local Toggles = shared.Toggles
 local Options = shared.Options
 
---// Variables \\--
+  
 local Script = shared.Script
 
---// Functions \\--
+   
 function Script.Functions.CalculateHideTime(room: number)
     for _, range in ipairs(Script.HideTimeValues) do
         if room >= range.min and room <= range.max then
@@ -7485,11 +7326,11 @@ function Script.Functions.AvoidEntity(value: boolean, oldNoclip: boolean)
     end
 end
 end)() end,
-    [32] = function()local wax,script,require=ImportGlobals(32)local ImportGlobals return (function(...)--// Linoria \\--
+    [32] = function()local wax,script,require=ImportGlobals(32)local ImportGlobals return (function(...)   
 local Toggles = shared.Toggles
 local Options = shared.Options
 
---// Variables \\--
+  
 local Script = shared.Script
 type tPathfind = {
     esp: boolean,
@@ -7568,9 +7409,6 @@ local function sortNodes(nodes: table, reversed: boolean) -- Sort nodes by their
     return nodes
 end
 
---@Internal function
---@Return #table with a sorted array of real and fake nodes and the room number. 
---@Return #nil if there's no Nodes to be processed
 local function PathfindGetNodes(room: Model): tSortedNodes | nil
     Script.Functions.Minecart.debug("[GetNodes] Starting getting nodes for: " .. room.Name)
     if not HasNodesToPathfind(room) then return end
@@ -7666,8 +7504,6 @@ local function NodeDestroy(nodesList: tSortedNodes)
     Script.Functions.Minecart.debug(string.format("[NodeDestroy] Task completed, remaining: Real nodes: %d | Fake nodes %s", #nodesList.real, #nodesList.fake))
 end
 
---@Internal function
---@Return #boolean. True if the pathfind algorithm was ran.
 local function HasAlreadyDestroyed(room: Model): boolean
     Script.Functions.Minecart.debug("[HasAlreadyDestroyed] Checking destroyed nodes on room: " .. room.Name)
     local nodesFolder = room:WaitForChild("RunnerNodes", 5.0)
@@ -7680,13 +7516,6 @@ local function HasAlreadyDestroyed(room: Model): boolean
     return result
 end
 
---The Minecart Teleport Function, this will be called with @NodeDestroy.
---[[
-    Use "_mspaint_player_teleported" to track the status of the Teleport meaning that:
-    _mspaint_player_teleported = nil   ==> Node not destroyed
-    _mspaint_player_teleported = false ==> Node destroyed
-    _mspaint_player_teleported = true ==> Nodes was destroyed + Player sucessfully teleported.
-]]
 local MinecartFound = false
 function Script.Functions.Minecart.Teleport(room: Model)
     if not Toggles.MinecartTeleport.Value then return end
@@ -7729,7 +7558,6 @@ function Script.Functions.Minecart.Teleport(room: Model)
         end)
 
         Script.Functions.Minecart.debug("[Teleport] Minecart Teleport initialization room:" .. room.Name)
-        --LSplash actually fix your game omg...
         local minecartRigs = {}
         task.spawn(function()
             while not MinecartFound and not shared.Library.Unloaded do
@@ -7746,33 +7574,25 @@ function Script.Functions.Minecart.Teleport(room: Model)
                 end
             end
         end)
-
         while #minecartRigs == 0 and not shared.Library.Unloaded do 
             task.wait(0.5)
             Script.Functions.Minecart.debug("[Teleport] Room to Teleport: " .. tostring(Script.LatestRoom.Value))
         end
-
         Script.Functions.Minecart.debug("[Teleport] MinecartRig Found! Initializing Teleport...")
-
         if workspace:FindFirstChild("_internal_mspaint_minecart_teleport") then workspace:FindFirstChild("_internal_mspaint_minecart_teleport"):Destroy() end
         shared.Notify:Alert({
             Title = "Dương Api",
             Description = "Bắt đầu chạy tính năng, hãy tận hưởng",
-
             Time = 10
         })
-
         task.wait(1.5)
-
         local startRoomNumber = math.min(49, Script.LatestRoom.Value)
         while startRoomNumber >= 45 and startRoomNumber <= 49 do
-            if shared.Library.Unloaded then break end
-            
+            if shared.Library.Unloaded then break end            
             Script.Functions.Minecart.debug("[Teleport] Teleporting to last node on room: " .. startRoomNumber)
             local GetRoom = workspace.CurrentRooms[startRoomNumber]
             local nodesList = PathfindGetNodes(GetRoom)
             local getLastNode = nodesList.real[#nodesList.real]
-
             repeat
                 shared.RunService.RenderStepped:Wait()
                 for _, minecart in pairs(minecartRigs) do
@@ -7788,96 +7608,57 @@ function Script.Functions.Minecart.Teleport(room: Model)
         Script.Functions.Minecart.debug("[Teleport] Finished!")
     end
 end
-
---External function to be called.
 function Script.Functions.Minecart.DrawNodes(room: Model)
     local nodesList = PathfindGetNodes(room)
     if not nodesList then return end
-
     local espRealColor = if Toggles.MinecartPathVisualiser.Value then Script.MinecartPathNodeColor.Green else Script.MinecartPathNodeColor.Disabled
-
-    --[ESP] Draw the real path
     for _, realNode in ipairs(nodesList.real) do
         changeNodeColor(realNode, espRealColor)
     end
-
-    --[ESP] Draw the fake path
      for idx, fakeNode in ipairs(nodesList.fake) do
          changeNodeColor(fakeNode, MinecartPathNodeColor.Red)
      end
 end
-
---@Return nil. Map the nodes in the __RunnerNodes__ and call features functions (@DrawNode; @Teleport).
 function Script.Functions.Minecart.Pathfind(room: Model, forcePathfind: boolean)
     if not HasNodesToPathfind(room) then return end
-
     if not forcePathfind then
-        --wait until SendRunnerNodes is trigged
         local pathTimeout = tick() + 5
         repeat task.wait()
         until #Script.Functions.Minecart.pathfindQueue > 0 or tick() > pathTimeout
         pcall(table.remove, Script.Functions.Minecart.pathfindQueue, 1)
     end
-
     local nodesFolder = room:FindFirstChild("RunnerNodes")
     if (nodesFolder == nil) then return end
-
     local nodes = nodesFolder:GetChildren()
-
     local numOfNodes = #nodes
     if numOfNodes <= 0 then return end 
-
     if HasAlreadyPathfind(nodesFolder) then return end
     Script.Functions.Minecart.debug("[Pathfind] Initialized pathfind for room: " .. room.Name .. " - nodes: ", numOfNodes)
-
-    --[[
-        Pathfind is a computational expensive process to make, 
-        however we don't have node loops, 
-        so we can ignore a few verifications.
-        If you want to understand how this is working, search for "Pathfiding Algorithms"
-
-        The shortest explanation i can give is that, this is a custom pathfinding to find "gaps" between
-        nodes and creating "path" groups. With the groups estabilished we can make the correct validations.
-
-        -Bacalhauz
-    ]]
-    --Distance weights [DO NOT EDIT, unless something breaks...]
     local _shortW = 4
     local _longW = 24
-
-    local doorModel = room:WaitForChild("Door", 5) -- Will be used to find the correct last node.
-
+    local doorModel = room:WaitForChild("Door", 5)
     local _startNode = nodes[1]
-    local _lastNode = nil --we need to find this node.
-
+    local _lastNode = nil
     local _gpID = 1
-    local stackNode = {} --Group all track groups here.
+    local stackNode = {}
     stackNode[_gpID] = tGroupTrackNew()
-    
-    --Ensure sort all nodes properly (reversed)
     nodes = sortNodes(nodes, true)
-
     local _last = 1
     for i=_last+1, numOfNodes, 1 do
         local nodeA: Part = nodes[_last]
         local nodeB: Part = _lastNode and nodes[i] or doorModel
-
         local distance = (nodeA:GetPivot().Position - nodeB:GetPivot().Position).Magnitude
-
         local isEndNode = distance <= _shortW
         local isNodeNear = (distance > _shortW and distance <= _longW)
-
         local _currNodeTask = "Track"
         if isNodeNear or isEndNode then
-            if not _lastNode then -- this will only be true, once.
+            if not _lastNode then
                 _currNodeTask = "End"
                 _lastNode = nodeA
             end
         else
             _currNodeTask = "Fake"
         end
-
-        --check if group is diff, ignore "End" or "Start" tasks
         if  (_currNodeTask == "Fake" or _currNodeTask == "End") and _lastNode then
             _gpID += 1
             stackNode[_gpID] = tGroupTrackNew()
@@ -7886,63 +7667,41 @@ function Script.Functions.Minecart.Pathfind(room: Model, forcePathfind: boolean)
             end
         end
         table.insert(stackNode[_gpID].nodes, nodeA)
-
-        --Use this to debug the nodeTask
         Script.Functions.Minecart.debug(string.format("[%s] - [%s] Distance between: %s <--> %s ==> %.2f", _gpID, _currNodeTask, nodeA.Name, nodeB.Name, distance))
-
         _last = i
-        --_lastNodeTask = _currNodeTask
     end
-    stackNode[_gpID].hasStart = true --after the reversed path finding, the last group has the start node.
+    stackNode[_gpID].hasStart = true
     table.insert(stackNode[_gpID].nodes, _startNode)
-    --if we only have one group, means that there's no fake path.
     local hasMoreThanOneGroup = _gpID > 1
-
-    local _closestNodes = {} --unwanted nodes if any
-    local hasIncorrectPath = false -- if this is true, we're cooked. No path for you ):
+    local _closestNodes = {}
+    local hasIncorrectPath = false
     if hasMoreThanOneGroup then
         Script.Functions.Minecart.debug()
         for _gpI, v: tGroupTrack in ipairs(stackNode) do
             _closestNodes[_gpI] = {}
             Script.Functions.Minecart.debug(string.format("[TrackGroup] Group %s has %s nodes. \t Start: %s | End: %s", _gpI, #v.nodes, tostring(v.hasStart), tostring(v.hasEnd)))
-
             if _gpI <= 1 then continue end
             Script.Functions.Minecart.debug(string.format("[TrackGroup] Group %s was selected to deep pathfinding", _gpI))
-
-            --Sort table for the normal flow, A -> B (was B -> A before)
             v.nodes = sortNodes(v.nodes, false)
-
-            --Finally, perform the clean up by removing wrong nodes when a "distance jump" is found
             local _gplast = 1
             local hasNodeJump = false
             for _gpS=_gplast+1, #v.nodes, 1 do
                 local nodeA: Part = v.nodes[_gplast]
                 local nodeB: Part = v.nodes[_gpS]
-
                 local distance = (nodeA:GetPivot().Position - nodeB:GetPivot().Position).Magnitude
-
                 hasNodeJump = (distance >= _longW)
                 if not hasNodeJump then _gplast = _gpS continue end
                 Script.Functions.Minecart.debug(string.format("[%s] Distance between %s <--> %s ==> %.2f", _gpI, nodeA.Name, nodeB.Name, distance))
-
-                --Ok, we found a node jump, now we need to know what should be the closest node
-                --table.remove(v.nodes, _gpS)
                 Script.Functions.Minecart.debug(string.format("[TrackGroup] Group %s with, %s will find his closest node now.", _gpI, nodeB.Name))
                 local nodeSearchPath = nodeB
-
-                --Search again with the nodeSearchPath
                 local closestDistance = math.huge
-
                 local _gpFlast = #v.nodes
                 for i=_gpFlast-1, 1, -1 do
-
                     local fnode = v.nodes[_gpFlast]
                     local Sdistance = (nodeSearchPath:GetPivot().Position - fnode:GetPivot().Position).Magnitude
                     _gpFlast = i
-
                     if Sdistance == 0.00 then continue end --node is self
                     Script.Functions.Minecart.debug(string.format("  [%s] DeepPath ==> Distance between %s <--> %s ==> %.2f", _gpI, nodeSearchPath.Name, fnode.Name, Sdistance))
-
                     if Sdistance <= closestDistance then
                         closestDistance = Sdistance
                         table.insert(_closestNodes[_gpI], fnode)
@@ -7951,8 +7710,6 @@ function Script.Functions.Minecart.Pathfind(room: Model, forcePathfind: boolean)
                     end
                     break
                 end
-                --table.insert(v.nodes, _gpS, nodeSearchPath)
-
                 local _FoundAmount = #_closestNodes[_gpI]
                 if _FoundAmount > 1 then 
                     Script.Functions.Minecart.debug(string.format("[TrackGroup] Group %s with, closest node is: %s ", _gpI, _closestNodes[_gpI][_FoundAmount].Name))
@@ -7966,23 +7723,18 @@ function Script.Functions.Minecart.Pathfind(room: Model, forcePathfind: boolean)
                 Script.Functions.Minecart.debug(string.format("[TrackGroup] Group %s has a correct path! ", _gpI))
             end
         end
-
         for _gpI, v: tGroupTrack in ipairs(stackNode) do
             Script.Functions.Minecart.debug(string.format("[TrackGroup -- VERIFY] Group %s has %s nodes. \t Start: %s | End: %s", _gpI, #v.nodes, tostring(v.hasStart), tostring(v.hasEnd)))
         end
     end
-
     if hasIncorrectPath then return end
-
-    --finally, draw the correct path. gg
-    local realNodes = {} --our precious nodes finally here :pray:
-    local fakeNodes = {} --we hate you but ok
+    local realNodes = {}
+    local fakeNodes = {}
     for _gpFI, v: tGroupTrack in ipairs(stackNode) do
         local finalWrongNode = false
         if _gpFI == 1 and hasMoreThanOneGroup then
             finalWrongNode = true 
         end
-
         for _, vfinal in ipairs(v.nodes) do
             if finalWrongNode then
                 table.insert(fakeNodes, vfinal)
@@ -7990,36 +7742,25 @@ function Script.Functions.Minecart.Pathfind(room: Model, forcePathfind: boolean)
             end
             table.insert(realNodes, vfinal)
         end
-
-        --Draw wrong path calculated on DeepPath.
         for _, nfinal in ipairs(_closestNodes[_gpFI]) do
             table.insert(fakeNodes, nfinal)
         end
     end
-    --our result is stored in the part itself in order.
-
     local nodesList: tSortedNodes = {
         real = sortNodes(realNodes, false),
         fake = sortNodes(fakeNodes, false)
     }
-
     nodesFolder:SetAttribute("_mspaint_nodes_pathfind", true)
     PathfindSetNodes(nodesList.real, "_mspaint_real_node")
     PathfindSetNodes(nodesList.fake, "_mspaint_fake_node")
-    --Call any feature that requires the pathfind nodes--
-
     Script.Functions.Minecart.DrawNodes(room)
     Script.Functions.Minecart.Teleport(room)
 end
 end)() end,
-    [33] = function()local wax,script,require=ImportGlobals(33)local ImportGlobals return (function(...)--// Linoria \\--
+    [33] = function()local wax,script,require=ImportGlobals(33)local ImportGlobals return (function(...)
 local Toggles = shared.Toggles
 local Options = shared.Options
-
---// Variables \\--
 local Script = shared.Script
-
---// Functions \\--
 function Script.Functions.GetPadlockCode(paper: Tool)
     if paper:FindFirstChild("UI") then
         local code = {}
@@ -8037,7 +7778,6 @@ function Script.Functions.GetPadlockCode(paper: Tool)
                 end
             end
         end
-
         local normalizedCode = {}
         for _, num in pairs(code) do
             normalizedCode[num[1]] = num[2]
@@ -8045,30 +7785,24 @@ function Script.Functions.GetPadlockCode(paper: Tool)
 
         return table.concat(normalizedCode)
     end
-
     return "_____"
 end
 end)() end,
-    [34] = function()local wax,script,require=ImportGlobals(34)local ImportGlobals return (function(...)--// Linoria \\--
+    [34] = function()local wax,script,require=ImportGlobals(34)local ImportGlobals return (function(...)
 local Toggles = shared.Toggles
 local Options = shared.Options
-
---// Variables \\--
 local Script = shared.Script
 
---// Functions \\--
 function Script.Functions.DistanceFromCharacter(position: Instance | Vector3, getPositionFromCamera: boolean | nil)
     if not position then return 9e9 end
     if typeof(position) == "Instance" then
         position = position:GetPivot().Position
     end
-
     if getPositionFromCamera and (shared.Camera or workspace.CurrentCamera) then
         local cameraPosition = if shared.Camera then shared.Camera.CFrame.Position else workspace.CurrentCamera.CFrame.Position
 
         return (cameraPosition - position).Magnitude
     end
-
     if shared.RootPart then
         return (shared.RootPart.Position - position).Magnitude
     elseif shared.Camera then
@@ -8077,44 +7811,32 @@ function Script.Functions.DistanceFromCharacter(position: Instance | Vector3, ge
 
     return 9e9
 end
-
 function Script.Functions.IsInViewOfPlayer(instance: Instance, range: number | nil, exclude: table | nil)
     if not instance then return false end
     if not Script.Collision then return false end
-
     local raycastParams = RaycastParams.new()
     raycastParams.FilterType = Enum.RaycastFilterType.Exclude
-
     local filter = exclude or {}
     table.insert(filter, shared.Character)
-
     raycastParams.FilterDescendantsInstances = filter
-
     local direction = (instance:GetPivot().Position - Script.Collision.Position).unit * (range or 9e9)
     local raycast = workspace:Raycast(Script.Collision.Position, direction, raycastParams)
-
     if raycast and raycast.Instance then
         if raycast.Instance:IsDescendantOf(instance) or raycast.Instance == instance then
             return true
         end
-
         return false
     end
-
     return false
 end
 end)() end,
-    [36] = function()local wax,script,require=ImportGlobals(36)local ImportGlobals return (function(...)--// Linoria \\--
+    [36] = function()local wax,script,require=ImportGlobals(36)local ImportGlobals return (function(...)   
 local Toggles = shared.Toggles
 local Options = shared.Options
-
---// Variables \\--
 local Script = shared.Script
 Script.PresetHelper = wax.shared.FileHelper.new("mspaint/doors/presets")
 Script.ElevatorPresetData = {}
 Script.ElevatorPresets = {}
-
--- Functions
 function Script.Functions.CreatePreset(name: string, data: table)
     local presetData = Script.Functions.EnforceTypes(data, {
         Floor = "Hotel",
@@ -8122,20 +7844,16 @@ function Script.Functions.CreatePreset(name: string, data: table)
         Modifiers = nil,
         FriendsOnly = true
     })
-
     Script.PresetHelper.CreateFile(name .. ".json", shared.HttpService:JSONEncode(presetData))
 end
-
 function Script.Functions.LoadPresets()
     table.clear(Script.ElevatorPresets)
     table.clear(Script.ElevatorPresetData)
-
     for _, file in pairs(Script.PresetHelper.GetFilesClean()) do
         local success, ret = pcall(function()
             local data = Script.PresetHelper.ReadFile(file .. ".json")
             return shared.HttpService:JSONDecode(data)
         end)
-
         if success then
             Script.ElevatorPresetData[file] = Script.Functions.EnforceTypes(ret, {
                 Floor = "Hotel",
@@ -8143,7 +7861,6 @@ function Script.Functions.LoadPresets()
                 Modifiers = nil,
                 FriendsOnly = true
             })
-
             table.insert(Script.ElevatorPresets, file)
         else
             shared.Notify:Alert({
@@ -8151,53 +7868,42 @@ function Script.Functions.LoadPresets()
             })
         end
     end
-
     Options.Elevator_PresetList:SetValues(Script.ElevatorPresets)
     Options.Elevator_PresetList:SetValue(nil)
 end
-
 function Script.Functions.LoadPreset(name: string)
     local success, ret = pcall(function()
         local data = Script.PresetHelper.ReadFile(name .. ".json")
         return shared.HttpService:JSONDecode(data)
     end)
-
     if not success then
         shared.Notify:Alert({
             Description = "Failed to load preset: " .. name .. ".json"
         })
         return
     end
-
     local presetData = Script.Functions.EnforceTypes(ret, {
         Floor = "Hotel",
         MaxPlayers = 1,
         Modifiers = nil,
         FriendsOnly = true
     })
-
     local data = {
         ["FriendsOnly"] = presetData.FriendsOnly,
         ["Destination"] = presetData.Floor,
         ["Mods"] = presetData.Modifiers or {},
         ["MaxPlayers"] = tostring(presetData.MaxPlayers)
     }
-
     Script.CreateElevator:FireServer(data)
-
     shared.Notify:Alert({
         Description = "Loaded elevator preset: " .. name
     })
 end
 end)() end,
-    [38] = function()local wax,script,require=ImportGlobals(38)local ImportGlobals return (function(...)--// Linoria \\--
+    [38] = function()local wax,script,require=ImportGlobals(38)local ImportGlobals return (function(...)
 local Toggles = shared.Toggles
 local Options = shared.Options
-
---// Variables \\--
 local Script = shared.Script
-
---// Functions \\--
 function Script.Functions.ChildCheck(child)
     if not child:IsA("Model") then return end
 
@@ -8210,14 +7916,12 @@ function Script.Functions.ChildCheck(child)
     end
 end
 end)() end,
-    [39] = function()local wax,script,require=ImportGlobals(39)local ImportGlobals return (function(...)--// Linoria \\--
+    [39] = function()local wax,script,require=ImportGlobals(39)local ImportGlobals return (function(...)
 local Toggles = shared.Toggles
 local Options = shared.Options
-
---// Variables \\--
 local Script = shared.Script
 
---// Functions \\--
+   
 function Script.Functions.Chat(message: string)
     local chatEvents = shared.ReplicatedStorage:FindFirstChild("DefaultChatSystemChatEvents")
     local sayMessage = chatEvents and chatEvents:FindFirstChild("SayMessageRequest")
@@ -8227,14 +7931,14 @@ function Script.Functions.Chat(message: string)
     end
 end
 end)() end,
-    [40] = function()local wax,script,require=ImportGlobals(40)local ImportGlobals return (function(...)--// Linoria \\--
+    [40] = function()local wax,script,require=ImportGlobals(40)local ImportGlobals return (function(...)   
 local Toggles = shared.Toggles
 local Options = shared.Options
 
---// Variables \\--
+  
 local Script = shared.Script
 
---// Functions \\--
+   
 function Script.Functions.SetupCharacterConnection(newCharacter)
     shared.Character = newCharacter
     shared.Humanoid = shared.Character:WaitForChild("Humanoid")
@@ -8290,11 +7994,11 @@ function Script.Functions.SetupUIConnection(GUI)
     end
 end
 end)() end,
-    [41] = function()local wax,script,require=ImportGlobals(41)local ImportGlobals return (function(...)--// Linoria \\--
+    [41] = function()local wax,script,require=ImportGlobals(41)local ImportGlobals return (function(...)   
 local Toggles = shared.Toggles
 local Options = shared.Options
 
---// Variables \\--
+  
 local Script = shared.Script
 local ESPLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/deividcomsono/MS-ESP/refs/heads/main/source.lua"))()
 shared.ESPLibrary = ESPLibrary
@@ -8483,14 +8187,14 @@ function Script.Functions.TableESP(hideTable)
     })
 end
 end)() end,
-    [43] = function()local wax,script,require=ImportGlobals(43)local ImportGlobals return (function(...)--// Linoria \\--
+    [43] = function()local wax,script,require=ImportGlobals(43)local ImportGlobals return (function(...)   
 local Toggles = shared.Toggles
 local Options = shared.Options
 
---// Variables \\--
+  
 local Script = shared.Script
 
---// Functions \\--
+   
 function Script.Functions.SetupCharacterConnection(newCharacter)
     shared.Character = newCharacter
     shared.Humanoid = shared.Character:WaitForChild("Humanoid")
@@ -9153,7 +8857,7 @@ end)() end,
 --// Player Variables \\--
 local mainUI
 
---// Functions \\--
+   
 function Doors:Notify(unsafeOptions)
     assert(typeof(unsafeOptions) == "table", "Expected a table as options argument but got " .. typeof(unsafeOptions))
 
@@ -9334,7 +9038,7 @@ end)() end,
 }
 Logs.FileHelper = wax.shared.FileHelper.new(Logs.Folder)
 
---// Functions \\--
+   
 function TableToMessage(tbl: table)
     for idx, val in ipairs(tbl) do
         tbl[idx] = tostring(val)
