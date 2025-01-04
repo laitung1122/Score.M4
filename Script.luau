@@ -2290,9 +2290,10 @@ local AntiEntityGroupBox = Tabs.Exploits:AddLeftGroupbox("Xóa quái") do
 end
 
 local FigureGroupBox = Tabs.Exploits:AddLeftGroupbox("Xóa Figure + Glumble") do
-    FigureGroupBox:AddLabel("Để xóa figure bạn hãy ấn vô tính năng rồi")
-    FigureGroupBox:AddLabel("đặt đồng hồ báo thức ra rồi chờ 1 lúc")
-        FigureGroupBox:AddButton("Xóa figure", function()
+    FigureGroupBox:AddLabel("Để xóa figure bạn hãy ấn vô tính")
+    FigureGroupBox:AddLabel("năng rồi đặt đồng hồ báo thức ra")
+    FigureGroupBox:AddLabel("rồi chờ 1 lúc")
+    FigureGroupBox:AddButton("Xóa figure", function()
             if _G.DeletingFigure then
                 getgenv().Library:Notify("Đang chạy tính năng..", 1)
                 return
@@ -3280,6 +3281,71 @@ if Script.IsHotel then
         end
     end)
 end
+
+local GlitchEffectGroupBox = Tabs.Floor:AddRightGroupbox("Glitch Fragment Effects") do
+    -- Thêm Label để hiển thị thông tin
+    GlitchEffectGroupBox:AddLabel("Dương Api")
+
+    -- Thêm Toggle để bật/tắt "Dương Api"
+    GlitchEffectGroupBox:AddToggle("GlitchFragmentEffectPredict", {
+        Text = "Dương Api",
+        Tooltip = "Đừng dùng quá 2 lần nếu không dính lỗi :))",
+        Default = false,
+
+        Callback = function(value)
+            local glitch = game.Players.LocalPlayer.PlayerGui.MainUI.MainFrame.GlitchTrial
+
+            if value then
+                _G.EffectPredicter = true
+                while _G.EffectPredicter do
+                    -- Kiểm tra điều kiện khi glitch không hiển thị
+                    while _G.EffectPredicter and glitch.Visible == false do
+                        task.wait(0.1)
+                    end
+
+                    if _G.EffectPredicter and glitch.Visible then
+                        local text = glitch.TextLabel.Text
+
+                        if text == "NDAxIEZPUkJJRERFTg==" or text == "NDAzIEZPUkJJRERFTg==" then
+                            if text == "NDAxIEZPUkJJRERFTg==" then
+                                getgenv().Library:Notify("[Dương Api] Bạn sẽ có xu", 3)
+                            end
+                            if text == "NDAzIEZPUkJJRERFTg==" then
+                                getgenv().Library:Notify("[Dương Api] Bạn sẽ lấy xu ", 3)
+                            end
+                            task.wait(3)
+                            repeat task.wait(0.1) until glitch.Visible == true
+                        elseif text == "Q0FDSEUgUkVGUkVTSA==" then
+                            getgenv().Library:Notify("[Dương Api] Tất cả đồ trong túi bạn sẽ bay màu", 5)
+                            task.wait(3)
+                            repeat task.wait(0.1) until glitch.Visible == true
+                        elseif text == "UlVOVElNRSBCT09TVA==" or text == "UlVOVElNRSBCT09TVA===" then
+                            getgenv().Library:Notify("[Dương Api] Bạn sẽ tăng tốc chạy", 3.5)
+                            task.wait(3)
+                            repeat task.wait(0.1) until glitch.Visible == true
+                        elseif text == "UE9XRVIgU1VSR0U=" then
+                            getgenv().Library:Notify("[Dương Api] Số máu tối đa của bạn sẽ đổi", 6.5)
+                            task.wait(3)
+                            repeat task.wait(0.1) until glitch.Visible == true
+                        else
+                            getgenv().Library:Notify("[Dương Api] Hiệu ứng ko rõ ràng(có thể do bí ý tưởng:V)", 5)
+                            task.wait(3)
+                            repeat task.wait(0.1) until glitch.Visible == true
+                        end
+                    end
+                    -- Kiểm tra lại sau khi glitch đã được xử lý
+                    while glitch.Visible do
+                        task.wait(0.1)
+                    end
+                    task.wait()
+                end
+            else
+                _G.EffectPredicter = false
+            end
+        end
+    })
+end
+
 
     Toggles.AntiSeekObstructions:OnChanged(function(value)
         for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
@@ -4557,7 +4623,7 @@ local ESPTabBox = Tabs.Visuals:AddLeftTabbox() do
             Text = "Cửa",
             Default = false,
         }):AddColorPicker("DoorEspColor", {
-            Default = Color3.new(114, 220, 103),
+            Default = Color3.new(0, 1, 1),
         })
     
         ESPTab:AddToggle("ObjectiveESP", {
