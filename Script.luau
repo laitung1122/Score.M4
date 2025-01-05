@@ -3266,9 +3266,12 @@ if Script.IsHotel then
     local musicList = {
         { Name = "Bunny Girl Lofi", URL = "https://raw.githubusercontent.com/laitung1122/Score.M4/refs/heads/main/a.mp3" }
     }
+    
     local currentMusic
     local isPlaying = false
     local volume = 2
+    local duration = 0
+    
     local function playMusic(url, name)
         if currentMusic then
             currentMusic:Stop()
@@ -3278,15 +3281,27 @@ if Script.IsHotel then
             if not isfile(name .. ".mp3") then
                 writefile(name .. ".mp3", game:HttpGet(url))
             end
-            
             local sound = Instance.new("Sound")
             sound.SoundId = getcustomasset(name .. ".mp3", true)
             sound.Volume = volume
             sound.Parent = game.SoundService
             sound.Looped = false
             sound:Play()
+            
+            sound.Ended:Connect(function()
+                isPlaying = false
+            end)
+
+            task.spawn(function()
+                repeat task.wait(0.1) until sound.TimeLength > 0
+                duration = sound.TimeLength
+                SliderRef:SetMax(duration) 
+                getgenv().Library:Notify("[Thành công] Thời lượng nhạc: " .. string.format("%.2f", duration) .. " giây", 4)
+            end)
+            
             return sound
         end)
+        
         if success then
             currentMusic = music
             isPlaying = true
@@ -3295,6 +3310,15 @@ if Script.IsHotel then
             getgenv().Library:Notify("[Lỗi] Không thể phát nhạc: " .. tostring(music), 4)
         end
     end
+    
+    local function seekMusic(seconds)
+        if currentMusic then
+            local newTime = math.clamp(currentMusic.TimePosition + seconds, 0, duration)
+            currentMusic.TimePosition = newTime
+            getgenv().Library:Notify("[Thông báo] Đã tua đến: " .. string.format("%.2f", newTime) .. "s", 4)
+        end
+    end
+    
     local MusicPlayerGroupBox = Tabs.Floor:AddLeftGroupbox("Trình Phát Nhạc") do
         local selectedMusic = musicList[1].Name
         
@@ -3308,6 +3332,7 @@ if Script.IsHotel then
                 selectedMusic = value
             end
         })
+        
         MusicPlayerGroupBox:AddButton("Phát", function()
             for _, music in ipairs(musicList) do
                 if music.Name == selectedMusic then
@@ -3318,43 +3343,34 @@ if Script.IsHotel then
         end)
         
         MusicPlayerGroupBox:AddButton("Tạm dừng", function()
-            pauseMusic()
+            if currentMusic then
+                currentMusic:Pause()
+            end
         end)
         
         MusicPlayerGroupBox:AddButton("Tiếp tục", function()
-            resumeMusic()
+            if currentMusic then
+                currentMusic:Play()
+            end
         end)
         
         MusicPlayerGroupBox:AddButton("Chạy lại", function()
-            restartMusic()
+            if currentMusic then
+                currentMusic.TimePosition = 0
+                currentMusic:Play()
+            end
         end)
         
-        MusicPlayerGroupBox:AddSlider("SeekSlider", {
+        local SliderRef = MusicPlayerGroupBox:AddSlider("SeekSlider", {
             Text = "Tua nhạc",
             Default = 0,
-            Min = -10,
-            Max = 10,
-            Rounding = 1,
-            Suffix = "s",
-            
-            Callback = function(value)
-                seekMusic(value)
-            end
-        })
-        
-        MusicPlayerGroupBox:AddSlider("NotifyVolume", {
-            Text = "Âm lượng",
-            Default = 2,
             Min = 0,
-            Max = 5,
+            Max = 0,
             Rounding = 1,
-            
             Callback = function(value)
-                volume = value
                 if currentMusic then
-                    currentMusic.Volume = volume
+                    currentMusic.TimePosition = value
                 end
-                getgenv().Library:Notify("[Thông báo] Âm lượng: " .. volume, 4)
             end
         })
     end
