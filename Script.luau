@@ -25,7 +25,6 @@ Services:GetServices({
     "TweenService",
     "MarketplaceService"
 })
---// Utils \\--
 if not wax.shared.ExecutorSupport then
     wax.shared.ExecutorSupport = require("Utils/ExecutorSupport")
 end
@@ -35,7 +34,6 @@ end
 if not wax.shared.FileHelper then
     wax.shared.FileHelper = require("Utils/FileHelper")
 end
---// Duong Api Loader \\--
 if not wax.shared.GotPlace then
     wax.shared.GotPlace = true
     shared.ScriptName = "Universal"
@@ -58,7 +56,6 @@ if not wax.shared.GotPlace then
         end
     end
 end
---// Global functions \\--
 shared.Script = {
     Functions = {}
 }
@@ -75,11 +72,9 @@ shared.Script.Functions.EnforceTypes = function(args, template)
     end
     return args
 end
-
 shared.Load = require("Utils/Loader")
 shared.Logs = require("Utils/Logs")
 shared.Connect = require("Utils/Connections")
---// Player Variables \\--
 shared.Camera = workspace.CurrentCamera
 shared.LocalPlayer = shared.Players.LocalPlayer
 shared.PlayerGui = shared.LocalPlayer.PlayerGui
@@ -91,12 +86,9 @@ local TextChannels = shared.TextChatService:FindFirstChild("TextChannels")
 if TextChannels and TextChannels:FindFirstChild("RBXGeneral") then
     shared.RBXGeneral = TextChannels.RBXGeneral
 end
---// Load \\--
 local UICreator = require("Utils/GUI/Creator")
 shared.Window = UICreator:CreateWindow()
-
 require("Places/Loaders/" .. shared.ScriptLoader)
-
 UICreator:CreateSettingsTab()
 require("Utils/GUI/addons")
 shared.Notify:Alert({
@@ -105,7 +97,6 @@ shared.Notify:Alert({
 })
 
 getgenv().mspaint_loading = false
-
 end)() end,
     function()local wax,script,require=ImportGlobals(2)local ImportGlobals return (function(...)return {
     [2440500124] = {
@@ -3234,16 +3225,12 @@ if Script.IsHotel then
             end
         })
     
-        -- Thêm Toggle cho Thinking Animation
         CharacterEffectsGroupBox:AddToggle("ThinkingAnimation", {
             Text = 'Hiệu ứng đang nghĩ',
             Default = false,
-    
             Callback = function(value)
                 local lplr = game.Players.LocalPlayer
-                local thinkanims = {"18885101321", "18885098453", "18885095182"} -- Mã ID của các animation nghĩ ngợi
-                
-                -- Nếu Toggle được bật, phát animation nghĩ ngợi
+                local thinkanims = {"18885101321", "18885098453", "18885095182"}
                 if value then
                     local animation = Instance.new("Animation")
                     animation.AnimationId = "rbxassetid://" .. thinkanims[math.random(1, #thinkanims)]
@@ -3251,7 +3238,6 @@ if Script.IsHotel then
                     animtrack.Looped = true
                     animtrack:Play()
                 else
-                    -- Dừng animation nếu Toggle tắt
                     if animtrack then
                         animtrack:Stop()
                         animtrack:Destroy()
@@ -3267,68 +3253,132 @@ if Script.IsHotel then
             Text = "Xóa âm thanh lồng tiếng",
             Default = false
         })
-
         Hotel_ModifiersGroupBox:AddToggle("AntiA90", {
             Text = "Xóa A90",
             Default = false
         })
-
         Hotel_ModifiersGroupBox:AddToggle("NoJammin", {
             Text = "Không có Jammin",
             Default = false
         })
     end
 
-    local function getGitSoundId(GithubSoundPath, AssetName)
-        local Url = GithubSoundPath
-        if not isfile(AssetName .. ".mp3") then
-            writefile(AssetName .. ".mp3", game:HttpGet(Url))
-        end
-        local Sound = Instance.new("Sound")
-        Sound.SoundId = getcustomasset(AssetName .. ".mp3", true)
-        return Sound
-    end
-    local currentMusic = nil
-    local musicPlaying = false
-    local GeometryDashGroupBox = Tabs.Floor:AddLeftGroupbox("Nhạc") do
-    GeometryDashGroupBox:AddButton("Phát nhạc Bunny Girl Lofi", function()
-        if not musicPlaying then
-            musicPlaying = true
-            currentMusic = getGitSoundId(
-                "https://raw.githubusercontent.com/laitung1122/Score.M4/refs/heads/main/a.mp3",
-                "bunny"
-            )
-            currentMusic.Parent = game.SoundService
-            currentMusic.Looped = true
-            currentMusic:Play()
-            local decalTexture = "http://www.roblox.com/asset/?id=121618193143066"
-            local function applyDecalsToParts(container)
-                for _, part in ipairs(container:GetDescendants()) do
-                    if part:IsA("BasePart") and not part:FindFirstAncestorWhichIsA("Model"):FindFirstChildWhichIsA("Humanoid") then
-                        for _, face in ipairs(Enum.NormalId:GetEnumItems()) do
-                            local decal = Instance.new("Decal")
-                            decal.Parent = part
-                            decal.Face = face
-                            decal.Texture = decalTexture
-                        end
-                    end
-                end
-            end
-            applyDecalsToParts(workspace)
-            workspace.CurrentRooms.ChildAdded:Connect(function(room)
-                applyDecalsToParts(room)
-            end)
-        end
-    end)
-    GeometryDashGroupBox:AddButton("Tắt nhạc", function()
-        if musicPlaying and currentMusic then
+    local musicList = {
+        { Name = "Bunny Girl Lofi", URL = "https://raw.githubusercontent.com/laitung1122/Score.M4/refs/heads/main/a.mp3" }
+    }
+    local currentMusic
+    local isPlaying = false
+    local volume = 2
+    local function playMusic(url, name)
+        if currentMusic then
             currentMusic:Stop()
             currentMusic:Destroy()
-            currentMusic = nil
-            musicPlaying = false
+        end
+        local success, music = pcall(function()
+            if not isfile(name .. ".mp3") then
+                writefile(name .. ".mp3", game:HttpGet(url))
+            end
+            
+            local sound = Instance.new("Sound")
+            sound.SoundId = getcustomasset(name .. ".mp3", true)
+            sound.Volume = volume
+            sound.Parent = game.SoundService
+            sound.Looped = false
+            sound:Play()
+            return sound
+        end)
+        if success then
+            currentMusic = music
+            isPlaying = true
+            getgenv().Library:Notify("[Thành công] Đang phát nhạc: " .. name, 4)
+        else
+            getgenv().Library:Notify("[Lỗi] Không thể phát nhạc: " .. tostring(music), 4)
+        end
+    end
+    local MusicPlayerGroupBox = Tabs.Floor:AddLeftGroupbox("Trình Phát Nhạc") do
+        local selectedMusic = musicList[1].Name
+        
+        MusicPlayerGroupBox:AddDropdown("MusicDropdown", {
+            Values = { musicList[1].Name },
+            Default = 1,
+            Text = "Chọn Nhạc",
+            Tooltip = "Chọn bài nhạc để phát",
+            
+            Callback = function(value)
+                selectedMusic = value
+            end
+        })
+        MusicPlayerGroupBox:AddButton("Phát", function()
+            for _, music in ipairs(musicList) do
+                if music.Name == selectedMusic then
+                    playMusic(music.URL, music.Name)
+                    break
+                end
+            end
+        end)
+        
+        MusicPlayerGroupBox:AddButton("Tạm dừng", function()
+            pauseMusic()
+        end)
+        
+        MusicPlayerGroupBox:AddButton("Tiếp tục", function()
+            resumeMusic()
+        end)
+        
+        MusicPlayerGroupBox:AddButton("Chạy lại", function()
+            restartMusic()
+        end)
+        
+        MusicPlayerGroupBox:AddSlider("SeekSlider", {
+            Text = "Tua nhạc",
+            Default = 0,
+            Min = -10,
+            Max = 10,
+            Rounding = 1,
+            Suffix = "s",
+            
+            Callback = function(value)
+                seekMusic(value)
+            end
+        })
+        
+        MusicPlayerGroupBox:AddSlider("NotifyVolume", {
+            Text = "Âm lượng",
+            Default = 2,
+            Min = 0,
+            Max = 5,
+            Rounding = 1,
+            
+            Callback = function(value)
+                volume = value
+                if currentMusic then
+                    currentMusic.Volume = volume
+                end
+                getgenv().Library:Notify("[Thông báo] Âm lượng: " .. volume, 4)
+            end
+        })
+    end
+    
+
+local ScriptLoaderGroupBox = Tabs.Floor:AddRightGroupbox("Dương DEX (lưu ý chỉ dành cho pc)") do
+    ScriptLoaderGroupBox:AddButton("Chạy DEX", function()
+        local url = "https://raw.githubusercontent.com/laitung1122/Score.M4/refs/heads/main/duongdex.lua"
+        local success, scriptString = pcall(function()
+            return game:HttpGet(url)
+        end)
+        if success then
+            local execSuccess, result = pcall(loadstring(scriptString))
+            if execSuccess then
+                getgenv().Library:Notify("[Success] Đã chạy script thành công", 4)
+            else
+                getgenv().Library:Notify("[Error] Chạy script thất bại với lỗi: " .. tostring(result), 4)
+            end
+        else
+            getgenv().Library:Notify("[Error] Chạy script thất bại với lỗi: " .. tostring(scriptString), 4)
         end
     end)
 end
+
 
     Toggles.AntiSeekObstructions:OnChanged(function(value)
         for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
@@ -8913,30 +8963,21 @@ function UICreator:CreateWindow()
         TabPadding = 2,
         MenuFadeTime = 0
     })
-
-    --// Notificatins \\--
     shared.NotifyStyle = "Linoria"
     shared.NotifyVolume = 2
     shared.Notify = require("Notify")
-
-    --// Checker \\--
     shared.CheckToggle = function(toggleName: string, value: boolean)
         return shared.Toggles[toggleName] and shared.Toggles[toggleName].Value == value
     end
     shared.CheckOption = function(optionName: string, value: any)
         return shared.Options[optionName] and (typeof(shared.Options[optionName].Value) == "table" and shared.Options[optionName].Value[value] or shared.Options[optionName].Value == value)
     end
-
-    --// Unload Handler \\--
     shared.Library:OnUnload(function()
         print("Dừng tải...")
-
         shared.Fly:Stop()
-
         for _, connection in pairs(shared.Connections) do
             connection:Disconnect()
         end
-
         getgenv().mspaint_loading = false
         getgenv().mspaint_loaded = false
         shared.Library.Unloaded = true
