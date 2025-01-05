@@ -3264,192 +3264,201 @@ if Script.IsHotel then
     end
 
     local musicList = {
-        { Name = "Bunny Girl Lofi", URL = "https://raw.githubusercontent.com/laitung1122/Score.M4/refs/heads/main/a.mp3" }
-    }
-    
-    local currentMusic
-    local isPlaying = false
-    local volume = 2 -- Giá trị mặc định của âm lượng
-    local duration = 0 -- Thời lượng của bài nhạc
-    local timePosition = 0 -- Thời gian hiện tại của bài nhạc
-    local updateTimeThread
-    
-    local function playMusic(url, name)
-        if currentMusic then
-            currentMusic:Stop()
-            currentMusic:Destroy()
-        end
-        
-        local success, music = pcall(function()
-            if not isfile(name .. ".mp3") then
-                writefile(name .. ".mp3", game:HttpGet(url))
-            end
-            
-            local sound = Instance.new("Sound")
-            sound.SoundId = getcustomasset(name .. ".mp3", true)
-            sound.Volume = volume
-            sound.Parent = game.SoundService
-            sound.Looped = false
-            sound:Play()
-            
-            sound.Ended:Connect(function()
-                isPlaying = false
-            end)
-    
-            -- Cập nhật thời lượng và thời gian phát nhạc sau khi tải
-            task.spawn(function()
-                repeat task.wait(0.1) until sound.TimeLength > 0
-                duration = sound.TimeLength
-                SliderRef:SetMax(duration)
-                getgenv().Library:Notify("[Thành công] Thời lượng nhạc: " .. string.format("%d", math.floor(duration)) .. " giây", 4)
-            end)
-            
-            return sound
-        end)
-        
-        if success then
-            currentMusic = music
-            isPlaying = true
-            getgenv().Library:Notify("[Thành công] Đang phát nhạc: " .. name, 4)
-            
-            -- Cập nhật thanh trượt và hiển thị thời gian
-            updateTimeThread = task.spawn(function()
-                while isPlaying do
-                    timePosition = currentMusic.TimePosition
-                    SliderRef:SetValue(timePosition)
-                    TimeLabel.Text = string.format("Thời gian: %d / %d giây", math.floor(timePosition), math.floor(duration))
-                    task.wait(0.1)
-                end
-            end)
-        else
-            getgenv().Library:Notify("[Lỗi] Không thể phát nhạc: " .. tostring(music), 4)
-        end
+    { Name = "Dress", URL = "https://raw.githubusercontent.com/DuongTest1/Songroblox/main/dress.mp3" },
+    { Name = "Slay", URL = "https://raw.githubusercontent.com/DuongTest1/Songroblox/main/slay.mp3" },
+    { Name = "Money So Big", URL = "https://raw.githubusercontent.com/DuongTest1/Songroblox/main/moneysobig.mp3" },
+    { Name = "Eu Sento Gabu", URL = "https://raw.githubusercontent.com/DuongTest1/Songroblox/main/eusentogabu.mp3" },
+    { Name = "Glory", URL = "https://raw.githubusercontent.com/DuongTest1/Songroblox/main/glory.mp3" },
+    { Name = "Bunny Girl Lofi", URL = "https://raw.githubusercontent.com/laitung1122/Score.M4/refs/heads/main/a.mp3" },
+    -- Bạn có thể thêm nhiều bài nhạc khác ở đây.
+    { Name = "Another Song", URL = "https://link-to-another-song.mp3" }
+}
+
+local currentMusic
+local isPlaying = false
+local volume = 2 -- Giá trị mặc định của âm lượng
+local duration = 0 -- Thời lượng của bài nhạc
+local timePosition = 0 -- Thời gian hiện tại của bài nhạc
+local updateTimeThread
+local SliderRef, TimeLabel
+
+local function playMusic(url, name)
+    if currentMusic then
+        currentMusic:Stop()
+        currentMusic:Destroy()
     end
     
-    local function pauseMusic()
-        if currentMusic and isPlaying then
-            currentMusic:Pause()
+    local success, music = pcall(function()
+        if not isfile(name .. ".mp3") then
+            writefile(name .. ".mp3", game:HttpGet(url))
+        end
+        
+        local sound = Instance.new("Sound")
+        sound.SoundId = getcustomasset(name .. ".mp3", true)
+        sound.Volume = volume
+        sound.Parent = game.SoundService
+        sound.Looped = false
+        sound:Play()
+        
+        sound.Ended:Connect(function()
             isPlaying = false
-            getgenv().Library:Notify("[Thông báo] Nhạc đã tạm dừng", 4)
-        end
-    end
-    
-    local function resumeMusic()
-        if currentMusic and not isPlaying then
-            currentMusic:Play()
-            isPlaying = true
-            getgenv().Library:Notify("[Thông báo] Nhạc đã tiếp tục", 4)
-            
-            -- Tiếp tục cập nhật thời gian nếu nhạc tiếp tục phát
-            updateTimeThread = task.spawn(function()
-                while isPlaying do
-                    timePosition = currentMusic.TimePosition
-                    SliderRef:SetValue(timePosition)
-                    TimeLabel.Text = string.format("Thời gian: %d / %d giây", math.floor(timePosition), math.floor(duration))
-                    task.wait(0.1)
-                end
-            end)
-        end
-    end
-    
-    local function restartMusic()
-        if currentMusic then
-            currentMusic.TimePosition = 0
-            currentMusic:Play()
-            isPlaying = true
-            getgenv().Library:Notify("[Thông báo] Nhạc đang chạy lại từ đầu", 4)
-            
-            -- Tiếp tục cập nhật thời gian
-            updateTimeThread = task.spawn(function()
-                while isPlaying do
-                    timePosition = currentMusic.TimePosition
-                    SliderRef:SetValue(timePosition)
-                    TimeLabel.Text = string.format("Thời gian: %d / %d giây", math.floor(timePosition), math.floor(duration))
-                    task.wait(0.1)
-                end
-            end)
-        end
-    end
-    
-    local function stopMusic()
-        if currentMusic then
-            currentMusic:Stop()
-            currentMusic:Destroy()
-            currentMusic = nil
-            isPlaying = false
-            timePosition = 0 duration = 0
-            SliderRef:SetValue(0)
-            SliderRef:SetMax(0)
-            TimeLabel.Text = "Thời gian: 0 / 0 giây"
-            getgenv().Library:Notify("[Thông báo] Nhạc đã dừng và bộ đếm đã được reset", 4)
-        end
-    end
-    
-    local function seekMusic(seconds)
-        if currentMusic then
-            local newTime = math.clamp(currentMusic.TimePosition + seconds, 0, duration)
-            currentMusic.TimePosition = newTime
-            getgenv().Library:Notify("[Thông báo] Đã tua đến: " .. string.format("%d", math.floor(newTime)) .. "s", 4)
-        end
-    end
-    
-    local MusicPlayerGroupBox = Tabs.Floor:AddLeftGroupbox("Trình Phát Nhạc") do
-        local selectedMusic = musicList[1].Name
+        end)
+
+        -- Cập nhật thời lượng và thời gian phát nhạc sau khi tải
+        task.spawn(function()
+            repeat task.wait(0.1) until sound.TimeLength > 0
+            duration = sound.TimeLength
+            SliderRef:SetMax(duration)
+            getgenv().Library:Notify("[Thành công] Thời lượng nhạc: " .. string.format("%d", math.floor(duration)) .. " giây", 4)
+        end)
         
-        MusicPlayerGroupBox:AddDropdown("MusicDropdown", {
-            Values = { musicList[1].Name },
-            Default = 1,
-            Text = "Chọn Nhạc",
-            Tooltip = "Chọn bài nhạc để phát",
-            
-            Callback = function(value)
-                selectedMusic = value
-            end
-        })
+        return sound
+    end)
+    
+    if success then
+        currentMusic = music
+        isPlaying = true
+        getgenv().Library:Notify("[Thành công] Đang phát nhạc: " .. name, 4)
         
-        MusicPlayerGroupBox:AddButton("Phát", function()
-            for _, music in ipairs(musicList) do
-                if music.Name == selectedMusic then
-                    playMusic(music.URL, music.Name)
-                    break
-                end
+        -- Cập nhật thanh trượt và hiển thị thời gian
+        updateTimeThread = task.spawn(function()
+            while isPlaying do
+                timePosition = currentMusic.TimePosition
+                SliderRef:SetValue(timePosition)
+                TimeLabel.Text = string.format("Thời gian: %d / %d giây", math.floor(timePosition), math.floor(duration))
+                task.wait(0.1)
             end
         end)
-        
-        MusicPlayerGroupBox:AddButton("Tạm dừng", function()
-            pauseMusic()
-        end)
-        
-        MusicPlayerGroupBox:AddButton("Tiếp tục", function()
-            resumeMusic()
-        end)
-        
-        MusicPlayerGroupBox:AddButton("Chạy lại", function()
-            restartMusic()
-        end)
-    
-        MusicPlayerGroupBox:AddButton("Tắt nhạc", function()
-            stopMusic()
-        end)
-        
-        SliderRef = MusicPlayerGroupBox:AddSlider("SeekSlider", {
-            Text = "Tua nhạc",
-            Default = 0,
-            Min = 0,
-            Max = 0, -- Sẽ cập nhật sau khi nhạc được tải
-            Rounding = 1,
-            Callback = function(value)
-                if currentMusic then
-                    currentMusic.TimePosition = value
-                end
-            end
-        })
-        
-        -- Hiển thị thời gian
-        TimeLabel = MusicPlayerGroupBox:AddLabel({
-            Text = "Thời gian: 0 / 0 giây"
-        })
+    else
+        getgenv().Library:Notify("[Lỗi] Không thể phát nhạc: " .. tostring(music), 4)
     end
+end
+
+local function pauseMusic()
+    if currentMusic and isPlaying then
+        currentMusic:Pause()
+        isPlaying = false
+        getgenv().Library:Notify("[Thông báo] Nhạc đã tạm dừng", 4)
+    end
+end
+
+local function resumeMusic()
+    if currentMusic and not isPlaying then
+        currentMusic:Play()
+        isPlaying = true
+        getgenv().Library:Notify("[Thông báo] Nhạc đã tiếp tục", 4)
+        
+        -- Tiếp tục cập nhật thời gian nếu nhạc tiếp tục phát
+        updateTimeThread = task.spawn(function()
+            while isPlaying do
+                timePosition = currentMusic.TimePosition
+                SliderRef:SetValue(timePosition)
+                TimeLabel.Text = string.format("Thời gian: %d / %d giây", math.floor(timePosition), math.floor(duration))
+                task.wait(0.1)
+            end
+        end)
+    end
+end
+
+local function restartMusic()
+    if currentMusic then
+        currentMusic.TimePosition = 0
+        currentMusic:Play()
+        isPlaying = true
+        getgenv().Library:Notify("[Thông báo] Nhạc đang chạy lại từ đầu", 4)
+        
+        -- Tiếp tục cập nhật thời gian
+        updateTimeThread = task.spawn(function()
+            while isPlaying do
+                timePosition = currentMusic.TimePosition
+                SliderRef:SetValue(timePosition)
+                TimeLabel.Text = string.format("Thời gian: %d / %d giây", math.floor(timePosition), math.floor(duration))
+                task.wait(0.1)
+            end
+        end)
+    end
+end
+
+local function stopMusic()
+    if currentMusic then
+        currentMusic:Stop()
+        currentMusic:Destroy()
+        currentMusic = nil
+        isPlaying = false
+        timePosition = 0 
+        duration = 0
+        SliderRef:SetValue(0)
+        SliderRef:SetMax(0)
+        TimeLabel.Text = "Thời gian: 0 / 0 giây"
+        getgenv().Library:Notify("[Thông báo] Nhạc đã dừng và bộ đếm đã được reset", 4)
+    end
+end
+
+local function seekMusic(seconds)
+    if currentMusic then
+        local newTime = math.clamp(currentMusic.TimePosition + seconds, 0, duration)
+        currentMusic.TimePosition = newTime
+        getgenv().Library:Notify("[Thông báo] Đã tua đến: " .. string.format("%d", math.floor(newTime)) .. "s", 4)
+    end
+end
+
+local MusicPlayerGroupBox = Tabs.Floor:AddLeftGroupbox("Trình Phát Nhạc") do
+    local selectedMusic = musicList[1].Name
+    
+    MusicPlayerGroupBox:AddDropdown("MusicDropdown", {
+        Values = { musicList[1].Name, "Dress", "Slay", "Money So Big", "Eu Sento Gabu", "Glory", "Bunny Girl Lofi", "Another Song" },
+        Default = 1,
+        Text = "Chọn Nhạc",
+        Tooltip = "Chọn bài nhạc để phát",
+        
+        Callback = function(value)
+            selectedMusic = value
+        end
+    })
+    
+    MusicPlayerGroupBox:AddButton("Phát", function()
+        for _, music in ipairs(musicList) do
+            if music.Name == selectedMusic then
+                playMusic(music.URL, music.Name)
+                break
+            end
+        end
+    end)
+    
+    MusicPlayerGroupBox:AddButton("Tạm dừng", function()
+        pauseMusic()
+    end)
+    
+    MusicPlayerGroupBox:AddButton("Tiếp tục", function()
+        resumeMusic()
+    end)
+    
+    MusicPlayerGroupBox:AddButton("Chạy lại", function()
+        restartMusic()
+    end)
+
+    MusicPlayerGroupBox:AddButton("Tắt nhạc", function()
+        stopMusic()
+    end)
+    
+    SliderRef = MusicPlayerGroupBox:AddSlider("SeekSlider", {
+        Text = "Tua nhạc",
+        Default = 0,
+        Min = 0,
+        Max = 0, -- Sẽ cập nhật sau khi nhạc được tải
+        Rounding = 1,
+        Callback = function(value)
+            if currentMusic then
+                currentMusic.TimePosition = value
+            end
+        end
+    })
+    
+    -- Hiển thị thời gian
+    TimeLabel = MusicPlayerGroupBox:AddLabel({
+        Text = "Thời gian: 0 / 0 giây"
+    })
+end
 
 local ScriptLoaderGroupBox = Tabs.Floor:AddRightGroupbox("Dương DEX (lưu ý chỉ dành cho pc)") do
     ScriptLoaderGroupBox:AddButton("Chạy DEX", function()
