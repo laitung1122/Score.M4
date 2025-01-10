@@ -7555,6 +7555,22 @@ function UICreator:CreateWindow()
     end)
     return Window
 end
+Library:SetWatermarkVisibility(true)
+local FrameTimer = tick()
+local FrameCounter = 0;
+local FPS = 120;
+local WatermarkConnection = game:GetService('RunService').RenderStepped:Connect(function()
+    FrameCounter += 1;
+    if (tick() - FrameTimer) >= 1 then
+        FPS = FrameCounter;
+        FrameTimer = tick();
+        FrameCounter = 0;
+    end;
+    Library:SetWatermark(('Dương Api | %s fps | %s ms'):format(
+        math.floor(FPS),
+        math.floor(game:GetService('Stats').Network.ServerStatsItem['Data Ping']:GetValue())
+    ));
+end);
 function UICreator:CreateSettingsTab()
     local SettingsTab = shared.Window:AddTab("Cài đặt UI")
     SettingsTab:UpdateWarningBox({
