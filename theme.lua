@@ -265,7 +265,7 @@ local ThemeManager = {} do
 		groupbox:AddLabel('Outline color'):AddColorPicker('OutlineColor', { Default = self.Library.OutlineColor });
 		groupbox:AddLabel('Font color')	:AddColorPicker('FontColor', { Default = self.Library.FontColor });
 		groupbox:AddInput('VideoLink', { Text = '.webm Video Background (Link)', Default = self.Library.VideoLink });
-		groupbox:AddToggle('Rainbow', { Text = 'Rainbow accent color' }):OnChanged(function(Value)
+		groupbox:AddToggle('Rainbow', { Text = 'Rainbow accent color', Default = true }):OnChanged(function(Value)
     if Value then
         self.Library:GiveSignal(game:GetService('RunService').RenderStepped:Connect(function(Delta)
             if Toggles.Rainbow.Value then
