@@ -3442,7 +3442,7 @@ do
         Position = UDim2.fromOffset(5, 2),
         TextXAlignment = Enum.TextXAlignment.Left,
 
-        Text = 'Keybinds';
+        Text = 'Phím tắt';
         ZIndex = 104;
         Parent = KeybindInner;
     });
