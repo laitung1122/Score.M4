@@ -265,6 +265,35 @@ local ThemeManager = {} do
 		groupbox:AddLabel('Outline color'):AddColorPicker('OutlineColor', { Default = self.Library.OutlineColor });
 		groupbox:AddLabel('Font color')	:AddColorPicker('FontColor', { Default = self.Library.FontColor });
 		groupbox:AddInput('VideoLink', { Text = '.webm Video Background (Link)', Default = self.Library.VideoLink });
+		groupbox:AddToggle('Rainbow', { Text = 'Rainbow accent color' }):OnChanged(function(Value)
+    if Value then
+        self.Library:GiveSignal(game:GetService('RunService').RenderStepped:Connect(function(Delta)
+            if Toggles.Rainbow.Value then
+                for Idx, Object in next, self.Library.Registry do
+                    for Property, ColorIdx in next, Object.Properties do
+                        if ColorIdx == 'AccentColor' or ColorIdx == 'AccentColorDark' then
+                            local Instance = Object.Instance;
+                            local yPos = Instance.AbsolutePosition.Y;
+    
+                            local Mapped = self.Library:MapValue(yPos, 0, 1080, 0, 0.5) * 1.5;
+                            local Color = Color3.fromHSV((self.Library.CurrentRainbowHue - Mapped) % 1, 0.8, 1);
+    
+                            if ColorIdx == 'AccentColorDark' then
+                                Color = self.Library:GetDarkerColor(Color);
+                            end;
+    
+                            Instance[Property] = Color;
+                        end;
+                    end;
+                end;
+            end;
+        end))
+        RainbowFunctionIndex = #self.Library.Signals
+    elseif RainbowFunctionIndex then
+        table.remove(self.Library.Signals, RainbowFunctionIndex):Disconnect();
+        self:ThemeUpdate();
+    end;
+end);
 		
 		local ThemesArray = {}
 		for Name, Theme in next, self.BuiltInThemes do
