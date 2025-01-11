@@ -7945,480 +7945,88 @@ end)() end
 } -- [RefId] = Closure
 -- Holds the actual DOM data
 local ObjectTree = {
-    {
-        1,
-        4,
-        {
-            "mspaint"
-        },
-        {
-            {
-                2,
-                2,
-                {
-                    "Mappings"
-                }
-            },
-            {
-                44,
-                1,
-                {
-                    "Utils"
-                },
-                {
-                    {
-                        46,
-                        2,
-                        {
-                            "Connections"
-                        }
-                    },
-                    {
-                        59,
-                        1,
-                        {
-                            "Universal"
-                        },
-                        {
-                            {
-                                62,
-                                2,
-                                {
-                                    "Twerk"
-                                }
-                            },
-                            {
-                                60,
-                                2,
-                                {
-                                    "ControlModule"
-                                }
-                            },
-                            {
-                                61,
-                                2,
-                                {
-                                    "Fly"
-                                }
-                            }
-                        }
-                    },
-                    {
-                        49,
-                        1,
-                        {
-                            "GUI"
-                        },
-                        {
-                            {
-                                55,
-                                2,
-                                {
-                                    "Notify"
-                                }
-                            },
-                            {
-                                51,
-                                2,
-                                {
-                                    "Creator"
-                                }
-                            },
-                            {
-                                50,
-                                2,
-                                {
-                                    "addons"
-                                }
-                            },
-                            {
-                                52,
-                                1,
-                                {
-                                    "Notifiers"
-                                },
-                                {
-                                    {
-                                        54,
-                                        2,
-                                        {
-                                            "Linoria"
-                                        }
-                                    },
-                                    {
-                                        53,
-                                        2,
-                                        {
-                                            "Doors"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    {
-                        57,
-                        2,
-                        {
-                            "Logs"
-                        }
-                    },
-                    {
-                        47,
-                        2,
-                        {
-                            "ExecutorSupport"
-                        }
-                    },
-                    {
-                        45,
-                        2,
-                        {
-                            "BloxstrapRPC"
-                        }
-                    },
-                    {
-                        48,
-                        2,
-                        {
-                            "FileHelper"
-                        }
-                    },
-                    {
-                        56,
-                        2,
-                        {
-                            "Loader"
-                        }
-                    },
-                    {
-                        58,
-                        2,
-                        {
-                            "Services"
-                        }
-                    }
-                }
-            },
-            {
-                3,
-                1,
-                {
-                    "Places"
-                },
-                {
-                    {
-                        23,
-                        1,
-                        {
-                            "Utils"
-                        },
-                        {
-                            {
-                                37,
-                                1,
-                                {
-                                    "R&D"
-                                },
-                                {
-                                    {
-                                        39,
-                                        2,
-                                        {
-                                            "Chat"
-                                        }
-                                    },
-                                    {
-                                        38,
-                                        2,
-                                        {
-                                            "Assets"
-                                        }
-                                    },
-                                    {
-                                        40,
-                                        2,
-                                        {
-                                            "ConnectionsFuncs"
-                                        }
-                                    },
-                                    {
-                                        41,
-                                        2,
-                                        {
-                                            "ESP"
-                                        }
-                                    }
-                                }
-                            },
-                            {
-                                24,
-                                1,
-                                {
-                                    "Doors"
-                                },
-                                {
-                                    {
-                                        25,
-                                        1,
-                                        {
-                                            "Doors"
-                                        },
-                                        {
-                                            {
-                                                32,
-                                                2,
-                                                {
-                                                    "Minecarts"
-                                                }
-                                            },
-                                            {
-                                                29,
-                                                2,
-                                                {
-                                                    "ConnectionsFuncs"
-                                                }
-                                            },
-                                            {
-                                                26,
-                                                2,
-                                                {
-                                                    "Assets"
-                                                }
-                                            },
-                                            {
-                                                27,
-                                                2,
-                                                {
-                                                    "AutoWardrobe"
-                                                }
-                                            },
-                                            {
-                                                28,
-                                                2,
-                                                {
-                                                    "BreakerBox"
-                                                }
-                                            },
-                                            {
-                                                34,
-                                                2,
-                                                {
-                                                    "Player"
-                                                }
-                                            },
-                                            {
-                                                30,
-                                                2,
-                                                {
-                                                    "ESP"
-                                                }
-                                            },
-                                            {
-                                                33,
-                                                2,
-                                                {
-                                                    "Padlock"
-                                                }
-                                            },
-                                            {
-                                                31,
-                                                2,
-                                                {
-                                                    "Entities"
-                                                }
-                                            }
-                                        }
-                                    },
-                                    {
-                                        35,
-                                        1,
-                                        {
-                                            "Lobby"
-                                        },
-                                        {
-                                            {
-                                                36,
-                                                2,
-                                                {
-                                                    "Preset"
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            },
-                            {
-                                42,
-                                1,
-                                {
-                                    "Template"
-                                },
-                                {
-                                    {
-                                        43,
-                                        2,
-                                        {
-                                            "ConnectionsFuncs"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    {
-                        11,
-                        1,
-                        {
-                            "Tabs"
-                        },
-                        {
-                            {
-                                20,
-                                1,
-                                {
-                                    "R&D"
-                                },
-                                {
-                                    {
-                                        22,
-                                        2,
-                                        {
-                                            "Visuals"
-                                        }
-                                    },
-                                    {
-                                        21,
-                                        2,
-                                        {
-                                            "Main"
-                                        }
-                                    }
-                                }
-                            },
-                            {
-                                12,
-                                1,
-                                {
-                                    "Doors"
-                                },
-                                {
-                                    {
-                                        13,
-                                        1,
-                                        {
-                                            "Doors"
-                                        },
-                                        {
-                                            {
-                                                15,
-                                                2,
-                                                {
-                                                    "Floor"
-                                                }
-                                            },
-                                            {
-                                                17,
-                                                2,
-                                                {
-                                                    "Visuals"
-                                                }
-                                            },
-                                            {
-                                                16,
-                                                2,
-                                                {
-                                                    "Main"
-                                                }
-                                            },
-                                            {
-                                                14,
-                                                2,
-                                                {
-                                                    "Exploits"
-                                                }
-                                            }
-                                        }
-                                    },
-                                    {
-                                        18,
-                                        1,
-                                        {
-                                            "Lobby"
-                                        },
-                                        {
-                                            {
-                                                19,
-                                                2,
-                                                {
-                                                    "Main"
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    {
-                        4,
-                        1,
-                        {
-                            "Loaders"
-                        },
-                        {
-                            {
-                                10,
-                                2,
-                                {
-                                    "Template"
-                                }
-                            },
-                            {
-                                5,
-                                1,
-                                {
-                                    "Doors"
-                                },
-                                {
-                                    {
-                                        7,
-                                        2,
-                                        {
-                                            "Lobby"
-                                        }
-                                    },
-                                    {
-                                        6,
-                                        2,
-                                        {
-                                            "Doors"
-                                        }
-                                    }
-                                }
-                            },
-                            {
-                                8,
-                                1,
-                                {
-                                    "R&D"
-                                },
-                                {
-                                    {
-                                        9,
-                                        2,
-                                        {
-                                            "R&D"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+    {1, 4, {"mspaint"}, {
+        {2, 2, {"Mappings"}},
+        {44, 1, {"Utils"}, {
+            {46, 2, {"Connections"}},
+            {59, 1, {"Universal"}, {
+                {62, 2, {"Twerk"}},
+                {60, 2, {"ControlModule"}},
+                {61, 2, {"Fly"}}
+            }},
+            {49, 1, {"GUI"}, {
+                {55, 2, {"Notify"}},
+                {51, 2, {"Creator"}},
+                {50, 2, {"addons"}},
+                {52, 1, {"Notifiers"}, {
+                    {54, 2, {"Linoria"}},
+                    {53, 2, {"Doors"}}
+                }}
+            }},
+            {57, 2, {"Logs"}},
+            {47, 2, {"ExecutorSupport"}},
+            {45, 2, {"BloxstrapRPC"}},
+            {48, 2, {"FileHelper"}},
+            {56, 2, {"Loader"}},
+            {58, 2, {"Services"}}
+        }},
+        {3, 1, {"Places"}, {
+            {23, 1, {"Utils"}, {
+                {37, 1, {"R&D"}, {
+                    {39, 2, {"Chat"}},
+                    {38, 2, {"Assets"}},
+                    {40, 2, {"ConnectionsFuncs"}},
+                    {41, 2, {"ESP"}}
+                }},
+                {24, 1, {"Doors"}, {
+                    {25, 1, {"Doors"}, {
+                        {32, 2, {"Minecarts"}},
+                        {29, 2, {"ConnectionsFuncs"}},
+                        {26, 2, {"Assets"}},
+                        {27, 2, {"AutoWardrobe"}},
+                        {28, 2, {"BreakerBox"}},
+                        {34, 2, {"Player"}},
+                        {30, 2, {"ESP"}},
+                        {33, 2, {"Padlock"}},
+                        {31, 2, {"Entities"}}
+                    }},
+                    {35, 1, {"Lobby"}, {
+                        {36, 2, {"Preset"}}
+                    }}
+                }},
+                {42, 1, {"Template"}, {
+                    {43, 2, {"ConnectionsFuncs"}}
+                }}
+            }},
+            {11, 1, {"Tabs"}, {
+                {20, 1, {"R&D"}, {
+                    {22, 2, {"Visuals"}},
+                    {21, 2, {"Main"}}
+                }},
+                {12, 1, {"Doors"}, {
+                    {13, 1, {"Doors"}, {
+                        {15, 2, {"Floor"}},
+                        {17, 2, {"Visuals"}},
+                        {16, 2, {"Main"}},
+                        {14, 2, {"Exploits"}}
+                    }},
+                    {18, 1, {"Lobby"}, {
+                        {19, 2, {"Main"}}
+                    }}
+                }}
+            }},
+            {4, 1, {"Loaders"}, {
+                {10, 2, {"Template"}},
+                {5, 1, {"Doors"}, {
+                    {7, 2, {"Lobby"}},
+                    {6, 2, {"Doors"}}
+                }},
+                {8, 1, {"R&D"}, {
+                    {9, 2, {"R&D"}}
+                }}
+            }}
+        }}
+    }}
 }
 -- Line offsets for debugging (only included when minifyTables is false)
 local LineOffsets = {
