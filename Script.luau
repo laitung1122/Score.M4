@@ -97,7 +97,7 @@ shared.Notify:Alert({
 getgenv().mspaint_loading = false
 end)() end,
     function()local wax,script,require=ImportGlobals(2)local ImportGlobals return (function(...)return {
-    [2440500124] = {
+    [6839171747] = {
         ["Folder"] = "Doors",
         ["Main"] = "Doors",
         ["Name"] = "DOORS",
