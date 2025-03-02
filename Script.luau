@@ -763,7 +763,7 @@ shared.Connect:GiveSignal(workspace.ChildAdded:Connect(function(child)
                 local inView = Script.Functions.IsInViewOfPlayer(child, Script.EntityTable.InfCrucifixVelocity[entityName].minDistance)
                 local distanceFromPlayer = (child:GetPivot().Position - shared.Character:GetPivot().Position).Magnitude
                 local isInRangeOfPlayer = distanceFromPlayer <= Script.EntityTable.InfCrucifixVelocity[entityName].minDistance
-                -if currentSavedFrames < maxSavedFrames then
+                if currentSavedFrames < maxSavedFrames then
                     print(string.format("[In range: %s | In view: %s] [Hz: %d] - Entity velocity is: %.2f | Distance: %.2f | Delta: %.2f", tostring(isInRangeOfPlayer), tostring(inView), oldFrameHz, entityVelocity, distanceFromPlayer, 0))
                 end
                 if entityVelocity <= Script.EntityTable.InfCrucifixVelocity[entityName].threshold then
