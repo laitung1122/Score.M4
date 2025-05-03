@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const dbPath = path.join(__dirname, "../scripts/cmds/assets/respone.json");
+const dbPath = path.join(__dirname, "../cmds/assets/respone.json");
 if (!fs.existsSync(dbPath)) fs.writeFileSync(dbPath, "{}");
 
 module.exports.config = {
