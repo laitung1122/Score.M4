@@ -1,0 +1,42 @@
+import fs from "fs";
+import path from "path";
+
+const dbPath = path.join(global.assetsPath, "respone.json");
+if (!fs.existsSync(dbPath)) fs.writeFileSync(dbPath, "{}");
+
+export default {
+  config: {
+    name: "onRespone",
+    eventType: ["message"],
+  },
+
+  onStart() {
+    if (!fs.existsSync(dbPath)) fs.writeFileSync(dbPath, "{}");
+  },
+
+  async onMessage({ message }) {
+    const content = message.body?.toLowerCase();
+    if (!content) return;
+
+    let data;
+    try {
+      data = JSON.parse(fs.readFileSync(dbPath));
+    } catch {
+      data = {};
+    }
+
+    const resp = data[content];
+    if (!resp) return;
+
+    if (resp.type === "text") {
+      return message.reply(resp.content);
+    }
+
+    if (resp.type === "file" && fs.existsSync(resp.filePath)) {
+      return message.reply({
+        body: resp.text || "",
+        attachment: fs.createReadStream(resp.filePath)
+      });
+    }
+  }
+};
