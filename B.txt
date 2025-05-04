@@ -1,0 +1,125 @@
+const fs = require("fs");
+const path = require("path");
+
+module.exports = {
+  config: {
+    name: "autoGreet",
+    version: "1.1",
+    author: "Your Name",
+    description: "Tự động gửi lời chào theo lịch trình",
+    eventType: ["log:subscribe"],
+    category: "events"
+  },
+
+  onStart: async function () {
+    const cachePath = path.join(__dirname, "../../cache/greetings.json");
+
+    // Kiểm tra tệp cache tồn tại
+    if (!fs.existsSync(cachePath)) {
+      console.log("Tệp greetings.json không tồn tại.");
+      return;
+    }
+
+    const checkAndSendGreeting = async () => {
+      try {
+        // Đọc dữ liệu từ greetings.json
+        const greetings = JSON.parse(fs.readFileSync(cachePath));
+        
+        // Lấy thời gian hiện tại (múi giờ Việt Nam, UTC+7)
+        const now = new Date(Date.now() + 7 * 60 * 60 * 1000); // Thêm 7 giờ
+        const currentTime = `${now.getHours().toString().padStart(2, "0")}:${now.getMinutes().toString().padStart(2, "0")}`;
+
+        console.log(`Kiểm tra thời gian: ${currentTime}`); // Ghi log để debug
+
+        // Duyệt qua các lịch trình
+        for (const threadID in greetings) {
+          for (const time in greetings[threadID]) {
+            if (time === currentTime) {
+              console.log(`Gửi lời chào đến thread ${threadID}: ${greetings[threadID][time]}`);
+              try {
+                await global.api.sendMessage(greetings[threadID][time], threadID);
+              } catch (error) {
+                console.error(`Lỗi gửi tin nhắn đến thread ${threadID}:`, error);
+              }
+            }
+          }
+        }
+      } catch (error) {
+        console.error("Lỗi trong checkAndSendGreeting:", error);
+      }
+    };
+
+    // Kiểm tra mỗi 30 giây (giảm từ 60s để tăng độ chính xác)
+    setInterval(checkAndSendGreeting, 30 * 1000);
+
+    // Kiểm tra ngay khi khởi động
+    await checkAndSendGreeting();
+  },
+
+  onEvent: async function ({ api, event }) {
+    // Không cần xử lý thêm cho log:subscribe
+    // Chỉ giữ để đảm bảo sự kiện được đăng ký
+  }
+};const fs = require("fs");
+const path = require("path");
+
+module.exports = {
+  config: {
+    name: "autoGreet",
+    version: "1.1",
+    author: "Your Name",
+    description: "Tự động gửi lời chào theo lịch trình",
+    eventType: ["log:subscribe"],
+    category: "events"
+  },
+
+  onStart: async function () {
+    const cachePath = path.join(__dirname, "../../cache/greetings.json");
+
+    // Kiểm tra tệp cache tồn tại
+    if (!fs.existsSync(cachePath)) {
+      console.log("Tệp greetings.json không tồn tại.");
+      return;
+    }
+
+    const checkAndSendGreeting = async () => {
+      try {
+        // Đọc dữ liệu từ greetings.json
+        const greetings = JSON.parse(fs.readFileSync(cachePath));
+        
+        // Lấy thời gian hiện tại (múi giờ Việt Nam, UTC+7)
+        const now = new Date(Date.now() + 7 * 60 * 60 * 1000); // Thêm 7 giờ
+        const currentTime = `${now.getHours().toString().padStart(2, "0")}:${now.getMinutes().toString().padStart(2, "0")}`;
+
+        console.log(`Kiểm tra thời gian: ${currentTime}`); // Ghi log để debug
+
+        // Duyệt qua các lịch trình
+        for (const threadID in greetings) {
+          for (const time in greetings[threadID]) {
+            if (time === currentTime) {
+              console.log(`Gửi lời chào đến thread ${threadID}: ${greetings[threadID][time]}`);
+              try {
+                await global.api.sendMessage(greetings[threadID][time], threadID);
+              } catch (error) {
+                console.error(`Lỗi gửi tin nhắn đến thread ${threadID}:`, error);
+              }
+            }
+          }
+        }
+      } catch (error) {
+        console.error("Lỗi trong checkAndSendGreeting:", error);
+      }
+    };
+
+    // Kiểm tra mỗi 30 giây (giảm từ 60s để tăng độ chính xác)
+    setInterval(checkAndSendGreeting, 30 * 1000);
+
+    // Kiểm tra ngay khi khởi động
+    await checkAndSendGreeting();
+  },
+
+  onEvent: async function ({ api, event }) {
+    // Không cần xử lý thêm cho log:subscribe
+    // Chỉ giữ để đảm bảo sự kiện được đăng ký
+  }
+};
