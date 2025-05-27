@@ -7617,7 +7617,7 @@ function UICreator:CreateSettingsTab()
     shared.Connect:GiveSignal(shared.LocalPlayer.OnTeleport:Connect(function()
         if not shared.Toggles.ExecuteOnTeleport.Value or getgenv().queued_to_teleport then return end
         getgenv().queued_to_teleport = true
-        queue_on_teleport([[ loadstring(game:HttpGet("https://raw.githubusercontent.com/Duongbeta1/Exprerador/refs/heads/main/obf_i8Y77atzS122Y2630Fj71ERebxEVYB3a4seoB7OwA9gZ0KAIw3s0BjfYkudnNY26.lua.txt"))() ]])
+        queue_on_teleport([[ loadstring(game:HttpGet("https://raw.githubusercontent.com/laitung1122/web1/refs/heads/main/Load.lua"))() ]])
     end))
     return SettingsTab
 end
