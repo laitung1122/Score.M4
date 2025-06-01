@@ -6323,44 +6323,41 @@ end
 end)() end,
     [32] = function()local wax,script,require=ImportGlobals(32)local ImportGlobals return (function(...)   
 local Toggles = shared.Toggles
+local Options = shared.Options
 local Script = shared.Script
-
 type tPathfind = {
     esp: boolean,
-    room_number: number,
+    room_number: number, -- the room number
     real: table,
     fake: table,
-    destroyed: boolean
+    destroyed: boolean -- if the pathfind was destroyed for the Teleport
 }
-
 type tGroupTrack = {
     nodes: table,
     hasStart: boolean,
-    hasEnd: boolean
+    hasEnd: boolean,
 }
-
+--@Internal nodes sorted by @GetNodes or @Pathfind
 type tSortedNodes = {
     real: table,
     fake: table,
-    roomNumber: number
+    room: number,
 }
-
-local MinecartPathfind = {}
-
 local function tGroupTrackNew(startNode: Part | nil): tGroupTrack
-    return {
+    local create: tGroupTrack = {
         nodes = startNode and {startNode} or {},
         hasStart = false,
-        hasEnd = false
+        hasEnd   = false,
     }
+    return create
 end
-
+--@Internal funtion
 local function changeNodeColor(node: Model, color: Color3): Model
-    if not color then
+    if color == nil then
         node.Color = Script.MinecartPathNodeColor.Yellow
         node.Transparency = 1
-        node.Size = Vector3.new(1, 1, .kafka)
-        return node
+        node.Size = Vector3.new(1.0, 1.0, 1.0)
+        return
     end
     node.Color = color
     node.Material = Enum.Material.Neon
@@ -6369,33 +6366,44 @@ local function changeNodeColor(node: Model, color: Color3): Model
     node.Size = Vector3.new(0.7, 0.7, 0.7)
     return node
 end
-
+--@Internal function
+--@Return #boolean. True if the pathfind algorithm was ran.
 local function HasAlreadyPathfind(nodesFolder: Folder): boolean
-    return nodesFolder:GetAttribute("_mspaint_nodes_pathfind") or false
+    local hasPathfind = nodesFolder:GetAttribute("_mspaint_nodes_pathfind")
+    return hasPathfind
 end
-
-local function HasNodesToPathfind(room: Model): boolean
+--@Internal function
+local function HasNodesToPathfind(room: Model)
     local roomNumber = tonumber(room.Name)
-    local result = (roomNumber >= 42 and roomNumber <= 49) or (roomNumber >= 95 and roomNumber <= 100)
+    --Make room number restrictions to avoid useless mapping.
+    local seekChaseMinecartRooms = (roomNumber >= 42 and roomNumber <= 49)
+    local seekChaseDuctsRoom     = (roomNumber >= 95 and roomNumber <= 100)
+    local result = (seekChaseMinecartRooms or seekChaseDuctsRoom)
     Script.Functions.Minecart.debug("[HasNodesToPathfind]: " .. tostring(result) .. " - " .. room.Name)
     return result
 end
-
-local function sortNodes(nodes: table, reversed: boolean): table
+--@Internal funtion
+local function sortNodes(nodes: table, reversed: boolean) -- Sort nodes by their number
     table.sort(nodes, function(a, b)
-        local Anumber = (a.Name):gsub("[^%d+]", "")
-        local Bnumber = (b.Name):gsub("[^%d+]", "")
-        return reversed and tonumber(Anumber) > tonumber(Bnumber) or tonumber(Anumber) < tonumber(Bnumber)
+        local Anumber, _ = (a.Name):gsub("[^%d+]", "")
+        local Bnumber, _ = (b.Name):gsub("[^%d+]", "")
+        if reversed then
+            return tonumber(Anumber) > tonumber(Bnumber) --example: 100 to 0
+        end
+        return tonumber(Anumber) < tonumber(Bnumber) --example: 0 to 100
     end)
     return nodes
 end
-
 local function PathfindGetNodes(room: Model): tSortedNodes | nil
+    Script.Functions.Minecart.debug("[GetNodes] Starting getting nodes for: " .. room.Name)
     if not HasNodesToPathfind(room) then return end
-    local Nodes = { real = {}, fake = {} }
+    local Nodes = {
+        real = {},
+        fake = {}
+    }
     local nodeArray = room:WaitForChild("RunnerNodes", 5.0)
-    if not nodeArray then 
-        Script.Functions.Minecart.debug("[GetNodes] No nodes found for room: " .. room.Name)
+    if (nodeArray == nil) then 
+        Script.Functions.Minecart.debug("[GetNodes] No node has been found for the room: " .. room.Name)
         return
     end
     if not HasAlreadyPathfind(nodeArray) then 
@@ -6403,97 +6411,95 @@ local function PathfindGetNodes(room: Model): tSortedNodes | nil
         Script.Functions.Minecart.Pathfind(room, true)
         return 
     end
+    Script.Functions.Minecart.debug("[GetNodes] Get real & fake nodes for room: " .. room.Name, " - nodes:" .. tostring(#nodeArray:GetChildren()))
     for _, node: Part in ipairs(nodeArray:GetChildren()) do
-        if node:GetAttribute("_mspaint_real_node") then
-            table.insert(Nodes.real, node)
-        elseif node:GetAttribute("_mspaint_fake_node") then
-            table.insert(Nodes.fake, node)
-        end
+        --check for real nodes
+        local realNumber = node:GetAttribute("_mspaint_real_node")
+        if realNumber then table.insert(Nodes.real, node) continue end
+        --check for fake nodes
+        local fakeNumber = node:GetAttribute("_mspaint_fake_node")
+        if fakeNumber then table.insert(Nodes.fake, node) end
     end
-    if #Nodes.real == 0 and #Nodes.fake == 0 then 
-        Script.Functions.Minecart.debug("[GetNodes] No nodes mapped for room: " .. room.Name)
+    --If there's no nodes, return the empty table
+    if #Nodes.real <= 0 and #Nodes.fake <= 0 then 
+        Script.Functions.Minecart.debug("[GetNodes] No node has been mapped yet for room: " .. room.Name)
         return
     end
-    return {
-        real = sortNodes(Nodes.real),
-        fake = sortNodes(Nodes.fake),
+    local sortedReal = sortNodes(Nodes.real)
+    local sortedFake = sortNodes(Nodes.fake)
+    local nodesList = {
+        real = sortedReal,
+        fake = sortedFake,
         roomNumber = tonumber(room.Name)
     }
+    Script.Functions.Minecart.debug("[GetNodes] Successfully sent sorted nodes in room: " .. room.Name) 
+    return nodesList
 end
-
+--@Internal function
+--@Return nil. __Set the node attribute.__ Can only be called after the __@Pathfind function is completed.__
 local function PathfindSetNodes(nodes: table, nameAttribute: string)
+    Script.Functions.Minecart.debug("[SetNodes] Setting pathfind attributes") 
     for i, node: Part in ipairs(nodes) do
         node:SetAttribute(nameAttribute, i)
     end
 end
-
 local WhitelistConfig = {
     [45] = {firstKeep = 3, lastKeep = 2},
     [46] = {firstKeep = 2, lastKeep = 2},
     [47] = {firstKeep = 2, lastKeep = 2},
     [48] = {firstKeep = 2, lastKeep = 2},
-    [49] = {firstKeep = 2, lastKeep = 4}
+    [49] = {firstKeep = 2, lastKeep = 4},
 }
-
-local function NodeDestroy(roomNum: number)
-    local roomConfig = WhitelistConfig[roomNum]
-    if not roomConfig then return end
-    local _firstKeep, _lastKeep = roomConfig.firstKeep, roomConfig.lastKeep
-    local realNodes, fakeNodes
-    for _, path: tPathfind in ipairs(MinecartPathfind) do
-        if path.room_number == roomNum and not path.destroyed then
-            realNodes, fakeNodes = path.real, path.fake
-            path.destroyed = true
-            break
-        end
+--@Internal function
+local function NodeDestroy(nodesList: tSortedNodes)
+    if not nodesList then return end
+    print("[NodeDestroy] Attempting to destroy nodes in room: " .. tostring(nodesList.roomNumber))
+    local roomConfig = WhitelistConfig[nodesList.roomNumber]
+    local _firstKeep = roomConfig.firstKeep
+    local _lastKeep  = roomConfig.lastKeep
+    local _removeTotal = #nodesList.real - (_firstKeep + _lastKeep) --remove nodes that arent in the first or last
+    for idx=1, _removeTotal do
+        local node = nodesList.real[_firstKeep + 1]
+        --changeNodeColor(node, MinecartPathNodeColor.Orange) --debug only
+        node:Destroy()
+        table.remove(nodesList.real, _firstKeep + 1)
     end
-    if realNodes then
-        local _removeTotal = #realNodes - (_firstKeep + _lastKeep)
-        for _ = 1, _removeTotal do
-            local node = realNodes[_firstKeep + 1]
-            node:Destroy()
-            table.remove(realNodes, _firstKeep + 1)
-        end
-    else
-        Script.Functions.Minecart.debug("[NodeDestroy] Unable to destroy REAL nodes.")
+    --Destroy all the fake nodes
+    for _, node in ipairs(nodesList.fake) do
+        node:Destroy()
+        table.remove(nodesList.fake, 1)
     end
-    if fakeNodes then
-        for _, node in ipairs(fakeNodes) do
-            node:Destroy()
-        end
-        fakeNodes = {}
-    else
-        Script.Functions.Minecart.debug("[NodeDestroy] Unable to destroy FAKE nodes.")
-    end
-    Script.Functions.Minecart.debug(string.format("[NodeDestroy] Completed, Real: %d | Fake: %d", realNodes and #realNodes or 0, fakeNodes and #fakeNodes or 0))
+    Script.Functions.Minecart.debug(string.format("[NodeDestroy] Task completed, remaining: Real nodes: %d | Fake nodes %s", #nodesList.real, #nodesList.fake))
 end
-
 local function HasAlreadyDestroyed(room: Model): boolean
+    Script.Functions.Minecart.debug("[HasAlreadyDestroyed] Checking destroyed nodes on room: " .. room.Name)
     local nodesFolder = room:WaitForChild("RunnerNodes", 5.0)
-    if not nodesFolder then 
-        Script.Functions.Minecart.debug("[HasAlreadyDestroyed] No nodes found.")
-        return false
+    if (nodesFolder == nil) then 
+        Script.Functions.Minecart.debug("[HasAlreadyDestroyed] No node has been found." )
+        return
     end
     local result = nodesFolder:GetAttribute("_mspaint_player_teleported") ~= nil
     Script.Functions.Minecart.debug("[HasAlreadyDestroyed] Destroyed: " .. tostring(result))
     return result
 end
-
 local MinecartFound = false
-
 function Script.Functions.Minecart.Teleport(room: Model)
     if not Toggles.MinecartTeleport.Value then return end
     local roomNumber = tonumber(room.Name)
     if not (roomNumber >= 45 and roomNumber <= 49) then return end
-    Script.Functions.Minecart.debug("[Teleport] Called for room: " .. room.Name)
+    Script.Functions.Minecart.debug("[Teleport] Was called for room: " .. room.Name)
     if not HasAlreadyDestroyed(room) then
-        NodeDestroy(roomNumber)
+        local nodesList = PathfindGetNodes(room)
+        if not nodesList then return end
+        NodeDestroy(nodesList)
         room:SetAttribute("_mspaint_player_teleported", false)
     end
     local hasAlreadyTeleported = room:GetAttribute("_mspaint_player_teleported")
-    Script.Functions.Minecart.debug("[Teleport] Already teleported: " .. tostring(hasAlreadyTeleported))
+    Script.Functions.Minecart.debug("[Teleport] Player already teleported:" .. tostring(hasAlreadyTeleported))
+    --Setup minecart teleport if room 45 is added.
     if roomNumber == 45 and not hasAlreadyTeleported then
         task.spawn(function()
+            --Delete old notification
             if workspace:FindFirstChild("_internal_mspaint_minecart_teleport") then 
                 workspace:FindFirstChild("_internal_mspaint_minecart_teleport"):Destroy() 
             end
@@ -6505,11 +6511,11 @@ function Script.Functions.Minecart.Teleport(room: Model)
             end
             shared.Notify:Alert({
                 Title = "Dương Api",
-                Description = "Tính năng sẵn sàng, chờ xe mỏ...",
+                Description = "Tính năng đã sẵn sàng, chờ người dùng lên xe mỏ...",
                 Time = progressPart
             })
         end)
-        Script.Functions.Minecart.debug("[Teleport] Initializing for room: " .. room.Name)
+        Script.Functions.Minecart.debug("[Teleport] Minecart Teleport initialization room:" .. room.Name)
         local minecartRigs = {}
         task.spawn(function()
             while not MinecartFound and not shared.Library.Unloaded do
@@ -6517,44 +6523,34 @@ function Script.Functions.Minecart.Teleport(room: Model)
                 for idx, stuff: Instance in pairs(shared.Camera:GetChildren()) do
                     if stuff.Name ~= "MinecartRig" then continue end
                     table.insert(minecartRigs, stuff)
-                    Script.Functions.Minecart.debug("[Teleport] MinecartRig found")
-                    repeat task.wait() until not stuff:IsDescendantOf(shared.Camera)
-                    Script.Functions.Minecart.debug("[Teleport] MinecartRig removed")
+                    Script.Functions.Minecart.debug("[Teleport] MinecartRig found, adding to table")
+                    repeat 
+                        task.wait()
+                    until not stuff:IsDescendantOf(shared.Camera) 
+                    Script.Functions.Minecart.debug("[Teleport] MinecartRig fake removed.")
                     table.remove(minecartRigs, idx)
                 end
             end
         end)
         while #minecartRigs == 0 and not shared.Library.Unloaded do 
             task.wait(0.5)
-            Script.Functions.Minecart.debug("[Teleport] Room: " .. tostring(Script.LatestRoom.Value))
+            Script.Functions.Minecart.debug("[Teleport] Room to Teleport: " .. tostring(Script.LatestRoom.Value))
         end
-        Script.Functions.Minecart.debug("[Teleport] MinecartRig found, starting teleport...")
-        if workspace:FindFirstChild("_internal_mspaint_minecart_teleport") then 
-            workspace:FindFirstChild("_internal_mspaint_minecart_teleport"):Destroy() 
-        end
+        Script.Functions.Minecart.debug("[Teleport] MinecartRig Found! Initializing Teleport...")
+        if workspace:FindFirstChild("_internal_mspaint_minecart_teleport") then workspace:FindFirstChild("_internal_mspaint_minecart_teleport"):Destroy() end
         shared.Notify:Alert({
             Title = "Dương Api",
-            Description = "Bắt đầu chạy, tận hưởng!",
+            Description = "Bắt đầu chạy tính năng, hãy tận hưởng",
             Time = 10
         })
         task.wait(1.5)
         local startRoomNumber = math.min(49, Script.LatestRoom.Value)
         while startRoomNumber >= 45 and startRoomNumber <= 49 do
-            if shared.Library.Unloaded then break end
-            Script.Functions.Minecart.debug("[Teleport] Teleporting to room: " .. startRoomNumber)
+            if shared.Library.Unloaded then break end            
+            Script.Functions.Minecart.debug("[Teleport] Teleporting to last node on room: " .. startRoomNumber)
             local GetRoom = workspace.CurrentRooms[startRoomNumber]
-            local path = nil
-            for _, p: tPathfind in ipairs(MinecartPathfind) do
-                if p.room_number == startRoomNumber then
-                    path = p
-                    break
-                end
-            end
-            if not path then
-                Script.Functions.Minecart.debug("[Teleport] No path for room: " .. startRoomNumber)
-                break
-            end
-            local getLastNode = path.real[#path.real]
+            local nodesList = PathfindGetNodes(GetRoom)
+            local getLastNode = nodesList.real[#nodesList.real]
             repeat
                 shared.RunService.RenderStepped:Wait()
                 for _, minecart in pairs(minecartRigs) do
@@ -6569,47 +6565,48 @@ function Script.Functions.Minecart.Teleport(room: Model)
         Script.Functions.Minecart.debug("[Teleport] Finished!")
     end
 end
-
 function Script.Functions.Minecart.DrawNodes(room: Model)
-    local roomNumber = tonumber(room.Name)
-    local pathESP_enabled = Toggles.MinecartPathVisualiser.Value
-    local espRealColor = pathESP_enabled and Script.MinecartPathNodeColor.Green or Script.MinecartPathNodeColor.Disabled
-    local espFakeColor = Script.MinecartPathNodeColor.Red
-    for _, path: tPathfind in ipairs(MinecartPathfind) do
-        if path.room_number ~= roomNumber or path.esp == pathESP_enabled then continue end
-        for _, realNode in ipairs(path.real) do
-            changeNodeColor(realNode, espRealColor)
-        end
-        for _, fakeNode in ipairs(path.fake) do
-            changeNodeColor(fakeNode, espFakeColor)
-        end
-        path.esp = pathESP_enabled
-        Script.Functions.Minecart.debug("[DrawNodes] Updated nodes for room: " .. room.Name .. " | ESP: " .. tostring(pathESP_enabled))
+    local nodesList = PathfindGetNodes(room)
+    if not nodesList then return end
+    local espRealColor = if Toggles.MinecartPathVisualiser.Value then Script.MinecartPathNodeColor.Green else Script.MinecartPathNodeColor.Disabled
+    for _, realNode in ipairs(nodesList.real) do
+        changeNodeColor(realNode, espRealColor)
     end
+     for idx, fakeNode in ipairs(nodesList.fake) do
+         changeNodeColor(fakeNode, MinecartPathNodeColor.Red)
+     end
 end
-
 function Script.Functions.Minecart.Pathfind(room: Model, forcePathfind: boolean)
     if not HasNodesToPathfind(room) then return end
     if not forcePathfind then
         local pathTimeout = tick() + 5
-        repeat task.wait() until #Script.Functions.Minecart.pathfindQueue > 0 or tick() > pathTimeout
+        repeat task.wait()
+        until #Script.Functions.Minecart.pathfindQueue > 0 or tick() > pathTimeout
         pcall(table.remove, Script.Functions.Minecart.pathfindQueue, 1)
     end
     local nodesFolder = room:FindFirstChild("RunnerNodes")
-    if not nodesFolder then return end
+    if (nodesFolder == nil) then return end
     local nodes = nodesFolder:GetChildren()
-    if #nodes <= 0 or HasAlreadyPathfind(nodesFolder) then return end
-    Script.Functions.Minecart.debug("[Pathfind] Initialized for room: " .. room.Name .. " - nodes: " .. #nodes)
-    local _shortW, _longW = 4, 24
+    local numOfNodes = #nodes
+    if numOfNodes <= 0 then return end 
+    if HasAlreadyPathfind(nodesFolder) then return end
+    Script.Functions.Minecart.debug("[Pathfind] Initialized pathfind for room: " .. room.Name .. " - nodes: ", numOfNodes)
+    local _shortW = 4
+    local _longW = 24
     local doorModel = room:WaitForChild("Door", 5)
-    local _startNode, _lastNode = nodes[1], nil
-    local _gpID, stackNode = 1, { [1] = tGroupTrackNew() }
+    local _startNode = nodes[1]
+    local _lastNode = nil
+    local _gpID = 1
+    local stackNode = {}
+    stackNode[_gpID] = tGroupTrackNew()
     nodes = sortNodes(nodes, true)
     local _last = 1
-    for i = _last + 1, #nodes do
-        local nodeA, nodeB = nodes[_last], _lastNode and nodes[i] or doorModel
+    for i=_last+1, numOfNodes, 1 do
+        local nodeA: Part = nodes[_last]
+        local nodeB: Part = _lastNode and nodes[i] or doorModel
         local distance = (nodeA:GetPivot().Position - nodeB:GetPivot().Position).Magnitude
-        local isEndNode, isNodeNear = distance <= _shortW, distance > _shortW and distance <= _longW
+        local isEndNode = distance <= _shortW
+        local isNodeNear = (distance > _shortW and distance <= _longW)
         local _currNodeTask = "Track"
         if isNodeNear or isEndNode then
             if not _lastNode then
@@ -6619,7 +6616,7 @@ function Script.Functions.Minecart.Pathfind(room: Model, forcePathfind: boolean)
         else
             _currNodeTask = "Fake"
         end
-        if (_currNodeTask == "Fake" or _currNodeTask == "End") and _lastNode then
+        if  (_currNodeTask == "Fake" or _currNodeTask == "End") and _lastNode then
             _gpID += 1
             stackNode[_gpID] = tGroupTrackNew()
             if _currNodeTask == "End" then
@@ -6627,75 +6624,92 @@ function Script.Functions.Minecart.Pathfind(room: Model, forcePathfind: boolean)
             end
         end
         table.insert(stackNode[_gpID].nodes, nodeA)
-        Script.Functions.Minecart.debug(string.format("[%s] - [%s] Distance: %s <--> %s ==> %.2f", _gpID, _currNodeTask, nodeA.Name, nodeB.Name, distance))
+        Script.Functions.Minecart.debug(string.format("[%s] - [%s] Distance between: %s <--> %s ==> %.2f", _gpID, _currNodeTask, nodeA.Name, nodeB.Name, distance))
         _last = i
     end
     stackNode[_gpID].hasStart = true
     table.insert(stackNode[_gpID].nodes, _startNode)
     local hasMoreThanOneGroup = _gpID > 1
-    local _closestNodes, hasIncorrectPath = {}, false
+    local _closestNodes = {}
+    local hasIncorrectPath = false
     if hasMoreThanOneGroup then
+        Script.Functions.Minecart.debug()
         for _gpI, v: tGroupTrack in ipairs(stackNode) do
             _closestNodes[_gpI] = {}
-            Script.Functions.Minecart.debug(string.format("[TrackGroup] Group %s: %s nodes | Start: %s | End: %s", _gpI, #v.nodes, tostring(v.hasStart), tostring(v.hasEnd)))
+            Script.Functions.Minecart.debug(string.format("[TrackGroup] Group %s has %s nodes. \t Start: %s | End: %s", _gpI, #v.nodes, tostring(v.hasStart), tostring(v.hasEnd)))
             if _gpI <= 1 then continue end
+            Script.Functions.Minecart.debug(string.format("[TrackGroup] Group %s was selected to deep pathfinding", _gpI))
             v.nodes = sortNodes(v.nodes, false)
-            local _gplast, hasNodeJump = 1, false
-            for _gpS = _gplast + 1, #v.nodes do
-                local nodeA, nodeB = v.nodes[_gplast], v.nodes[_gpS]
+            local _gplast = 1
+            local hasNodeJump = false
+            for _gpS=_gplast+1, #v.nodes, 1 do
+                local nodeA: Part = v.nodes[_gplast]
+                local nodeB: Part = v.nodes[_gpS]
                 local distance = (nodeA:GetPivot().Position - nodeB:GetPivot().Position).Magnitude
-                hasNodeJump = distance >= _longW
+                hasNodeJump = (distance >= _longW)
                 if not hasNodeJump then _gplast = _gpS continue end
-                Script.Functions.Minecart.debug(string.format("[%s] Distance: %s <--> %s ==> %.2f", _gpI, nodeA.Name, nodeB.Name, distance))
-                Script.Functions.Minecart.debug(string.format("[TrackGroup] Group %s, %s finding closest node", _gpI, nodeB.Name))
-                local nodeSearchPath, closestDistance, _gpFlast = nodeB, math.huge, #v.nodes
-                for i = _gpFlast - 1, 1, -1 do
+                Script.Functions.Minecart.debug(string.format("[%s] Distance between %s <--> %s ==> %.2f", _gpI, nodeA.Name, nodeB.Name, distance))
+                Script.Functions.Minecart.debug(string.format("[TrackGroup] Group %s with, %s will find his closest node now.", _gpI, nodeB.Name))
+                local nodeSearchPath = nodeB
+                local closestDistance = math.huge
+                local _gpFlast = #v.nodes
+                for i=_gpFlast-1, 1, -1 do
                     local fnode = v.nodes[_gpFlast]
                     local Sdistance = (nodeSearchPath:GetPivot().Position - fnode:GetPivot().Position).Magnitude
                     _gpFlast = i
-                    if Sdistance == 0 then continue end
-                    Script.Functions.Minecart.debug(string.format("  [%s] DeepPath: %s <--> %s ==> %.2f", _gpI, nodeSearchPath.Name, fnode.Name, Sdistance))
+                    if Sdistance == 0.00 then continue end --node is self
+                    Script.Functions.Minecart.debug(string.format("  [%s] DeepPath ==> Distance between %s <--> %s ==> %.2f", _gpI, nodeSearchPath.Name, fnode.Name, Sdistance))
                     if Sdistance <= closestDistance then
                         closestDistance = Sdistance
                         table.insert(_closestNodes[_gpI], fnode)
-                        table.remove(v.nodes, _gpFlast + 1)
+                        table.remove(v.nodes, _gpFlast+1)
                         continue
                     end
                     break
                 end
                 local _FoundAmount = #_closestNodes[_gpI]
-                if _FoundAmount > 0 then 
-                    Script.Functions.Minecart.debug(string.format("[TrackGroup] Group %s closest node: %s", _gpI, _closestNodes[_gpI][_FoundAmount].Name))
+                if _FoundAmount > 1 then 
+                    Script.Functions.Minecart.debug(string.format("[TrackGroup] Group %s with, closest node is: %s ", _gpI, _closestNodes[_gpI][_FoundAmount].Name))
                 else
-                    warn(string.format("[TrackGroup] Group %s ERROR: No closest node, path broken.", _gpI))
+                    warn(string.format("[TrackGroup] Group %s ERROR: Unable to find closest node, path is likely broken.", _gpI))
                     hasIncorrectPath = true
                 end
                 break
             end
+            if not hasNodeJump then
+                Script.Functions.Minecart.debug(string.format("[TrackGroup] Group %s has a correct path! ", _gpI))
+            end
+        end
+        for _gpI, v: tGroupTrack in ipairs(stackNode) do
+            Script.Functions.Minecart.debug(string.format("[TrackGroup -- VERIFY] Group %s has %s nodes. \t Start: %s | End: %s", _gpI, #v.nodes, tostring(v.hasStart), tostring(v.hasEnd)))
         end
     end
     if hasIncorrectPath then return end
-    local realNodes, fakeNodes = {}, {}
+    local realNodes = {}
+    local fakeNodes = {}
     for _gpFI, v: tGroupTrack in ipairs(stackNode) do
-        local finalWrongNode = _gpFI == 1 and hasMoreThanOneGroup
+        local finalWrongNode = false
+        if _gpFI == 1 and hasMoreThanOneGroup then
+            finalWrongNode = true 
+        end
         for _, vfinal in ipairs(v.nodes) do
-            table.insert(finalWrongNode and fakeNodes or realNodes, vfinal)
+            if finalWrongNode then
+                table.insert(fakeNodes, vfinal)
+                continue
+            end
+            table.insert(realNodes, vfinal)
         end
         for _, nfinal in ipairs(_closestNodes[_gpFI]) do
             table.insert(fakeNodes, nfinal)
         end
     end
-    local buildPathfind: tPathfind = {
-        esp = false,
-        room_number = tonumber(room.Name),
+    local nodesList: tSortedNodes = {
         real = sortNodes(realNodes, false),
-        fake = sortNodes(fakeNodes, false),
-        destroyed = false
+        fake = sortNodes(fakeNodes, false)
     }
-    table.insert(MinecartPathfind, buildPathfind)
     nodesFolder:SetAttribute("_mspaint_nodes_pathfind", true)
-    PathfindSetNodes(buildPathfind.real, "_mspaint_real_node")
-    PathfindSetNodes(buildPathfind.fake, "_mspaint_fake_node")
+    PathfindSetNodes(nodesList.real, "_mspaint_real_node")
+    PathfindSetNodes(nodesList.fake, "_mspaint_fake_node")
     Script.Functions.Minecart.DrawNodes(room)
     Script.Functions.Minecart.Teleport(room)
 end
