@@ -6366,7 +6366,26 @@ local function changeNodeColor(node: Model, color: Color3): Model
     node.Size = Vector3.new(0.7, 0.7, 0.7)
     return node
 end
---@Internal function
+
+local function tPathfindNew(n: number)
+        local create: tPathfind = {
+            esp = false,
+            room_number = n,
+            real = {},
+            fake = {},
+            destroyed = false
+        }
+        return create
+    end
+    
+local function tGroupTrackNew(startNode: Part | nil): tGroupTrack
+        local create: tGroupTrack = {
+            nodes = startNode and {startNode} or {},
+            hasStart = false,
+            hasEnd   = false,
+        }
+        return create
+    end
 --@Return #boolean. True if the pathfind algorithm was ran.
 local function HasAlreadyPathfind(nodesFolder: Folder): boolean
     local hasPathfind = nodesFolder:GetAttribute("_mspaint_nodes_pathfind")
